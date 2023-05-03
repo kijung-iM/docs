@@ -1,0 +1,62 @@
+---
+id: agent-xcub-settings
+title: XCUB 에이전트 설정
+description: CUBRID DB 모니터링을 위해서는 부가 에이전트인 XCUB 설치를 통해 sql_text와 지표의 델타 계산을 위한 정보를 제공합니다.
+tags: [ CUBRID, 데이터베이스 모니터링, XCUB 에이전트 ]
+---
+
+**CUBRID** DB 모니터링을 위해서는 부가 에이전트인 XCUB 설치를 권장합니다. XCUB는 데이터베이스 서버에 설치해야 하며 `sql_text`와 지표의 델타 계산을 위한 정보를 제공합니다. 설치 및 기동 방법은 XOS 에이전트와 동일합니다.
+
+## whatap.conf 파일 설정
+
+* **xcub** <span class='type'>Int</span>
+    
+  기본값 `0`
+
+  XCUB 에이전트 사용 여부를 설정하세요. 값이 `0`인 경우 데이터를 수집하지 않습니다. 값을 `1` 또는 XCUB 에이전트의 IP 주소를 입력하세요. IP 주소를 설정하면 해당 XCUB 에이전트로부터만 데이터를 수집합니다.
+
+## xcub.conf 파일 설정
+
+데이터베이스 서버에 *xcub.conf* 파일을 생성한 다음, 에이전트 서버 정보를 입력하고 추가 옵션을 설정할 수 있습니다.
+
+* **db** <span class='type'>String</span>
+
+  `dbname@db서버IP` 형식으로 설정하세요.
+
+* **dba_pwd** <span class='type'>String</span>
+
+  비밀번호를 설정하면 최초 실행 시 *xcub.pwd* 파일을 생성합니다. 이후 *xcub.conf* 파일에서는 `dba_pwd` 항목을 삭제하세요.
+    
+* **dbx_ip** <span class='type'>String</span>
+
+  DBX 에이전트를 설치한 서버의 IP 주소를 입력하세요.
+    
+* **dbx_port** <span class='type'>String</span>
+
+  기본값 `3002`
+
+  DBX 에이전트와 통신할 포트를 설정하세요. DBX 에이전트와는 UDP로 통신합니다. 해당 포트에 방화벽을 설정했다면 UDP 통신을 위해 방화벽을 해제하세요.
+
+  :::note
+
+  XOS 에이전트를 설치한 경우 XOS 포트와 같이 사용하므로 설정하지 않아도 됩니다.
+
+  :::
+    
+* **sql_limit** <span class='type'>Int</span>
+
+  기본값 `1024`
+
+  `sql_text`의 **byte size limit**입니다. 긴 쿼리를 확인하려면 값을 늘려서 사용하세요.
+
+## XCUB 에이전트 실행
+
+데이터베이스 서버에서 다음 배치 파일을 실행하세요.
+
+```bash title='start.sh'
+$ ./start.sh
+
+# 또는
+
+$ ./startd.sh #백그라운드로 실행할 경우
+```

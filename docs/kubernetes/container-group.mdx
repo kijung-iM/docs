@@ -1,0 +1,71 @@
+---
+id: container-group
+title: 대상 그룹화
+description: 그룹화 기능을 통해 쿠버네티스 환경을 대하는 다양한 사용자의 요구를 충족시킬 수 있습니다.
+tags: [ 쿠버네티스, 쿠버네티스 모니터링 ]
+---
+
+## 사용자 관심사에 따른 다양한 그룹화
+
+기본 ***컨테이너 맵*** 메뉴의 화면을 보면 모든 컨테이너 또는 Pod가 펼쳐져 있습니다. 그런데 쿠버네티스의 컨테이너/Pod를 관찰할 때는 특정 기준으로 대상을 선별해 모니터링하는 경우가 많습니다. 물론 대상을 바라보는 기준은 매우 다양합니다. 쿠버네티스 환경을 대하는 사용자의 관심사가 모두 동일하지 않기 때문입니다.
+
+서버 담당자는 쿠버네티스 리소스를 실행하기 위한 Node 상태에 관심이 많습니다. 반면 특정 서비스의 애플리케이션 담당자는 Deployment나 개별 Pod, 혹은 컨테이너 상태에 관심이 많습니다. 만약 신규 버전 배포 이후라면 Deployment 전체적인 상태 뿐만 아니라 신규 이미지를 사용하는 컨테이너들을 모니터링하고자 할 것입니다.
+
+그래서 이러한 다양한 사용자 니즈를 충족하고자 제공하는 기능이 **그룹화**입니다.
+
+* **컨테이너 기준 뷰** + **Node 그룹화**
+
+  ![컨테이너 기준 뷰 + Node 그룹화](https://img.whatap.io/media/images/whatap_kubernetes_container_map_group_node.png)
+
+* **Pod 기준 뷰** + **Deployment 그룹화**
+
+  ![Pod 기준 뷰 + Deployment 그룹화](https://img.whatap.io/media/images/whatap_kubernetes_container_map_group_deployment.png)
+
+
+### 주요 그룹화 속성
+
+컨테이너 맵의 뷰에 따라 지원하는 그룹화 속성은 다음과 같습니다.
+
+|기준 뷰|그룹화 속성|
+|--|--|
+|컨테이너|미설정 (All)<br/>Node<br/>Namespace<br/>Deployment<br/>ReplicaSet<br/>Pod<br/>ContainerName<br/>Image<br/>DemonSet<br/>StatefulSet|
+|Pod|미설정 (All)<br/>Node<br/>Namespace<br/>Deployment<br/>ReplicaSet|
+
+{@include: ../common-items/_container-note-reset.mdx} 
+
+## 그룹화 & 카드
+
+컨테이너 맵은 1개 이상의 카드로 구성되어 있습니다. 만약 그룹화를 적용하지 않은 상태라면 프로젝트 내 전체 컨테이너/Pod가 하나의 큰 카드 내에 표현됩니다. 그룹화를 적용하면 각 그룹 단위로 카드를 구성합니다.
+
+![그룹 단위로 카드 나열](/img/kubernetes-group-card.png)
+
+위 화면은 Deployment를 기준 속성으로 하여 그룹화를 적용한 것입니다. 각 Deployment 단위로 카드가 나열되어 있음을 알 수 있습니다.
+
+그룹화 적용 시 기준 속성으로 그룹화 할 수 없는 대상은 기본적으로 표시되지 않습니다. 하지만 해당 대상들도 화면에 표시할 수 있는 방법이 있습니다. 화면 위에 ![지시선 1](/img/number-01.png) ![설정 아이콘](/img/ico-setting.svg) 버튼을 선택하세요. ***알 수 없는 그룹 숨기기*** 체크박스를 해제하면 그룹화에 해당하지 않는 대상들만 모아 별도의 카드로 표현합니다.
+
+<!-- ![카드 설정 속성](https://img.whatap.io/media/images/whatap_kubernetes_container_map_card_metric_on.png)-->
+
+## 카드별 메트릭 데이터
+
+각 카드 아래에는 그룹화된 대상들에 대한 메트릭 데이터를 표시합니다. 다음은 제공하는 지표 정보입니다.
+
+|기준 뷰|리소스 지표|애플리케이션 지표|
+|--|--|--|
+|컨테이너|CpuByLimit<br/>CpuByRequest<br/>MemByLimit<br/>NetRxBytes<br/>NetTxBytes<br/>|Normal TX<br/>Slow TX<br/>Very Slow TX<br/>Total TX<br/>TPS|
+|Pod|CpuTotUsage<br/>CpuByNode<br/>MemUsage<br/>NetRxBytes<br/>NetTxBytes|^|
+
+사용자의 커서가 ***Container*** (또는 ***Pod***), ***ActiveTX*** 위에 올라가 있으면 각 메트릭에 대한 설명을 팝업으로 확인할 수 있습니다.
+
+![메트릭 설명](https://img.whatap.io/media/images/whatap_kubernetes_container_map_cards_metri_description.png)
+
+* 팝업에 표시된 지표 중 (Avg)가 붙은 항목은 카드 아래에 표시된 같은 이름의 지표 수치가 그룹 내 개별 대상이 가진 값의 평균 값이라는 의미입니다.
+
+* 팝업에 표시된 지표 중 (Sum)이 붙은 항목은 카드 아래에 표시된 같은 이름의 지표 수치가 그룹 내 개별 대상이 가진 값의 합산 값이라는 의미입니다.
+
+### 카드의 메트릭 데이터 감추기 
+
+카드 아래에 메트릭 데이터는 숨기고 오직 차트에만 집중할 수 있습니다. 화면 위에 ![지시선 1](/img/number-01.png) ![설정 아이콘](/img/ico-setting.svg) 버튼을 선택하세요. ***카드 하단에 메트릭스 표시*** 체크박스를 해제하세요. 이 기능은 카드 수가 많을 때 유용합니다.
+
+다음과 같이 메트릭 데이터를 숨길 수 있습니다.
+
+![카드 하단의 메트릭 데이터 표시 해제](https://img.whatap.io/media/images/whatap_kubernetes_container_map_cards_metric_off.png)

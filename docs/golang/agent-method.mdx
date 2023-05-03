@@ -1,0 +1,48 @@
+---
+id: agent-method
+title: Method 추적
+description: Golang 에이전트의 Method 추적 관련 옵션을 제공합니다.
+tags: [ Golang, Method 추적 ]
+---
+
+## Method 추적
+
+```go title='GO'
+func main(){
+    trace.Init(nil)
+    //It must be executed before closing the app.
+    defer trace.Shutdown()
+
+    ctx, _ := trace.Start(context.Background(), "Trace Method")
+    defer trace.End(ctx, nil)
+
+    getUser(ctx)
+}
+
+func getUser(ctx context.Context) {
+    methodCtx, _ := method.Start(ctx, "getUser")
+    defer method.End(methodCtx, nil)
+    time.Sleep(time.Duration(1) * time.Second)
+}
+```
+
+## API
+
+```go title='GO'
+func Start(ctx context.Context, name string) (*MethodCtx, error)
+
+func End(methodCtx *MethodCtx, err error) error
+
+func Trace(ctx context.Context, name string, elapsed int, err error) error
+```
+
+## Whatap.conf 설정
+
+**ignore_http_method_urls** <span class='type'>String</span><br/>**ignore_http_method** <span class='type'>String</span>
+
+설정한 URI에 대해서 특정 HTTP Method로 요청되는 트랜잭션의 수집을 제외합니다. 쉼표(,)를 구분자로 이용해 여러 개의 URI, Method를 등록할 수 있습니다. 대소문자 구분은 없습니다.
+
+```ini title='예시'
+ignore_http_method_urls=/index, /sql/select
+ignore_http_method=options, connect
+```

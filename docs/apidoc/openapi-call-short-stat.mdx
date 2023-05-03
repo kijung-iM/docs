@@ -1,0 +1,49 @@
+---
+id: openapi-call-short-stat
+title: 단기 조회
+description: 단기 조회를 위한 Open API에 대한 설명을 제공합니다.
+tags: [ Open API, 단기 조회, API ]
+---
+
+<span class='apitype'>GET</span> https://api.whatap.io/open/json/tag/db_pool_detail/dbconn
+
+```bash title='command'
+$ curl -L -w "\n" -H "x-whatap-token: {{PROJECT API TOKEN}}" -H "x-whatap-pcode: {{projectCode}}" "https://dev.whatap.io/open/api/json/tag/db_pool_detail/dbconn?etime=1667520000000"
+```
+
+```json title='response'
+{
+  "pcode": 17,
+  "time": 1667467012037,
+  "dbc_total": [
+    {
+      "oid": -959062357,
+      "oname": "TC-0-1-8087",
+      "databaseUrl": "jdbc:db:virtual",
+      "active": 63,
+      "idle": 37,
+      "total": 100
+    },
+    {
+      "oid": -1311576515,
+      "oname": "TC-0-1-8086",
+      "databaseUrl": "jdbc:db:virtual",
+      "active": 10,
+      "idle": 90,
+      "total": 100
+    }
+  ]
+}
+```
+
+| Response Field |           Field Type            | Description                             |
+| -------------- | :-----------------------------: | --------------------------------------- |
+| pcode          | <span class='api'>number</span> | 프로젝트 코드                           |
+| time           | <span class='api'>number</span> | 조회 시간                               |
+| dbc_total      | <span class='api'>array</span>  | 조회 결과                               |
+| oid            | <span class='api'>number</span> | 에이전트 ID                             |
+| oname          | <span class='api'>string</span> | 에이전트 명                             |
+| databaseUrl    | <span class='api'>string</span> | 데이터베이스 URL                        |
+| active         | <span class='api'>number</span> | 활성화 DB connection 수                 |
+| idle           | <span class='api'>number</span> | 비활성화 DB connection 수               |
+| total          | <span class='api'>number</span> | 총 DB connection 수 (`active` + `idle`) |

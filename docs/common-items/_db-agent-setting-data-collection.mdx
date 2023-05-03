@@ -1,0 +1,75 @@
+<Xclude product ='cubrid,redis'>
+
+* **deadlock_interval** <span class='type'>Int</span>
+
+  기본값 `60`
+
+  deadlock 정보를 가져오는 간격(단위: 분)을 설정합니다. deadlock 정보는 설정한 간격 동안 발생했던 가장 마지막의 deadlock 정보만을 가져옵니다.
+
+</Xclude>
+
+<Xclude product ='redis'>
+
+* **long_run_session_sec** <span class='type'>Second</span>
+
+  기본값 `10`
+
+  설정한 시간보다 길게 수행되고 있는 세션을 long run 세션으로 처리합니다. (단위: 초)
+
+* **tables_hour** <span class='type'>Int</span>
+
+  기본값 `5`
+
+  테이블 정보를 저장하기 위해 정보를 수집하는 시각을 설정합니다. 기본값으로 `5`이며 새벽 5시에 수집을 시작합니다.
+
+* **tables_min_row** <span class='type'>Int</span>
+
+  기본값 `10000`
+
+  테이블 정보를 수집할 때 설정한 값보다 작은 row 수를 가진 테이블 정보는 수집하지 않습니다.
+
+</Xclude>
+
+<InDoc product='oracle,tibero'>
+
+* **tables_exclude_sys** <span class='type'>Boolean</span>
+
+  기본값 `false`
+
+  테이블 정보를 수집할 때 sys 소유인 테이블 정보의 수집 유무를 설정합니다. `true`로 설정하면 sys 소유의 테이블 정보는 수집하지 않습니다.
+
+</InDoc>
+
+<Xclude product ='cubrid,redis'>
+
+* **replication_name** <span class='type'>String</span>
+
+  replication 이름을 설정하면 동일한 `replication_name`을 갖는 DB 사이에 Master/Slave 관계가 있는 것으로 간주합니다.
+
+* **skip_whatap_session** <span class='type'>Int</span>
+
+  기본값 `0`
+
+  `1`을 설정하면 와탭에서 수집하기 위한 query가 동작하는 세션을 active session list에 표시하지 않습니다.(기본값: 0)
+
+</Xclude>
+
+<InDoc product='mysql'>
+
+* **skip_sys_session** <span class='type'>Int</span>
+
+  기본값 `1`
+
+  `2`를 설정하면 sys 세션(root,system user,event_scheduler)이 active session에서 보이지 않습니다. `1`을 설정하면 sys 세션이 보이지만 total runtime에서는 제외합니다.
+
+</InDoc>
+
+<InDoc product='redis'>
+
+* **idle_as_active** <span class='type'>Second</span>
+
+  기본값 `1`
+
+  세션이 마지막 active 상태였던 이후로 idle 상태를 유지한 시간(초)이 설정값보다 작은 세션들을 active session으로 간주하는 옵션입니다. 예를 들어 설정값이 1이면, 1초 이내에 active였던 세션들이 액티브 세션 창에 나타납니다.
+
+</InDoc>

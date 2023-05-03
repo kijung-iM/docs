@@ -1,0 +1,138 @@
+---
+id: mxql-loading
+title:  메트릭스 로딩
+description: MXQL 문법을 이용해 메트릭스를 불러오는 명령어에 대해서 알아봅니다.
+toc_max_heading_level: 2
+tags: [ MXQL, 메트릭스 로딩 ]
+---
+
+MXQL 문법을 이용해 메트릭스를 불러오는 명령어에 대해서 알아봅니다.
+
+| 명령어       | 기능                                                                                |
+| ------------ | ----------------------------------------------------------------------------------- |
+| [TAGLOAD](#tagload)  | 수집한 데이터를 `tag-field` 형식으로 저장하는 카테고리의 정보를 조회할 때 사용합니다. |
+| [FLEXLOAD](#flexload) | 수집한 데이터를 `field` 형식으로 저장하는 카테고리의 정보를 조회할 때 사용합니다.     |
+
+
+## TAGLOAD{#tagload}
+
+수집한 데이터를 `tag-field` 형식으로 저장하는 카테고리의 정보를 조회할 때 사용합니다.
+
+| 옵션 | 기능 |
+|--|--|
+| {backward : true} |시간 역순으로 데이터를 로드합니다.|
+| {filter : {key:fieldName, value :fieldValue}} | fieldName 필드의 값이 fieldValue과 같은 데이터만 추출합니다. |
+| {filter : {key:fieldName, exclude :fieldValue}} | fieldName 필드의 값이 fieldValue과 같은 데이터를 제외하고 추출합니다. |
+| {filter : {key:fieldName, like :fieldValue}} | fieldName 필드의 값이 fieldValue을 부분 문자열로 가지는 데이터만 추출합니다. |
+| {filter : {key:fieldName, notlike :fieldValue}} | fieldName 필드의 값이 fieldValue을 부분 문자열로 데이터를 제외하고 추출합니다. |
+
+* 옵션을 설정하지 않은 경우
+
+  ```sql
+  CATEGORY app_counter
+  TAGLOAD
+  ```
+
+* backward 옵션을 설정한 경우
+
+  ```sql
+  CATEGORY app_counter
+  TAGLOAD {backward : true}
+  ```
+
+* value filter를 설정하는 경우
+
+  ```sql
+  CATEGORY app_counter
+  TAGLOAD {filter : {key:pid, value:905}}
+  ```
+
+* exclude filter를 설정하는 경우
+
+  ```sql
+  CATEGORY app_counter
+  TAGLOAD {filter : {key:pid, exclude:905}}
+  ```
+
+* like filter를 설정하는 경우
+
+  ```sql
+  CATEGORY app_counter
+  TAGLOAD {filter : {key:okindName, like:keeper}}
+  ```
+
+* notlike filter를 설정하는 경우
+
+  ```sql 
+  CATEGORY app_counter
+  TAGLOAD {filter : {key:okindName, notlike:keeper}}
+  ```
+
+* 복수의 filter를 설정하는 경우
+
+  ```sql 
+  CATEGORY app_counter
+  TAGLOAD { filter:[{key:'host_ip', exclude:'192.168.1.102'}, {key:'container', like:'gateway'}] }
+  ```
+
+:::caution
+* `TAGLOAD`와 `FLEXLOAD`는 각각 설정할 수 있는 `CATEGORY`의 값이 정해져있습니다.
+* `fileter-like` 또는 `filter-notlike` 옵션을 사용할 때 값으로 숫자가 오는 경우 작은 따옴표('') 또는 큰 따옴표("")로 감싸주어야 동작합니다.
+  ```sql
+  CATEGORY app_counter
+  TAGLOAD { filter:[{key:'host_ip', exclude:'192.168.1.102'},{key:okindName, like:"1"}] }
+  ```
+:::
+
+## FLEXLOAD{#flexload}
+
+수집된 데이터를 `field` 형식으로 저장하는 카테고리의 정보를 조회할 때 사용합니다.
+
+| 옵션              | 기능                               |
+| ----------------- | ---------------------------------- |
+| {backward : true} | 시간 역순으로 데이터를 로드합니다. |
+
+데이터 검색조건 단계에서 설정한 정보에 따라 데이터를 로드합니다.
+
+```sql
+CATEGORY event_cache
+FLEXLOAD {backward : true}
+```
+
+:::caution
+대부분의 카테고리는 `TAGLOAD`를 사용합니다. [다음 문서](#flexload-items)에 포함한 카테고리의 데이터를 사용할 때에만 `FLEXLOAD`를 사용합니다.
+:::
+
+## FLEXLOAD를 사용해야하는 카테고리 목록{#flexload-items}
+
+* `agent_list` 카테고리
+
+  ```sql
+  CATEGORY agent_list
+  FLEXLOAD
+  SELECT
+  ```
+
+* `db_agent_list` 카테고리
+
+  ```sql
+  CATEGORY db_agent_list
+  FLEXLOAD
+  SELECT
+  ```
+
+* `agent_count` 카테고리
+
+  ```sql
+  CATEGORY agent_count
+  FLEXLOAD
+  SELECT
+  ```
+
+* `event_cache` 카테고리 
+
+  ```sql
+  CATEGORY event_cache
+  FLEXLOAD
+  SELECT
+  ```

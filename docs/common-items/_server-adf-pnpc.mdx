@@ -1,0 +1,19 @@
+프로세스 네트워크 성능은 ***서버 목록*** > ***서버 상세*** 화면의 ***프로세스*** 위젯에서 확인할 수 있습니다.
+
+<Tabs>
+<TabItem value="lxs" label="Linux Shell">
+
+```bash title=SH
+echo "process.fdcheck=true" |sudo tee -a /usr/whatap/infra/conf/whatap.conf
+```
+
+</TabItem>
+<TabItem value="wps" label="Windows Powershell">
+
+```bash title=SH
+// 관리자 권한이 필요합니다.
+Add-Content -Path "C:\Program Files\WhatapInfra\whatap.conf" -Value "process.fdcheck=true"
+```
+
+</TabItem>
+</Tabs>

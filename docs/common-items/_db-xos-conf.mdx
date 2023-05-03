@@ -1,0 +1,25 @@
+## xos.conf 파일 설정
+
+*xos* 디렉터리를 데이터베이스 서버로 복사한 다음, *xos.conf* 파일에 에이전트 서버 정보를 입력하고 추가 옵션을 설정하세요.
+
+- **dbx_ip** <span class='type'>String</span>
+
+  DBX 에이전트를 설치한 서버의 IP 주소를 입력하세요.
+    
+- **dbx_port** <span class='type'>String</span>
+
+  기본값 `3002`
+
+  DBX 에이전트와 통신할 포트를 설정하세요. DBX 에이전트와는 UDP로 통신합니다. 해당 포트에 방화벽을 설정했다면 UDP 통신을 위해 방화벽을 해제하세요.
+    
+- **cpu_limit** <span class='type'>Int</span>
+
+  기본값 `0`
+
+  limit 설정값보다 큰 값을 가진 프로세스 정보를 수집합니다. 1/100% 단위로 1.23%인 경우 `123`으로 설정하세요.
+    
+- **mem_limit** <span class='type'>Int</span>
+
+  기본값 `10240`
+
+  limit 설정값보다 큰 값을 가진 프로세스 정보를 수집합니다. K bytes 단위로 10240은 10M bytes입니다.

@@ -1,0 +1,60 @@
+---
+id: agent-log
+title: 에이전트 로그 설정
+description: PHP 에이전트 로그의 위치와 옵션을 설정할 수 있습니다.
+tags:
+    - PHP
+    - 에이전트 로그
+    - 설정하기
+    - 애플리케이션
+---
+
+애플리케이션 서버가 실행되면 모니터링 정보를 수집합니다. 수집한 정보는 로그 파일에 저장합니다. 
+
+## 로그 설정
+* **whatap.log_keep_days**<span class='type'>Day</span><br/>
+    기본값 `7`<br/>
+    로그 파일 보관 기간을 설정합니다.
+
+## 로그싱크(LogSink) 설정
+
+로그 데이터를 수집합니다.
+
+### 기본 설정
+
+* **whatap.logsink_enabled**<span class='type'>Boolean</span><br/>
+    기본값 `false`<br/>
+    값이 `true`이면 로그 데이터를 수집합니다.
+
+* **whatap.logsink_zip_enabled**<span class='type'>Boolean</span><br/>
+    기본값 `false`<br/>
+    값이 `true`이면 로그 데이터를 압축해서 전송합니다. 기본은 Gzip 입니다.
+
+* **whatap.watchlog_enabled**<span class='type'>Boolean</span><br/>
+    기본값 `false`<br/>
+    값이 `true`이면 로그 파일을 지정해서 로그 데이터를 수집합니다.
+
+### 로그 파일 설정
+
+* **whatap.watchlog.[로그파일 고유 아이디 지정].enabled**<span class='type'>Boolean</span><br/>
+    값이 `true`이면 로그파일의 고유 아이디를 임의로 지정하고, 해당 아이디로 로그 데이터를 수집합니다.
+
+
+* **whatap.watchlog.[로그파일 고유 아이디 지정].file**<span class='type'>String</span><br/>
+    로그 파일의 고유 아이디를 임의로 지정하고, 파일 경로와 파일명을 설정합니다.
+
+### 예시
+
+```ini title='기본 설정'
+whatap.logsink_enabled=true
+whatap.logsink_zip_enabled=true
+whatap.watchlog_enabled=true
+```
+
+```ini title='Apache error log 및 access log 설정'
+whatap.watchlog.apache_error_log.enabled=true
+whatap.watchlog.apache_error_log.file=/etc/httpd/logs/error_log
+
+whatap.watchlog.apache_access_log.enabled=true
+whatap.watchlog.apache_access_log.file=/etc/httpd/logs/access_log
+```

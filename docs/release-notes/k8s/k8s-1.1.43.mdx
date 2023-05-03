@@ -1,0 +1,23 @@
+---
+id: k8s-1.1.43
+title: Kubernetes Agent 1.1.43
+toc_max_heading_level: 2
+---
+
+import Status from '@site/src/components/Highlight';
+import UI from '@site/src/components/UItext';
+
+* 배포일: 2022-05-11
+* Agent download: http://repo.whatap.io/docker/kube_mon_1.1.43.tar
+
+## 컨테이너 로그 수집시 한글 깨짐 개선
+
+컨테이너 로그 수집시 한글 깨짐 개선 했습니다. 
+
+## 컨테이너 cpu 사용량 수집 개선
+
+컨테이너 cpu 사용량 수집시 계산 지연시 100을 초과 하는 오류를  수정 했습니다. 
+
+## kube_pod 카테고리에 컬럼 추가
+
+컨테이너 맵 표시 개선을 위해 kube_pod 카테고리에 phase 추가

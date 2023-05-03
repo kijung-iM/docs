@@ -1,0 +1,19 @@
+일반적으로 메소드 명칭으로 트랜잭션을 구분할 수 있습니다.
+
+```ini title='whatap.conf'
+service_name_mode=[full,class,method,string,arg]
+service_name_index=0
+```
+
+* **service_name_mode**  
+    `full`, `class`, `method`, `string`, `arg` 5가지 옵션을 지정할 수 있습니다.
+
+    * `full`: Full Class 이름을 서비스 명으로 사용합니다.
+    
+    * `class`: Class 이름을 서비스 명으로 사용합니다.
+    
+    * `method`: Method 이름을 서비스명으로 사용합니다.
+    
+    * `string`: 문자열 중에서 첫 번째 파라미터를 서비스 명으로 사용합니다.
+    
+    * `arg`: 파라미터 중에서 `service_name_index` 옵션에 지정한 인덱스에 파라미터를 서비스 명으로 사용합니다.

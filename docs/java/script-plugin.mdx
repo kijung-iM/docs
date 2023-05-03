@@ -1,0 +1,347 @@
+---
+id: script-plugin
+title: 스크립트 플러그인
+description: Java 에이전트에서 제공하는 플러그인을 활용해 다양한 일을 할 수 있습니다.
+tags:
+    - Java
+    - Script plugin
+---
+
+Java 에이전트에서 제공하는 플러그인을 활용해 트레이스 데이터에 부가 정보를 추가하거나, 메소드 수행 전/후로 원하는 코드를 주입하는 것과 같은 다양한 일을 할 수 있습니다.
+
+## 플러그인 옵션
+
+Java 에이전트 플러그인은 메소드 시작/종료 부분에 삽입해 실행합니다. 플러그인을 적용할 위치(클래스, 메소드)는 에이전트 옵션으로 설정할 수 있습니다.
+
+* `hook_trace_helper_start_patterns`
+
+  메소드 시작 부분에 트레이스 플러그인을 삽입할 지점(클래스, 메소드)을 설정합니다. 플러그인 코드는 *`$WHATAP_HOME`/plugin/TraceHelperStart.x* 파일에 작성하세요.
+
+* `hook_trace_helper_end_patterns`
+
+  메소드 종료 부분에 트레이스 플러그인을 삽입할 지점(클래스, 메소드)를 설정합니다. 플러그인 코드는 *`$WHATAP_HOME`/plugin/TraceHelperEnd.x* 파일에 작성하세요.
+
+* `hook_trace_helper_patterns`
+  
+  메소드 시작/종료 양쪽에 트레이스 플러그인을 삽입할 지점(클래스, 메소드)을 설정합니다. 플러그인 코드는 *`$WHATAP_HOME`/plugin/TraceHelperStart.x*, *`$WHATAP_HOME`/plugin/TraceHelperEnd.x* 파일에 각각 작성하세요.
+
+* `custom_pool_classes`
+  
+  사용자 정의 pool을 모니터링 하기 위해 pool 사용량 정보를 가진 클래스를 설정합니다. 플러그인 코드는 *`$/WHATAP_HOME`/plugin/CustomPool.x*에 작성합니다.
+
+## 플러그인 설정 예시
+
+여러 개의 클래스를 설정하는 경우 쉼표(,)를 구분자로 이용하세요. 패키지 이름의 문자열 일부 혹은 전부를 '*'로 치환할 수 있습니다.
+
+* **패키지와 메소드 이름을 설정하는 경우**
+
+  ```java
+  whatap.bytecode.instrument.PluginTestA.testA,whatap.bytecode.instrument.PluginTestB.testB
+  ```
+
+* **패키지와 메소드 이름을 *로 치환하는 경우**
+
+  ```java
+  *PluginTestA.testA,whatap.bytecode.instrument.PluginTestB.*
+  ```
+
+  ```java
+  *.testA, *PluginTestB.testB
+  ```
+
+* **전체를 대상으로 하는 경우**
+
+  ```java
+  *.*
+  ```
+
+* **Custom Pool을 설정하는 경우**
+
+  Custom Pool은 식별자@패키지 명 형태로 설정합니다.    
+  예시, Class 명 앞에 `whatap_plugin_guide`라는 식별자를 설정니다. 식별자와 클래스는 @로 구분합니다.
+
+  ```java
+  whatap_plugin_guide@com.ibm.ws.connectionpool.monitor.ConnectionPoolStats 
+  ```
+
+## 플러그인 코드 작성 예시
+
+대부분의 경우 오브젝트를 반환하므로 명시적 type casting 처리가 필요합니다. 다음은 플러그인 코드 작성 예시입니다.
+
+### 설정한 메소드 시작 시간을 트레이스에 기록하기
+
+1. Java 에이전트 `hook_trace_helper_patterns` 옵션에 적용할 메소드를 *whatap.conf* 파일에 작성하세요.
+
+  ```ini title='$WHATAP_HOME/whatap.conf'
+  hook_trace_helper_patterns=org.apache.catalina.connector.RequestFacade.*
+  ```
+
+2. *TraceHelperStart.x* 파일에 플러그인 코드를 작성하세요.
+
+  ```java title='$WHATAP_HOME/plugin/TraceHelperStart.x'
+  // String prefix에 클래스명, 메소드명을 대입하세요.
+  String prefix = $point.class1 + "." + $point.method;
+  // 와탭 트레이스 속성 명칭을 `prefix` + "st" 로 현재 시간을 설정하세요.
+  $ctx.setAttribute(prefix + "st", new Long(System.currentTimeMillis()));
+  // 트레이스 정보에 현재 시간을 추가하세요.
+  $ctx.profile(prefix + " Start", new java.util.Date().toString()); 
+  ```
+
+트레이스 내역에 메소드 시작시간을 다음과 같이 표시합니다.
+
+![시작 시간을 기록한 트레이스 내역](/img/java-script-plugin-1.png)
+
+### 설정한 메소드 종료시간과 수행시간을 트레이스에 기록하기
+
+1. Java 에이전트 `hook_trace_helper_patterns` 옵션에 적용할 메소드를 *whatap.conf* 파일에 작성하세요.
+
+  ```ini title='$WHATAP_HOME/whatap.conf'
+  hook_trace_helper_patterns=org.apache.catalina.connector.RequestFacade.*
+  ```
+
+1. *TraceHelperEnd.x* 파일에 플러그인 코드를 작성하세요.
+
+  ```java title='$WHATAP_HOME/plugin/TraceHelperEnd.x' {3,8} showLineNumbers
+  String prefix = $point.class1 + "." + $point.method;
+  // TraceHelperStart.x 파일에서 추가한 트레이스 속성을 가져오세요.
+  long st = ((Long) $ctx.getAttribute(prefix + "st")).longValue(); 
+  long gap = System.currentTimeMillis() - st;
+  StringBuilder sb = new StringBuilder();
+  sb.append(new java.util.Date().toString() + " (Gap:" + gap + " milliseconds)");
+  // 트레이스 정보에 시작 시간과의 현재 시간과의 Gap(수행시간)을 추가하세요.
+  $ctx.profile(prefix + " End", sb.toString()); 
+  ```
+
+트레이스 내역에 메소드 종료시간과 수행시간을 다음과 같이 표시합니다.
+
+![종료 / 수행시간 까지 기록된 트레이스 내역](/img/java-script-plugin-2.png)
+
+## 플러그인 API
+
+플러그인 API는 공통 항목인 `$ctx`, `$point`, `$req`, `$res`로 구분합니다. 트랜잭션 시작/종료시, HTTPC 구간, 특정 메소드 실행 구간 등에 적용할 수 있습니다.
+
+### 파라미터 제공 - 공통 플러그인 파일{#common-plugin}
+
+| 파라미터 | 메소드/변수                                                   | 설명                                         |
+| :------: | ------------------------------------------------------------- | -------------------------------------------- |
+|   $ctx   | \>                                                            | 속성관리                                     |
+|    ^     | void setAttribute(String key, Object value)                   | Attribute를 설정합니다.                      |
+|    ^     | Object getAttribute(String key)                               | Attribute의 값을 가져옵니다.                 |
+|    ^     | \>                                                            | 트레이스 데이터                              |
+|    ^     | void profile(String desc)                                     | 트레이스 메시지 기록                         |
+|    ^     | void profile(String name, String msg)                         | 트레이스 Step명, 메시지 기록                 |
+|    ^     | void profile(String name, String msg, int elapsed)            | 트레이스 Step명, 메시지, 수행시간 기록       |
+|    ^     | void profile(String name, String msg, int elapsed, int value) | 트레이스 Step명, 메시지, 수행시간, 순서 기록 |
+|    ^     | \>                                                            | HTTP Request                                 |
+|    ^     | String service()                                              | 서비스 이름 반환                             |
+|    ^     | void service(String name)                                     | 서비스 이름 설정                             |
+|    ^     | int serviceHash()                                             | 서비스이름의 Hash값 반환                     |
+|    ^     | String remoteIp()                                             | 서비스 요청 IP 반환                          |
+|    ^     | void remoteIp(String ip)                                      | 서비스 요청 IP 설정                          |
+|    ^     | boolean isError()                                             | 에러 여부 반환                               |
+|    ^     | void login(String id)                                         | 로그인 ID 설정                               |
+|    ^     | String login()                                                | 로그인 ID 반환                               |
+|    ^     | String httpMethod()                                           | HTTP Method 반환                             |
+|    ^     | String httpQuery()                                            | HTTP Query 반환                              |
+|    ^     | String httpContentType()                                      | HTTP ContentType 반환                        |
+|    ^     | String userAgent()                                            | User-Agent 반환                              |
+|    ^     | int status()                                                  | HTTP status 반환                             |
+|  $point  | String class1                                                 | 클래스명                                     |
+|    ^     | String method                                                 | 메소드명                                     |
+|    ^     | Object this1                                                  | Hooking 대상 클래스/메소드                   |
+|    ^     | Object\[\] args                                               | 인자                                         |
+|    ^     | Object return1                                                | 리턴                                         |
+
+### 파라미터 미제공 - 공통 플러그인 파일
+
+| 파라미터 | 메소드/변수                                          | 설명                                          |
+| :------: | ---------------------------------------------------- | --------------------------------------------- |
+|   없음   | void log(Object c)                                   | Logger를 통한 Logging                         |
+|    ^     | void println(Object c)                               | System.out.println() 을 통한 출력             |
+|    ^     | Object field(Object o, String field)                 | Field 값 반환                                 |
+|    ^     | Object method(Object o, String method)               | Invoke 메소드                                 |
+|    ^     | Object method(Object o, String method, String param) | Invoke 메소드                                 |
+|    ^     | String toString(Object o)                            | Object를 toSting() 반환                       |
+|    ^     | String toString(Object o, String def)                | Object를 toSting() 반환, null 인경우 def 반환 |
+|    ^     | int syshash(Object o)                                | hash 값 반환                                  |
+|    ^     | int syshash(HookArgs hook, int x)                    | x 번째 argument의 hash 값 반환                |
+|    ^     | int syshash(HookArgs hook)                           | argument의 hash 값 반환                       |
+|    ^     | int cint(Object o)                                   | int로 반환                                    |
+|    ^     | float cfloat(Object o)                               | float 으로 반환                               |
+|    ^     | String cString(Object o)                             | String 으로 반환                              |
+|    ^     | long clong(Object o)                                 | long으로 반환                                 |
+|    ^     | double cdouble(Object o)                             | double로 반환                                 |
+|    ^     | String desc(Object o)                                | Class signature 반환                          |
+|    ^     | String toJson(Object o)                              | json으로 반환                                 |
+|    ^     | void shell(final String cmd, final String env)       | shell 실행                                    |
+
+### 데몬 및 배치
+
+데몬, 배치와 같은 애플리케이션 서버를 모니터링할 때 시작점으로 설정한 메소드에 적용하는 API입니다. 다음 파일에 코드를 작성하세요.
+
+* 서비스 시작 부분 적용: *`$WHATAP_HOME`/plugin/AppServiceStart.x*
+* 서비스 종료 부분 적용: *`$WHATAP_HOME`/plugin/AppServiceEnd.x*
+
+| 플러그인 파일     | 파라미터 | 메소드/변수 | 설명           |
+| ----------------- | :------: | ----------- | -------------- |
+| AppServiceStart.x |   $ctx   | \>           | 공통 속성 참조 |
+| ^                 |  $point  | \>           | 공통 속성 참조 |
+| AppServiceEnd.x   |   $ctx   | \>           | 공통 속성 참조 |
+
+### HTTP 서비스
+
+`javax.servlet.http.HTTPServlet` 클래스를 사용하는 일반적인 웹 애플리케이션에 적용할 수 있는 API입니다. 다음 파일에 코드를 작성하세요.
+
+* 서비스 시작 부분 적용: *`$WHATAP_HOME`/plugin/HttpServiceStart.x*
+* 서비스 종료 부분 적용: *`$WHATAP_HOME`/plugin/HttpServiceEnd.x* 
+
+| 플러그인 파일                            | 파라미터 | 메소드/변수                            | 설명                     |
+| ---------------------------------------- | :------: | -------------------------------------- | ------------------------ |
+| HttpServiceStart.x/<br/>HttpServiceEnd.x |   $ctx   | \>                                      | 공통 속성 참조           |
+| ^                                        |   $req   | String getCookie(String key)           | Cookie 값 반환           |
+| ^                                        |    ^     | String getRequestURI()                 | RequestURI 반환          |
+| ^                                        |    ^     | String getRemoteAddr()                 | RemoteAddr 반환          |
+| ^                                        |    ^     | String getMethod()                     | HTTP Method 반환         |
+| ^                                        |    ^     | String getQueryString()                | HTTP QueryString 반환    |
+| ^                                        |    ^     | String getParameter(String key)        | Parameter 값 반환        |
+| ^                                        |    ^     | Object getAttribute(String key)        | Attribute 값 반환        |
+| ^                                        |    ^     | String getHeader(String key)           | Header 값 반환           |
+| ^                                        |    ^     | Enumeration getParameterNames()        | getParameterNames 반환   |
+| ^                                        |    ^     | Enumeration getHeaderNames()           | getHeaderNames 반환      |
+| ^                                        |    ^     | WrSession getSession()                 | Session Wrapper 반환     |
+| ^                                        |    ^     | Set getSessionNames()                  | getSessionNames 반환     |
+| ^                                        |    ^     | Object getSessionAttribute(String key) | getSessionAttribute 반환 |
+| ^                                        |    ^     | boolean isOk()                         | Plugin 상태 반환         |
+| ^                                        |    ^     | Throwable error()                      | Error 반환               |
+| ^                                        |   $res   | String getContentType()                | ContentType 반환         |
+| ^                                        |    ^     | String getCharacterEncoding()          | CharacterEncoding 반환   |
+| ^                                        |    ^     | boolean isOk()                         | Plugin 상태 반환         |
+| ^                                        |    ^     | Throwable error()                      | Error 반환               |
+
+### HTTP Outbound
+
+`HttpClient`와 같은 라이브러리를 이용해 HTTP Outbound Call 수행 할 때 적용할 수 있는 API입니다. 다음 파일에 코드를 작성하세요.
+
+* 서비스 시작 부분 적용: *`$WHATAP_HOME`/plugin/HttpCallStart.x*
+* 서비스 종료 부분 적용: *`$WHATAP_HOME`/plugin/HttpCallEnd.x*
+
+| 플러그인 파일   | 파라미터 | 메소드/변수                   | 설명                   |
+| --------------- | :------: | ----------------------------- | ---------------------- |
+| HttpCallStart.x |   $ctx   | \>                            | 공통 속성 참조         |
+| ^               |   $req   | String url()                  | URL 반환               |
+| ^               |    ^     | String host()                 | Hostname 반환          |
+| ^               |    ^     | int port()                    | Port 반환              |
+| ^               |    ^     | boolean isOk()                | Plugin 상태 반환       |
+| ^               |    ^     | Throwable error()             | Error 반환             |
+| HttpCallEnd.x   |   $ctx   | \>                            | 공통 속성 참조         |
+| ^               |   $res   | String getContentType()       | ContentType 반환       |
+| ^               |    ^     | String getCharacterEncoding() | CharacterEncoding 반환 |
+| ^               |    ^     | boolean isOk()                | Plugin 상태 반환       |
+| ^               |    ^     | Throwable error()             | Error 반환             |
+
+### 특정 메소드
+
+자바 에이전트 옵션(`hook_trace_helper_*`)을 통해 설정한 메소드에 대해 적용하는 API 입니다.
+
+| 플러그인 파일      | 파라미터 | 메소드/변수 | 설명           |
+| ------------------ | :------: | ----------- | -------------- |
+| TraceHelperStart.x |   $ctx   | \>          | 공통 속성 참조 |
+| ^                  |  $point  | \>          | 공통 속성 참조 |
+| TraceHelperEnd.x   |   $ctx   | \>          | 공통 속성 참조 |
+| ^                  |  $point  | \>          | 공통 속성 참조 |
+
+### 사용자 정의 Pool
+
+사용자 정의 Pool을 모니터링 하기 위한 API입니다. Pool 사용량 정보를 가진 메소드를 설정하면 와탭 모니터링 서비스에서 관찰하고 통계 정보를 확인할 수 있습니다.
+
+| 플러그인 파일 | 파라미터 | 메소드/변수        | 설명                               |
+| ------------- | :------: | ------------------ | ---------------------------------- |
+| CustomPool.x  |   $id    | \>                 | custom_pool_classes에 설정한 id 값 |
+| ^             |  $pool   | \>                 | custom_pool_classes에 설정한 class |
+| ^             | $result  | active(Object o)   | Active Pool Count 설정             |
+| ^             |    ^     | int idle(Object o) | Idle Pool Count 설정               |
+
+## 플러그인 적용 사례
+
+다음은 실제 플러그인 적용 사례입니다.
+
+### Elasticsearch 엔진의 검색 요청 모니터링
+
+Elasticsearch(이하 ES) 엔진은 서블릿 엔진이 아니기 때문에 비정형 모니터링을 해야 합니다. 타상품이 지표 중심의 모니터링을 한다면 와탭의 플러그인을 활용해 ES의 요청 및 처리시간, 검색 키워드를 트레이싱할 수 있습니다.
+
+```ini title='whatap.conf'
+# 트랜잭션 EndPoint로 org.elasticsearch.search.SearchService.executeQueryPhase를 설정합니다.
+hook_service_patterns=org.elasticsearch.search.SearchService.executeQueryPhase
+
+# hook_trace_helper_start_patterns에 등록된 메소드가 실행될 때마다 TraceHelperStart.x 파일의 코드를 실행합니다.
+hook_trace_helper_start_patterns=org.elasticsearch.search.query.QueryPhase.execute
+```
+
+```java title='${WHATAP_HOME}/plugin/TraceHelperStart.x' {13,15} showLineNumbers
+if ($ctx.inner() == null) {
+    return;
+}
+
+try {
+    String tclass = "org.elasticsearch.search.query.QueryPhase";
+    String tmethod = "execute";
+
+    if (tclass.equals($point.class1) && tmethod.equals($point.method)) {
+        // 첫번째 argument의 query 메소드 호출 결과를 String query에 저장,
+        // org.elasticsearch.search.query.QueryPhase.execute(SearchContext searchContext)입니다.
+        // 즉, SearchContext.query() 메소드를 invoke 한 결과를 String query에 저장합니다.
+        String query = " " + method($point.args[0], "query");
+        // String query를 트레이스 정보로 출력
+        $ctx.profile(query);
+    }
+} catch(Exception e) {
+    $ctx.profile(e.toString());
+}
+```
+
+### 특정 IP로 유입되는 트랜잭션 수집 제외
+
+Health Check, 내부 사용자들이 유발한 트랜잭션을 수집 제외하려면 플러그인을 활용할 수 있습니다.
+
+```java title='${WHATAP_HOME}/plugin/HttpServiceStart.x' {2} showLineNumbers
+// ignoreIP 값을 수집 제외할 IP로 설정하세요.
+String ignoreIP = "123.234.123.234";
+String remoteIP = $req.getRemoteAddr();
+
+if ($ctx.ok() && remoteIP != null) {
+    if (remoteIP.equals(ignoreIP)) {
+        $ctx.ignore();
+    }
+}
+```
+
+### Atomikos Pool 모니터링
+
+[API 문서](https://www.atomikos.com/downloads/transactions-essentials/com/atomikos/AtomikosTransactionsEssentials/javadoc/3.7/com/atomikos/jdbc/AbstractDataSourceBean.html)를 참고해 적용하세요.
+
+```ini title='whatap.conf'
+custom_pool_classes=atomikos@com.atomikos.jdbc.internal.AbstractDataSourceBean
+```
+
+```java title='${WHATAP_HOME}/plugin/CustomPool.x'
+int total = cint(method($pool,"poolTotalSize"));
+int avail = cint(method($pool,"poolAvailableSize"));
+
+$result.active(total - avail);
+$result.idle(avail);
+```
+
+### 트레이스에 Cookie 값 표현
+
+쿠키값을 트레이스에서 확인할 수 있습니다.
+
+```java title='${WHATAP_HOME}/plugin/HttpServiceStart.x' {2} showLineNumbers
+// $req.getCookie() 파라미터로 확인하려는 Cookie를 설정하세요.
+String cookie = $req.getCookie("AWSALB");
+
+if ($ctx.ok()) {
+    if (cookie != null) {
+        $ctx.profile(cookie);
+    }
+}
+```

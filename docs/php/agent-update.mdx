@@ -1,0 +1,95 @@
+---
+id: agent-update
+title: 에이전트 업데이트
+description: PHP 에이전트 업데이트 방법을 제공합니다.
+tags:
+    - PHP
+    - 업데이트
+    - 관리하기
+    - 애플리케이션
+---
+
+패키지 업데이트는 기존 설정을 유지한 채로 PHP 모니터링 서비스를 업데이트합니다. 0.2.7 이후 버전부터 정상적인 업데이트가 지원됩니다. 이전 버전은 삭제 후 **재설치**가 필요합니다.
+
+:::caution
+아파치 실행 중 php extension의 *shared library(.so)* 파일이 변경되는 경우 아파치 데몬이 비정상 종료될 수 있습니다. 반드시 아파치 서버 중지 상태에서 업데이트를 진행해야 안전합니다.
+:::
+
+## Redhat/CentOS
+
+1. 패키지 정보 갱신을 위해 캐시 정보를 삭제하세요.
+
+    ```bash
+    $ yum clean all
+    ```
+
+1. Apache 또는 PHP-FPM 서비스(Service)를 중지하세요.
+
+1. whatap-php 패키지를 업데이트하세요.
+
+    ```bash
+    $ yum update whatap-php
+    ```
+
+    :::note
+    특정 버전으로 다운로드하고자 할 때는 다음과 같이 버전을 명시하세요.
+
+    ```bash
+    $ yum update whatap-php-<version>
+    ```
+    :::
+
+## Debian/Ubuntu
+
+1. 패키지 정보 갱신을 위해 캐시 정보를 갱신하세요.
+
+    ```bash
+    $ sudo apt-get update
+    ```
+
+1. Apache 또는 PHP-FPM 서비스(Service)를 중지하세요.
+
+1. whatap-php 패키지를 업데이트하세요.
+
+    ```bash
+    $ sudo apt-get install --only-upgrade whatap-php
+    ```
+
+    :::note
+    특정 버전으로 다운로드하고자 할 때는 다음과 같이 버전을 명시하세요.
+
+    ```bash
+    $ sudo apt-get install whatap-php=<version>
+    ```
+    :::
+
+## FreeBSD
+
+에이전트 삭제 후 재설치하세요. 다음 항목을 참조하여 진행하세요.
+
+1. Apache 또는 PHP-FPM 서비스(Service)를 중지
+
+1. 에이전트 삭제 후 재설치
+
+    ```bash
+    $ /usr/whatap/php/install.sh remove
+
+    $ wget https://s3.ap-northeast-2.amazonaws.com/repo.whatap.io/freebsd/10/whatap-php-0.4.10.txz
+    $ pkg install whatap-php-0.4.10.txz
+    ```
+
+1. PHP 확장 모듈 및 whatap-php 서비스 등록
+
+    ```bash
+    $ /usr/whatap/php/install.sh
+    ```
+
+    :::note
+    * 특정 버전으로 다운로드하고자 할 때는 다음과 같이 버전을 명시하세요.
+    
+        ```bash
+        $ wget https://s3.ap-northeast-2.amazonaws.com/repo.whatap.io/freebsd/10/whatap-php-<version>.txz
+        $ pkg install whatap-php-<version>.txz
+        ```
+    * Apache 또는 PHP-FPM 서비스(Service)를 시작합니다.
+    :::

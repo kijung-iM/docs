@@ -1,0 +1,14 @@
+* **gclog_enabled** <span class='type'>Boolean</span><br/>
+    기본값 `false`<br/>
+    GC 로그 모니터링을 활성화합니다.
+
+* **gclog_file** <span class='type'>String</span><br/>
+    GC 로그 파일 경로를 설정합니다.
+
+* **gclog_check_interval** <span class='type'>Int</span><br/>
+    기본값 `2000`<br/>
+    GC 로그를 감시하는 간격입니다. 매 간격으로 로그 파일에 기록이 추가됐는지 확인합니다.
+
+* **gclog_word** <span class='type'>String</span><br/>
+    기본값 `Full GC`<br/>
+    감시할 키워드를 등록합니다. 'Full GC'가 발생하면 정보를 서버에 전송하고 저장합니다.

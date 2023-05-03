@@ -1,0 +1,16 @@
+---
+id: install-check
+title: 설치 점검 사항
+description: .NET 에이전트를 설치한 다음 확인해야할 사항입니다.
+tags: [ .NET ]
+---
+
+## 서비스 동작 확인
+
+***WhaTap.NET*** 서비스가 정상 등록되어 있고, 동작(***실행 중***) 상태인지 확인하세요.
+
+관리자 권한으로 `services.msc` 명령을 실행하거나 제어판에서 서비스 아이콘을 두 번 클릭해 Services 관리자를 여세요.
+
+![윈도우 Service 관리자](https://img.whatap.io/media/agent_dotnet/install/whatap-windows-service.png)
+
+**WhaTap .NET** 서비스는 수집한 모니터링 데이터를 와탭 서버로 전송합니다. 관련 로그는 *C:\Program Files\WhaTap .NET\logs* 경로에서 확인하세요.

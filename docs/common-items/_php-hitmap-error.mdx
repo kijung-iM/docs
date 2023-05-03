@@ -1,0 +1,31 @@
+## 응답 시간 분포도에 트랜잭션이 표시되지 않는 경우
+<!-- 응답 시간 분포도(히트맵) -> 응답 시간 분포도 즉 히트맵 -->
+
+CPU와 Memory 그래프를 볼 수 있지만 응답 시간 분포도 즉 히트맵을 볼 수 없는 현상은 다음과 같은 경우에 발생합니다. 
+
+* 에이전트가 수집 서버와 정상적으로 연결되었으나 트레이서가 정상적으로 PHP 확장 모듈에 적용되지 않은 경우
+* 설정 후 Apache 및 PHP-FPM 서비스를 재시작하지 않은 경우
+
+1.  PHP 확장 모듈이 적용되었는지 확인하세요.
+
+    ```bash title='PHP 확장 모듈 확인'
+    $ sudo php -m
+
+    [PHP Modules]
+    bz2
+    calendar
+    Core
+    ctype
+    curl
+    date
+    …
+    whatap               # 와탭 모듈 로드 확인
+    …
+    [Zend Modules]
+    ```
+
+1. Apache 및 PHP-FPM 서비스를 재시작하세요.
+
+1. PHP 확장 모듈이 적용되지 않은 경우는 정상 설치되지 않은 것입니다. *whatap.so* 또는 *whatap.ini* 파일 경로가 PHP 환경과 일치하는지 확인하세요.<br/>
+    다음 설명서를 참조하여 [PHP 명령어(CLI) 경로](#check-php-cli-path), [PHP 확장 모듈 경로](#check-php-extension-module), [PHP 추가 ini 설정 경로](#php-ini-path) 항목들을 확인하세요.
+<!-- 위 항목의 포함관계 검토 필요-->

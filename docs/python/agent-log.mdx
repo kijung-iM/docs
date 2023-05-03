@@ -1,0 +1,22 @@
+---
+id: agent-log
+title: 에이전트 로그
+description: Python 에이전트 로그의 위치와 옵션을 설정할 수 있습니다.
+tags:
+    - Python
+    - 에이전트 로그
+    - 설정하기
+---
+
+애플리케이션 서버가 실행되면 모니터링 정보를 수집합니다. 수집한 정보는 로그 파일에 저장합니다.
+
+## 로그 설정
+
+* **log_rotation_enabled**<span class='type'>Boolean</span><br/>
+    기본값 `true`<br/>
+    에이전트 로그 파일을 매일 변경합니다. 로그 파일의 기본 경로는 *$WHATAP_HOME/logs/whatap-xxx.log* 입니다.
+
+* **log_keep_days**<span class='type'>Day</span><br/>
+    기본값 `7`<br/>
+    로그 파일 보관 기간을 설정합니다.
+

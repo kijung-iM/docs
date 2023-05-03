@@ -1,0 +1,61 @@
+---
+id: jetty
+title: Jetty
+description: Jetty 애플리케이션 서버 환경에서 JVM 옵션 추가 설정을 완료하세요.
+tags:
+    - Java
+    - Jetty
+---
+
+Jetty를 사용하는 애플리케이션 서버 환경에서 JVM 옵션을 추가하는 방법을 확인하세요. 
+
+## JVM 옵션 추가
+
+* *jetty.sh* 파일에 JVM 옵션 추가
+
+    ```bash title='$JETTY_HOME/bin/jetty.sh' {2} showLineNumbers
+    ...
+    JAVA_OPTIONS+=("-javaagent:/home/vagrant/whatap/whatap.agent-X.Y.Z.jar -Dwhatap.port=8080")
+    usage()
+    {
+        echo "Usage: ${0##*/} [-d] {start|stop|run|restart|check|supervise} [ CONFIGS ... ] "
+        exit 1
+    }
+    [ $# -gt 0 ] || usage
+    ...
+    ```
+
+* 쉘 스크립트 없이 Jetty 시작하기
+
+    ```bash
+    $ java -javaagent:/home/vagrant/whatap/whatap.agent-X.Y.Z.jar -Dwhatap.port=8080 -jar start.jar &
+    ```
+
+:::note
+{@include: _java-17.mdx}
+:::
+
+## 모니터링 시작하기
+
+{@include: ../../common-items/_start-apm.mdx}
+
+## JETTY 호환성
+
+WAS Ver.|Java SE 6 (jdk1.6.0)|Java SE 7 (jdk1.7.0_80)|Java SE 8 (jdk1.8.0_91)
+--|:--:|:--:|:--:
+Jetty 8.1.21|<span class='emoji-no'>❌</span>|<span class='emoji-ok'>✅</span>|<span class='emoji-ok'>✅</span>
+Jetty 9.2.18|<span class='emoji-no'>❌</span>|<span class='emoji-ok'>✅</span>|<span class='emoji-ok'>✅</span>
+Jetty 9.3.12|<span class='emoji-no'>❌</span>|<span class='emoji-no'>❌</span>|<span class='emoji-ok'>✅</span>
+
+WAS Ver.|ibm-java-x86_64-60|ibm-java-x86_64-71|ibm-java-x86_64-80
+--|:--:|:--:|:--:
+Jetty 8.1.21|<span class='emoji-no'>❌</span>|<span class='emoji-ok'>✅</span>|<span class='emoji-ok'>✅</span>
+Jetty 9.2.18|<span class='emoji-no'>❌</span>|<span class='emoji-ok'>✅</span>|<span class='emoji-ok'>✅</span>
+Jetty 9.3.12|<span class='emoji-no'>❌</span>|<span class='emoji-no'>❌</span>|<span class='emoji-ok'>✅</span>
+
+## Jetty DataSource
+
+DB|JDBC Driver 파일명|JDBC Ver.|JDK Ver.|호환성
+--|--|--|--|:--:
+MySQL|mysql-connector-java-5.1.39-bin.jar|5.1.39|JDK 1.7.0_80|<span class='emoji-ok'>✅</span>
+Oracle|ojdbc6-11.2.0.2.0.jar|11.2.0.2.0|JDK 1.7.0_80|<span class='emoji-ok'>✅</span>

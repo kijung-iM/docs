@@ -1,0 +1,84 @@
+---
+id: agent-temp-st
+title: 모니터링 일시 중지
+description: PHP 에이전트 모니터링을 일시적으로 중지시키는 방법을 제공합니다.
+tags:
+    - PHP
+    - 일시 중지
+    - 관리하기
+    - 애플리케이션
+---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+PHP 모니터링 서비스를 일시 중지하려면 PHP 확장 모듈을 중지하고 whatap-php 서비스를 중지해야 합니다. 다음 항목을 참고하세요.
+
+1. PHP 확장 모듈(PHP Extension module)을 중지하세요. 
+
+    *whatap.ini* 파일의 `extension=` 구문을 주석 처리하세요. 주석은 세미콜론(*;*)으로 설정하세요.
+    
+    <!--
+    :::note
+    주석은 세미콜론(;)으로 설정하세요.
+    ::: -->
+    
+    ```bash
+    $ sudo vi whatap.ini
+
+    extension=whatap.so
+
+    ;주석
+    ;extension=whatap.so
+    ```
+
+    수동 설정으로 *php.ini* 파일에 직접 설정한 경우도 동일하게 `extension=` 구문을 주석 처리하세요. 
+    
+    :::note
+    {@include: ../common-items/_php-restart-apache.mdx} 
+    :::
+
+2. whatap-php 서비스(Service)를 중지하세요.
+
+    <Tabs>
+    <TabItem value="rdct" label="Redhat/CentOS" default>
+
+    ```bash
+    $ sudo service whatap-php stop
+    ```
+    
+    </TabItem>
+    <TabItem value="dbub" label="Debian/Ubuntu">
+
+    ```bash
+    $ sudo service whatap-php stop
+    ```
+    
+    </TabItem>
+    <TabItem value="frbsd" label="FreeBSD">
+
+    ```bash
+    $ service whatap_php stop
+    ```
+    
+    </TabItem>
+    </Tabs>  
+
+<!--
+**Redhat/CentOS**
+
+```bash
+$ sudo service whatap-php stop
+```
+
+**Debian/Ubuntu**
+
+```bash
+$ sudo service whatap-php stop
+```
+
+**FreeBSD**
+
+```bash
+$ service whatap_php stop
+```
+-->

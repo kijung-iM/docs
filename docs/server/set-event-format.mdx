@@ -1,0 +1,121 @@
+---
+id: set-event-format
+title: 이벤트 수신 포맷
+description: 서버 모니터링에서 제공하는 경고 알림의 이벤트 수신 포맷에 대해 알아봅니다.
+tags: [ 경고 알림, 이벤트, 서버, 이벤트 수신 포맷 ]
+---
+
+## 서버 알림 템플릿
+
+서버 모니터링은 예외적으로 알림 템플릿이 다릅니다.
+
+* Product Type : 서버
+* Event Type : 서버 알림, 프로세스 알림, 로그 파일 / 윈도우 이벤트 알림
+* Event Channel : SMS, Mobile, 3rd party plugin , Plugin
+
+### 이벤트 제목
+
+```log title='이벤트 제목 포맷'
+[Level][INFRA] ProjectName ServerName EventTitle
+```
+
+```log title='이벤트 제목 예시'
+[Info][INFRA] 서버 프로젝트 TC-0-1-8081 CPU Used > 70%
+```
+:::note
+ServerName이 지정되지 않은 경우 이벤트 제목에서 생략됩니다.
+:::
+
+### 이벤트 메시지
+
+이벤트 메시지에 포함될 수 있는 정보입니다. `optional`이 `false`인 경우 항상 메시지에 포함됩니다. `optional`이 `true`인 경우 해당 데이터를 확인할 수 있으면 보여줍니다.
+
+```log title='이벤트 메시지 예시'
+Project Name : 애플리케이션 프로젝트
+Project Code : 3
+Server Name : TC-0-1-8081
+Event Message : [TEST] RECOVERED: Memory is too high. less than 10%
+Event ON Time : 2022-04-12 18:53:24 +0900
+Event OFF Time : 2022-04-12 18:53:24 +0900
+Alert Type :
+Metric Name : memory
+Metric Value : 20
+Metric Threshold : 10
+Stateful : true
+```
+
+다음은 이벤트 메시지 구성 요소입니다.
+
+| En | Ko | Optional | 설명 |
+|----|----|----|----|
+| Project Name | 프로젝트 이름 | `false` | -|
+| Project Code | 프로젝트 Code | `false` | -|
+| Server Name | 애플리케이션 이름 | `true` | oname|
+| Event Message | 이벤트 메시지 | `false` | -|
+| Event ON Time | 이벤트 발생 시간 | `false` | 2022-04-13 10:40:49 +0900에서 +0900는 GMT를 의미합니다.|
+| Event OFF Time | 이벤트 해제 시간 | `true` | 2022-04-13 10:40:49 +0900에서 +0900는 GMT를 의미합니다.|
+| Elapsed Time | 이벤트 발생 지속 시간 | `true` | -|
+| Alert Type | 이벤트 종류 | `true` | -|
+| Policy Name | 알림 정책 이름 | `true` | -|
+| Metric Name | 메트릭스 이름 | `true` | 이벤트 조건 판단에서 사용하는 메트릭스의 이름입니다.|
+| Metric Value | 메트릭스 값 | `true` | 메트릭스 값이 메트릭스 임계치를 넘으면 이벤트 발생 조건이 만족한 경우입니다.|
+| Metric Threshold | 메트릭스 임계치 | `true` | 메트릭스 값이 메트릭스 임계치를 넘으면 이벤트 발생 조건이 만족한 경우입니다.|
+| Event Rule | 이벤트 발생 조건 | `true` | -|
+| Alert Type | 이벤트 종류 | `true` | 이벤트 종류를 특정하기 위한 필드입니다.|
+| Event Target Filter | 이벤트 대상 선택 | `true` | (메트릭스 알림) 특정 대상에서 수집된 메트릭스에 대해서만 이벤트 조건을 확인합니다. |
+| Stateful | 해결된 이벤트 알림 | `true` | 해결된 이벤트 알림 기능 사용 중이면 `true`, 아니면 `false`|
+| Repeat Count | 이벤트 반복 횟수 | `true` | (메트릭스 알림) 이벤트 조건이 이벤트 반복 시간동안 이벤트 반복 횟수만큼 만족해야 이벤트가 발생됩니다.|
+| Repeat Duration | 이벤트 반복 시간 | `true` | (메트릭스 알림) 이벤트 조건이 이벤트 반복 시간동안 이벤트 반복 횟수만큼 만족해야 이벤트가 발생됩니다. 해결된 이벤트 알림입니다.|
+| IP | IP | `true` | - |
+| Log Content | Log Content | `true` | -|
+| Log Source | Log Source | `true` | - |
+| CPU | CPU | `true` | -|
+| CPU_load1 | CPU_load1 | `true` | -|
+| CPU_loadPerCore | CPU_load1 | `true` | -|
+| Memory | Memory | `true` | -|
+| Swap | Swap | `true` | -|
+| Disk Name / Used Percent / Free Size / IO Percent | Disk Name / Used Percent / Free Size / IO Percent  | `true` | -|
+| Traffic Name / Bps / Pps | Name / Bps / Pps | `true` | -|
+| Acknowledge Message / Time / Name | Acknowledge Message / Time / Name | `true` | -|
+
+## 서버 알림 제목과 메시지
+
+서버 알림은 Event Title 없이 Event Message만 제공됩니다.
+
+### 서버 알림
+
+|Event Type|Event Level|Event Message|Event Off Message|
+|----|----|----|----|
+|재시작|Critical|System Rebooted"|미지원|
+| 미수신 | Warning | Agent No Data" | 미지원|
+| 포트 | Warning | Port ${port} is down" | "Port ${port} is up"|
+| 포트(IP를 알 수 있는 경우) | Warning | IP ${ip} Port ${port} is down" | "IP ${ip} Port ${port} is up"|
+| 네트워크 IOPS | Warning or Critical | NETWORK ${deviceId} pps > ${value} pps" | -|
+| 네트워크 BPS | Warning or Critical | NETWORK ${deviceId} bps > ${value} ps" | -|
+| 디스크 I/O | Warning or Critical | Disk ${mountPoint} IO Usage > ${value} %" | -|
+| 디스크 사용량 | Warning or Critical | Disk ${mountPoint} Used > ${value} %" | -|
+| inode | Warning or Critical | Disk ${mountPoint} inode usage > ${value} %" | -|
+| CPU | Warning or Critical | CPU Used > ${value} %" | -|
+| 메모리  | Warning or Critical | Memory Used > ${value} %" | -|
+| steal | Warning or Critical | CPU Steal > ${value} %" | -|
+| 스왑  | Warning or Critical | Swap Used > ${value} %" | -|
+
+### 프로세스 알림
+
+|Event Type|Event Level|Event Message|Event Off Message|
+|----|----|----|----|
+| 프로세스 수 경고  | Warning or Critical | Process ${processName} Count >= ${value}" | "Process ${groupName} Count < ${value}" |
+| 프로세스 수 위험  | Warning or Critical | Process ${processName} Count < ${value}" | "Process ${groupName} Count >= ${value}"
+| 프로세스 CPU | Warning or Critical | Process ${processName} CPU > ${value}" | -|
+| 프로세스 메모리 | Warning or Critical | Process ${processName} Memory > ${value}" | -|
+
+### 로그 파일과 윈도우 이벤트
+
+|Event Type|Event Level|Event Message|Event Off Message|
+|----|----|----|----|
+| Event Type | Event Level | Event Message | Event Off Message |
+| LOG_DEFAULT  | Warning or Critical | LOG ${logContent}" | -|
+| LOG_FILE  | Warning or Critical | LOG File: ${filePath}, Keyword : ${keyword}, [Event] ${logContent}" | -|
+| LOG_WINDOW_EVENT  | Warning or Critical | LOG ${logContent}" | -|
+| LOG_AUDIT  | Warning or Critical | AUDIT ${logContent}" | -|
+| LOG_SCRIPT  | Warning or Critical | SCRIPT ${logContent}" | -|

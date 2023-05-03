@@ -1,0 +1,46 @@
+---
+id: resource-container-list
+title: 컨테이너 목록 및 상세
+description: 현재 프로젝트의 컨테이너 현황 정보 및 상세 정보를 확인할 수 있습니다.
+tags: [ 쿠버네티스, 쿠버네티스 모니터링, 리소스, 컨테이너 ]
+---
+
+:::note
+특정 컬럼의 데이터가 표시되지 않는 것은 쿠버네티스 노드 에이전트가 구 버전이기 때문일 수 있습니다. 이런 경우 충분한 데이터가 수집될 수 있도록 쿠버네티스 에이전트 버전을 업데이트하세요. 
+:::
+
+## 컨테이너 목록
+
+홈 화면 > 프로젝트 선택 > ***리소스*** > ***컨테이너 목록***
+
+현재 프로젝트의 컨테이너 현황 정보를 테이블 형태로 확인할 수 있습니다.
+
+![컨테이너 목록](https://img.whatap.io/media/images/whatap_kubernetes_resource_container_list.png)
+
+주요 기능은 다음과 같습니다.
+
+* 컨테이너 목록 정보 자동 갱신 (기본 60초, 강제 갱신 가능, 자동 갱신 중지 가능)
+* 노드(에이전트)별 컨테이너 목록 조회 가능
+* 컨테이너, Pod 기반 검색 가능
+
+다음은 노출되는 정보입니다.
+
+| 항목          | 설명                                              |
+| ------------- | ------------------------------------------------- |
+| ContainerId   | Container ID                                      |
+| ContainerName | Container Name                                    |
+| Namespace     | 컨테이너가 속한 Namespace                         |
+| ReplicaSet    | 컨테이너가 속한 ReplicaSet                        |
+| CpuTotUsage   | 컨테이너 CPU 사용량                               |
+| CpuByRequest  | 컨테이너 CPU 요청 대비 사용률                     |
+| CpuRequest    | 컨테이너 CPU 요청                                 |
+| CpuByLimit    | CPU Limit 기준 CPU 전체 사용률                    |
+| CpuLimit      | 컨테이너 CPU Limit 할당량                         |
+| NetRxBytes    | 컨테이너 전체 블럭 디바이스의 초당 읽기 바이트 합 |
+| NetTxByes     | 컨테이너 네트워크 송신 데이터 크기                |
+
+## 컨테이너 상세
+
+특정 컨테이너의 상세 정보를 확인할 수 있습니다. 또한 다중 선택을 통해 컨테이너 상태를 서로 비교할 수 있습니다.
+
+![컨테이너 상세](https://img.whatap.io/media/images/whatap_kubernetes_resource_container_detail.png)

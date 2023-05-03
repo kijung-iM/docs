@@ -1,0 +1,23 @@
+* **whatap.name** <span class='type'>String</span><br/>
+기본값 `{type}-{ip2}-{ip3}-{port}`<br/>에이전트 이름을 패턴으로 설정합니다.
+
+* **whatap.oname** <span class='type'>String</span><br/>
+에이전트 이름을 문자열로 설정합니다.
+
+* **whatap.okind** <span class='type'>String</span><br/>
+    에이전트가 속한 그룹 단위를 설정합니다. 여러 에이전트를 같이 설정해 해당 그룹명으로 토폴로지를 확인할 수 있습니다.
+
+* **whatap.onode** <span class='type'>String</span><br/>
+    에이전트가 속한 노드 단위를 설정합니다.
+
+* **auto_oname_enabled** <span class='type'>Boolean</span><br/>
+    기본값 `false`<br/>
+    서버에 등록할 에이전트 이름(`whatap.oname`)을 서버로부터 자동 부여받는 기능을 활성화합니다. 해당 옵션 적용 시 JVM 옵션으로 설정한 `-Dwhatap.name`, `-Dwhatap.oname` 값은 무시합니다. 수집 서버와의 통신을 통해 `whatap.oname` 값을 부여 받은 다음 에이전트의 일반적인 동작을 시작합니다.  
+
+* **auto_oname_prefix** <span class='type'>String</span><br/>
+    기본값 `agent`<br/>
+    에이전트 이름을 서버로부터 자동 부여할 때 에이전트 이름의 prefix, 보통 업무명을 사용합니다. prefix 일련번호 '1~)'을 부여합니다.
+
+* **auto_oname_reset** <span class='type'>Int</span><br/>
+    기본값 `0`<br/>
+    서버로부터 새로운 에이전트 이름을 부여받기 위해 수정합니다. 에이전트 이름을 자동 부여하면 `whatap.oname`이라는 시스템 환경 변수로 설정됩니다. 한번 정해진 시스템 환경 변수는 자바 인스턴스가 다시 시작할 때까지 유지합니다. 리셋을 원할 때 `auto_oname_reset` 값을 수정하세요. 현재 설정 값과 다른 값으로 변경하면 적용됩니다.

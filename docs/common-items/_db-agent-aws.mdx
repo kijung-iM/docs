@@ -1,0 +1,37 @@
+AWS CloudWatch를 이용하는 에이전트 설정에 대한 설명입니다.
+
+* **aws_region** <span class='type'>String</span>
+
+  AWS 리전을 설정합니다.
+
+* **aws_access_key** <span class='type'>String</span>
+  
+  AWS 엑세스 키를 설정합니다.
+
+* **aws_secret_key** <span class='type'>String</span>
+
+  AWS 시크릿 키를 설정합니다.
+
+* **cloud_watch** <span class='type'>String</span>
+
+  cloud watch 모니터링의 유무를 설정합니다. 설정 값은 `on` 또는 `off`입니다.
+
+* **cloud_watch_instance** <span class='type'>String</span>
+
+  cloud watch 인스턴스 명을 설정합니다.
+
+* **cloud_watch_interval** <span class='type'>Second</span>
+
+  cloud watch로 모니터링 값을 가져올 간격을 설정합니다. (단위: 초)
+
+* **cloud_watch_metrics** <span class='type'>String</span>
+
+  cloud watch로 가져올 모니터링 지표 이름을 설정합니다. 다음과 같이 설정할 수 있습니다.
+
+  ```ini
+  cloud_watch_metrics=CPUUtilization,FreeableMemory,FreeStorageSpace,NetworkTransmitThroughput,NetworkReceiveThroughput
+  ```
+
+* **aws_arn** <span class='type'>String</span>
+
+  `aws_access_key`, `aws_secret_key` 대신 적절한 권한을 가진 IAM ROLE의 ARN을 사용할 수 있습니다.

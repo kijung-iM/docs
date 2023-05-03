@@ -1,0 +1,36 @@
+---
+id: agent-manage
+title: 관리하기
+description: Node.js 에이전트를 업데이트하거나 삭제하는 방법을 소개합니다.
+tags: [ Node.js, 관리, 삭제, 업데이트 ]
+---
+
+## 에이전트 업데이트
+
+애플리케이션을 중단하고 `npm`을 사용하여 업데이트합니다. 업데이트를 진행한 다음 애플리케이션을 재시작하세요.
+
+```bash title='SH'
+$ npm update whatap
+```
+
+:::note
+특정 버전으로 다운로드를 하고자 하는 경우에는 다음과 같이 버전을 명시합니다.
+
+```bash title='SH'
+$ npm install whatap@<version>
+```
+:::
+
+## 에이전트 삭제(중지)
+
+1. 소스(예, app.js)에 삽입했던 에이전트 코드를 제거하세요.
+
+    ```javascript title='app.js'
+    var whatap=require('whatap').NodeAgent; // 제거
+    ```
+
+1. 애플리케이션을 중단하고 `npm`을 이용해 모듈을 삭제하세요.
+
+    ```bash title='SH'
+    $ npm uninstall whatap
+    ```

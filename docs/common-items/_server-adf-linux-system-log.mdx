@@ -1,0 +1,10 @@
+리눅스 시스템 로그를 실시간 업로드하여 장애 시 해당 시간에 발생한 로그를 확인할 수 있습니다. 수집 대상 로그 파일은 다음과 같습니다.
+
+* */var/log/syslog*
+* */var/log/messages*
+
+설정 방법은 다음과 같습니다.
+
+```bash title='Linux Shell'
+echo "systemlog.enabled=true" |sudo tee -a /usr/whatap/infra/conf/whatap.conf
+```

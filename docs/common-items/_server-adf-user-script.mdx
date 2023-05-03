@@ -1,0 +1,70 @@
+리눅스 서버에서 실행 가능한 사용자 스크립트를 주기적으로 실행하여 결과를 업로드합니다.
+
+다음 예시를 참조하여 사용자 스크립트를 작성하세요.
+
+1. 스크립트를 다음과 같이 작성 후 실행하세요.
+```bash title='Linux Shell'
+#!/bin/bash
+
+
+urls=("https://www.whatap.io"  "https://blog.whatap.io"  "https://service.whatap.io")
+
+for url in ${urls[*]}; do
+
+echo "M $url url $url"
+curl -w @- -o /dev/null -s "$url" <<'EOF'
+M %{url_effective} url %{url_effective}\n
+H %{url_effective} time_namelookup %{time_namelookup}\n
+H %{url_effective} time_connect %{time_connect}\n
+H %{url_effective} time_appconnect %{time_appconnect}\n
+H %{url_effective} time_pretransfer %{time_pretransfer}\n
+H %{url_effective} time_redirect %{time_redirect}\n
+H %{url_effective} time_starttransfer %{time_starttransfer}\n
+H %{url_effective} time_total %{time_total}\n
+EOF
+
+
+done
+```
+
+2. 다음과 같이 출력되는지 확인하세요.
+```bash title='Linux Shell'
+$ ./curl.sh
+M https://www.whatap.io/ url https://www.whatap.io/
+H https://www.whatap.io/ time_namelookup 0.007289
+H https://www.whatap.io/ time_connect 0.010702
+H https://www.whatap.io/ time_appconnect 0.033637
+H https://www.whatap.io/ time_pretransfer 0.033831
+H https://www.whatap.io/ time_redirect 0.000000
+H https://www.whatap.io/ time_starttransfer 0.043230
+H https://www.whatap.io/ time_total 0.043312
+M https://blog.whatap.io/ url https://blog.whatap.io/
+H https://blog.whatap.io/ time_namelookup 0.000000
+H https://blog.whatap.io/ time_connect 0.000000
+H https://blog.whatap.io/ time_appconnect 0.000000
+H https://blog.whatap.io/ time_pretransfer 0.000000
+H https://blog.whatap.io/ time_redirect 0.000000
+H https://blog.whatap.io/ time_starttransfer 0.000000
+H https://blog.whatap.io/ time_total 0.005654
+M https://service.whatap.io/ url https://service.whatap.io/
+H https://service.whatap.io/ time_namelookup 0.004296
+H https://service.whatap.io/ time_connect 0.007282
+H https://service.whatap.io/ time_appconnect 0.038404
+H https://service.whatap.io/ time_pretransfer 0.038607
+H https://service.whatap.io/ time_redirect 0.000000
+H https://service.whatap.io/ time_starttransfer 0.055226
+H https://service.whatap.io/ time_total 0.055307
+```
+
+3. 스크립트 정상 수집을 확인하고 다음과 같이 와탭 서버 모니터링 에이전트에 스크립트를 등록하세요.
+```bash title='Linux Shell'
+export USER_SCRIPT=실행할 사용자 스크립트 절대 경로
+suco chmod +x $USER_SCRIPT
+sudo mkdir /usr/whatap/infra/ext/
+sudo cp -r $USER_SCRIPT /usr/whatap/infra/ext/
+export RUNAS_USER=사용자 스크립트를 실행할 계정. root 계정제외
+sudo WHATAP_HOME=/usr/whatap/infra/conf /usr/whatap/infra/whatap_infrad --user=$RUNAS_USER init-script
+sudo service whatap-infra restart
+```
+
+수집된 데이터는 ***분석*** > ***메트릭스 차트***에서 ***카테고리*** `server_ext_폴더_실행스크립트`에서 찾을 수 있습니다.

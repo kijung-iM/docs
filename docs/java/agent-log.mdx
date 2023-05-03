@@ -1,0 +1,39 @@
+---
+id: agent-log
+title: 에이전트 로그 설정
+description: Java 에이전트 로그의 위치와 옵션을 설정할 수 있습니다.
+tags:
+    - Java
+    - 에이전트 로그
+    - 로그
+---
+
+애플리케이션 서버가 실행되면 모니터링 정보를 수집합니다. 수집한 정보는 로그 파일에 저장합니다.
+
+## 경로 및 이름 설정
+
+에이전트 로그의 경로와 이름은 *whatap.conf* 파일에 설정할 수 있습니다. `log_root`의 기본값으로 *${WHATAP_HOME}/logs* 경로를 사용합니다.
+
+```ini title='whatap.conf'
+log_root=System.getProperty("whatap.home", ".") + "/logs"
+log_name=whatap
+```
+
+## 로그 관리 옵션
+
+*whatap.conf* 파일에 로그 관련 옵션을 작성해 로그 내용을 관리할 수 있습니다.
+
+```ini title='whatap.conf 예시'
+watchlog_enabled=true
+log_rotation_enabled=true
+log_oname_enabled=true
+log_keep_days=7
+```
+
+{@include: ../common-items/_java-agent-log-list.mdx}  
+
+## 로그싱크(LogSink){#logsink}
+
+whatap.agent-2.1.0 버전 이상부터는 애플리케이션 서버를 통합 모니터링하는 로그싱크(LogSink) 기능을 제공합니다.
+
+{@include: ../common-items/_java-logsink.mdx}  

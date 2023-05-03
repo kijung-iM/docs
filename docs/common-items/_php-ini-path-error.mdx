@@ -1,0 +1,65 @@
+## PHP 추가 ini 설정 경로 확인 불가
+
+PHP 컴파일(Compile) 설치 옵션 `--with-config-file-scan-dir=PATH`이 설정 안된 경우에 발생합니다.
+
+```bash
+$ sudo php -i | grep '.ini files'
+
+Scan this dir for additional .ini files => (none)
+```
+
+*whatap.ini* 파일 내용을 *php.ini* 마지막에 추가하세요.
+
+```bash
+$ php -i | grep 'php.ini'
+
+Loaded Configuration File => /etc/php.ini
+
+$ sudo vi php.ini
+
+# 파일 마지막에 추가
+[whatap]
+;Enable whatap extension module
+extension=whatap.so
+whatap.ext.error_enabled=true
+whatap.ext.exception_enabled=true
+whatap.trace_user_enabled=true
+whatap.trace_user_using_ip=false
+```
+
+이외 옵션은 */usr/whatap/php/whatap.ini* 를 사용하세요.
+
+### whatap-php 서비스(Service) 환경 변수 설정
+
+`$WHATAP_CONFIG_HOME` 환경변수에 *whatap.ini* 경로를 설정하세요.
+
+PHP 추가 ini 경로를 확인 할 수 없는 경우 *whatap.ini*를 생성한 */usr/whatap/php* 경로를 설정하세요.
+
+```bash
+$ sudo vi /etc/init.d/whatap-php
+
+export WHATAP_CONFIG_HOME=      # whatap.ini 경로(/etc/php.d)
+```
+
+### 서비스 재시작
+* Apache 및 PHP-FPM 서비스를 재시작하세요. 
+* whatap-php 서비스를 재시작하세요.
+
+### Error: Not found PHP API
+
+<!-- 문제 해결 페이지의 수동 설정? -->
+<!-- 명령어 경로 확인 후 확장 모듈과 서비스 선택 설치가 진행되는 순서가 필요한지?-->
+
+PHP 명령어(CLI)를 찾지 못하는 경우 발생합니다. 
+
+[PHP 명령어(CLI)의 위치](#check-php-cli-path)를 정확히 확인하고 [PHP 확장 모듈 및 whatap-php 서비스 선택 설치](#extension-modul-manual-setting) 항목을 진행하세요.
+<!--
+* [PHP 명령어(CLI)의 위치](#php-명령어cli-경로-확인)를 정확히 확인하세요.
+* [PHP 확장 모듈 및 whatap-php 서비스 선택 설치](#php-확장-모듈-및-whatap-php-서비스-수동-설정) 항목을 진행하세요.
+-->
+
+```bash title='PHP API 버전 정보 확인'
+$ sudo php -i | grep 'PHP API'
+
+PHP API => 20100412
+```

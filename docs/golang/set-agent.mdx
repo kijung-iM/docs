@@ -1,0 +1,99 @@
+---
+id: set-agent
+title: 설정하기
+description: Golang 에이전트의 기본 설정 방법을 제공합니다.
+tags: [ Golang, 설정하기 ]
+---
+
+Golang 환경의 애플리케이션 서버는 라이브러리를 이용해 환경을 설정합니다.
+
+```go title='라이브러리 다운로드'
+$ go get github.com/whatap/go-api
+```
+
+## 초기 설정
+
+* main 함수 시작 시점에 `trace.Init` 함수를 이용해 모니터링 모듈을 시작하세요.
+
+* `defer trace.Shutdown()`으로 모니터링 종료를 보장합니다.
+
+```go title='GO'
+import "github.com/whatap/go-api/trace"
+
+func main(){
+    trace.Init(nil)
+    //It must be executed before closing the app.
+    defer trace.Shutdown()
+	...
+}
+```
+
+`map[string]string` 형식으로 선언하여 애플리케이션 초기에 설정할 수 있습니다.
+
+```go title='GO'
+func Init(m map[string]string)
+```
+
+에이전트의 접속 정보는 UDP 127.0.0.1:6600입니다. 내부에 UDP 6600 포트가 사용 중이면 다른 포트로 변경해야 합니다.
+
+```go title='GO'
+m := make(map[string]string)
+m["net_udp_port"] = "6601"
+
+trace.Init(m)
+```
+
+애플리케이션 실행 중 설정 변경은 *whatap.conf* 파일을 직접 수정하거나 와탭 모니터링 서비스 프로젝트 메뉴에서 변경할 수 있습니다.
+
+애플리케이션 종료 시 수집한 데이터를 마지막으로 모두 전달하고 UDP Connection을 종료합니다.
+
+```go title='GO'
+func Shutdown()
+```
+
+import ProdImg from '@site/src/components/ChangeImgName.js';
+
+<!--서비스 화면에서 에이전트 설정하기 start-->
+## 서비스 화면에서 에이전트 설정하기
+
+홈 화면 > 프로젝트 선택 > ***관리*** > ***에이전트 설정***
+
+import Desc from '../common-items/_import_set-agent-desc-okind.mdx';
+
+<Desc name='whatap.conf'/>
+
+<!--Notes-->
+{@include: ../common-items/_set-agent-in-service-desc-notes.mdx}
+
+<!--옵션추가하기-->
+{@include: ../common-items/_set-agent-in-service-add-options.mdx}  
+
+<!--옵션 수정 또는 삭제 -->
+{@include: ../common-items/_set-agent-in-service-modify-options.mdx}  
+
+<!-- 여러에이전트 동시 적용 -->
+{@include: ../common-items/_set-agent-in-service-muli-agent.mdx}
+
+<!-- 에이전트 기본값 적용 -->
+{@include: ../common-items/_set-agent-in-service-apply-dafault-desc.mdx}
+
+import DefaultItems from '../common-items/_import_set-agent-in-service-default-item.mdx';
+
+<DefaultItems name='whatap.conf'/>
+
+<!--Notes-->
+{@include: ../common-items/_set-agent-in-service-default-notes.mdx}
+
+<!--설정 공유하기-->
+{@include: ../common-items/_set-agent-sharing.mdx}  
+
+<!--서비스 화면에서 에이전트 설정하기 end-->
+
+
+## 에이전트 설정 옵션 안내
+
+다음 링크를 통해 설정할 수 있는 옵션들에 대한 설명을 제공합니다.
+
+import DocCardList from '@theme/DocCardList';
+
+<DocCardList/>

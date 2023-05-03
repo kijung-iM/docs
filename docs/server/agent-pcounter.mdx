@@ -1,0 +1,22 @@
+---
+id: agent-pcounter
+title: 윈도우 성능 카운터 설정
+description: 윈도우 성능 카운터 설정을 안내합니다.
+tags: [ Server, 설정하기 ]
+---
+
+임의의 윈도우 성능 카운터를 수집할 수 있습니다. 
+
+와탭 서버 모니터링 설정 파일에 성능 카운터 세트 이름을 추가합니다. 
+
+* 성능 카운터 세트 이름을 조회할 수 있습니다.
+    ```bash title='Windows Powershell'
+    Get-Counter -ListSet *
+    ```
+
+* 설정 파일에 성능 카운터 세트를 추가할 수 있습니다.
+    ```bash title='Windows Powershell'
+    Add-Content -Path "C:\Program Files\WhatapInfra\whatap.conf" -Value "performance.counter.$(Get-Date -uformat %s)=조회할 성능 카운터 세트 이름"
+    ```
+
+* 추가한 성능 카운터는 ***분석*** > ***메트릭스 조회*** 메뉴에서 ***카테고리*** `performance_counter_{성능 카운터 세트 이름}`으로 조회할 수 있습니다.

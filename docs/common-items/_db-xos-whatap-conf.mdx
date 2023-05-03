@@ -1,0 +1,27 @@
+## whatap.conf 파일 설정
+
+XOS 에이전트를 실행하기 전에 *whatap.conf* 파일에 다음 옵션을 설정하세요.
+
+* **xos** <span class='type'>Int</span>
+
+  기본값 `0`
+
+  XOS 에이전트 사용 여부를 설정하세요. 값이 `0`인 경우 데이터를 수집하지 않습니다. 값을 `1` 또는 XOS 에이전트의 IP 주소를 입력하세요. IP 주소를 설정하면 해당 XOS 에이전트로부터만 데이터를 수집합니다.
+
+* **xos_port** <span class='type'>String</span>
+
+  기본값 `3002`
+
+  XOS 에이전트와 통신할 포트를 설정하세요. XOS 에이전트와는 UDP로 통신합니다. 해당 포트에 방화벽을 설정했다면 UDP 통신을 위해 방화벽을 해제하세요.
+
+* **xos_cpu_iowait** <span class='type'>Int</span>
+
+  기본값 `1`
+
+  XOS 에이전트로부터 수집한 CPU 사용률에 iowait의 값을 포함할 수 있습니다. 값을 `1`로 설정하면 iowait를 포함하고, `0`으로 설정하면 iowait를 포함하지 않습니다.
+
+* **xos_mem_buffcache** <span class='type'>Int</span>
+
+  기본값 `0`
+  
+  XOS 에이전트로부터 수집한 메모리 사용률에 buffcache의 값을 포함할 수 있습니다. 값을 `1`로 설정하면 buffcache를 포함하고, `0`으로 설정하면 buffcache를 포함하지 않습니다.

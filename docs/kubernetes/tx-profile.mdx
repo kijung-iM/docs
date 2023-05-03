@@ -1,0 +1,124 @@
+---
+id: tx-profile
+title: 트랜잭션 검색
+description: 개별 트랜잭션의 성능 속성을 기반으로 원하는 트랜잭션을 검색할 수 있습니다.
+tags: [ 쿠버네티스, 쿠버네티스 모니터링, 애플리케이션, 트랜잭션 ]
+---
+
+홈 화면 > 프로젝트 선택 > ***애플리케이션*** > ***트랜잭션 검색***
+
+![트랜잭션 검색](https://img.whatap.io/media/images/whatap_application_analysis_tx_profile.png)
+
+개별 트랜잭션의 성능 속성을 기반으로 원하는 트랜잭션을 검색할 수 있습니다.
+
+![컬럼 선택](https://img.whatap.io/media/images/whatap_application_analysis_tx_profile_column.png)
+
+결과 조회 시 ![컬럼 선택 아이콘](/img/ico-column-set.svg) ***컬럼 선택*** 버튼을 클릭해 확인이 필요한 컬럼을 적절하게 선택하세요.
+
+:::note
+검색 조건에 따라 응답 지연이 발생할 수 있기 때문에 검색 시간을 가급적 짧게 설정할 것을 권고합니다.
+:::
+
+## 경과 시간
+
+![경과 시간](https://img.whatap.io/media/images/whatap_application_analysis_tx_profile_time.png)
+
+트랜잭션 응답시간 기준으로 검색합니다. 기준 이상과 미만의 2개 값을 입력해 검색합니다.
+
+## 에러 메시지
+
+![에러 메시지](https://img.whatap.io/media/images/whatap_application_analysis_tx_profile_error.png)
+
+트랜잭션 에러 메시지를 기반으로 검색합니다. 디폴트 상태에서 에러 관련 컬럼이 보이지 않을 수 있습니다. 컬럼을 선택해 확인하세요.
+
+## HTTP 호출 건수
+
+![HTTP 호출 건수](https://img.whatap.io/media/images/whatap_application_analysis_tx_profile_http.png)
+
+트랜잭션 중 외부 HTTP 서비스를 호출한 건수 기반으로 검색합니다.
+
+## SQL 건수
+
+![SQL 검수](https://img.whatap.io/media/images/whatap_application_analysis_tx_profile_sql.png)
+
+트랜잭션별 SQL 수행 건수가 설정한 건수 이상인 트랜잭션을 검색합니다. 예외적으로 과도한 수의 SQL을 호출하는 트랜잭션을 검색할 때 이용합니다.
+
+## SQL 패치 건수
+
+![SQL 패치 건수](https://img.whatap.io/media/images/whatap_application_analysis_tx_profile_sqlfetch.png)
+
+SQL 수행후 DB 패치 건수를 기반으로 검색합니다. 건수 기준은 트랜잭션별입니다. 과도한 데이터 패치를 수행하는 트랜잭션을 검색할 때 이용합니다.
+
+## URL
+
+![URL](https://img.whatap.io/media/images/whatap_application_analysis_tx_profile_url.png)
+
+URL 기반으로 트랜잭션을 검색합니다. 입력한 검색 문자열은 포함 여부(부분 일치)로 비교 검색합니다.
+
+## IP
+
+![IP](https://img.whatap.io/media/images/whatap_application_analysis_tx_profile_ip.png)
+
+IP 기반으로 트랜잭션을 검색합니다. 단, IP 문자열은 PREFIX 비교(전방 일치)로 검색합니다.
+
+## 도메인
+
+![도메인](https://img.whatap.io/media/images/whatap_application_analysis_tx_profile_domain.png)
+
+HTTP 서비스 도메인(host:port) 기반으로 트랜잭션을 검색합니다. 검색 조건은 도메인이 완전히 일치(전체 일치)해야 합니다.
+
+## 유저 에이전트
+
+![유저 에이전트](https://img.whatap.io/media/images/whatap_application_analysis_tx_profile_useragent.png)
+
+유저 에이전트 기반으로 트랜잭션을 검색(부분 일치)합니다. 
+
+## Referer
+
+![Referer](https://img.whatap.io/media/images/whatap_application_analysis_tx_profile_referer.png)
+
+Referer 문자열 기반으로 트랜잭션을 검색합니다.
+
+:::note
+기본 설정 상태의 에이전트는 Referer 정보를 수집하지 않습니다. Referer 설정이 필요한 경우 다음 문서를 참조해 관련 설정을 추가하세요.
+
+* [Java](../java/analysis-apm-trs#stat-referer)
+* [Node.js](../nodejs/analysis-apm-trs#stat-referer)
+* [Python](../python/analysis-apm-trs#stat-referer)
+:::
+
+## 트랜잭션 ID
+
+![트랜잭션 ID](https://img.whatap.io/media/images/whatap_application_analysis_tx_profile_tid.png)
+
+트랜잭션 ID 기반으로 트랜잭션을 검색(전체 일치)합니다. 트랜잭션 ID의 경우 검색 인덱스가 생성되어 있기 때문에 빠른 속도로 검색할 수 있습니다.
+
+:::note
+최신 버전의 에이전트가 아닌 경우 인덱스 사용이 아닌 풀스캔이 발생할 수 있습니다.
+:::
+
+## 멀티 트랜잭션 ID
+
+![멀티 트랜잭션 ID](https://img.whatap.io/media/images/whatap_application_analysis_tx_profile_mtid.png)
+
+멀티 트랜잭션 ID 기반으로 트랜잭션을 검색(전체 일치)합니다.
+
+:::note
+최신 버전의 에이전트가 아닌 경우 인덱스 사용이 아닌 풀스캔이 발생할 수 있습니다.
+:::
+
+## 클라이언트 ID
+
+![클라이언트 ID](https://img.whatap.io/media/images/whatap_application_analysis_tx_profile_clientid.png)
+
+클라이언트 ID(`wClientId`)는 와탭 에이전트가 사용자를 구분하기 위해 부여하는 ID입니다. 이 ID 값 기반으로 트랜잭션을 검색(전체 일치)합니다. 검색을 위한 별도 인덱스는 없습니다.
+
+## 로그인 ID
+
+![로그인 ID](https://img.whatap.io/media/images/whatap_application_analysis_tx_profile_loginid.png)
+
+로그인 아이디 기반으로 트랜잭션을 검색합니다.
+
+:::note
+기본 설정 상태의 에이전트는 로그인 ID 정보를 수집하지 않습니다. 로그인 ID 설정이 필요한 경우 [다음 문서](../java/script-plugin#common-plugin)를 참조해 설정을 추가하세요.
+:::

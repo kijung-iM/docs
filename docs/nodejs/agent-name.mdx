@@ -1,0 +1,93 @@
+---
+id: agent-name
+title: 에이전트 이름 식별
+description: 모니터링 대상을 식별하기 위해 에이전트 이름 설정 방법을 제공합니다.
+tags: [ Node.js, 에이전트 이름 ]
+---
+
+## 에이전트 이름 식별{#agentname}
+
+{@include: ../common-items/_apm-name-description.mdx}
+
+{@include: ../common-items/_agent-name-warning.mdx}
+
+와탭 에이전트가 애플리케이션 서버를 식별하기 위해 사용하는 기본 패턴은 다음과 같습니다.
+
+```ini title='기본 환경'
+NODE-{ip2}-{ip3}
+```
+
+```ini title='클러스터(cluster) 환경'
+NODE{cluster}-{ip2}-{ip3}
+```
+
+### 에이전트 이름 변수
+
+| 변수       | 설명                                                                      |
+| ---------- | ------------------------------------------------------------------------- |
+| {type}     | 애플리케이션 유형 이름(NODE)입니다.                                       |
+| {ip0}      | IPv4 주소 중 첫 번째 단위를 사용합니다. (예시, **10**.11.12.13 중 **10**) |
+| {ip1}      | IPv4 주소 중 두 번째 단위를 사용합니다. (예시, 10.**11**.12.13 중 **11**) |
+| {ip2}      | IPv4 주소 중 세 번째 단위를 사용합니다. (예시, 10.11.**12**.13 중 **12**) |
+| {ip3}      | IPv4 주소 중 네 번째 단위를 사용합니다. (예시, 10.11.12.**13** 중 **13**) |
+| {pid}      | 애플리케이션 Process Id 입니다.                                           |
+| {hostname} | 호스트 이름입니다.                                                        |
+| {cluster}  | 한 서버에 여러 Node.js가 동작할 때의 클러스터 id입니다.                   |
+
+### 에이전트 이름 패턴 변경
+
+환경 변수를 통해 와탭 에이전트 이름을 변경할 수 있습니다. 애플리케이션의 메인 모듈 파일의 최상단에 다음과 같이 코드를 추가하세요.
+
+```javascript {1} showLineNumbers
+process.env.WHATAP_NAME = "NODE-{ip2}-{ip3}";
+var whatap=require('whatap').NodeAgent;
+...
+```
+
+### 서버에서 에이전트 네이밍
+
+에이전트 환경을 기반으로 이름을 결정하는 것이 아니라 서버에서 이름을 자동 부여하는 방식입니다. Node.js 서버가 컨테이너나 PaaS 환경에서 동작하는 경우에 활용합니다.
+
+```ini title='whatap.conf' showLineNumbers
+auto_oname_enabled=true
+auto_oname_prefix=nodejs
+```
+
+```javascript title='env에 설정(app.js)' {4,5} showLineNumbers
+process.env.WHATAP_LICENSE='x46n3226be1ah-z2rsecfcvlq2ph-z11bc81gfhqpgg';
+process.env.WHATAP_SERVER_HOST='52.78.209.94/52.78.224.235';
+
+process.env.auto_oname_enabled=true;
+process.env.auto_oname_prefix='mynode';
+
+var whatap=require('whatap').NodeAgent;
+...
+```
+
+:::note
+* env에 설정하려면 `require('whatap')`보다 먼저 선언되어야 합니다.
+* **Heroku** 환경에서는 서버를 다시 시작할 때마다 IP 주소를 변경하기 때문에 새로운 이름으로 변경됩니다.
+:::
+
+`auto_oname_prefix` 옵션은 에이전트 이름의 prefix입니다. 와탭 서버는 `auto_oname_prefix` 옵션에 설정한 이름과 일련 번호를 합하여 에이전트 이름을 부여합니다.
+
+> 부여한 에이전트 이름 예시, mynode1
+
+## 에이전트 이름 설정 옵션
+
+Node.js 에이전트 이름 설정에 관한 자세한 설명은 [다음 문서](#agentname)를 참조하세요.
+
+* **whatap.okind** <span class='type'>String</span><br/>
+에이전트가 속한 그룹 단위를 설정합니다. 여러 에이전트를 같이 설정해 해당 그룹명으로 토폴로지를 확인할 수 있습니다.
+
+* **auto_oname_enabled** <span class='type'>Boolean</span><br/>
+    기본값 `false`<br/>
+    서버에 등록할 에이전트 이름을 서버로부터 자동 부여받는 기능을 활성화합니다.
+
+* **auto_oname_prefix** <span class='type'>String</span><br/>
+    기본값 `agent`<br/>
+    에이전트 이름을 서버로부터 자동 부여할 때 에이전트 이름의 prefix, 보통 업무명을 사용합니다. prefix 일련번호 '1~)'을 부여합니다.
+
+* **auto_oname_reset** <span class='type'>Int</span><br/>
+    기본값 `0`<br/>
+    서버로부터 새로운 에이전트 이름을 부여받기 위해 수정합니다. 한번 정해진 에이전트 이름은 Node.js가 다시 시작할 때까지 유지합니다. 리셋을 원할 때 `auto_oname_reset` 값을 수정하세요. 현재 설정 값과 다른 값으로 변경하면 적용됩니다.

@@ -1,0 +1,86 @@
+---
+id: weaving-plugin
+title: 위빙 플러그인
+description: Java 에이전트에서 오픈 소스나 복잡한 코드를 추적할 수 있도록 위빙 플러그인을 제공합니다.
+tags:
+    - Java
+    - 위빙 플러그인
+---
+
+Java 에이전트는 오픈 소스나 사용자가 정의한 복잡한 코드를 추적할 수 있도록 별도의 위빙 플러그인을 제공합니다. Java 에이전트가 후킹(hooking) 하고 있지 않는 오픈 소스 라이브러리의 호출 정보를 추적하고 수집하기 위한 목적으로 사용하고 있습니다.
+
+## 내장 위빙 플러그인
+
+Java 에이전트는 일부 위빙 플러그인을 내장하고 있습니다. 내장 위빙 플러그인은 Java 에이전트 설정 파일(*whatap.conf*)을 통해 사용할 수 있습니다. `weaving_reserved` 옵션을 추가해 설정할 수 있으며 와탭 에이전트 2.1.1 버전부터는 `weaving` 옵션을 추가 설정할 수 있습니다.
+
+* 와탭 에이전트 2.0_01 버전 이후
+
+    ```ini title='$WHATAP_HOME/whatap.conf'
+    weaving_reserved=okhttp3
+    ```
+
+* 와탭 에이전트 2.1.1 버전 이후
+
+    ```ini title='$WHATAP_HOME/whatap.conf'
+    weaving=tomcat10
+    ```
+
+### 내장 위빙 플러그인 파일 및 버전
+
+내장된 다른 위빙플러그인은 `weaving_reserved` 또는 `weaving` 옵션으로 설정할 수 있습니다. *.jar* 확장자를 제외한 라이브러리 버전을 설정합니다.
+
+```bash
+akka-2.5.jar
+apache-httpclient-4.5.jar
+axis-1.4.jar
+elasticsearch-client-6.4.jar
+hystrix-1.5.jar
+jedis-2.9.3.jar
+jedis-3.2.jar
+okhttp-2.7.jar
+okhttp3.jar
+okhttp-3.4.6.jar
+play-2.7.jar
+reactor-rabbitmq-1.2.jar
+spring-batch-4.1.jar
+springboot-start.jar
+spring-cloud-gateway-2.1.jar
+spring-cloud-gateway-2.2.jar
+spring-cloud-gateway-2.2.1.jar
+spring-kafka-1.3.jar
+spring-kafka-2.4.jar
+spring-mongodb-2.2.jar
+spring-rabbitmq-2.1.jar
+tomcat-boot.jar
+webflux-5.1.jar
+webflux-5.2.jar
+webflux-5.3.jar
+```
+
+```ini title='$WHATAP_HOME/whatap.conf 예시'
+weaving_reserved=webflux-5.2,spring-cloud-gateway-2.2
+```
+
+## 외부 위빙 플러그인
+
+### 설치 방법
+
+Java 에이전트 설치 후 에이전트 홈 디렉터리에 *instrument* 폴더를 생성하고, *instrument* 폴더 안에 위빙 플러그인을 복사, 붙여넣기 하세요. 설치 완료 후 Java 애플리케이션을 재기동하면 *instrument* 폴더에 위치한 위빙 플러그인을 실행합니다.
+
+### 적용 예시
+
+* 적용 전
+
+    ![위빙 플러그인 적용 전](/img/java-plugin-weaving-01.png)
+
+* 적용 후
+
+    ![위빙 플러그인 적용 후](/img/java-plugin-weaving-02.png)
+
+## 사용자정의 개발
+
+Java 에이전트 사용자는 사용자가 정의하는 방식대로 위빙 플러그인을 만들 수 있습니다. 위빙 플러그인 jar 파일은 파일 이름이 **whatap** 혹은 **weav**로 시작해야 합니다.
+
+위빙 플러그인 jar 파일은 *MANIFEST.MF* 파일에 **PlugIn**, **Build** 속성을 정의해야 합니다. 위빙 플러그인을 적용하려면 Java 에이전트 홈 디렉터리에 *instrument* 폴더를 생성하고, *instrument* 폴더 안에 위빙 플러그인을 복사, 붙여넣기 하세요.
+
+> $WHATAP_HOME/instrument

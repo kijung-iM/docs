@@ -1,0 +1,14 @@
+### 에이전트 설치 서버에서 삭제하기
+
+<Tabs groupId='os'>
+<TabItem value='linux' label='Linux' default>
+
+서버 상에서 기동되는 Java 프로세스 중 `whatap.agent.dbx` 문자열을 포함한 프로세스를 종료합니다. 에이전트를 설치한 경로에서 *stop.sh*를 실행하세요. 이후 에이전트 파일 및 에이전트에 등록한 User 권한을 삭제 처리하세요.
+
+</TabItem>
+<TabItem value='windows' label='Windows'>
+
+서버 상에 기동되는 Java 프로세스 중 에이전트 파일명의 jar 파일로 기동 중인 프로세스를 찾아 중지하세요. 만약 bat 파일을 Foreground에서 실행 중인 경우 해당 bat 실행 스크립트를 종료하세요. 이후 에이전트 파일 및 에이전트에 등록한 User 권한을 삭제하세요.
+
+</TabItem>
+</Tabs>

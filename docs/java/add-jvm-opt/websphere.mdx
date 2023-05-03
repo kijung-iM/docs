@@ -1,0 +1,56 @@
+---
+id: websphere
+title: WebSphere
+description: WebSphere 애플리케이션 서버 환경에서 JVM 옵션 추가 설정을 완료하세요.
+tags: [ Java, WebSphere]
+---
+
+## JVM 옵션 추가
+
+WebSphere 애플리케이션 서버 환경에서 JVM 옵션을 추가하려면 관리 콘솔(Admin console)로 접속하세요.
+
+1. 웹브라우저에서 관리 콘솔에 로그인하세요.
+
+1. ***Environment*** > ***Virtual Hosts*** > ***default host*** > ***Host Aliases*** 항목을 선택한 다음 에이전트를 설치할 서버의 포트 번호를 확인하세요.
+
+    ![WebSphere port](https://img.whatap.io/media/agent_java/install/330.png)
+
+1. ***Servers*** > ***Server Types*** > ***Websphere application servers*** 항목으로 이동한 다음 에이전트를 설치할 서버를 선택하세요.
+
+    ![WebSpherer application servers](https://img.whatap.io/media/agent_java/install/300.png)
+
+1. 선택한 서버 화면에서 ***Configuration*** 탭을 선택하고 ***Server Infrastructure*** 섹션의 ***Java and Process Management*** > ***Process definition*** 메뉴를 선택하세요.
+
+    ![WebSphere Configuration](https://img.whatap.io/media/agent_java/install/310.png)
+
+1. 오른쪽 메뉴에서 ***Additional Properties*** > ***Java Virtual Machine*** 메뉴를 선택하세요.
+
+1. ***Configuration*** 탭에서 ***Generic JVM arguments*** 텍스트 박스에 ```-javaagent```와 ```-Dwhatap.port```를 추가하세요.
+
+    ```bash
+    -javaagent:/whatap/whatap.agent-X.Y.Z.jar
+    -Dwhatap.port={포트번호} ## 2번 항목 포트 번호 ##
+    ```
+
+    ![Add JVM arguments](https://img.whatap.io/media/agent_java/install/340.png)
+
+:::note
+{@include: _java-17.mdx} 
+:::
+
+## 모니터링 시작하기
+
+{@include: ../../common-items/_start-apm.mdx}  
+
+## WebSphere 호환성
+
+WAS Ver.|ibm-java-x86_64-60
+--|:--:
+8.5.5.10|<span class='emoji-ok'>✅</span>
+
+## WebSphere DataSource
+
+DB|JDBC Driver 파일명|JDBC Ver.|JDK Ver.|호환성
+--|--|--|--|:--:
+Mysql|mysql-connector-java-5.1.39-bin.jar|5.1.39|JDK 1.7.0_80|<span class='emoji-ok'>✅</span>
+Oracle|ojdbc6-11.2.0.2.0.jar|11.2.0.2.0|JDK 1.7.0_80|<span class='emoji-ok'>✅</span>

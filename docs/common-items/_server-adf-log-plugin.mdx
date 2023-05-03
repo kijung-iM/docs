@@ -1,0 +1,93 @@
+임의의 로그를 수집할 수 있습니다. 다음 설정은 에이전트 재시작이 필요합니다.
+
+### Linux Shell
+
+```bash title='Linux Shell' {7-12,14,15} showLineNumbers
+cd /usr/whatap/infra
+sudo mkdir extension
+
+cat >extension/logsink.conf<<EOL
+[[inputs.logsink]]
+  category = "serverlog"
+  ## 로그 발생량 통계 별도 데이터로 전송 여부
+  stats_enabled = true 
+  ## 로그 발생량 통계 카테고리
+  stats_category = "logsink_stats"
+  ## 로그 파일 경로(path)에 별표(*)가 포함되어 제외할 로그 비대상 파일명 설정 
+  excludeNames = [ ".gz",".zip" ] 
+  [[inputs.logsink.file]]
+    ## 로그 파일 지정 시, 날짜 패턴(strftime.org) 지정 가능
+    path = "/some/path/%Y-%m-%d/.log" 
+    disabled = false
+    encoding = "euc-kr"
+
+  [[inputs.logsink.file]]
+    path = "/some/other/log"
+    disabled = false
+    encoding = "utf-8"
+EOL
+
+sudo service whatap-infra restart
+```
+
+### Windows Powershell
+
+```bash title='Windows Powershell (관리자 권한)' {6-11,13,14} showLineNumbers
+New-Item -type "Directory" -Path "C:\Program Files\WhatapInfra\extension"
+
+$contentToAdd = @"
+[[inputs.logsink]]
+category = "serverlog"
+## 로그 발생량 통계 별도 데이터로 전송 여부
+stats_enabled = true 
+## 로그 발생량 통계 카테고리
+stats_category = "logsink_stats"
+## 로그 파일 경로(path)에 별표()가 포함되어 제외할 로그 비대상 파일명 설정 
+excludeNames = [ ".gz",".zip" ] 
+[[inputs.logsink.file]]
+## 로그 파일 지정 시, 날짜 패턴(strftime.org) 지정 가능
+path = "c:\\whatap\\logs%Y-%m-%d_.log"
+disabled = false
+encoding = "euc-kr"
+
+"@
+
+New-Item -path "C:\Program Files\WhatapInfra\extension" -name "logsink.conf" -type "file" -value $contentToAdd -Force
+
+Restart-Service "Whatap Infra"
+```
+
+### 옵션 설정
+
+* `stats_enabled`: 수집 현황 데이터의 수집 여부를 설정합니다. 기본값은 `false`입니다. 값을 `true`로 설정해야 합니다. `true`로 설정하면 다음 `stats_category`에서 설정한 카테고리(`logsink_stats`)로 통계 데이터가 발생합니다.
+
+* `stats_category`: 수집 현황 데이터를 저장할 메트릭스 카테고리를 설정합니다. 값을 `logsink_stats`로 설정해야 합니다. 통계 데이터 필드는 다음과 같습니다.
+
+  * `file`
+  * `checkInterval`
+  * `encoding`
+  * `filepos`
+  * `checkedLocalTime`
+  * `lastupdatedLocalTime`
+  * `fileSize`
+  * `error`
+  * `firstCheck`
+  * `transferBytes`
+
+* `excludeNames`: 로그 파일 경로(path)에 별표(*)를 포함한 경우 로그 비대상 파일을 제외하도록 파일명을 설정할 수 있습니다. 쉼표(,)를 구분자로 이용해 복수 설정할 수 있습니다.
+
+  ```ini title='예시'
+  excludeNames = [ ".gz",".zip" ]
+  ```
+
+<!-- 
+
+0214 로그 모니터링 요청-추가 업데이트
+
+stats_enabled = false ## 로그 발생량 통계 별도 데이터로 전송 여부
+stats_category = "serverlog_stats" ## 로그 발생량 통계 카테고리
+
+* `stats_enabled`: 별도의 로그 수집 통계 데이터 발생 여부를 설정합니다. 기본값은 `false`입니다. 값을 `true`로 설정하면 `stats_category`에서 설정한 카테고리로 통계 데이터가 발생합니다.
+* `stats_category`: 별도의 로그 수집 통계 데이터를 저장할 메트릭스 카테고리를 설정합니다. 통계 데이터 필드는 다음과 같습니다.
+
+-->

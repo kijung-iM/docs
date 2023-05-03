@@ -1,0 +1,17 @@
+---
+id: agent-number-of-user
+title: 사용자 수
+description: WAS에 연결한 실시간 사용자 수를 집계합니다.
+tags: [ Java ]
+---
+
+Java 웹 애플리케이션 서버에 연결한 사용자의 수를 집계합니다.
+
+* **trace_user_enabled** <span class='type'>Boolean</span><br/>
+기본값 `true`<br/>
+실시간 사용자 집계 여부를 설정합니다. 사용자 추적 옵션이 중복 설정된 경우 동작 우선 순위는 다음과 같습니다.
+>   1. **trace_user_using_ip**
+>   1. **trace_user_using_jsession**
+>   1. **user_header_ticket**
+
+{@include: ../common-items/_common-collect-user.mdx} 

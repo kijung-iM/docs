@@ -1,0 +1,20 @@
+---
+id: install-check
+title: 설치 점검 사항
+description: 에이전트를 설치한 다음 확인해야할 사항입니다.
+tags: [ Golang ]
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+## 서비스 상태 확인
+
+다음 명령어를 이용해 와탭 에이전트(whata-agent) 서비스 상태를 확인하세요.
+
+```bash title='SH'
+$ service whatap-agent status
+```
+
+<!-- 에이전트 연결 확인 -->
+{@include: ../common-items/_check-agent-connection.mdx}

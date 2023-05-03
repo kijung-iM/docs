@@ -1,0 +1,34 @@
+---
+id: container-view
+title: 컨테이너 뷰, Pod 뷰
+description: 컨테이너 맵 메뉴에서는 컨테이너 단위, Pod 단위의 모니터링이 가능합니다.
+tags: [ 쿠버네티스, 쿠버네티스 모니터링, 컨테이너, Pod, 컨테이너 맵 ]
+---
+
+## 카테고리 선택 (컨테이너 뷰, Pod 뷰)
+
+***컨테이너 맵*** 메뉴에 처음 진입하면 사용자 클러스터 프로젝트 내의 개별 컨테이너 혹은 Pod가 모두 펼쳐진 것을 확인할 수 있습니다.
+
+와탭 쿠버네티스의 ***컨테이너 맵*** 메뉴에서는 **컨테이너 기준 뷰**, **Pod 기준 뷰**의 두가지 모드를 모두 지원하기 때문에 컨테이너 단위의 모니터링, Pod 단위의 모니터링 등 상황에 맞는 모니터링이 가능합니다.
+
+* **컨테이너 기준 뷰**
+
+  ![컨테이너 기준 뷰](https://img.whatap.io/media/images/whatap_kubernetes_container_map_container_category.png)
+
+* **Pod 기준 뷰**
+
+  ![Pod 기준 뷰](https://img.whatap.io/media/images/whatap_kubernetes_container_map_pod_category.png)
+
+**컨테이너 기준 뷰**와 **Pod 기준 뷰**는 ***컨테이너 맵*** 메뉴 화면 위에 사용자 설정을 통해 전환할 수 있습니다.
+
+:::note
+구버전 쿠버네티스 에이전트를 사용한다면 Pod 기준 뷰를 확인할 수 없습니다. 에이전트 업그레이드를 수행하세요.
+
+```bash title='Master'
+kubectl set image deployment/whatap-master-agent whatap-master-agent=whatap/kube_mon:<에이전트버전> -n whatap-monitoring
+```
+
+```bash title='Node'
+kubectl set image daemonset/whatap-node-agent whatap-node-agent=whatap/kube_mon:<에이전트버전> -n whatap-monitoring
+```
+:::

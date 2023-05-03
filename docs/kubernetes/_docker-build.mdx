@@ -1,0 +1,98 @@
+1. 도커(Docker) 빌드 디렉터리를 생성하세요.
+
+  ```bash
+  mkdir -p {Docker build Dir}
+  ```
+
+1. *whatap.conf* 파일을 생성하세요.
+
+  ```bash
+  cat >{Docker build Dir}/whatap.conf <<EOL
+  whatap.server.host={수집 서버 IP}
+  EOL
+  ```
+
+  :::note
+
+  *whatap.conf* 파일은 사용자 쿠버네티스 환경의 ConfigMap 기능을 통해 관리할 수 있습니다.
+  
+  :::
+
+1. Dockerfile에 에이전트 설치용 이미지를 다운로드하려면 직접 해당 파일을 다운로드하거나 에이전트 파일을 이미지에 복사하세요.
+
+    ```docker
+    # 와탭 에이전트용 디렉터리를 사용자 컨테이너에 생성
+    RUN mkdir -p /whatap
+
+    # 와탭 Java 에이전트를 사용자 컨테이너에 복사
+    # 에이전트의 파일명이 whatap.agent-1.2.3.jar이라면 X.Y.Z 부분을 1.2.3으로 변경하세요.
+    COPY --from=whatap/kube_mon /data/agent/micro/whatap.agent-X.Y.Z.jar /whatap
+
+    # 생성한 whatap.conf 설정 파일을 사용자 컨테이너에 복사
+    COPY ./whatap.conf /whatap/    
+    ```
+
+    :::note
+
+    *whatap.conf* 파일은 미리 생성해야 합니다.
+
+    :::
+
+1. Dockerfile 명령어로 애플리케이션을 시작하기 전에 에이전트의 버전을 확인하세요.
+
+    ```docker
+    docker run whatap/kube_mon ls /data/agent/micro/
+
+    # 출력
+    whatap/kube_mon /data/agent/micro/whatap.agent-X.Y.Z.jar /whatap
+    ```
+
+1. Dockerfile 애플리케이션 시작 명령어에 다음 내용을 추가하세요. **X.Y.Z** 부분에 앞서 확인한 에이전트 버전을 입력하세요.
+
+    에이전트의 파일명이 *whatap.agent-1.2.3.jar*이라면 **X.Y.Z** 부분을 **1.2.3**으로 변경하세요.
+
+    ```bash
+    -javaagent:/whatap/whatap.agent-X.Y.Z.jar -Dwhatap.micro.enabled=true
+    ```
+
+    ```docker title='Dockerfile 예시' showLineNumbers {4,7}
+    FROM openjdk:8-jdk-slim
+    RUN mkdir -p /app && mkdir /whatap
+    WORKDIR /app
+    COPY --from=whatap/kube_mon /data/agent/micro/whatap.agent-X.Y.Z.jar /whatap
+    COPY whatap.conf /whatap
+    COPY myApp.jar /app/
+    CMD ["java","-javaagent:/whatap/whatap.agent-X.Y.Z.jar","-Dwhatap.micro.enabled=true",”-jar”,"/app/myApp.jar"]
+    EXPOSE 8080
+    ```
+
+    :::tip
+    
+    Java 17버전 이상의 경우 reflection 관련한 `--add-opens=java.base/java.lang=ALL-UNNAMED` 옵션을 추가해야 합니다.
+    
+    :::
+
+1. Docker를 빌드하세요.
+
+  ```docker
+  cd docker
+  docker build -t $Image_Name.
+  ```
+
+1. 사용자의 쿠버네티스 환경 내 컨테이너 환경 변수를 설정하세요. 애플리케이션 에이전트에 필요한 환경 변수 정보를 입력하세요.
+
+  `OKIND` 환경 변수는 파드(Pod)에 해당하는 애플리케이션들을 같은 그룹으로 설정하는 역할을 합니다. 만약 디플로이먼트(Deployment) 이름으로 설정하면 해당하는 파드(Pod)들을 그룹화합니다.
+
+  ```bash showLineNumbers {8-9}
+  env:
+    - name: NODE_IP
+      valueFrom: {fieldRef: {fieldPath: status.hostIP}}
+    - name: NODE_NAME
+      valueFrom: {fieldRef: {fieldPath: spec.nodeName}}
+    - name: POD_NAME
+      valueFrom: {fieldRef: {fieldPath: metadata.name}}
+    - name: OKIND
+      value: {업무 종류 이름 또는 Deployment 이름}
+    - name: license
+      value: XXXXXXXXXXXXXX-XXXXXXXXXXXXXX-XXXXXXXXXXXXXX  
+  ```

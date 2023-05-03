@@ -1,0 +1,81 @@
+---
+id: elastic-beanstalk
+title: Elastic Beanstalk
+description: Elastic Beanstalk 환경에서 와탭 에이전트 적용을 완료하세요.
+tags:
+    - Java
+    - Elastic Beanstalk
+---
+
+**Elastic Beanstalk**를 이용해 배포할 경우 와탭 에이전트를 적용하는 방법입니다. 
+
+{@include: _pass-note.mdx}
+
+1. Spring Boot 결과물을 jar로 배포할 경우 *.ebextensions*의 내용을 적용할 수 없습니다. 다음 파일들을 압축해 zip 형태로 배포하세요.
+
+    * *.elasticbeanstalk/config.yml*: eb 명령을 실행하는 디렉터리 하위에 자동 생성
+    * *.ebextensions/{config_name}.config*: eb 설정 파일
+    * *Procfile*: JVM command line 옵션을 설정하기 위한 파일
+    * *{application}.jar*: 실행할 applicaion.jar 파일
+
+1. Service에 적용할 와탭 에이전트의 파일을 압축해 S3(혹은 다운로드할 수 있는 public 경로)에 업로드하세요.
+
+    * *paramkey.txt*
+    * *whatap.agent-2.0_25.jar*
+    * *whatap.conf*
+
+    ```bash title='디렉터리 압축하기'
+    zip -r whatap-agent.zip agent
+    ```
+
+1. *.ebextension/{config_name}.config* 파일에 다운로드할 와탭 에이전트 경로를 입력하세요.  
+    다운로드할 수 있도록 압축 파일 형태로 만들어 둔 경우 eb를 실행해 자동으로 다운로드한 다음 압축을 풉니다.
+
+    ```yaml title=ebextension/{config_name}.config
+    sources:
+      target directory:
+        S3경로
+    ```
+
+    ```yaml title=예시
+    sources:
+      /home/webapp:
+        http://s3.ap-northeast-2.amazonaws.com/{bucket-name}/whatap-agent.zip
+    ```
+
+1. 와탭 에이전트 옵션을 추가한 JVM command를 입력해 *Procfile*을 작성하세요.
+
+    ```yaml title=Procfile
+    web: java -javaagent:${WHATAP_JAR_FILE_PATH} -Dwhatap.name=${WHATAP_NAME} -Dwhatap.okind=${WHATAP_OKIND_NAME} -Dwhatap.server.home=${APPLICAION_PATH} -Dwhatap.conf.path=${WHATAP_HOME} -jar ${APPLICAIONT}.jar
+    ```
+
+    ```yaml title=예시
+    web: java -javaagent:/home/webapp/agent/whatap.agent-X.Y.Z.jar -Dwhatap.name=bootTest -Dwhatap.okind=test -Dwhatap.server.home=/var/app/current -Dwhatap.conf.path=/home/webapp/agent -jar whatap-boot-test.jar
+    ```
+
+1. *Procfile* 파일과 *.ebextensions* 파일, *{application}.jar* 파일을 압축하세요.
+
+    ```bash
+    zip -r {application}.zip Procfile .ebextensions/{application}.jar
+    ```
+
+1. *.elasticbeanstalk/config.yml* 파일에 배포할 zip파일 경로를 추가하세요.
+
+    ```yaml
+    deploy:
+      artifact: /path/to/{application}.zip
+    ```
+
+1. eb 배포 명령어를 실행하세요.
+
+    ```bash
+    eb deploy
+    ```
+
+:::note
+{@include: _java-17.mdx}
+:::
+
+:::note
+자세한 내용은 [AWS 가이드 문서](https://docs.aws.amazon.com/ko_kr/elasticbeanstalk/latest/dg/Welcome.html)를 참조하세요.
+:::

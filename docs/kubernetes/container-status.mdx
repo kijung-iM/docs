@@ -1,0 +1,66 @@
+---
+id: container-status
+title: 컨테이너 맵 지표와 상태
+description: 컨테이너 맵 메뉴에서 제공하는 차트의 속성에 따라 컨테이너 또는 Pod의 상태를 확인할 수 있습니다.
+tags: [ 쿠버네티스, 쿠버네티스 모니터링 ]
+---
+
+## 차트 지표 사용자화
+
+와탭 쿠버네티스 모니터링 서비스의 ***컨테이너 맵*** 메뉴에서 제공하는 기본 차트 속성은 컨테이너 또는 Pod의 상태(State)입니다. 메트릭 이름으로는 ***ConState***(Container State)입니다. 하지만 기본 상태가 아닌 다른 기준으로 맵을 구성할 필요가 있습니다. 예를 들어, 기본 State 상태가 아닌 CPU 사용량(millicore), 메모리 사용률(%), 네트워크 사용량(byte) 등을 기준으로 각 대상들의 상태를 파악해야 하는 경우도 있습니다.
+
+와탭은 컨테이너의 차트 지표 변경 기능을 제공합니다. 변경 가능한 차트 지표 값은 와탭 쿠버네티스가 수집하는 메트릭스(지표)와 같습니다.
+
+![사용자화 가능한 차트 지표 목록](https://img.whatap.io/media/images/whatap_kubernetes_container_map_state_customization.png)
+
+{@include: ../common-items/_container-note-reset.mdx} 
+
+## 지표 임계치 설정 및 상태 색상
+
+대상에 부여한 지표의 임계치 설정으로 각 대상의 상태를 색상으로 분류할 수 있습니다. 지표의 단위가 숫자인 경우(pct, bps, millicore)에 임계치 설정이 가능합니다.
+
+<span class='normal'>Normal</span>, <span class='slow'>Warning</span>, <span class='vslow'>Critical</span> 등 상태별 색상 및 의미는 다음과 같습니다.
+
+![각 대상의 상태 색상](/img/container-map-status-color.png)
+
+| 상태     | 설명                                                                |
+| -------- | ------------------------------------------------------------------- |
+| <span class='normal'>Normal</span>   | 정상 상태 구간 표시 (~ Warning 미만 구간을 3등분)                   |
+| <span class='slow'>Warning</span>  | Warning 임계치 구간 내에 있음을 표시 (Warning 이상 ~ Critical 미만) |
+| <span class='vslow'>Critical</span> | Critical 임계치 구간 내에 있음을 표시 (Critical 이상 ~)             |
+| Dead     | 컨테이너 종료 진행 상태                                             |
+| Wait     | 컨테이너 시작 진행 상태                                             |
+| Pause    | 컨테이너 일시 중단 상태                                             |
+
+## 이벤트 기반 컨테이너 상태
+
+***컨테이너 맵*** 메뉴에서 컨테이너 뷰는 `EventConState`라는 상태 값을 제공합니다. `EventConState`는 `Event-based Container State`로 이벤트가 반영된 컨테이너 상태를 나타냅니다. `EventConState`에 반영된 이벤트 종류는 다음과 같습니다.
+
+| 이벤트           | 레벨              |
+| ---------------- | ----------------- |
+| Kubernetes Event | <span class='slow'>Warning</span>           |
+| WhaTap Event     | <span class='slow'>Warning</span>, <span class='vslow'>Critical</span> |
+
+* `Kubernetes Event`는 쿠버네티스가 제공하는 이벤트 정보입니다. 사용자의 쿠버네티스 환경에서 `kubectl get events` 명령을 통해 확인 가능한 이벤트 정보와 동일합니다.
+* `WhaTap Event`는 사용자가 와탭 이벤트 기능을 통해 설정한 이벤트입니다.
+
+`EventConState`는 다음과 같은 방식으로 결정됩니다.
+
+|상태|상태값|원인|
+|--|:--:|--|
+|<span class='vslow'>Critical</span>|50|WhaTap 마이크로 에이전트에서 Critical 이벤트 발생<br/>WhaTap 노드 에이전트에서 Critical 이벤트 발생<br/>컨테이너 상태 OOMKILLED 전환|
+|<span class='slow'>Warning</span>|30|Kubernetes에서 Warning 이벤트 발생<br/>WhaTap 마이크로 에이전트에서 Warning 이벤트 발생<br/>WhaTap 노드 에이전트에서 Warning 이벤트 발생<br/>컨테이너 상태 RESTARTING 전환|
+|Dead|23|컨테이너 상태 DEAD 전환|
+|Pause|22|컨테이너 상태 PAUSE 전환|
+|Waiting|21|컨테이너 상태 WAITING 전환|
+|<span class='normal'>Normal</span>|10|컨테이너 상태 Normal 전환|
+
+WhaTap 이벤트 중에는 '이벤트 상태가 해결되면 추가 알림'을 설정한 이벤트가 있습니다. 내부적으로 두가지 유형의 이벤트를 다음과 같이 구분합니다.
+
+* 상태 해결을 추적하지 않는 이벤트 : `stateless` 이벤트
+* 상태 해결 시 추가 알림을 설정한 이벤트 : `stateful` 이벤트
+
+컨테이너에서 발생한 `stateless`, `stateful` 이벤트는 `EventConState` 상태를 결정하는데 다음과 같이 사용합니다. 
+
+* `stateless` 이벤트 : 컨테이너에서 발생한 최근 1분 이내의 `stateless` 이벤트를 `EventConState` 상태에 반영
+* `stateful` 이벤트 : 발생 시점부터 종료 시점까지의 `stateful` 이벤트를 `EventConState` 상태에 반영
