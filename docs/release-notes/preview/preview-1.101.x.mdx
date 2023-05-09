@@ -12,7 +12,76 @@ toc_max_heading_level: 3
 
 [https://preview.whatap.io](https://preview.whatap.io)에서 다음 추가한 신기능과 수정한 내용을 미리 경험할 수 있습니다. 
 
-::: 
+:::
+
+
+## Preview 1.101.11
+
+2023년 5월 9일
+
+<div class='indentTab'>
+
+- <Status>Fixed</Status> 홈 화면 > <UI>Flex 보드</UI> > <UI>히트맵</UI> 위젯을 통해 <b>트랜잭션 상세</b> 화면을 진입할 경우 <b>로그 조회</b> 권한이 있는 멤버에게 <UI>트랜잭션 로그</UI> 탭이 노출되지 않는 현상 수정
+
+- <Status>Fixed</Status> <UI>관리</UI> > <UI>프로젝트 멤버</UI> 메뉴에서 브라우저 화면의 너비가 특정 크기일 때 가장 오른쪽의 아이콘 버튼이 가려지는 현상 수정
+
+</div>
+
+
+## Preview 1.101.10
+
+2023년 5월 3일
+
+<div class='indentTab'>
+
+### `Database`
+
+- <Status>Change</Status> <UI>통계/보고서</UI> > <UI>테이블 사이즈 증감</UI> 메뉴에서 <UI>CSV 다운로드</UI> 버튼을 <img src='/img/ic-csv-download-ms.svg' alt='CSV 다운로드 아이콘' /> 버튼으로 변경
+
+- <Status>Fixed</Status> 다음 메뉴 경로에서 <img src='/img/ic-csv-download-ms.svg' alt='CSV 다운로드 아이콘' /> 버튼을 선택하면 나타나는 드롭다운 메뉴 항목을 클릭한 영역에 따라 다운로드 기능이 작동하지 않는 문제 수정
+
+  - <UI>통계/보고서</UI> > <UI>테이블 사이즈 증감</UI>
+
+  - <UI>통계/보고서</UI> > <UI>SQL 통계</UI> > <UI>DB</UI>, <UI>USER</UI>, <UI>HOST</UI> 탭
+
+</div>
+
+
+## Preview 1.101.09
+
+2023년 5월 4일
+
+<div class='indentTab'>
+
+### `Server`
+
+- <Status>Fixed</Status> <UI>서버 설정</UI> > <UI>서버 목록</UI> 메뉴에서 비활성화된 서버 삭제 기능 제거
+
+- <Status>Fixed</Status> <UI>서버 설정</UI> > <UI>서버 환경 변수</UI> 메뉴에서 비활성화된 서버 삭제 기능 제거
+
+</div>
+
+## Preview 1.101.08
+
+2023년 5월 4일
+
+<div class='indentTab'>
+
+- <Status>Fixed</Status> <UI>로그</UI> > <UI>로그 설정</UI> > <UI>로그 파서 설정</UI> > <UI>필터 입력</UI> > 필터키의 오타 수정(okineName → okindName)
+
+- <Status>Fixed</Status> <UI>로그</UI> > <UI>라이브 테일</UI> 메뉴에서 조회된 로그 데이터가 없는 경우 이전의 로그가 표시되는 현상 수정
+
+- <Status>Change</Status> <UI>통합 대시보드</UI>, <UI>통합 메트릭스 보드</UI>를 사이드 메뉴에서 제거, <UI>사이트 맵</UI>을 통해서만 접근 가능하도록 변경
+
+- <Status>Change</Status> 다음 위젯들에서 데이터 응답이 없을 경우 구체적인 사유를 표시하도록 수정
+
+  - 로그 4XX, 5XX 건수
+  
+  - 로그 요청 성공률
+  
+  - 응답시간 by 로그
+
+</div>
 
 
 ## Preview 1.101.07

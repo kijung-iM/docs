@@ -24,15 +24,3 @@ tags: [ .NET, 트랜잭션 ]
 * **trace_active_transaction_lost_time** <span class='type'>Millisecond</span><br/>기본값 `30000`<br/>
 트랜잭션 종료를 기다리는 제한 시간입니다. 5분 안에 트랜잭션이 끝나지 않는 경우 트랜잭션을 정보를 더 이상 수집하지 않습니다. 트랜잭션의 트레이스 정보에서 'Lost Connection'를 확인할 수 있습니다.
 
-<!-- 
-
-### 멀티 트랜잭션 추적
-
-**mtrace_spec** <span class='type'>String</span><br/>
-기본값: `v1`<br/>현재 인스턴스의 애플리케이션 버전을 설정합니다. 임의의 문자열을 입력할 수 있습니다. 이 데이터는 호출 통계를 위해 이용합니다.
-
-:::note
-{@include: ../common-items/_donet-iis-restart.mdx}
-:::
-
--->

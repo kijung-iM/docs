@@ -22,13 +22,15 @@ tags: [ 쿠버네티스, 쿠버네티스 모니터링, 컨테이너, Pod, 컨테
 **컨테이너 기준 뷰**와 **Pod 기준 뷰**는 ***컨테이너 맵*** 메뉴 화면 위에 사용자 설정을 통해 전환할 수 있습니다.
 
 :::note
+
 구버전 쿠버네티스 에이전트를 사용한다면 Pod 기준 뷰를 확인할 수 없습니다. 에이전트 업그레이드를 수행하세요.
 
 ```bash title='Master'
-kubectl set image deployment/whatap-master-agent whatap-master-agent=whatap/kube_mon:<에이전트버전> -n whatap-monitoring
+kubectl set image deployment/whatap-master-agent whatap-master-agent=whatap/kube_mon:{에이전트 버전} -n whatap-monitoring
 ```
 
 ```bash title='Node'
-kubectl set image daemonset/whatap-node-agent whatap-node-agent=whatap/kube_mon:<에이전트버전> -n whatap-monitoring
+kubectl set image daemonset/whatap-node-agent whatap-node-agent=whatap/kube_mon:{에이전트 버전} -n whatap-monitoring
 ```
+
 :::

@@ -1,10 +1,22 @@
 import React from 'react';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 import {useLocation} from '@docusaurus/router';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 export default function CheckProduct() {
     let location = useLocation();
-    let cProdt = location.pathname.split("/")[1];
+    let cProdt;
+
+    const {
+        i18n: {currentLocale},
+    } = useDocusaurusContext();
+    // console.log(currentLocale);
+    if (currentLocale == 'ko') {
+        cProdt = location.pathname.split("/")[1];
+    } else {
+        cProdt = location.pathname.split("/")[2];
+    }
+
     var product;
     if (cProdt === 'nodejs') {
         product = '-nodejs';

@@ -19,7 +19,7 @@ module.exports = Promise.resolve({
   favicon: '/img/whatap-favicon.ico',
   i18n: {
     defaultLocale: 'ko',
-    locales: ['ko'],
+    locales: [ 'ko', 'en', 'ja' ],
   },
   trailingSlash: false,
   // clientModules: [
@@ -77,11 +77,11 @@ module.exports = Promise.resolve({
     [ 
       require.resolve("@easyops-cn/docusaurus-search-local"),
       {
-        hashed: false,
-        language: [ 'ko', 'en' ],
+        hashed: true,
+        language: [ 'ko', 'en', 'ja' ],
         indexBlog: false,
         docsRouteBasePath: '/',
-        removeDefaultStemmer: false,
+        removeDefaultStemmer: true,
         highlightSearchTermsOnTargetPage: true,
         explicitSearchResultPath: true,
         searchResultContextMaxLength: 50,
@@ -173,7 +173,7 @@ module.exports = Promise.resolve({
         items: [
           {
             type: 'doc',
-            docId: 'getting-started/whatap-overview',
+            docId: 'whatap-overview',
             label: '시작하기',
             position: 'left',
           },
@@ -279,7 +279,7 @@ module.exports = Promise.resolve({
               },
               {
                 type: 'doc',
-                docId: 'browser/introduction',
+                docId: 'browser',
                 label: 'Browser',
               },
               {
@@ -505,7 +505,7 @@ module.exports = Promise.resolve({
           },
           {
             type: 'doc',
-            docId: 'browser/introduction',
+            docId: 'browser',
             position: "left",
             label: 'Browser',
             className: 'hidden',
@@ -535,6 +535,11 @@ module.exports = Promise.resolve({
             docId: 'release-notes/release-notes',
             position: 'left',
             label: '릴리스 노트',
+          },
+          {
+            type: 'localeDropdown',
+            className: 'oneColumn',
+            position: 'right',
           },
         ],
       },

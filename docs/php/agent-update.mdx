@@ -12,7 +12,9 @@ tags:
 패키지 업데이트는 기존 설정을 유지한 채로 PHP 모니터링 서비스를 업데이트합니다. 0.2.7 이후 버전부터 정상적인 업데이트가 지원됩니다. 이전 버전은 삭제 후 **재설치**가 필요합니다.
 
 :::caution
+
 아파치 실행 중 php extension의 *shared library(.so)* 파일이 변경되는 경우 아파치 데몬이 비정상 종료될 수 있습니다. 반드시 아파치 서버 중지 상태에서 업데이트를 진행해야 안전합니다.
+
 :::
 
 ## Redhat/CentOS
@@ -32,11 +34,13 @@ tags:
     ```
 
     :::note
+
     특정 버전으로 다운로드하고자 할 때는 다음과 같이 버전을 명시하세요.
 
     ```bash
-    $ yum update whatap-php-<version>
+    $ yum update whatap-php-{version}
     ```
+    
     :::
 
 ## Debian/Ubuntu
@@ -56,11 +60,13 @@ tags:
     ```
 
     :::note
+
     특정 버전으로 다운로드하고자 할 때는 다음과 같이 버전을 명시하세요.
 
     ```bash
-    $ sudo apt-get install whatap-php=<version>
+    $ sudo apt-get install whatap-php={version}
     ```
+    
     :::
 
 ## FreeBSD
@@ -85,11 +91,14 @@ tags:
     ```
 
     :::note
+
     * 특정 버전으로 다운로드하고자 할 때는 다음과 같이 버전을 명시하세요.
     
         ```bash
-        $ wget https://s3.ap-northeast-2.amazonaws.com/repo.whatap.io/freebsd/10/whatap-php-<version>.txz
-        $ pkg install whatap-php-<version>.txz
+        $ wget https://s3.ap-northeast-2.amazonaws.com/repo.whatap.io/freebsd/10/whatap-php-{version}.txz
+        $ pkg install whatap-php-{version}.txz
         ```
+    
     * Apache 또는 PHP-FPM 서비스(Service)를 시작합니다.
+    
     :::

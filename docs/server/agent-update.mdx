@@ -6,7 +6,9 @@ tags: [ Server, 업데이트, 관리하기 ]
 ---
 
 :::note
+
 이전 버전을 설치하려면 support@whatap.io로 문의해 주세요.
+
 :::
 
 ## Linux 및 Unix
@@ -14,34 +16,45 @@ tags: [ Server, 업데이트, 관리하기 ]
 설치된 에이전트를 최신 버전으로 업데이트하려면 다음 명령어를 실행하세요.
 
 * **Debian / Ubuntu**
-    ```bash title=SH
-    sudo apt-get update
-    sudo apt-get install whatap-infra
-    sudo service whatap-infra restart
-    ```
-    * 특정 버전을 설치하려면 설치 시 버전 정보를 다음과 같이 명시하세요.
-        ```bash
-        sudo apt-get install whatap-infra=<version>
-        ```
+
+  ```bash title=SH
+  sudo apt-get update
+  sudo apt-get install whatap-infra
+  sudo service whatap-infra restart
+  ```
+
+  특정 버전을 설치하려면 설치 시 버전 정보를 다음과 같이 명시하세요.
+    
+  ```bash
+  sudo apt-get install whatap-infra={version}
+  ```
+
 * **CentOS / Amazon Linux / SUSE / XenServer**
-    ```bash title=SH
-    sudo yum update whatap-infra
-    sudo service whatap-infra restart
-    ```
-    * 특정 버전을 설치하려면 설치 시 버전 정보를 다음과 같이 명시하세요.
-        ```bash
-        sudo yum install whatap-infra-<version>
-        ```
+    
+  ```bash title=SH
+  sudo yum update whatap-infra
+  sudo service whatap-infra restart
+  ```
+  
+  특정 버전을 설치하려면 설치 시 버전 정보를 다음과 같이 명시하세요.
+  
+  ```bash
+  sudo yum install whatap-infra-{version}
+  ```
+
 * **FreeBSD**
-    ```bash title=SH
-    wget http://repo.whatap.io/freebsd/10/whatap-infra.txz
-    pkg install whatap-infra.txz
-    ```
+
+  ```bash title=SH
+  wget http://repo.whatap.io/freebsd/10/whatap-infra.txz
+  pkg install whatap-infra.txz
+  ```
 
 ## Windows
 
 설치된 에이전트를 최신 버전으로 업데이트하려면 ***관리*** > ***에이전트 설치*** 메뉴로 이동하세요. ***설치 안내*** 섹션의 ***설치 파일 다운로드*** 안내에 따라 윈도우 서버 운영 체제용 설치 파일을 다운로드 후 *whatap_infra.exe* 파일을 실행하세요. 에이전트 업데이트 후 서비스가 재시작됩니다.
 
 :::note
+
 보안 설정 때문에 *.exe* 형식의 파일이 받아지지 않는 사용자를 위해 *.zip* 형식의 파일도 함께 제공합니다. 자세한 내용은 [다음 문서](../server/server-os/server-windows)를 참조하세요.
+
 :::

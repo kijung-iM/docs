@@ -9,7 +9,7 @@ tags: [ 쿠버네티스, 쿠버네티스 모니터링, 애플리케이션 모니
 
 ## 에이전트 구성
 
-와탭 쿠버네티스 설치 시 기본적으로 사용자 쿠버네티스 환경의 \<whatap-monitoring\> Namespace 하위에 에이전트용 리소스를 구성합니다.
+와탭 쿠버네티스 설치 시 기본적으로 사용자 쿠버네티스 환경의 &lt;whatap-monitoring&gt; Namespace 하위에 에이전트용 리소스를 구성합니다.
 
 마스터 에이전트는 Deployment, 노드 에이전트는 DaemonSet 형태입니다. 다음은 사용자 쿠버네티스 환경에 설치된 와탭 에이전트를 확인하는 방법입니다.
 
@@ -27,7 +27,7 @@ tags: [ 쿠버네티스, 쿠버네티스 모니터링, 애플리케이션 모니
   kubectl get pods -l=name=whatap-node-agent -n whatap-monitoring
   ```
 
-다음은 \<whatap-monitoring\> Namespace 내에서 실행 중인 마스터 에이전트, 노드 에이전트 형태의 예입니다.
+다음은 &lt;whatap-monitoring&gt; Namespace 내에서 실행 중인 마스터 에이전트, 노드 에이전트 형태의 예입니다.
 
 ```bash
 $ kubectl get pods -n whatap-monitoring
@@ -40,6 +40,6 @@ whatap-node-agent-9thmw                2/2     Running   0          3h31m
 whatap-node-agent-kpv7d                2/2     Running   0          21h
 ```
 
-다음은 와탭 쿠버네티스 컨테이너 맵 상에 표시된 \<whatap-monitoring\> Namespace 입니다.
+다음은 와탭 쿠버네티스 컨테이너 맵 상에 표시된 &lt;whatap-monitoring&gt; Namespace 입니다.
 
 ![컨테이너 맵 내 whatap-monitoring Namespace](https://img.whatap.io/media/images/whatap_kubernetes_container_whatap_monitoring.png)
