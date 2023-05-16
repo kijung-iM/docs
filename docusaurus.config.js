@@ -75,30 +75,16 @@ module.exports = Promise.resolve({
     //     anonymizeIP: true,
     //   },
     // ],
-    // [ 
-    //   require.resolve("@easyops-cn/docusaurus-search-local"),
-    //   {
-    //     hashed: true,
-    //     language: [ 'ko', 'en', 'ja' ],
-    //     indexBlog: false,
-    //     docsRouteBasePath: '/',
-    //     // removeDefaultStemmer: true,
-    //     highlightSearchTermsOnTargetPage: true,
-    //     explicitSearchResultPath: true,
-    //     searchResultContextMaxLength: 50,
-    //     ignoreFiles: [/wip/, /on-prem/, /common-items/, /mysql-rds/, /release-notes\/preview/, /java\/install-agent-with-buildpack/],
-    //   }
-    // ],
-    [
-      require.resolve("docusaurus-plugin-search-local"),
+    [ 
+      require.resolve("@easyops-cn/docusaurus-search-local"),
       {
         hashed: true,
-        // language: [ 'ko', 'en', 'ja' ],
+        language: [ 'ko', 'en', 'ja' ],
         indexBlog: false,
         docsRouteBasePath: '/',
         // removeDefaultStemmer: true,
-        searchResultLimits: 20,
         highlightSearchTermsOnTargetPage: true,
+        explicitSearchResultPath: true,
         searchResultContextMaxLength: 50,
         ignoreFiles: [/wip/, /on-prem/, /common-items/, /mysql-rds/, /release-notes\/preview/, /java\/install-agent-with-buildpack/],
       }
