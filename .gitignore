@@ -1,3 +1,21 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:43eadd1103077b1a729aa673d5e7d29bb4b0552e97745c54d9599bc94b0b9712
-size 1343
+/docs
+/build
+/backup
+/.vscode
+/node_modules
+
+# Generated files
+.docusaurus
+.cache-loader
+
+# Misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.pack
