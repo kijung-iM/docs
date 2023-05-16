@@ -105,7 +105,7 @@ export default function SearchBar({ handleSearchBarToggle, }) {
         search.current = autoComplete(searchBarRef.current, {
             hint: false,
             autoselect: false,
-            openOnFocus: true,
+            openOnFocus: true, 
             autoselectOnBlur: false,
             cssClasses: {
                 root: clsx(styles.searchBar, {
