@@ -55,19 +55,19 @@ module.exports = Promise.resolve({
         ],
       }
     ],
-    [
-      '@docusaurus/plugin-google-gtag',
-      {
-        trackingID: 'G-E46TQ5VSCT',
-        anonymizeIP: true,
-      },
-    ],
-    [
-      '@docusaurus/plugin-google-tag-manager',
-      {
-        containerId: 'GTM-WJSZDJR',
-      },
-    ],
+    // [
+    //   '@docusaurus/plugin-google-gtag',
+    //   {
+    //     trackingID: 'G-E46TQ5VSCT',
+    //     anonymizeIP: true,
+    //   },
+    // ],
+    // [
+    //   '@docusaurus/plugin-google-tag-manager',
+    //   {
+    //     containerId: 'GTM-WJSZDJR',
+    //   },
+    // ],
     // [
     //   '@docusaurus/plugin-google-analytics',
     //   {
