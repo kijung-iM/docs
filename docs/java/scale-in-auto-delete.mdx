@@ -13,10 +13,13 @@ Auto Scale 환경에서 에이전트 이름을 자동 부여하면 Scale Out이 
 **SILENT_SHUTDOWN** 이벤트를 와탭 서버에 전송하고 1분 이내에 에이전트가 셧다운 되면 와탭 서버는 목록에서 해당 Java 에이전트를 바로 제거합니다. inactive 이벤트도 발생시키지 않습니다.
 
 :::note
+
 Tomcat의 경우 *shutdown.sh* 파일에 설정할 수 있습니다.
 
 ```bash title=$TOMCAT_HOME/bin/shutdown.sh
 touch $WHATAP_HOME/whatap_{java-process-pid}.shutdown
 ```
-<!-- 관련 https://desk.channel.io/#/channels/6280/user_chats/63bfcb1a3962bededb99 -->
+
 :::
+
+<!-- 관련 https://desk.channel.io/#/channels/6280/user_chats/63bfcb1a3962bededb99 -->

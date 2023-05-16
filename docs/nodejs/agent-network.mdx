@@ -26,7 +26,9 @@ whatap.server.port=6600
 ```
 
 :::note
+
 두 개의 Proxy 서버가 서로 상이한 포트를 사용할 수 없습니다. 여러 대의 Proxy 서버를 사용하는 경우 리스닝(Listening) 포트는 동일해야 합니다.
+
 :::
 
 ### 통신 연결 및 보안
@@ -72,8 +74,14 @@ net_send_queue2_size=1024
 
 {@include: ../common-items/_common-network.mdx}
 
-* **net_send_queue1_size** <span class='type'>Int</span><br/>
-기본값 `512`<br/>트레이스 정보를 제외한 나머지 데이터 전송에 사용할 Queue의 크기를 설정합니다.
+* **net_send_queue1_size** <span class='type'>Int</span>
 
-* **net_send_queue2_size** <span class='type'>Int</span><br/>
-기본값 `1024`<br/>트레이스 정보 전송에 사용할 Queue의 크기를 설정합니다.
+  기본값 `512`
+  
+  트레이스 정보를 제외한 나머지 데이터 전송에 사용할 Queue의 크기를 설정합니다.
+
+* **net_send_queue2_size** <span class='type'>Int</span>
+
+  기본값 `1024`
+  
+  트레이스 정보 전송에 사용할 Queue의 크기를 설정합니다.

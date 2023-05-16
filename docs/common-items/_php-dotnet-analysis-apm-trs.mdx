@@ -28,7 +28,9 @@
 |cpu_sum|CPU사용량 SUM|u8|
 
 :::note
+
 `malloc_sum`은 `trace_malloc_enabled=true`로 변경해야 수집됩니다. 기본값은 `false`입니다.
+
 :::
 
 ## 트랜잭션 도메인 통계
@@ -134,7 +136,9 @@ whatap.stat_referer_enabled=true
 |service|SQL을 수행한 service 중 하나|u4|
 
 :::note
+
 `service(URL)` hash는 5분 동안 해당 SQL을 호출한 URL 중 하나(마지막 호출 URL)를 분석 활용을 위해 수집합니다.
+
 :::
 
 ## HTTP Call 수행 통계

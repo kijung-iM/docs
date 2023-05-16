@@ -9,11 +9,11 @@ tags:
 
 import TR from '@site/src/components/TR';
 
-{@include: ../common-items/_agent-signup-guide.mdx}
+{@include: ../common-items/_agent-signup-guide.mdx}  
 
 {@youtube: MWDFeegF6mQ}
 
-{@include: ../getting-started/_create-project-v2.mdx} 
+{@include: ../getting-started/_create-project-v2.mdx}  
 
 {@include: ../getting-started/_accesskey-v2.mdx}
 
@@ -42,22 +42,22 @@ pip 명령으로 설치할 수 없다면 [pypi 와탭 페이지](https://pypi.or
 
     * **Python 에이전트**를 설치하세요.
 
-        ```docker title='Dockerfile' {3}
-        ENV WHATAP_HOME /whatap
-        RUN mkdir -p /whatap
-        RUN pip install whatap-python
-        // requirements.txt를 사용하는 경우 해당 파일에 whatap-python 을 추가하세요.
-        ```
+      ```docker title='Dockerfile' {3}
+      ENV WHATAP_HOME /whatap
+      RUN mkdir -p /whatap
+      RUN pip install whatap-python
+      // requirements.txt를 사용하는 경우 해당 파일에 whatap-python 을 추가하세요.
+      ```
 
     * **액세스 키** 및 **수집 서버 IP** 설정을 등록하세요.
 
-        ```docker title='Dockerfile'
-        RUN touch /whatap/whatap.conf
-        RUN echo "license=[ 발급된 액세스 키 ]" > /whatap/whatap.conf
-        RUN echo "whatap.server.host=[ 수집 서버 IP ]" >> /whatap/whatap.conf
-        RUN echo "app_name=[ 애플리케이션 이름 ]" >> /whatap/whatap.conf
-        RUN echo "app_process_name=[ 애플리케이션 프로세스 이름 예)uwsgi, gunicorn.. ]" >> /whatap/whatap.conf
-        ```
+      ```docker title='Dockerfile'
+      RUN touch /whatap/whatap.conf
+      RUN echo "license=[ 발급된 액세스 키 ]" > /whatap/whatap.conf
+      RUN echo "whatap.server.host=[ 수집 서버 IP ]" >> /whatap/whatap.conf
+      RUN echo "app_name=[ 애플리케이션 이름 ]" >> /whatap/whatap.conf
+      RUN echo "app_process_name=[ 애플리케이션 프로세스 이름 예)uwsgi, gunicorn.. ]" >> /whatap/whatap.conf
+      ```
 
 1. 기존 실행 커맨드 `python manage.py runserver`앞에 `whatap-start-agent`를 추가하세요.
 
@@ -67,39 +67,49 @@ pip 명령으로 설치할 수 없다면 [pypi 와탭 페이지](https://pypi.or
     ```
 
 :::note
+
 에이전트 파일 구성에 대한 자세한 설명은 Python 파일 구성을 참조하세요.
+
 :::
 
 <details>
 <summary>Python 에이전트 구성 파일</summary>
 Python 에이전트 파일은 애플리케이션 모니터링에 필요한 정보를 추출해 와탭 수집 서버로 전달하는 트레이서와 트레이서가 데이터를 보낼 수 있도록 돕는 요소로 구성되어 있습니다.
 
-* *whatap.conf*  
-    에이전트 설정 기본 필수 파일입니다. 에이전트와 관련된 옵션은 모두 *whatap.conf* 파일에서 설정 가능합니다.
+* *whatap.conf*
+
+  에이전트 설정 기본 필수 파일입니다. 에이전트와 관련된 옵션은 모두 *whatap.conf* 파일에서 설정 가능합니다.
 
 * *paramkey.txt*  
-    추적한 트랜잭션의 트레이스 정보로 수집한 HTTP와 SQL 데이터의 파라미터 정보를 확인할 때 사용합니다. 
-    
-    보안 키를 파일에 저장하고 실제 수집된 데이터를 브라우저에서 확인하고자 할 때 파일에 저장해 둔 보안 키를 입력해야 조회할 수 있습니다. 
-    
-    파일의 내용을 직접 변경하여 보안 키 수정이 가능합니다. 관련 옵션은 다음과 같습니다. 
-    * **profile_http_parameter_enabled** <span class='type'>Boolean</span><br/>
-        기본값 `false`
-    * **profile_sql_param_enabled** <span class='type'>Boolean</span><br/>
-        기본값 `false`
+
+  추적한 트랜잭션의 트레이스 정보로 수집한 HTTP와 SQL 데이터의 파라미터 정보를 확인할 때 사용합니다. 
+  
+  보안 키를 파일에 저장하고 실제 수집된 데이터를 브라우저에서 확인하고자 할 때 파일에 저장해 둔 보안 키를 입력해야 조회할 수 있습니다. 
+  
+  파일의 내용을 직접 변경하여 보안 키 수정이 가능합니다. 관련 옵션은 다음과 같습니다. 
+
+  * **profile_http_parameter_enabled** <span class='type'>Boolean</span>
+
+    기본값 `false`
+  
+  * **profile_sql_param_enabled** <span class='type'>Boolean</span>
+  
+    기본값 `false`
 
 </details>
 
 ## 에이전트 설정
 
-1. **WHATAP_HOME 기본 경로 설정**  
+1. **WHATAP_HOME 기본 경로 설정**
+
     로그와 설정 파일 경로를 위한 `$WHATAP_HOME` 경로를 지정하세요. whatap 디렉터리를 새로 생성하는 것을 권장합니다.
 
     ```bash
     $ export WHATAP_HOME=[PATH]
     ```
 
-1. **액세스 키 및 수집 서버 IP 설정**  
+1. **액세스 키 및 수집 서버 IP 설정**
+
     다음 명령어를 실행하면 `$WHATAP_HOME`에 지정한 경로에 바로 *whatap.conf* 파일이 생성 및 설정됩니다.
 
     ```bash
@@ -228,7 +238,8 @@ def simple_app(environ, start_response):
 
 ## 에이전트 적용 및 서비스 실행 확인
 
-* **와탭 에이전트 적용**<br/>
+* **와탭 에이전트 적용**
+
   가장 상단에 API를 직접 호출하는 코드를 다음과 같이 추가해 와탭 에이전트를 적용하세요.
 
   ```bash
@@ -236,7 +247,8 @@ def simple_app(environ, start_response):
   whatap.agent
   ```
 
-* **서비스 실행 확인**<br/>
+* **서비스 실행 확인**
+
   다음 명령어를 실행해 와탭 Python 서비스가 정상적으로 실행되었는지 확인하세요.
 
   ```bash

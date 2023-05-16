@@ -21,7 +21,7 @@ module.exports = Promise.resolve({
     defaultLocale: 'ko',
     locales: [ 'ko', 'en', 'ja' ],
   },
-  trailingSlash: false,
+  // trailingSlash: false,
   // clientModules: [
   //   require.resolve('./static/js/rum.js')
   // ],
@@ -32,6 +32,7 @@ module.exports = Promise.resolve({
     },
   ],
   plugins: [
+    [ './src/whatap-plugin-browser', {}],
     [ 'docusaurus-plugin-sass', {} ],
     [ 'docusaurus-plugin-pagemove', {} ],
     [
@@ -81,7 +82,7 @@ module.exports = Promise.resolve({
         language: [ 'ko', 'en', 'ja' ],
         indexBlog: false,
         docsRouteBasePath: '/',
-        removeDefaultStemmer: true,
+        // removeDefaultStemmer: true,
         highlightSearchTermsOnTargetPage: true,
         explicitSearchResultPath: true,
         searchResultContextMaxLength: 50,
@@ -122,8 +123,8 @@ module.exports = Promise.resolve({
           // Remove this to remove the "edit this page" links.
           rehypePlugins: [rehypeTableMerge],
           editUrl: 'undefined', // 'https://gitlab.whatap.io/whatap-inc/docs/-/blob/main/',
-          // include: [ '**/*.mdx' ],
-          // exclude: [ 'mysql-rds/*.mdx' ],
+          include: [ '**/*.mdx' ],
+          exclude: [ 'weaving/*.mdx', 'weaving/**/*.mdx', 'wip/*.mdx', 'common-items/*.mdx' ],
         },
         blog: false,
         theme: {
@@ -553,7 +554,7 @@ module.exports = Promise.resolve({
       prism: {
         theme: darkCodeTheme,
         darkTheme: darkCodeTheme,
-        additionalLanguages: ['batch', 'apacheconf', 'docker', 'properties', 'java', 'ini', 'scala', 'sql', 'go', 'python' ],
+        additionalLanguages: ['batch', 'apacheconf', 'docker', 'properties', 'java', 'ini', 'scala', 'sql', 'go', 'python', 'json' ],
         // 
       },
       zoom: {

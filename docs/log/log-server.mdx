@@ -4,8 +4,6 @@ title: Server
 description: Server 애플리케이션에서 로그를 수집하는 방법을 안내합니다. 
 tags: [ 로그 모니터링, Server ]
 ---
-<!-- 안내 디테일 추가 필요 -->
-<!-- showLineNumbers {5-10} -->
 
 서버 애플리케이션에서 로그를 수집하려면 다음을 확인하세요.
 
@@ -25,17 +23,17 @@ tags: [ 로그 모니터링, Server ]
 
 :::
 
-<!-- 의 ***에이전트 설정 확인*** 탭의 안내를 참조해 진행하세요. 임의의 로그를 수집할 수 있습니다.  -->
-
 ### Linux Shell
 
 * ***기본 설치***
+
   ```bash title='Linux Shell'
   export LOGFILES=/some/path/file1,/some/other/file2
   echo "logsink.files=$LOGFILES" | sudo tee -a /usr/whatap/infra/conf/whatap.conf
   ```
 
 * ***카테고리와 함께 설치***
+
   ```bash title='Linux Shell' {7-12,14,15} showLineNumbers
   cd /usr/whatap/infra
   sudo mkdir extension
@@ -67,12 +65,14 @@ tags: [ 로그 모니터링, Server ]
 ### Windows Powershell
 
 * ***기본 설치***
+
   ```bash title='Windows Powershell'
   $LOGFILES="/some/path/file1,/some/other/file2"
   Add-Content "c:Program FilesWhatapInfrawhatap.conf" -Value "logsink.files=$LOGFILES"
   ```
 
-* ***카테고리와 함께 설치***  
+* ***카테고리와 함께 설치***
+
   ```bash title='Windows Powershell (관리자 권한)' {6-11,13,14} showLineNumbers
   New-Item -type "Directory" -Path "C:\Program Files\WhatapInfra\extension"
 
@@ -103,6 +103,7 @@ tags: [ 로그 모니터링, Server ]
 * `stats_enabled`: 수집 현황 데이터의 수집 여부를 설정합니다. 기본값은 `false`입니다. 값을 `true`로 설정해야 합니다. `true`로 설정하면 다음 `stats_category`에서 설정한 카테고리(`logsink_stats`)로 통계 데이터가 발생합니다.
 
 * `stats_category`: 수집 현황 데이터를 저장할 메트릭스 카테고리를 설정합니다. 값을 `logsink_stats`로 설정해야 합니다. 통계 데이터 필드는 다음과 같습니다.
+
   * `file`
   * `checkInterval`
   * `encoding`
@@ -129,41 +130,3 @@ tags: [ 로그 모니터링, Server ]
 {@include: ../common-items/_log-java-start.mdx} 
 
 {@include: ../common-items/_log-active-note.mdx} 
-
-<!-- 
- 
-별도의 로그 수집 통계 데이터 발생 여부를 설정합니다.
-
-로그 모니터링을 원하는 파일 경로를 다음과 같이 지정하세요. 명령어를 입력하면 로그 모니터링이 시작됩니다.
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs>
-<TabItem value="linux" label="Linux" default>
-
-```shell
-export LOGFILES=/some/path/file1,/some/other/file2
-echo "logsink.files=$LOGFILES" | sudo tee -a /usr/whatap/infra/conf/whatap.conf
-```
-
-</TabItem>
-<TabItem value="windows" label="Windows" default>
-
-```shell
-$LOGFILES="/some/path/file1,/some/other/file2"
-Add-Content "c:\\Program Files\\WhatapInfra\\whatap.conf" -Value "$LOGFILES"
-```
-
-</TabItem>
-</Tabs>
-
-## 로그 모니터링 활성화
-
-홈 화면 > 프로젝트 선택 > ***로그*** > ***설정***
-
-***로그 모니터링 시작하기*** 섹션의 ***로그 모니터링 활성화*** 탭에서 토글 버튼으로 와탭 로그 모니터링을 활성화 또는 비활성화 할 수 있습니다.
-
-{@include: ../common-items/_log-java-start.mdx}
-
--->

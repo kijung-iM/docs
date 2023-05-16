@@ -13,7 +13,9 @@ import TabItem from '@theme/TabItem';
 1. Linux 설치 환경에 따라 다음의 내용을 Elastic Beanstalk **설치 스크립트**에 추가하세요.
 
     :::note
+
     `whatap.server.host`와 `license` 즉 **프로젝트 액세스 키**는 사용자에 맞게 입력합니다.
+    
     :::
 
     <Tabs>
@@ -109,7 +111,8 @@ import TabItem from '@theme/TabItem';
     </TabItem>
     </Tabs>
 
-1. 다음 **명령어**를 수정하세요.  
+1. 다음 **명령어**를 수정하세요.
+
      ```bash
     echo "createdtime=date +%s%N" |sudo tee -a /usr/whatap/infra/conf/whatap.conf
     ```

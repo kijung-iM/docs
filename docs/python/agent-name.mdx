@@ -13,27 +13,30 @@ tags:
 {@include: ../common-items/_agent-name-warning.mdx}
 
 :::note
+
 * 와탭 모니터링 서비스에서는 모니터링 대상을 오브젝트 또는 에이전트로 혼용해서 사용합니다.
+
 :::
 
-<!-- 와탭은 애플리케이션 서버 식별을 위해 애플리케이션 서버 종류, 서버 IP, 서비스 포트를 조합하여 고유 식별자로 사용합니다. -->
+* **object_name** <span class='type'>String</span>
 
-* **object_name**<span class='type'>String</span><br/>
-    기본값 `{type}-{ip2}-{ip3}-{process}`  
-    애플리케이션을 식별하는 에이전트 이름(ONAME) 체계입니다. ONAME을 토대로 OID가 생성됩니다. 
+  기본값 `{type}-{ip2}-{ip3}-{process}`
+  
+  애플리케이션을 식별하는 에이전트 이름(ONAME) 체계입니다. ONAME을 토대로 OID가 생성됩니다. 
 
-    |명칭|설명|
-    |----|----|
-    |{type}|whatap.app_name에 설정된 값을 사용합니다.|
-    |{ip#}|IP를 나누었을 때 #번째 자리를 사용합니다.|
-    |{process}|whatap.app_process_name에 설정된 값을 사용합니다.|
-    |{hostname}|서버 호스트명을 사용합니다.|
+  |명칭|설명|
+  |----|----|
+  |{type}|whatap.app_name에 설정된 값을 사용합니다.|
+  |{ip#}|IP를 나누었을 때 #번째 자리를 사용합니다.|
+  |{process}|whatap.app_process_name에 설정된 값을 사용합니다.|
+  |{hostname}|서버 호스트명을 사용합니다.|
 
-<!-- 문의 -->
-* **app_name**<span class='type'>String</span><br/>
-    애플리케이션을 식별하는 에이전트 이름(ONAME) 체계에 사용되는 애플리케이션 명입니다. `object_name`의 `{type}`에 해당하는 값입니다.
+* **app_name** <span class='type'>String</span>
 
-* **app_process_name**<span class='type'>String</span><br/> 
-    애플리케이션을 식별하는 에이전트 이름(ONAME)체계에 사용되는 애플리케이션 프로세스 명입니다. 
+  애플리케이션을 식별하는 에이전트 이름(ONAME) 체계에 사용되는 애플리케이션 명입니다. `object_name`의 `{type}`에 해당하는 값입니다.
 
-    애플리케이션 서버의 CPU, Heap Memory 등을 수집할 대상 프로세스를 설정합니다. `object_name`의 `{process}`에 해당하는 값입니다. 
+* **app_process_name** <span class='type'>String</span>
+
+  애플리케이션을 식별하는 에이전트 이름(ONAME)체계에 사용되는 애플리케이션 프로세스 명입니다. 
+
+  애플리케이션 서버의 CPU, Heap Memory 등을 수집할 대상 프로세스를 설정합니다. `object_name`의 `{process}`에 해당하는 값입니다. 

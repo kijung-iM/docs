@@ -38,7 +38,7 @@ func Trace(ctx context.Context, name string, elapsed int, err error) error
 
 ## Whatap.conf 설정
 
-**ignore_http_method_urls** <span class='type'>String</span><br/>**ignore_http_method** <span class='type'>String</span>
+**ignore_http_method_urls** <span class='type'>String</span> / **ignore_http_method** <span class='type'>String</span>
 
 설정한 URI에 대해서 특정 HTTP Method로 요청되는 트랜잭션의 수집을 제외합니다. 쉼표(,)를 구분자로 이용해 여러 개의 URI, Method를 등록할 수 있습니다. 대소문자 구분은 없습니다.
 

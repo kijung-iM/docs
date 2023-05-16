@@ -40,9 +40,11 @@ MXQL 문법을 이용해 메트릭스를 선택하는 명령어에 대해서 알
   ```
 
 :::caution
+
 * `CATEGORY`의 오퍼랜드로 하나의 값만 지정할 수 있습니다. 여러 `CATEGORY`의 데이터를 한 번에 확인하고 싶은 경우 [JOIN](mxql-calculate#join)을 사용해야합니다.
 * 로딩 방식([TAGLOAD](mxql-loading#tagload) 또는 [FLEXLOAD](mxql-loading#flexload))에 따라서 설정 가능한 카테고리가 달라집니다. 
 * `CATEGORY`의 이름에 `{m5}` 또는 `{h1}`가 붙어있는 경우 [MetricValue](mxql-guide#metric-value)를 참고해주세요.
+
 :::
 
 ## OID, OKIND, ONODE{#oid}
@@ -72,15 +74,19 @@ TAGLOAD
 ```
 
 :::caution
+
 * `OID`, `OKIND`, `ONODE` 중 한 가지 값만 설정할 수 있습니다. 
 * 오퍼랜드를 입력하지 않은(또는 파라미터의 값이 전달되지 않은) 명령어는 무시합니다.
 * `OID`, `OKIND`, `ONODE`를 중복해서 사용하는 경우 가장 마지막에 입력한 명령어만 적용합니다.
 * `OIDSET`은 deprecated되어 `OID`, `OKIND`, `ONODE` 중 한 가지 명령어를 사용하는 것을 권장합니다.
 * 데이터 로드 단계에서부터 필요한 데이터만을 조회한다는 점에서 데이터 가공 단계의 [FILTER](mxql-calculate#filter)를 적용하는 것과 차이점이 있습니다.
+
 :::
 
 :::note
+
 `OKIND`, `ONODE` 명령어의 경우 `CATEGORY` 명령어에서 설정한 카테고리에 `okind`, `onode` 관련 필드(`okind`, `onode`, `okindName`, `onodeName`)를 포함하는 경우만 사용할 수 있습니다. ***사이트맵*** > ***분석*** > ***메트릭스 조회*** 메뉴에서어떤 카테고리에 어떤 필드를 포함하고 있는지 확인할 수 있습니다. 
+
 :::
 
 ## HEADER{#header}
@@ -99,7 +105,9 @@ TAGLOAD
 ```
 
 :::caution
+
 Flex 보드의 위젯에서 사용하는 형식에 맞추어 전달해야 합니다.
+
 :::
 
 ## TIME-RANGE{#time-range}

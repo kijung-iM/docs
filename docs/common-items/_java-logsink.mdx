@@ -1,36 +1,52 @@
 :::caution
+
 LogSink 옵션은 whatap.agent-2.1.0 버전 이상에서 사용 가능합니다.
+
 :::
 
 ### 로그 모니터링 기능 활성화 
 
-* **logsink_enabled** <span class='type'>Boolean</span><br/>
-    기본값 `false`<br/>
-    로그 모니터링 기능을 활성화합니다.
+* **logsink_enabled** <span class='type'>Boolean</span>
 
-* **logsink_stdout_enabled** <span class='type'>Boolean</span><br/>
-    기본값 `logsink_enabled`<br/>
-    Java 애플리케이션에서 발생하는 System.out 로그 수집 여부를 설정합니다.
+  기본값 `false`
 
-* **logsink_stderr_enabled** <span class='type'>Boolean</span><br/>
-    기본값 `logsink_enabled`<br/>
-    Java 애플리케이션에서 발생하는 System.err 로그 수집 여부를 설정합니다.
+  로그 모니터링 기능을 활성화합니다.
 
-* **logsink_logback_enabled** <span class='type'>Boolean</span><br/>
-    기본값 `logsink_enabled`<br/>
-    logback 프레임워크 로그 수집 여부를 설정합니다.
+* **logsink_stdout_enabled** <span class='type'>Boolean</span>
 
-* **logsink_log4j_enabled** <span class='type'>Boolean</span><br/>
-    기본값 `logsink_enabled`<br/>
-    log4j 프레임워크 로그 수집 여부를 설정합니다.
+  기본값 `logsink_enabled`
 
-* **logsink_tomcat_enabled** <span class='type'>Boolean</span><br/>
-    기본값 `logsink_enabled`<br/>
-    Tomcat 로그 수집 여부를 설정합니다.
+  Java 애플리케이션에서 발생하는 System.out 로그 수집 여부를 설정합니다.
 
-* **logsink_custom_enabled** <span class='type'>Boolean</span><br/>
-    기본값 `logsink_enabled`<br/>
-    사용자 정의 로그 수집 여부를 설정합니다.
+* **logsink_stderr_enabled** <span class='type'>Boolean</span>
+
+  기본값 `logsink_enabled`
+
+  Java 애플리케이션에서 발생하는 System.err 로그 수집 여부를 설정합니다.
+
+* **logsink_logback_enabled** <span class='type'>Boolean</span>
+
+  기본값 `logsink_enabled`
+
+  logback 프레임워크 로그 수집 여부를 설정합니다.
+
+* **logsink_log4j_enabled** <span class='type'>Boolean</span>
+
+  기본값 `logsink_enabled`
+
+  log4j 프레임워크 로그 수집 여부를 설정합니다.
+
+* **logsink_tomcat_enabled** <span class='type'>Boolean</span>
+
+  기본값 `logsink_enabled`
+
+  Tomcat 로그 수집 여부를 설정합니다.
+
+* **logsink_custom_enabled** <span class='type'>Boolean</span>
+
+  기본값 `logsink_enabled`
+
+  사용자 정의 로그 수집 여부를 설정합니다.
 
 ### 프레임워크 로그내용 수집
 
@@ -38,62 +54,88 @@ LogSink 옵션은 whatap.agent-2.1.0 버전 이상에서 사용 가능합니다.
 
 `hooklog_enabled` 값을 변경하면 재기동이 필요합니다. `hooklog_enabled` 기본값은 `logsink_enabled`입니다. 따라서 `logsink_enabled=true`로 설정하고 자바 애플리케이션을 재시작하면 `hooklog_enabled`는 `true`로 설정되고 `hooklog_logback_enabled`도 `true`로 설정됩니다.
 
-* **hooklog_enabled** <span class='type'>Boolean</span><br/>
-    기본값 `logsink_enabled`<br/>
-    로그 추적 활성화 여부를 설정합니다.
+* **hooklog_enabled** <span class='type'>Boolean</span>
 
-* **hooklog_logback_enabled** <span class='type'>Boolean</span><br/>
-    기본값 `hooklog_enabled`<br/>
-    logback 프레임워크 수집 로그 추적 활성화 여부를 설정합니다.
+  기본값 `logsink_enabled`
 
-* **hooklog_log4j_enabled** <span class='type'>Boolean</span><br/>
-    기본값 `hooklog_enabled`<br/>
-    log4j 프레임워크 수집 로그 추적 활성화 여부를 설정합니다.
+  로그 추적 활성화 여부를 설정합니다.
 
-* **hooklog_tomcat_enabled** <span class='type'>Boolean</span><br/>
-    기본값 `hooklog_enabled`<br/>
-    Tomcat 로그 추적 활성화 여부를 설정합니다.
+* **hooklog_logback_enabled** <span class='type'>Boolean</span>
 
-* **hooklog_custom_methods**<br/>
-    사용자 정의 로그를 등록합니다. 임의의 로그 프레임워크 내용을 전달합니다. 사이트에서 개별로 만든 로그 모듈의 로그를 추적할때 사용하세요.
-    ```ini title='예시'
-    hooklog_custom_methods=com.greatshop.common.Log.print
-    ```
+  기본값 `hooklog_enabled`
+
+  logback 프레임워크 수집 로그 추적 활성화 여부를 설정합니다.
+
+* **hooklog_log4j_enabled** <span class='type'>Boolean</span>
+
+  기본값 `hooklog_enabled`
+
+  log4j 프레임워크 수집 로그 추적 활성화 여부를 설정합니다.
+
+* **hooklog_tomcat_enabled** <span class='type'>Boolean</span>
+
+  기본값 `hooklog_enabled`
+
+  Tomcat 로그 추적 활성화 여부를 설정합니다.
+
+* **hooklog_custom_methods**
+
+  사용자 정의 로그를 등록합니다. 임의의 로그 프레임워크 내용을 전달합니다. 사이트에서 개별로 만든 로그 모듈의 로그를 추적할때 사용하세요.
+  
+  ```ini title='whatap.conf'
+  hooklog_custom_methods=com.greatshop.common.Log.print
+  ```
 
 ### 로그 전송 설정
 
-* **logsink_queue_size** <span class='type'>Int</span><br/>
-    기본값 `1000`<br/>
-    로그 전송 시 큐 사이즈 설정입니다.
+* **logsink_queue_size** <span class='type'>Int</span>
 
-* **logsink_line_size** <span class='type'>Int</span><br/>
-    기본값 `512`<br/>
-    로그 전송 시 단일 라인의 최대 크기 설정입니다.
+  기본값 `1000`
+
+  로그 전송 시 큐 사이즈 설정입니다.
+
+* **logsink_line_size** <span class='type'>Int</span>
+
+  기본값 `512`
+
+  로그 전송 시 단일 라인의 최대 크기 설정입니다.
 
 ### 로그 압축 전송
 
-* **logsink_zip_enabled** <span class='type'>Boolean</span><br/>
-    기본값 `true`<br/>
-    수집한 로그 데이터를 압축 전송할 수 있습니다.
+* **logsink_zip_enabled** <span class='type'>Boolean</span>
 
-* **debug_logsink_zip_enabled** <span class='type'>Boolean</span><br/>
-    기본값 `false`<br/>
-    로그 데이터를 압축해서 전송할 때 디버그 여부를 설정합니다. 관련 정보를 에이전트 로그에 표시합니다.
+  기본값 `true`
 
-* **logsink_zip_min_size** <span class='type'>Int</span><br/>
-    기본값 `100`<br/>
-    로그 압축 전송 최소 사이즈를 설정합니다. 전송 데이터가 100 bytes 이하인 경우 데이터를 압축하지 않습니다.
+  수집한 로그 데이터를 압축 전송할 수 있습니다.
 
-* **logsink_max_buffer_size** <span class='type'>Int</span><br/>
-    기본값 `65536`<br/>
-    수집한 로그 데이터 크기가 설정한 값을 초과하면 데이터를 서버로 전송합니다.
+* **debug_logsink_zip_enabled** <span class='type'>Boolean</span>
 
-* **logsink_max_wait_time** <span class='type'>Int</span><br/>
-    기본값 `2000`<br/>
-    수집한 로그 데이터를 묶어서 전송하기 위해 대기하는 최대 시간을 설정합니다. 설정한 값을 초과하면 데이터를 서버로 전송합니다.
+  기본값 `false`
 
-* **logsink_zip_libpath** <span class='type'>String</span><br/>
-    로그 데이터를 압축 전송할 때 압축 알고리즘 변경이 가능합니다. 기본 알고리즘은 GZIP입니다.
-    ```ini title='예시'
-    logsink_zip_libpath=/whatap/whatap-logsink-lz4-1.7.0.jar
-    ```
+  로그 데이터를 압축해서 전송할 때 디버그 여부를 설정합니다. 관련 정보를 에이전트 로그에 표시합니다.
+
+* **logsink_zip_min_size** <span class='type'>Int</span>
+
+  기본값 `100`
+
+  로그 압축 전송 최소 사이즈를 설정합니다. 전송 데이터가 100 bytes 이하인 경우 데이터를 압축하지 않습니다.
+
+* **logsink_max_buffer_size** <span class='type'>Int</span>
+
+  기본값 `65536`
+
+  수집한 로그 데이터 크기가 설정한 값을 초과하면 데이터를 서버로 전송합니다.
+
+* **logsink_max_wait_time** <span class='type'>Int</span>
+
+  기본값 `2000`
+
+  수집한 로그 데이터를 묶어서 전송하기 위해 대기하는 최대 시간을 설정합니다. 설정한 값을 초과하면 데이터를 서버로 전송합니다.
+
+* **logsink_zip_libpath** <span class='type'>String</span>
+
+  로그 데이터를 압축 전송할 때 압축 알고리즘 변경이 가능합니다. 기본 알고리즘은 GZIP입니다.
+  
+  ```ini title='whatap.conf'
+  logsink_zip_libpath=/whatap/whatap-logsink-lz4-1.7.0.jar
+  ```

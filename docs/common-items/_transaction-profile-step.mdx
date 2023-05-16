@@ -2,31 +2,40 @@
 
 와탭이 수집하는 스텝의 종류에는 크게 SQL 스텝, HTTP CALL 스텝, 메시지 스텝, SOCKET 오픈 스텝, DB 연결 스텝, 메소드 스텝 등이 있습니다. 
 
-:::note 
+:::note
+
 와탭의 스텝(Step)은 스팬(Span)과 같은 뜻으로 사용됩니다.
+
 :::
 
 ---
 
-* **DB 연결 스텝**<span class='type'>START-END</span><br/>
-    RDB에 대한 연결에 대한 성능을 포함합니다. 스텝 정보에는 이름, 응답시간, 에러를 포함합니다.
+* **DB 연결 스텝** <span class='type'>START-END</span>
 
-* **SQL 스텝**<span class='type'>START-END</span><br/>
-    JDBC SQL에 대한 성능을 포함합니다. 스텝 정보에는 연결 정보, SQL문, 에러가 포함되어 있습니다.
+  RDB에 대한 연결에 대한 성능을 포함합니다. 스텝 정보에는 이름, 응답시간, 에러를 포함합니다.
 
-* **HTTP Call 스텝**<span class='type'>START-END</span><br/>
-    외부 http 서비스 호출에 대한 성능을 포함합니다. 스텝 정보에는 url, host, port, 응답시간, 에러가 포함됩니다.
+* **SQL 스텝** <span class='type'>START-END</span>
 
-* **Message 스텝**<span class='type'>ADD</span><br/>
-    트레이스를 수집하는 과정에서 비정형적인 모든 구간에 대한 이력을 수집할 때 메시지 스텝을 사용합니다.  
+  JDBC SQL에 대한 성능을 포함합니다. 스텝 정보에는 연결 정보, SQL문, 에러가 포함되어 있습니다.
 
-* **SOCKET 스텝**<span class='type'>ADD</span><br/>
-    Socket 오픈을 표현하는 스텝입니다.
+* **HTTP Call 스텝** <span class='type'>START-END</span>
 
-* **METHOD 스텝**<span class='type'>START-END</span><br/>
-    메소드 응답시간을 추적합니다.
+  외부 http 서비스 호출에 대한 성능을 포함합니다. 스텝 정보에는 url, host, port, 응답시간, 에러가 포함됩니다.
 
-* **ACTIVE STACK 스텝**<span class='type'>START-END</span><br/>
-    액티브 스텝에 대한 정보를 포함합니다. 별도 스레드가 생성하여 트레이스에 추가하는 방식으로 수집합니다.
+* **Message 스텝** <span class='type'>ADD</span>
+
+  트레이스를 수집하는 과정에서 비정형적인 모든 구간에 대한 이력을 수집할 때 메시지 스텝을 사용합니다.  
+
+* **SOCKET 스텝** <span class='type'>ADD</span>
+
+  Socket 오픈을 표현하는 스텝입니다.
+
+* **METHOD 스텝** <span class='type'>START-END</span>
+
+  메소드 응답시간을 추적합니다.
+
+* **ACTIVE STACK 스텝** <span class='type'>START-END</span>
+
+  액티브 스텝에 대한 정보를 포함합니다. 별도 스레드가 생성하여 트레이스에 추가하는 방식으로 수집합니다.
 
 ---

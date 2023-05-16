@@ -23,14 +23,26 @@ tags: [ Golang, 문제 해결, Troubleshooting ]
 
 시스템 환경 변수는 에이전트 설치 시 자동 등록합니다. 다음과 같은 내용이 등록됐는지 확인하세요.
 
-* **COR_ENABLE_PROFILING = 1**<br/>CLR 프로파일러를 활성화합니다.
+* **COR_ENABLE_PROFILING = 1**
 
-* **COR_PROFILER = {D76F1D76-A9E0-4C87-874F-C0AD93D4229B}**<br/>와탭 CLR 프로파일러를 API에 등록할 때 사용하는 GUID입니다. 고정값입니다.
+  CLR 프로파일러를 활성화합니다.
 
-* **COR_PROFILER_PATH = C:\Program Files\WhaTap .NET\WhaTap.ClrProfiler.dll**<br/>와탭 CLR 프로파일러 DLL의 경로입니다.
+* **COR_PROFILER = {D76F1D76-A9E0-4C87-874F-C0AD93D4229B}**
 
-* **WHATAP_APP_TYPE = 7**<br/>와탭 서버와 통신하는 에이전트 종류로 고정값입니다.
+  와탭 CLR 프로파일러를 API에 등록할 때 사용하는 GUID입니다. 고정값입니다.
 
-* **WHATAP_DOTNET_HOME = C:\Program Files\WhaTap .NET**<br/>와탭 프로그램의 홈 경로입니다.
+* **COR_PROFILER_PATH = C:\Program Files\WhaTap .NET\WhaTap.ClrProfiler.dll**
 
-* **WHATAP_DOTNET_TRACE = 1**<br/>모니터링 데이터 수집 기능을 활성화합니다.
+  와탭 CLR 프로파일러 DLL의 경로입니다.
+
+* **WHATAP_APP_TYPE = 7**
+
+  와탭 서버와 통신하는 에이전트 종류로 고정값입니다.
+
+* **WHATAP_DOTNET_HOME = C:\Program Files\WhaTap .NET**
+
+  와탭 프로그램의 홈 경로입니다.
+
+* **WHATAP_DOTNET_TRACE = 1**
+
+  모니터링 데이터 수집 기능을 활성화합니다.

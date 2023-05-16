@@ -12,11 +12,11 @@ import DBuserDesc from '../common-items/_import_db-create-db-user-desc.mdx';
 
 와탭 데이터베이스 모니터링 서비스 이용을 위한 기본 설치 방법을 안내합니다.
 
-{@include: ../common-items/_agent-signup-guide.mdx}
+{@include: ../common-items/_agent-signup-guide.mdx}  
 
 {@youtube: Y66Siequ2S0}
 
-{@include: ../getting-started/_create-project-v2.mdx}
+{@include: ../getting-started/_create-project-v2.mdx} 
 
 {@include: ../getting-started/_accesskey.mdx}
 
@@ -26,14 +26,14 @@ import DBuserDesc from '../common-items/_import_db-create-db-user-desc.mdx';
 
 1. 압축을 해제한 폴더로 진입해서 *whatap.conf* 파일을 확인하세요. *whatap.conf* 파일에 프로젝트 액세스 키 정보 및 와탭 서버 정보, DB 접속 정보를 입력하세요.
 
-  ```ini title='whatap.conf'
-  license=프로젝트 액세스 키
-  whatap.server.host=13.124.11.223/13.209.172.35 // 와탭 서버 정보
+    ```ini title='whatap.conf'
+    license=프로젝트 액세스 키
+    whatap.server.host=13.124.11.223/13.209.172.35 // 와탭 서버 정보
 
-  dbms=redis
-  db_ip={DB 서버 IP 주소}
-  db_port={DB 서버 포트 번호}
-  ```
+    dbms=redis
+    db_ip={DB 서버 IP 주소}
+    db_port={DB 서버 포트 번호}
+    ```
 
 1. 다음 디렉터리에 JDBC 드라이버를 다운로드하세요. */압축해제한 폴더/jdbc*
 

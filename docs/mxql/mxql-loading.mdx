@@ -76,12 +76,14 @@ MXQL 문법을 이용해 메트릭스를 불러오는 명령어에 대해서 알
   ```
 
 :::caution
+
 * `TAGLOAD`와 `FLEXLOAD`는 각각 설정할 수 있는 `CATEGORY`의 값이 정해져있습니다.
 * `fileter-like` 또는 `filter-notlike` 옵션을 사용할 때 값으로 숫자가 오는 경우 작은 따옴표('') 또는 큰 따옴표("")로 감싸주어야 동작합니다.
   ```sql
   CATEGORY app_counter
   TAGLOAD { filter:[{key:'host_ip', exclude:'192.168.1.102'},{key:okindName, like:"1"}] }
   ```
+
 :::
 
 ## FLEXLOAD{#flexload}
@@ -100,7 +102,9 @@ FLEXLOAD {backward : true}
 ```
 
 :::caution
+
 대부분의 카테고리는 `TAGLOAD`를 사용합니다. [다음 문서](#flexload-items)에 포함한 카테고리의 데이터를 사용할 때에만 `FLEXLOAD`를 사용합니다.
+
 :::
 
 ## FLEXLOAD를 사용해야하는 카테고리 목록{#flexload-items}

@@ -58,9 +58,11 @@ tags: [ 쿠버네티스 모니터링, Kubernetes ]
 쿠버네티스 모니터링 대상은 쿠버네티스 클러스터와 쿠버네티스 상에서 실행 중인 애플리케이션입니다.
 
 * 쿠버네티스 클러스터 모니터링
-    * 개별 컨테이너의 CPU, Memory, Disk(Volume), Network
-    * Namespace, Deployment, ReplicaSet, Pod 등 서비스를 이루는 쿠버네티스 구성 요소
-    * 개별 Node(호스트)의 CPU, Memory, Disk, Network
+
+  * 개별 컨테이너의 CPU, Memory, Disk(Volume), Network
+  * Namespace, Deployment, ReplicaSet, Pod 등 서비스를 이루는 쿠버네티스 구성 요소
+  * 개별 Node(호스트)의 CPU, Memory, Disk, Network
+
 * 쿠버네티스에서 실행 중인 애플리케이션 모니터링: Java, Node.js, Python 등
 
 이어서 설명할 모니터링 절차도 클러스터 모니터링을 위한 절차와 애플리케이션 모니터링을 위한 절차로 구분되어 진행합니다.
@@ -80,11 +82,15 @@ tags: [ 쿠버네티스 모니터링, Kubernetes ]
 1. (선택사항) 클러스터 프로젝트 내 다수의 Namespace 존재 시 사용자는 와탭 모니터링 서비스에서 각 네임스페이스(Namespace) 프로젝트로 분리 가능합니다. [다음 문서](create-name-space-project)를 참조하세요.
 
 :::tip
+
 쿠버네티스 Namespace는 다수의 팀과 사용자가 존재하는 환경에서 단일 클러스터 내 리소스 그룹 격리를 위한 매커니즘입니다. 사용자 쿠버네티스 클러스터 내의 Namespace 목록은 `kubectl get namespace` 명령어를 통해 확인할 수 있습니다.
+
 :::
 
 :::note
+
 와탭 쿠버네티스 서비스의 **클러스터 프로젝트**는 **마스터 프로젝트**의 새로운 이름입니다.
+
 :::
 
 ### 쿠버네티스의 애플리케이션 모니터링 절차

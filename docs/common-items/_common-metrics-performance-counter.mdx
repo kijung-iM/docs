@@ -1,5 +1,3 @@
-<!-- 와탭 에이전트는 트랜잭션 트레이스 정보, 통계 정보 외 애플리케이션 성능과 관련된 다양한 정보를 수집하며 이는 크게 3가지로 분류할 수 있습니다. -->
-
 와탭 에이전트는 애플리케이션 성능과 관련된 다양한 정보를 수집합니다. 크게 3가지로 분류할 수 있습니다.
 
 * **User** : 실시간 사용자 혹은 방문 사용자
@@ -18,70 +16,87 @@
 
 와탭 에이전트 사용자를 구분하기 위해 다양한 옵션을 제공합니다.
 
-* **Remote IP**<br/>
-    기본값은 remote ip를 사용하여 사용자를 구분합니다. remote ip는 실제 사용자를 구분하는 데 한계가 있습니다.
+* **Remote IP**
 
-* **Cookie**<br/>
-    쿠키를 사용하여 사용자를 구분합니다. 모든 접속 클라이언트를 대상으로 **WHATAP**이라는 쿠키에 UUID를 저장합니다.
+  기본값은 remote ip를 사용하여 사용자를 구분합니다. remote ip는 실제 사용자를 구분하는 데 한계가 있습니다.
 
-    ```ini title='whatap.conf'
-    whatap.trace_user_using_ip=false
-    ```
+* **Cookie**
 
-* **Header Key**<br/>
-    http header에 전달되는 값으로 사용자를 구분할 수 있습니다.
+  쿠키를 사용하여 사용자를 구분합니다. 모든 접속 클라이언트를 대상으로 **WHATAP**이라는 쿠키에 UUID를 저장합니다.
 
-    ```ini title='whatap.conf'
-    whatap.trace_user_header_ticket=USER
-    ```
+  ```ini title='whatap.conf'
+  whatap.trace_user_using_ip=false
+  ```
+
+* **Header Key**
+
+  http header에 전달되는 값으로 사용자를 구분할 수 있습니다.
+
+  ```ini title='whatap.conf'
+  whatap.trace_user_header_ticket=USER
+  ```
 
 ### 사용자 카운팅
 
 사용자를 카운팅 하는 방법에 따라서 다르게 사용합니다. 실시간 사용자는 현재 시스템을 사용하는 사용자의 수를 알기 위해서 측정합니다. 일일 방문 사용자는 하루 동안 해당 서비스에 관심을 갖는 사용자가 몇 명인지에 대한 비즈니스적인 관리를 위해 측정합니다.
 
-* **실시간 사용자**  
-    최근 5분 동안 사용자 수를 카운팅 합니다. 5초마다 shifting 하면 사용자를 카운팅 합니다. 각 서버에서 카운팅 된 숫자는 HyperLogLog 알고리즘을 통해서 머지 됩니다.
+* **실시간 사용자**
 
-* **일일 방문자**(**DAU**, Daily Active User)  
-    하루 동안 시스템에 접속한 사용자를 카운팅 합니다. 24시간 동안 접속한 사용자를 HyperLogLog를 통해서 계산합니다.
+  최근 5분 동안 사용자 수를 카운팅 합니다. 5초마다 shifting 하면 사용자를 카운팅 합니다. 각 서버에서 카운팅 된 숫자는 HyperLogLog 알고리즘을 통해서 머지 됩니다.
+
+* **일일 방문자**(**DAU**, Daily Active User)
+
+  하루 동안 시스템에 접속한 사용자를 카운팅 합니다. 24시간 동안 접속한 사용자를 HyperLogLog를 통해서 계산합니다.
 
 :::tip
+
 와탭에서는 장기간 사용자를 카운팅 하기 위해 사용자 데이터에 대한 byte block을 서버로 수집합니다. 이 데이터를 Hyperloglog로 머지하면 이론적으로 한 달 이상의 방문 사용자를 계산할 수 있습니다.
+
 :::
 
 ## Service Counter
 
 트랜잭션과 트랜잭션이 사용하는 SQL 혹은 외부 호출 등에 대한 건수, 응답시간 에러 건수 등에 대한 성능지표가 포함됩니다.
 
-* **Transaction Counter**<br/>
-    트랜잭션을 수행하면 측정하는 카운터입니다.
-    * **건수**
-    * **응답 시간**
-    * **에러 건수**  
+* **Transaction Counter**
 
-* **Active Transaction Counter**<br/>
-    진행 중인 트랜잭션의 수를 카운팅 합니다.
-    * **건수**
-    * **Active Status**<br/>
-        진행 상태는 METHOD, SQL, HTTPC, DBC, SOCKET 5가지 상태로 고정되어 있습니다.
-        * METHOD - 일반 함수를 호출하는 상태
-        * SQL - db sql을 수행 중인 상태
-        * HTTPC - 외부 Http Api(서비스)를 호출 중인 상태
-        * DBC - DB 연결을 요청한 상태, 일반적으로 Pool에서 가져옴
-        * SOCKET - TCP 세션을 Connecting 중인 상태
+  트랜잭션을 수행하면 측정하는 카운터입니다.
 
-* **SQL**<br/>
-    SQL 수행 현황을 카운팅 합니다.
-    * **건수**
-    * **응답 시간**
-    * **에러 건수**
-    * **패치 건수**
+  * **건수**
+  * **응답 시간**
+  * **에러 건수**  
 
-* **HTTP Call**<br/>
-    외부 Http 호출에 대한 현황을 카운팅 합니다.
-    * **건수**
-    * **응답 시간**
-    * **에러 건수**   
+* **Active Transaction Counter**
+
+  진행 중인 트랜잭션의 수를 카운팅 합니다.
+
+  * **건수**
+  * **Active Status**
+
+  진행 상태는 METHOD, SQL, HTTPC, DBC, SOCKET 5가지 상태로 고정되어 있습니다.
+
+  * METHOD - 일반 함수를 호출하는 상태
+  * SQL - db sql을 수행 중인 상태
+  * HTTPC - 외부 Http Api(서비스)를 호출 중인 상태
+  * DBC - DB 연결을 요청한 상태, 일반적으로 Pool에서 가져옴
+  * SOCKET - TCP 세션을 Connecting 중인 상태
+
+* **SQL**
+
+  SQL 수행 현황을 카운팅 합니다.
+
+  * **건수**
+  * **응답 시간**
+  * **에러 건수**
+  * **패치 건수**
+
+* **HTTP Call**
+
+  외부 Http 호출에 대한 현황을 카운팅 합니다.
+
+  * **건수**
+  * **응답 시간**
+  * **에러 건수**   
 
 ## Resource Counter
 
@@ -89,26 +104,33 @@
 
 ----
 
-* **CPU** (sys, usr, wait, steal, irq, cores)<br/>
-    CPU 사용량 %입니다. 각 종류별로 수집됩니다. 가상환경에서만 Steal이 의미가 있습니다. Cpu Core 개수를 같이 수집하고 있습니다.
+* **CPU** (sys, usr, wait, steal, irq, cores)
 
-* **Process CPU**<br/>
-    프로세스가 사용하는 CPU%입니다.
+  CPU 사용량 %입니다. 각 종류별로 수집됩니다. 가상환경에서만 Steal이 의미가 있습니다. Cpu Core 개수를 같이 수집하고 있습니다.
 
-* **Memory**<br/>
-    시스템 메모리 사용률(%)입니다.
+* **Process CPU**
 
-* **Swap**<br/>
-    Swap 메모리 사용률(%)입니다.
+  프로세스가 사용하는 CPU%입니다.
 
-* **Disk**<br/>
-    Disk는 Process의 Current 디렉터리의 사용률(%)입니다.
+* **Memory**
 
-* **Heap** (Total, Used, Perm)<br/>
-    Heap 메모리의 Total, Used, Perm 양입니다. 데이터 단위는 KBytes 입니다.
+  시스템 메모리 사용률(%)입니다.
 
-* **DB Connection Count**<br/>
-    Connection Pool의 카운트를 수집합니다.
+* **Swap**
+
+  Swap 메모리 사용률(%)입니다.
+
+* **Disk**
+
+  Disk는 Process의 Current 디렉터리의 사용률(%)입니다.
+
+* **Heap** (Total, Used, Perm)
+
+  Heap 메모리의 Total, Used, Perm 양입니다. 데이터 단위는 KBytes 입니다.
+
+* **DB Connection Count**
+
+  Connection Pool의 카운트를 수집합니다.
 
 ----
 
@@ -128,6 +150,8 @@ Apdex는 사용자 만족도에 대한 지표로 활용할 수 있으며, 0 ~ 1 
 |허용 (Tolerating, **T**)|사용자가 지연을 느끼나 업무처리는 가능함 ≤ 4.8초 (만족 **S** * 4)|
 |불만 (Frustrated, **F**)|업무처리가 불가능함 > 4.8초 (허용 **T** 초과 및 오류)|
 
-* **whatap.apdex_time**<span class='type'>millisecond</span><br/>
-    기본값 `1200`<br/>
-    만족 **S** 기본값은 에이전트 설정 메뉴에서 변경할 수 있습니다.
+* **whatap.apdex_time** <span class='type'>millisecond</span>
+
+  기본값 `1200`
+
+  만족 **S** 기본값은 에이전트 설정 메뉴에서 변경할 수 있습니다.

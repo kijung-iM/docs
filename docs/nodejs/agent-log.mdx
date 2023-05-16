@@ -7,11 +7,20 @@ tags: [ Node.js, 로그 ]
 
 애플리케이션 서버가 실행되면 모니터링 정보를 수집합니다. 수집한 정보는 로그 파일에 저장합니다.
 
-* **log_rotation_enabled** <span class='type'>Boolean</span><br/>
-기본값 `true`<br/>에이전트 로그 파일을 날짜 별로 저장하는 기능을 활성화합니다. 로그 파일명은 *whatap-`yyyymmdd`.log* 형태로 저장합니다. 값이 `false`이면 로그 파일명은 *whatap.log* 형태로 저장합니다.
+* **log_rotation_enabled** <span class='type'>Boolean</span>
 
-* **log_keep_days** <span class='type'>Int</span><br/>
-기본값 `7`<br/>로그 파일 보관 기간을 설정합니다. `log_rotation_enabled` 옵션의 값이 `true`인 경우에만 동작합니다.
+  기본값 `true`
 
-* **log_datasource_lookup_enabled** <span class='type'>Boolean</span><br/>
-기본값 `true`<br/>InitialContext Lookup 시 DataSource인 경우 로그를 기록하는 기능을 활성화합니다.
+  에이전트 로그 파일을 날짜 별로 저장하는 기능을 활성화합니다. 로그 파일명은 *whatap-`yyyymmdd`.log* 형태로 저장합니다. 값이 `false`이면 로그 파일명은 *whatap.log* 형태로 저장합니다.
+
+* **log_keep_days** <span class='type'>Int</span>
+
+  기본값 `7`
+
+  로그 파일 보관 기간을 설정합니다. `log_rotation_enabled` 옵션의 값이 `true`인 경우에만 동작합니다.
+
+* **log_datasource_lookup_enabled** <span class='type'>Boolean</span>
+
+  기본값 `true`
+
+  InitialContext Lookup 시 DataSource인 경우 로그를 기록하는 기능을 활성화합니다.

@@ -1,22 +1,22 @@
 1. 도커(Docker) 빌드 디렉터리를 생성하세요.
 
-  ```bash
-  mkdir -p {Docker build Dir}
-  ```
+    ```bash
+    mkdir -p {Docker build Dir}
+    ```
 
 1. *whatap.conf* 파일을 생성하세요.
 
-  ```bash
-  cat >{Docker build Dir}/whatap.conf <<EOL
-  whatap.server.host={수집 서버 IP}
-  EOL
-  ```
+    ```bash
+    cat >{Docker build Dir}/whatap.conf <<EOL
+    whatap.server.host={수집 서버 IP}
+    EOL
+    ```
 
-  :::note
+    :::note
 
-  *whatap.conf* 파일은 사용자 쿠버네티스 환경의 ConfigMap 기능을 통해 관리할 수 있습니다.
-  
-  :::
+    *whatap.conf* 파일은 사용자 쿠버네티스 환경의 ConfigMap 기능을 통해 관리할 수 있습니다.
+    
+    :::
 
 1. Dockerfile에 에이전트 설치용 이미지를 다운로드하려면 직접 해당 파일을 다운로드하거나 에이전트 파일을 이미지에 복사하세요.
 

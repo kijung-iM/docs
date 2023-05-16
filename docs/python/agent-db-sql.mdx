@@ -11,23 +11,32 @@ tags:
 
 Python 에이전트의 DB, SQL 관련 옵션을 제공합니다.
 
-* **profile_dbc_close(*)**<span class='type'>Boolean</span><br/>
-    기본값 `false`<br/>
-    `profile_connection_open_enabled`이 활성화되어 있는 경우, 트레이스에 DB Connection이 close될 때의 정보를 출력합니다.
+* **profile_dbc_close(*)** <span class='type'>Boolean</span>
 
-* **trace_sql_normalize_enabled**<span class='type'>Boolean</span><br/>
-    기본값 `true`<br/>
-    SQL 문에서 리터럴 부분을 추출하여 SQL 문을 정규화하는 기능을 활성화합니다.
+  기본값 `false`
 
-* **profile_sql_param_enabled**<span class='type'>Boolean</span><br/>
-    기본값 `false`<br/>
-    SQL 파라미터를 수집을 활성화합니다. 단 파라미터는 별도 보안 키를 입력해야 조회할 수 있습니다. 보안 키는 에이전트 설치 경로의 *paramkey.txt* 파일에 6자리로 지정합니다. *paramkey.txt*가 존재하지 않는 경우 자동 생성되며 random 키가 설정됩니다.
+  `profile_connection_open_enabled`이 활성화되어 있는 경우, 트레이스에 DB Connection이 close될 때의 정보를 출력합니다.
 
-* **profile_sql_resource_enabled**<span class='type'>Boolean</span><br/>
-    기본값 `false`<br/>
-    트레이스에서 SQL이 수집될 때 해당 스텝에서 사용한 CPU와 Memory 사용량을 추적합니다. 트랜잭션에서 리소스들의 사용량을 확인할 때 구간으로 나누어 추적이 용이합니다.
+* **trace_sql_normalize_enabled** <span class='type'>Boolean</span>
 
-* **stat_sql_max_count**<span class='type'>Int</span><br/>
-    기본값 `5000`<br/>
-    SQL 통계 정보의 개수를 제한합니다. 5분 동안 수집되어 서버에 전송되는 통계정보에서 최대 레코드 수를 제한합니다.
-    
+  기본값 `true`
+
+  SQL 문에서 리터럴 부분을 추출하여 SQL 문을 정규화하는 기능을 활성화합니다.
+
+* **profile_sql_param_enabled** <span class='type'>Boolean</span>
+
+  기본값 `false`
+
+  SQL 파라미터를 수집을 활성화합니다. 단 파라미터는 별도 보안 키를 입력해야 조회할 수 있습니다. 보안 키는 에이전트 설치 경로의 *paramkey.txt* 파일에 6자리로 지정합니다. *paramkey.txt*가 존재하지 않는 경우 자동 생성되며 random 키가 설정됩니다.
+
+* **profile_sql_resource_enabled** <span class='type'>Boolean</span>
+
+  기본값 `false`
+
+  트레이스에서 SQL이 수집될 때 해당 스텝에서 사용한 CPU와 Memory 사용량을 추적합니다. 트랜잭션에서 리소스들의 사용량을 확인할 때 구간으로 나누어 추적이 용이합니다.
+
+* **stat_sql_max_count** <span class='type'>Int</span>
+
+  기본값 `5000`
+
+  SQL 통계 정보의 개수를 제한합니다. 5분 동안 수집되어 서버에 전송되는 통계정보에서 최대 레코드 수를 제한합니다.

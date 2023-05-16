@@ -17,27 +17,27 @@ MXQL은 각 라인마다 **명령어**와 **오퍼랜드**로 구성되며 띄�
 
 1. 오퍼랜드가 없는 경우
 
-  ```sql
-  TAGLOAD
-  ```
+    ```sql
+    TAGLOAD
+    ```
 
 1. 문자열(숫자 혹은 단어)
 
-  ```sql
-  CATEGORY app_counter
-  ```
+    ```sql
+    CATEGORY app_counter
+    ```
 
 1. 문자열 배열
 
-  ```sql
-  SELECT [ time, pcode ]
-  ```
+    ```sql
+    SELECT [ time, pcode ]
+    ```
 
 1. JSON 문자열 타입
 
-  ```sql
-  FILTER { key : tx_count, value : 5}
-  ```
+    ```sql
+    FILTER { key : tx_count, value : 5}
+    ```
 
 ```sql title='샘플 MXQL 퀴리'
 CATEGORY app_counter
@@ -53,7 +53,9 @@ FILTER { key : tx_count, value : 5}
 ![MXQL 데이터 조회](https://img.whatap.io/media/images/mxql-7.png)
 
 :::note
+
 메트릭스에는 태그와 필드가 구분되어 있지만 ***MXQL 데이터 조회*** 메뉴에서는 태그와 필드의 구분 없이 표현합니다.
+
 :::
 
 ## 단계별 구성
@@ -251,7 +253,9 @@ SKIP {$option:10}
 ![바인드 변수 설정 예시](https://img.whatap.io/media/images/mxql-1.png)
 
 :::note
+
 바인드 변수의 이름은 대소문자 알파벳만 가능합니다. 숫자 및 특수문자는 바인드 변수의 이름에 포함할 수 없습니다. 
+
 :::
 
 ### 데이터 로딩방식
@@ -268,7 +272,9 @@ MXQL에서 조회할 수 있는 데이터는 [메트릭스](../metrics/common-me
 MXQL 쿼리를 직접 작성하지 않고 경로(path)로 설정할 수 있는 기능의 주된 목적은 복잡한 쿼리를 간편하게 호출하기 위함이 아니라, 관리자가 직접 본인의 의도대로 쿼리를 작성하고 이를 사용하는데 있습니다. 따라서 이미 Yard에 어떤 쿼리들이 포함되어 있는지 확인하고 사용하기보다 직접 쿼리를 등록하는 방향으로 활용해야 합니다. `JOIN` 명령어를 사용해야하는 경우는 MXQL 쿼리를 사용하는 경우 중에서도 특별한 경우이기 때문에 관리자가 직접 쿼리를 등록하고 해당 파일의 경로(path)를 사용하도록 되어 있습니다.
 
 :::note
+
 *yard.conf* 파일의 `mxql_root`에 설정한 경로 아래에 등록하고 싶은 쿼리를 파일로 저장할 수 있습니다. (default ./mxql)
+
 :::
 
 ### 에이전트별 액티브TX 건수, 건수, 최근15초 

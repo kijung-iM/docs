@@ -1,27 +1,49 @@
-* **whatap.enabled** <span class='type'>Boolean</span><br/>
-기본값 `true`<br/>전체 기능을 활성화합니다. 단, `false`가 되어도 서버와 최소한의 통신을 유지하기 위한 정보는 전송합니다.
+* **whatap.enabled** <span class='type'>Boolean</span>
 
-* **transaction_enabled** <span class='type'>Boolean</span><br/>
-기본값 `true`<br/>트랜잭션 추적 기능을 활성화합니다. `whatap.enabled` 옵션의 값이 `false`이면 무시합니다.
+  기본값 `true`
 
-* **counter_enabled** <span class='type'>Boolean</span><br/>
-기본값 `true`<br/>성능 카운터(트랜잭션, 리소스 등) 추적을 활성화합니다. `whatap.enabled` 옵션의 값이 `false`이면 무시합니다.
+  전체 기능을 활성화합니다. 단, `false`가 되어도 서버와 최소한의 통신을 유지하기 위한 정보는 전송합니다.
 
-* **stat_enabled** <span class='type'>Boolean</span><br/>
-기본값 `true`<br/>통계 정보 추적 기능을 활성화합니다. 5분 단위로 수집하는 트랜잭션, SQL, HTTPCALL, UserAgent, Client IP 등의 통계 데이터 등이 해당합니다. `whatap.enabled` 옵션의 값이 `false`이면 무시합니다.
+* **transaction_enabled** <span class='type'>Boolean</span>
 
-* **license** <span class='type'>String</span><br/>
-에이전트 설치 시 서버로부터 부여받은 액세스 키를 입력합니다. 액세스 키에는 에이전트가 속한 프로젝트와 보안 통신을 위한 암호 키를 포함합니다.
+  기본값 `true`
 
-* **encrypt_level** <span class='type'>encrypt_level [1, 2, 3]</span><br/>
-    기본값 `2`<br/>
-    와탭 에이전트는 서버로 데이터를 전송할 때 데이터 속성에 따라 선택적으로 암호화합니다. 높은 보안을 유지하면서도 성능상 이점을 가지고 있습니다. 데이터 유형에 상관 없이 일괄적인 암호화 정책을 적용하려면 다음 옵션을 참조하세요.<br/>
-    * `1`: 암호화 전송 기능 사용 안함
-    * `2`: SQL 파라미터, Plain Text와 같은 민감한 속성에 대한 암호화 전송
-    * `3`: 모든 항목에 대한 암호화 전송
+  트랜잭션 추적 기능을 활성화합니다. `whatap.enabled` 옵션의 값이 `false`이면 무시합니다.
 
-* **realtime_user_thinktime_max** <span class='type'>MiliSeconds</span><br/>
-기본값 `300000`<br/>실시간 브라우저 사용자 수를 측정할 경우 동일 사용자로 인정되는 최대 호출 간격을 설정합니다.
+* **counter_enabled** <span class='type'>Boolean</span>
 
-* **time_sync_interval_ms** <span class='type'>MiliSeconds</span><br/>
-기본값 `300000`<br/>에이전트와 서버 간 동기화하는 시간 간격을 설정합니다. 동기화하지 않을 경우 `0`으로 설정하세요.
+  기본값 `true`
+
+  성능 카운터(트랜잭션, 리소스 등) 추적을 활성화합니다. `whatap.enabled` 옵션의 값이 `false`이면 무시합니다.
+
+* **stat_enabled** <span class='type'>Boolean</span>
+
+  기본값 `true`
+
+  통계 정보 추적 기능을 활성화합니다. 5분 단위로 수집하는 트랜잭션, SQL, HTTPCALL, UserAgent, Client IP 등의 통계 데이터 등이 해당합니다. `whatap.enabled` 옵션의 값이 `false`이면 무시합니다.
+
+* **license** <span class='type'>String</span>
+
+  에이전트 설치 시 서버로부터 부여받은 액세스 키를 입력합니다. 액세스 키에는 에이전트가 속한 프로젝트와 보안 통신을 위한 암호 키를 포함합니다.
+
+* **encrypt_level** <span class='type'>encrypt_level [1, 2, 3]</span>
+
+  기본값 `2`
+
+  와탭 에이전트는 서버로 데이터를 전송할 때 데이터 속성에 따라 선택적으로 암호화합니다. 높은 보안을 유지하면서도 성능상 이점을 가지고 있습니다. 데이터 유형에 상관 없이 일괄적인 암호화 정책을 적용하려면 다음 옵션을 참조하세요.
+
+  * `1`: 암호화 전송 기능 사용 안함
+  * `2`: SQL 파라미터, Plain Text와 같은 민감한 속성에 대한 암호화 전송
+  * `3`: 모든 항목에 대한 암호화 전송
+
+* **realtime_user_thinktime_max** <span class='type'>MiliSeconds</span>
+
+  기본값 `300000`
+
+  실시간 브라우저 사용자 수를 측정할 경우 동일 사용자로 인정되는 최대 호출 간격을 설정합니다.
+
+* **time_sync_interval_ms** <span class='type'>MiliSeconds</span>
+
+  기본값 `300000`
+
+  에이전트와 서버 간 동기화하는 시간 간격을 설정합니다. 동기화하지 않을 경우 `0`으로 설정하세요.

@@ -1,52 +1,79 @@
-* **profile_step_normal_count**<span class='type'>Int</span><br/>
-    기본값 `1000`<br/>
-    트랜잭션 트레이스의 기본 스텝 수를 지정합니다.
+* **profile_step_normal_count** <span class='type'>Int</span>
+  
+  기본값 `1000`
+  
+  트랜잭션 트레이스의 기본 스텝 수를 지정합니다.
 
-* **profile_step_heavy_count**<span class='type'>Int</span><br/>
-    기본값 `1020`<br/>
-    트레이스 기본 스텝을 초과한 경우, 최대 heavy 스텝 수를 제한합니다. `profile_step_normal_count`에서 `profile_step_heavy_time`을 초과하는 스텝을 카운팅 합니다. 응답시간이 없는 스텝들은 수집되지 않습니다.
+* **profile_step_heavy_count** <span class='type'>Int</span>
 
-* **profile_step_max_count**<span class='type'>Int</span><br/>
-    기본값 `1024`<br/>
-    트레이스 스텝의 최대 수를 설정합니다. 수집된 트레이스 스텝 수가 이 값을 초과하면 이후 수집되는 스텝들은 모두 버려집니다. `profile_step_heavy_count`을 최대 1000으로 설정하면 `profile_step_max_count`만큼 액티브 스택이 수집됩니다.
+  기본값 `1020`
 
-* **profile_step_heavy_time**<span class='type'>MiliSecond</span><br/>
-    기본값 `100`<br/>
-    Heavy 스텝의 기준을 지정합니다. 지정된 값보다 수행 시간이 긴 경우 `profile_step_normal_count`를 초과하는 경우라도 `profile_step_heavy_count` 이내에서 기록됩니다.
+  트레이스 기본 스텝을 초과한 경우, 최대 heavy 스텝 수를 제한합니다. `profile_step_normal_count`에서 `profile_step_heavy_time`을 초과하는 스텝을 카운팅 합니다. 응답시간이 없는 스텝들은 수집되지 않습니다.
 
-* **profile_basetime**<span class='type'>MiliSecond</span><br/>
-    기본값 `0`<br/>
-    트랜잭션이 설정값 이하 시간 내에 종료된 경우 트레이스 정보를 수집하지 않습니다. 단 5분 단위로 최초 호출된 URL, 에러가 발생한 트랜잭션에 대한 트레이스 정보는 수집됩니다.
+* **profile_step_max_count** <span class='type'>Int</span>
 
-* **query_string_enabled**<span class='type'>Boolean</span><br/>
-    기본값 `false`<br/>
-    트랜잭션 URL의 쿼리 스트링을 함께 수집하는 기능을 활성화합니다.
+  기본값 `1024`
+  
+  트레이스 스텝의 최대 수를 설정합니다. 수집된 트레이스 스텝 수가 이 값을 초과하면 이후 수집되는 스텝들은 모두 버려집니다. `profile_step_heavy_count`을 최대 1000으로 설정하면 `profile_step_max_count`만큼 액티브 스택이 수집됩니다.
 
-* **query_string_urls**<span class='type'>String</span><br/>
-    트랜잭션에서 쿼리 스트링을 수집할 URL들을 등록합니다. 여러 개를 등록할 때는 콤마(*,*)를 사용합니다.  
+* **profile_step_heavy_time** <span class='type'>MiliSecond</span>
 
-* **hook_method_patterns**<span class='type'>String</span><br/>
-    특정 메소드의 응답시간을 측정하고 싶을 때 사용합니다. `[MODULE_NAME]:[CLASS_NAME].[FUNCTION_NAME]` 혹은 `[MODULE_NAME]:[FUNCTION_NAME]` 형식으로 값을 사용합니다. 콤마(,) 구분자를 통하여 여러 메소드 패턴을 지정할 수 있으며 모듈에 대한 전체 클래스나, 클래스에 대한 전체 모듈은 asterisk(*)를 사용하여 추적이 가능합니다. 
-:::note    
-전체 모듈 추적은 오버헤드가 발생할 수 있으니 가급적 정확한 모듈명과 메소드명에 대한 사용을 권장합니다.
-:::
+  기본값 `100`
 
-* **trace_error_callstack_depth**<span class='type'>Int</span><br/>
-    기본값 `50`<br/>
-    트랜잭션에서 에러 콜 스택을 수집할 때, 콜 스택 최대 라인수를 지정합니다. 이 데이터는 에러 통계 데이터에서 조회할 수 있습니다.       
+  Heavy 스텝의 기준을 지정합니다. 지정된 값보다 수행 시간이 긴 경우 `profile_step_normal_count`를 초과하는 경우라도 `profile_step_heavy_count` 이내에서 기록됩니다.
 
-* **trace_active_callstack_depth**<span class='type'>Int</span><br/>
-    기본값 `50`<br/>
-    트랜잭션에서 액티브 스택을 수집할 때, 콜 스택 최대 라인수를 지정합니다.
+* **profile_basetime** <span class='type'>MiliSecond</span>
 
-* **trace_active_transaction_slow_time**<span class='type'>MiliSecond</span><br/>
-    기본값 `3000`<br/>
-    액티브 트랜잭션의 아크 이퀄라이저에서 slow 구간의 응답 기준을 지정합니다.   
+  기본값 `0`
+  
+  트랜잭션이 설정값 이하 시간 내에 종료된 경우 트레이스 정보를 수집하지 않습니다. 단 5분 단위로 최초 호출된 URL, 에러가 발생한 트랜잭션에 대한 트레이스 정보는 수집됩니다.
 
-* **trace_active_transaction_very_slow_time**<span class='type'>MiliSecond</span><br/>
-    기본값 `8000`<br/>
-    액티브 트랜잭션의 아크 이퀄라이저에서 very slow 구간의 응답 기준을 지정합니다.  
+* **query_string_enabled** <span class='type'>Boolean</span>
 
-* **trace_active_transaction_lost_time**<span class='type'>MiliSecond</span><br/>
-    기본값 `300000`<br/>
-    트랜잭션의 종료를 기다리는 제한 시간입니다. 5분 안에 트랜잭션이 끝나지 않는 경우 트랜잭션을 정보를 더 이상 수집하지 않습니다. 
+  기본값 `false`
+
+  트랜잭션 URL의 쿼리 스트링을 함께 수집하는 기능을 활성화합니다.
+
+* **query_string_urls** <span class='type'>String</span>
+  
+  트랜잭션에서 쿼리 스트링을 수집할 URL들을 등록합니다. 여러 개를 등록할 때는 콤마(*,*)를 사용합니다.  
+
+* **hook_method_patterns** <span class='type'>String</span>
+
+  특정 메소드의 응답시간을 측정하고 싶을 때 사용합니다. `[MODULE_NAME]:[CLASS_NAME].[FUNCTION_NAME]` 혹은 `[MODULE_NAME]:[FUNCTION_NAME]` 형식으로 값을 사용합니다. 콤마(,) 구분자를 통하여 여러 메소드 패턴을 지정할 수 있으며 모듈에 대한 전체 클래스나, 클래스에 대한 전체 모듈은 asterisk(*)를 사용하여 추적이 가능합니다. 
+
+  :::note
+
+  전체 모듈 추적은 오버헤드가 발생할 수 있으니 가급적 정확한 모듈명과 메소드명에 대한 사용을 권장합니다.
+
+  :::
+
+* **trace_error_callstack_depth** <span class='type'>Int</span>
+
+  기본값 `50`
+  
+  트랜잭션에서 에러 콜 스택을 수집할 때, 콜 스택 최대 라인수를 지정합니다. 이 데이터는 에러 통계 데이터에서 조회할 수 있습니다.       
+
+* **trace_active_callstack_depth** <span class='type'>Int</span>
+
+  기본값 `50`
+
+  트랜잭션에서 액티브 스택을 수집할 때, 콜 스택 최대 라인수를 지정합니다.
+
+* **trace_active_transaction_slow_time** <span class='type'>MiliSecond</span>
+
+  기본값 `3000`
+  
+  액티브 트랜잭션의 아크 이퀄라이저에서 slow 구간의 응답 기준을 지정합니다.   
+
+* **trace_active_transaction_very_slow_time** <span class='type'>MiliSecond</span>
+  
+  기본값 `8000`
+  
+  액티브 트랜잭션의 아크 이퀄라이저에서 very slow 구간의 응답 기준을 지정합니다.  
+
+* **trace_active_transaction_lost_time** <span class='type'>MiliSecond</span>
+
+  기본값 `300000`
+
+  트랜잭션의 종료를 기다리는 제한 시간입니다. 5분 안에 트랜잭션이 끝나지 않는 경우 트랜잭션을 정보를 더 이상 수집하지 않습니다. 

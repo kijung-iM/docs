@@ -7,13 +7,20 @@ tags: [ Node.js, 통계 ]
 
 에이전트가 수집한 데이터의 통계 수집 기능과 관련한 옵션입니다.
 
-* **mtrace_enabled** <span class='type'>Boolean</span><br/>
-기본값 `false`<br/>멀티 트랜잭션 추적 기능(Multi Transaction ID, 이하 MTID) 사용 여부를 설정합니다. MTID를 추적하면 등록한 모든 애플리케이션 간의 호출을 확인할 수 있습니다.
+* **mtrace_enabled** <span class='type'>Boolean</span>
 
-* **stat_domain_enabled** <span class='type'>Boolean</span><br/>
-기본값 `false`<br/>
-클라이언트의 접속 도메인별 트랜잭션 통계 수집 기능을 활성화합니다.
+  기본값 `false`
 
-* **stat_mtrace_enabled** <span class='type'>Boolean</span><br/>
-기본값 `false`<br/>
-MSA 아키텍처에서 서비스 간의 호출 통계를 활성화합니다. 값이 `true`이면 외부 호출을 할 때 자신의 정보를 전송합니다.
+  멀티 트랜잭션 추적 기능(Multi Transaction ID, 이하 MTID) 사용 여부를 설정합니다. MTID를 추적하면 등록한 모든 애플리케이션 간의 호출을 확인할 수 있습니다.
+
+* **stat_domain_enabled** <span class='type'>Boolean</span>
+
+  기본값 `false`
+
+  클라이언트의 접속 도메인별 트랜잭션 통계 수집 기능을 활성화합니다.
+
+* **stat_mtrace_enabled** <span class='type'>Boolean</span>
+
+  기본값 `false`
+
+  MSA 아키텍처에서 서비스 간의 호출 통계를 활성화합니다. 값이 `true`이면 외부 호출을 할 때 자신의 정보를 전송합니다.

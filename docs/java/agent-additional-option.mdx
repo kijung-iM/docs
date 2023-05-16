@@ -7,35 +7,58 @@ tags: [ Java ]
 
 애플리케이션 환경에 따라 에이전트 기본값만으로는 원하는 수준의 정보를 얻지 못할 수 있습니다. 다음은 자주 사용하지만 보안 등의 이유로 에이전트 기본 설정에서 제외한 옵션입니다. 필요하다면 아래 옵션을 추가해 적용할 수 있습니다.
 
-* **profile_sql_param_enabled** <span class='type'>Boolean</span><br/>
-기본값 `true`<br/>SQL 파라미터를 수집합니다.
+* **profile_sql_param_enabled** <span class='type'>Boolean</span>
 
-* **profile_http_parameter_enabled** <span class='type'>Boolean</span><br/>
-기본값 `true`<br/>HTTP 파라미터를 수집합니다.
+  기본값 `true`
 
-* **profile_http_header_enabled** <span class='type'>Boolean</span><br/>
-기본값 `true`<br/>HTTP Header 정보를 수집합니다.
+  SQL 파라미터를 수집합니다.
 
-* **trace_http_client_ip_header_key** <span class='type'>String</span><br/>
-기본값 `X-Forwarded-For`<br/>사용자 IP 정보를 HTTP 헤더의 키에서 추출합니다.
+* **profile_http_parameter_enabled** <span class='type'>Boolean</span>
 
-* **trace_user_method** <span class='type'>Boolean</span><br/>
-기본값 `cookie`<br/>사용자 수 추적을 쿠키 기반으로 합니다.
+  기본값 `true`
 
-* **hook_httpc_sap3_enabled** <span class='type'>Boolean</span><br/>
-기본값 `true`<br/>SAP JCO을 사용하는 경우 SAP Function을 추적합니다.
+  HTTP 파라미터를 수집합니다.
 
-* **weaving_reserved** = `jedis-3.2` & **jedis_show_parameter** = `true`<br/>
-Jedis 라이브러리를 사용하는 경우 Redis 응답시간과 파라미터를 추적합니다.
+* **profile_http_header_enabled** <span class='type'>Boolean</span>
 
-* **weaving_reserved** = `spring-mongodb-2.2` & **mongo_show_parameter** = `true`<br/>
-Spring MongoDB를 사용하는 경우 응답시간과 파라미터를 추적합니다.
+  기본값 `true`
 
-* **weaving_reserved** = `webflux-5.2`<br/>
-WebFlux 환경을 모니터링합니다.
+  HTTP Header 정보를 수집합니다.
 
-* **weaving_reserved** = `okhttp-2.7` & **weaving_reserved** = `okhttp3`<br/>
-OkHttp 사용한 외부 호출을 추적합니다.
+* **trace_http_client_ip_header_key** <span class='type'>String</span>
 
-* **weaving_reserved** = `reactor-rabbitmq-1.2` & **weaving_reserved** = `spring-rabbitmq-2.1`<br/>
-RabbitMQ 호출을 추적합니다.
+  기본값 `X-Forwarded-For`
+
+  사용자 IP 정보를 HTTP 헤더의 키에서 추출합니다.
+
+* **trace_user_method** <span class='type'>Boolean</span>
+
+  기본값 `cookie`
+
+  사용자 수 추적을 쿠키 기반으로 합니다.
+
+* **hook_httpc_sap3_enabled** <span class='type'>Boolean</span>
+
+  기본값 `true`
+
+  SAP JCO을 사용하는 경우 SAP Function을 추적합니다.
+
+* **weaving_reserved** = `jedis-3.2` & **jedis_show_parameter** = `true`
+
+  Jedis 라이브러리를 사용하는 경우 Redis 응답시간과 파라미터를 추적합니다.
+
+* **weaving_reserved** = `spring-mongodb-2.2` & **mongo_show_parameter** = `true`
+
+  Spring MongoDB를 사용하는 경우 응답시간과 파라미터를 추적합니다.
+
+* **weaving_reserved** = `webflux-5.2`
+
+  WebFlux 환경을 모니터링합니다.
+
+* **weaving_reserved** = `okhttp-2.7` & **weaving_reserved** = `okhttp3`
+
+  OkHttp 사용한 외부 호출을 추적합니다.
+
+* **weaving_reserved** = `reactor-rabbitmq-1.2` & **weaving_reserved** = `spring-rabbitmq-2.1`
+
+  RabbitMQ 호출을 추적합니다.

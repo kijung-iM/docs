@@ -9,11 +9,11 @@ import DocCardList from '@theme/DocCardList';
 import TR from '@site/src/components/TR';
 
 
-{@include: ../common-items/_agent-signup-guide.mdx}
+{@include: ../common-items/_agent-signup-guide.mdx}  
 
 {@youtube: QXKweGBucjI}
 
-{@include: ../getting-started/_create-project-v2.mdx}  
+{@include: ../getting-started/_create-project-v2.mdx}   
 
 {@include: ../getting-started/_accesskey-v2.mdx}
 
@@ -23,7 +23,8 @@ import TR from '@site/src/components/TR';
 
 에이전트 파일은 애플리케이션 모니터링에 필요한 정보를 추출해 와탭 수집 서버로 전달하는 트레이서와 트레이서가 데이터를 보낼 수 있도록 돕는 요소로 구성되어 있습니다.
 
-* *whatap.conf*<br/>
+* *whatap.conf*
+
   모니터링 에이전트의 설정 정보, 액세스 키, 와탭 데이터 수집 서버의 IP 정보 등을 저장하는 설정 파일입니다. 자세한 내용은 [다음 문서](set-agent)를 참조하세요.
 
 * *security.conf* `Java 에이전트 2.2.2 버전 이후`
@@ -56,25 +57,32 @@ import TR from '@site/src/components/TR';
   
   :::
 
-* *ping.sh(bat)*<br/>
+* *ping.sh(bat)*
+
   현재 설정한 액세스 키, 와탭 데이터 수집 서버로 통신을 시도해 설정이나 네트워크 이슈가 있는지 확인하기 위한 스크립트(배치) 파일입니다.
 
-* *proxy.sh(bat)*<br/>
+* *proxy.sh(bat)*
+
   *whatap.agent.proxy-`X.Y.Z`.jar* 파일을 시작하기 위한 스크립트(배치) 파일입니다.
 
-* *resmon.sh(bat)*<br/>
+* *resmon.sh(bat)*
+
   CPU, Memory, Disk 정보를 정상 수집하는지 확인하기 위한 스크립트(배치) 파일입니다.
 
-* *whatap-logsink-lz4-`X.Y.Z`.jar*<br/>
+* *whatap-logsink-lz4-`X.Y.Z`.jar*
+
   애플리케이션 서버의 log 정보를 수집하기 위한 plugin 형식의 파일입니다.
 
-* *whatap.agent-`X.Y.Z`.jar*<br/>
+* *whatap.agent-`X.Y.Z`.jar*
+
   애플리케이션 서버의 각종 모니터링 정보를 수집 및 수집 서버에 전송하는 모니터링 에이전트 파일입니다.
 
-* *whatap.agent.proxy-`X.Y.Z`.jar*<br/>
+* *whatap.agent.proxy-`X.Y.Z`.jar*
+
   애플리케이션 서버가 동작하는 서버에서 WhaTap 측 수집 서버에 직접 연결이 불가한 경우, 그 사이의 Proxy 서버(경유 서버)에서 경유 역할을 하는 애플리케이션입니다.
 
-* *logs/whatap-`yyyymmdd`.log*<br/>
+* *logs/whatap-`yyyymmdd`.log*
+
   모니터링 에이전트에서 출력하는 로그 파일입니다.
 
 

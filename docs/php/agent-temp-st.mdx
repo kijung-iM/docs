@@ -17,11 +17,6 @@ PHP 모니터링 서비스를 일시 중지하려면 PHP 확장 모듈을 중지
 
     *whatap.ini* 파일의 `extension=` 구문을 주석 처리하세요. 주석은 세미콜론(*;*)으로 설정하세요.
     
-    <!--
-    :::note
-    주석은 세미콜론(;)으로 설정하세요.
-    ::: -->
-    
     ```bash
     $ sudo vi whatap.ini
 
@@ -34,7 +29,9 @@ PHP 모니터링 서비스를 일시 중지하려면 PHP 확장 모듈을 중지
     수동 설정으로 *php.ini* 파일에 직접 설정한 경우도 동일하게 `extension=` 구문을 주석 처리하세요. 
     
     :::note
-    {@include: ../common-items/_php-restart-apache.mdx} 
+    
+    Apache 또는 PHP-FPM 서비스(Service)를 시작합니다.
+
     :::
 
 2. whatap-php 서비스(Service)를 중지하세요.
@@ -63,22 +60,3 @@ PHP 모니터링 서비스를 일시 중지하려면 PHP 확장 모듈을 중지
     </TabItem>
     </Tabs>  
 
-<!--
-**Redhat/CentOS**
-
-```bash
-$ sudo service whatap-php stop
-```
-
-**Debian/Ubuntu**
-
-```bash
-$ sudo service whatap-php stop
-```
-
-**FreeBSD**
-
-```bash
-$ service whatap_php stop
-```
--->

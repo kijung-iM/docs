@@ -1,72 +1,103 @@
-* **addin_monitor_num** <span class='type'>Int</span><br/>
-기본값 `0`<br/>
-성능 카운터 확장을 위해 추가 선언할 클래스 수를 설정합니다. `addin_monitor_num`에 설정한 값만큼 `addin_monitor_x`를 선언합니다.
+* **addin_monitor_num** <span class='type'>Int</span>
 
-* **addin_monitor_0** <span class='type'>Int</span><br/>
-    기본값 `0`
+  기본값 `0`
 
-  :::note
+  성능 카운터 확장을 위해 추가 선언할 클래스 수를 설정합니다. `addin_monitor_num`에 설정한 값만큼 `addin_monitor_x`를 선언합니다.
 
-  **addin_monitor_x 사용 예**
+* **addin_monitor_0** <span class='type'>Int</span>
 
-  addin_monitor_num=2<br/>
-  addin_monitor_0=a.a.Class1<br/>
-  addin_monitor_1=a.a.Class2<br/>
+  기본값 `0`
+
+  ```ini title='whatap.conf'
+
+  addin_monitor_num=2
+
+  addin_monitor_0=a.a.Class1
+
+  addin_monitor_1=a.a.Class2
 
   :::
 
-* **stat_domain_enabled** <span class='type'>Boolean</span><br/>
-기본값 `false`<br/>
-클라이언트의 접속 도메인별 트랜잭션 통계 수집 기능을 활성화합니다.
+* **stat_domain_enabled** <span class='type'>Boolean</span>
 
-* **stat_domain_max_count** <span class='type'>Int</span><br/>
-기본값 `7000`<br/>
-하나의 JVM에서 5분 동안 수집할 도메인별 트랜잭션 통계의 최대 레코드 수입니다.
+  기본값 `false`
 
-* **stat_mtrace_enabled** <span class='type'>Boolean</span><br/>
-기본값 `false`<br/>
-멀티 서버 트랜잭션에서 Caller & Callee 간에 버전 별 의존성 통계를 수집합니다.
+  클라이언트의 접속 도메인별 트랜잭션 통계 수집 기능을 활성화합니다.
 
-* **mtrace_spec** <span class='type'>String</span><br/>
-기본값 `v1`<br/>
-현재 인스턴스의 애플리케이션 버전을 설정합니다. 임의의 문자열을 설정할 수 있습니다. 이 데이터는 호출 통계를 위해 사용합니다.
+* **stat_domain_max_count** <span class='type'>Int</span>
 
-* **stat_mtrace_max_count** <span class='type'>Int</span><br/>
-기본값 `7000`<br/>
-멀티 서버 트랜잭션에서 Caller & Callee 간에 버전별 의존성 통계의 최대 레코드 수입니다.
+  기본값 `7000`
 
-* **stat_login_enabled** <span class='type'>Boolean</span><br/>
-기본값 `false`<br/>
-로그인별 트랜잭션 통계를 수집합니다.
+  하나의 JVM에서 5분 동안 수집할 도메인별 트랜잭션 통계의 최대 레코드 수입니다.
 
-* **stat_login_max_count** <span class='type'>Int</span><br/>
-기본값 `7000`<br/>
-하나의 JVM에서 5분 동안 수집할 로그인 별 트랜잭션 통계의 최대 레코드 수입니다.
+* **stat_mtrace_enabled** <span class='type'>Boolean</span>
 
-* **stat_referer_enabled** <span class='type'>Boolean</span><br/>
-기본값 `false`<br/>
-Referer별 트랜잭션 통계를 수집합니다.
+  기본값 `false`
 
-* **stat_referer_max_count** <span class='type'>Int</span><br/>
-기본값 `7000`<br/>
-하나의 JVM에서 5분 동안 수집할 Referer 별 트랜잭션 통계의 최대 레코드 수입니다.
+  멀티 서버 트랜잭션에서 Caller & Callee 간에 버전 별 의존성 통계를 수집합니다.
 
-* **stat_tx_max_count** <span class='type'>Int</span><br/>
-기본값 `5000`<br/>
+* **mtrace_spec** <span class='type'>String</span>
+
+  기본값 `v1`
+
+  현재 인스턴스의 애플리케이션 버전을 설정합니다. 임의의 문자열을 설정할 수 있습니다. 이 데이터는 호출 통계를 위해 사용합니다.
+
+* **stat_mtrace_max_count** <span class='type'>Int</span>
+
+  기본값 `7000`
+
+  멀티 서버 트랜잭션에서 Caller & Callee 간에 버전별 의존성 통계의 최대 레코드 수입니다.
+
+* **stat_login_enabled** <span class='type'>Boolean</span>
+
+  기본값 `false`
+
+  로그인별 트랜잭션 통계를 수집합니다.
+
+* **stat_login_max_count** <span class='type'>Int</span>
+
+  기본값 `7000`
+
+  하나의 JVM에서 5분 동안 수집할 로그인 별 트랜잭션 통계의 최대 레코드 수입니다.
+
+* **stat_referer_enabled** <span class='type'>Boolean</span>
+
+  기본값 `false`
+
+  Referer별 트랜잭션 통계를 수집합니다.
+
+* **stat_referer_max_count** <span class='type'>Int</span>
+
+  기본값 `7000`
+
+  하나의 JVM에서 5분 동안 수집할 Referer 별 트랜잭션 통계의 최대 레코드 수입니다.
+
+* **stat_tx_max_count** <span class='type'>Int</span>
+
+기본값 `5000`
+
 트랜잭션 통계 정보의 개수를 제한합니다. 5분 동안 수집해 서버에 전송하는 통계 정보의 최대 레코드 수를 제한합니다.
 
-* **stat_sql_max_count** <span class='type'>Int</span><br/>
-기본값 `5000`<br/>
-SQL 통계 정보의 개수를 제한합니다. 5분 동안 수집해 서버에 전송하는 통계 정보의 최대 레코드 수를 제한합니다.
+* **stat_sql_max_count** <span class='type'>Int</span>
 
-* **stat_httpc_max_count** <span class='type'>Int</span><br/>
-기본값 `5000`<br/>
-Http Call 통계 정보의 개수를 제한합니다. 5분 동안 수집해 서버에 전송하는 통계 정보의 최대 레코드 수를 제한합니다.
+  기본값 `5000`
 
-* **stat_error_max_count** <span class='type'>Int</span><br/>
-기본값 `1000`<br/>
-Error 통계 정보의 개수를 제한합니다. 5분 동안 수집해 서버에 전송하는 통계 정보의 최대 레코드 수를 제한합니다.
+  SQL 통계 정보의 개수를 제한합니다. 5분 동안 수집해 서버에 전송하는 통계 정보의 최대 레코드 수를 제한합니다.
 
-* **stat_useragent_max_count** <span class='type'>Int</span><br/>
-기본값 `500`<br/>
-User Agent 통계 정보의 개수를 제한합니다. 5분 동안 수집해 서버에 전송하는 통계 정보의 최대 레코드 수를 제한합니다.
+* **stat_httpc_max_count** <span class='type'>Int</span>
+
+  기본값 `5000`
+
+  Http Call 통계 정보의 개수를 제한합니다. 5분 동안 수집해 서버에 전송하는 통계 정보의 최대 레코드 수를 제한합니다.
+
+* **stat_error_max_count** <span class='type'>Int</span>
+
+  기본값 `1000`
+
+  Error 통계 정보의 개수를 제한합니다. 5분 동안 수집해 서버에 전송하는 통계 정보의 최대 레코드 수를 제한합니다.
+
+* **stat_useragent_max_count** <span class='type'>Int</span>
+
+  기본값 `500`
+
+  User Agent 통계 정보의 개수를 제한합니다. 5분 동안 수집해 서버에 전송하는 통계 정보의 최대 레코드 수를 제한합니다.

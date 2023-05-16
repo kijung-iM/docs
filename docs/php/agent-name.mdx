@@ -14,7 +14,9 @@ tags:
 {@include: ../common-items/_agent-name-warning.mdx}
 
 :::note
+
 * 와탭 모니터링 서비스에서는 모니터링 대상을 오브젝트 또는 에이전트로 혼용해서 사용합니다.
+
 :::
 
 와탭이 애플리케이션 서버를 식별하기 위해 사용하는 기본 패턴은 다음과 같습니다.
@@ -22,15 +24,8 @@ tags:
 ```javascript title='object_name 기본 패턴'
 {type}-{ip2}-{ip3}-{process}-{dockerid}-{ips}
 ```
-<!-- * default: {type}-{ip2}-{ip3}-{process}-{dockerid}-{ips} -->
 
 기본 패턴 변경은 *whatap.ini*에서 설정 가능합니다.
-<!--
-```javascript title='whatap.object_name'
-{type}-{ip2}-{ip3}-{process}-{dockerid}-{ips}
-```
--->
-<!-- * object_name default: {type}-{ip2}-{ip3}-{process}-{dockerid}-{ips} -->
 
 |설정|설명|
 |----|----|
@@ -41,15 +36,22 @@ tags:
 |dockerid|도커 컨테이너 아이디|
 |ips|전체 아이피 정보 (ip4, ip6)|
 
-* **whatap.object_name**<span class='type'>String</span><br/>
-    기본값 `{type}-{ip2}-{ip3}-{process}`  
-    애플리케이션을 식별하는 에이전트 이름(ONAME) 체계입니다. ONAME을 토대로 OID가 생성됩니다.  
+* **whatap.object_name** <span class='type'>String</span>
+
+  기본값 `{type}-{ip2}-{ip3}-{process}`
+
+  애플리케이션을 식별하는 에이전트 이름(ONAME) 체계입니다. ONAME을 토대로 OID가 생성됩니다.  
+
 {@include: ../common-items/_php-restart-whatap-service.mdx}
 
-* **whatap.app_name**<span class='type'>String</span><br/>
-    애플리케이션을 식별하는 에이전트 이름(ONAME) 체계에 사용되는 애플리케이션 명으로 `object_name`의 `{type}`에 해당하는 값입니다.  
+* **whatap.app_name** <span class='type'>String</span>
+
+  애플리케이션을 식별하는 에이전트 이름(ONAME) 체계에 사용되는 애플리케이션 명으로 `object_name`의 `{type}`에 해당하는 값입니다.  
+
 {@include: ../common-items/_php-restart-whatap-service.mdx}
 
-* **whatap.app_process_name**<span class='type'>String</span><br/>
-    애플리케이션을 식별하는 에이전트 이름(ONAME) 체계에 사용되는 애플리케이션 프로세스 명으로 애플리케이션 서버의 CPU, Heap Memory 등을 수집할 대상 프로세스를 설정합니다. `object_name`의 `{process}`에 해당하는 값입니다.  
+* **whatap.app_process_name** <span class='type'>String</span>
+
+  애플리케이션을 식별하는 에이전트 이름(ONAME) 체계에 사용되는 애플리케이션 프로세스 명으로 애플리케이션 서버의 CPU, Heap Memory 등을 수집할 대상 프로세스를 설정합니다. `object_name`의 `{process}`에 해당하는 값입니다.  
+
 {@include: ../common-items/_php-restart-whatap-service.mdx}

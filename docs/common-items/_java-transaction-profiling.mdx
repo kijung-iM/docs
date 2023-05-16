@@ -1,107 +1,159 @@
-* **profile_step_normal_count** <span class='type'>Int</span><br/>
-    기본값 `1000`<br/>
-    트랜잭션 트레이스의 최대 스텝 수를 설정합니다.
+* **profile_step_normal_count** <span class='type'>Int</span>
 
-* **profile_step_heavy_count** <span class='type'>Int</span><br/>
-    기본값 `1020`<br/>
-    Heavy한 스텝의 경우 트레이스 기본 스텝 수를 초과하더라도 정해진 값만큼 기록합니다.
+  기본값 `1000`
 
-* **profile_step_max_count**<span class='type'>Int</span><br/>
-    기본값 `1024`<br/>
-    트레이스 스텝의 최대 수를 설정합니다. 수집된 트레이스 스텝 수가 이 값을 초과하면 이후 수집되는 스텝들은 모두 버려집니다. `profile_step_heavy_count`을 최대 1000으로 설정하면 `profile_step_max_count`만큼 액티브 스택이 수집됩니다.
+  트랜잭션 트레이스의 최대 스텝 수를 설정합니다.
 
-* **profile_step_heavy_time** <span class='type'>MiliSecond</span><br/>
-    기본값 `100`<br/>
-    Heavy한 스텝의 기준을 설정합니다. 설정한 값보다 수행 시간이 긴 경우 `profile_step_normal_count` 값을 초과하더라도 `profile_step_heavy_count`에 설정한 값만큼 기록합니다.
+* **profile_step_heavy_count** <span class='type'>Int</span>
 
-* **active_stack_count** <span class='type'>Int</span><br/>
-    기본값 `100`<br/>
-    트랜잭션 내에서 수집하는 액티브 스택의 최대 수를 설정합니다.
+  기본값 `1020`
 
-* **profile_method_resource_enabled** <span class='type'>Boolean</span><br/>
-    기본값 `false`<br/>
-    트레이스에서 method 스텝을 수집할 때 해당 스텝에서 사용한 CPU와 메모리 사용량을 추적합니다.
+  Heavy한 스텝의 경우 트레이스 기본 스텝 수를 초과하더라도 정해진 값만큼 기록합니다.
 
-* **profile_position_method** <span class='type'>String</span><br/>
-    설정한 메소드를 수행하는 시점의 StackTrace를 기록합니다.
+* **profile_step_max_count** <span class='type'>Int</span>
 
-* **profile_position_depth** <span class='type'>Int</span><br/>
-    기본값 `50`<br/>
-    position 추적을 위해 StackTrace를 기록할 때 최대 라인 수를 설정합니다.
+  기본값 `1024`
 
-* **trace_error_callstack_depth** <span class='type'>Int</span><br/>
-    기본값 `50`<br/>
-    Error 발생 시 수집하는 StackTrace의 최대 라인 수를 설정합니다.
+  트레이스 스텝의 최대 수를 설정합니다. 수집된 트레이스 스텝 수가 이 값을 초과하면 이후 수집되는 스텝들은 모두 버려집니다. `profile_step_heavy_count`을 최대 1000으로 설정하면 `profile_step_max_count`만큼 액티브 스택이 수집됩니다.
 
-* **trace_active_callstack_depth** <span class='type'>Int</span><br/>
-    기본값 `50`<br/>
-    액티브 스택에서 수집하는 StackTrace의 최대 라인수를 설정합니다.
+* **profile_step_heavy_time** <span class='type'>MiliSecond</span>
+
+  기본값 `100`
+
+  Heavy한 스텝의 기준을 설정합니다. 설정한 값보다 수행 시간이 긴 경우 `profile_step_normal_count` 값을 초과하더라도 `profile_step_heavy_count`에 설정한 값만큼 기록합니다.
+
+* **active_stack_count** <span class='type'>Int</span>
+
+  기본값 `100`
+
+  트랜잭션 내에서 수집하는 액티브 스택의 최대 수를 설정합니다.
+
+* **profile_method_resource_enabled** <span class='type'>Boolean</span>
+
+  기본값 `false`
+
+  트레이스에서 method 스텝을 수집할 때 해당 스텝에서 사용한 CPU와 메모리 사용량을 추적합니다.
+
+* **profile_position_method** <span class='type'>String</span>
+
+  설정한 메소드를 수행하는 시점의 StackTrace를 기록합니다.
+
+* **profile_position_depth** <span class='type'>Int</span>
+
+  기본값 `50`
+
+  position 추적을 위해 StackTrace를 기록할 때 최대 라인 수를 설정합니다.
+
+* **trace_error_callstack_depth** <span class='type'>Int</span>
+
+  기본값 `50`
+
+  Error 발생 시 수집하는 StackTrace의 최대 라인 수를 설정합니다.
+
+* **trace_active_callstack_depth** <span class='type'>Int</span>
+
+  기본값 `50`
+
+  액티브 스택에서 수집하는 StackTrace의 최대 라인수를 설정합니다.
 
 {@include: ../common-items/_transaction-profile-active-color.mdx}
 
-* **hook_method_patterns** <span class='type'>String</span><br/>
-    응답시간을 측정할 메소드를 설정합니다. 마지막 마침표(.)를 구분자로 클래스 FullName과 메소드로 구분되며 별표(*)를 와일드 카드로 사용할 수 있습니다. 대상이 여러 개인 경우 쉼표(,)로 구분합니다.
+* **hook_method_patterns** <span class='type'>String</span>
 
-    ```ini title='예시'
-    hook_method_patterns=a.b.C1.*
-    ```
+  응답시간을 측정할 메소드를 설정합니다. 마지막 마침표(.)를 구분자로 클래스 FullName과 메소드로 구분되며 별표(*)를 와일드 카드로 사용할 수 있습니다. 대상이 여러 개인 경우 쉼표(,)로 구분합니다.
 
-* **hook_method_supers** <span class='type'>String</span><br/>
-    특정 클래스를 상속받은 메소드의 응답시간을 측정하고자 할 때 Super Class를 설정합니다. 클래스 FullName을 설정하며 대상이 여러 개인 경우 쉼표(,)로 구분합니다.
+  ```ini title='whatap.conf'
+  hook_method_patterns=a.b.C1.*
+  ```
 
-    ```ini title='예시'
-    hook_method_supers=a.b.C1
-    ```
+* **hook_method_supers** <span class='type'>String</span>
 
-* **hook_method_interfaces** <span class='type'>String</span><br/>
-특정 인터페이스를 구현한 메소드의 응답시간을 측정하고자 할 때 Interface를 설정합니다. 인터페이스 FullName을 설정하며 대상이 여러 개인 경우 쉼표(,)로 구분합니다.
+  특정 클래스를 상속받은 메소드의 응답시간을 측정하고자 할 때 Super Class를 설정합니다. 클래스 FullName을 설정하며 대상이 여러 개인 경우 쉼표(,)로 구분합니다.
 
-* **hook_method_ignore_classes** <span class='type'>String</span><br/>
-메소드 트레이스를 설정할 때 트레이스에서 제외하고 싶은 클래스들을 설정합니다.
+  ```ini title='whatap.conf'
+  hook_method_supers=a.b.C1
+  ```
 
-* **hook_method_access_public_enabled** <span class='type'>Boolean</span><br/>
-기본값 `true`<br/>메소드 트레이스를 설정할 때 public 메소드에 대해서만 별도 대상으로 처리할지 여부를 설정합니다.
+* **hook_method_interfaces** <span class='type'>String</span>
 
-* **hook_method_access_private_enabled** <span class='type'>Boolean</span><br/>
-기본값 `false`<br/>메소드 트레이스를 설정할 때 private 메소드에 대해서만 별도 대상으로 처리할지 여부를 설정합니다.
+  특정 인터페이스를 구현한 메소드의 응답시간을 측정하고자 할 때 Interface를 설정합니다. 인터페이스 FullName을 설정하며 대상이 여러 개인 경우 쉼표(,)로 구분합니다.
 
-* **hook_method_access_protected_enabled** <span class='type'>Boolean</span><br/>
-기본값 `true`<br/>메소드 트레이스를 설정할 때 protected 메소드에 대해서만 별도 대상으로 처리할지 여부를 설정합니다.
+* **hook_method_ignore_classes** <span class='type'>String</span>
 
-* **hook_method_access_none_enabled** <span class='type'>Boolean</span><br/>
-기본값 `true`<br/>메소드 트레이스를 설정할 때 no access indicated 메소드에 대해서만 별도 대상으로 처리할지 여부를 설정합니다.
+  메소드 트레이스를 설정할 때 트레이스에서 제외하고 싶은 클래스들을 설정합니다.
 
-* **stacklog_socket_port** <span class='type'>TCP_PortNumber</span><br/>
-    기본값 `0`<br/>
-    목적지의 TCP 포트를 설정하면 Socket.connect() 시점 StackTrace를 에이전트 로그로 기록합니다. 기본 설정으로 확인되지 않는 DB 연결, HTTPC 연결 등을 추적할 때 사용할 수 있습니다.
-:::caution
-설정한 목적지로 연결 시마다 매번 StackTrace를 기록합니다. 성능 저하를 유발할 수 있습니다. 디버깅 용도로 선별한 에이전트에 한시적으로만 사용해야 합니다.
-DB 연결 상태 추적 예시, `stacklog_socket_port=1521`
-:::
+* **hook_method_access_public_enabled** <span class='type'>Boolean</span>
 
-* **biz_exceptions** <span class='type'>String</span><br/>
-비즈니스 Exception을 등록합니다. 등록한 비즈니스 Exception은 에러 통계에서 제외합니다. 트레이스 상세에서는 나타납니다.
+  기본값 `true`
 
-* **ignore_exceptions** <span class='type'>String</span><br/>
-무시할 Exception을 등록합니다. 등록한 Exception의 에러 자체를 무시합니다.
+  메소드 트레이스를 설정할 때 public 메소드에 대해서만 별도 대상으로 처리할지 여부를 설정합니다.
 
-* **transaction_status_error_enable** <span class='type'>Boolean</span><br/>
-    기본값 `true`<br/>
-    HTTP 401, 403과 같이 정상 응답이 아닌 HTTP 상태 코드를 반환하는 경우 에러로 처리합니다.
+* **hook_method_access_private_enabled** <span class='type'>Boolean</span>
 
-* **status_ignore** <span class='type'>String</span><br/>
-    무시할 `STATUS_ERROR` 코드를 설정합니다. 여러 값을 대상으로 할 경우 쉼표(,)를 구분자로 사용하세요.
+  기본값 `false`
 
-* **status_ignore_set** <span class='type'>String</span><br/>
-    `whatap.error.STATUS_ERROR`를 무시합니다. 여러 값을 대상으로 할 경우 쉼표(,)를 구분자로 사용하세요.
+  메소드 트레이스를 설정할 때 private 메소드에 대해서만 별도 대상으로 처리할지 여부를 설정합니다.
 
-* **httpc_status_error_enable** <span class='type'>Boolean</span><br/>
-    기본값 `true`<br/>
-    `HTTPC_ERROR` 반환 여부를 결정합니다.
+* **hook_method_access_protected_enabled** <span class='type'>Boolean</span>
 
-* **httpc_status_ignore** <span class='type'>String</span><br/>
-    무시할 `HTTPC_ERROR` 코드를 설정합니다. 여러 값을 대상으로 할 경우 쉼표(,)를 구분자로 사용하세요.
+  기본값 `true`
 
-* **httpc_status_ignore_set** <span class='type'>String</span><br/>
-    `whatap.error.HTTPC_ERROR`를 무시합니다. 여러 값을 대상으로 할 경우 쉼표(,)를 구분자로 사용하세요.<br/>
-    `httpc_status_ignore_set=/a/b/c:400,/a/ab/c:404`와 같이 설정하세요. 이때 url은 통계/에러 분석에서 `HTTPC_URL` 값을 입력합니다.
+  메소드 트레이스를 설정할 때 protected 메소드에 대해서만 별도 대상으로 처리할지 여부를 설정합니다.
+
+* **hook_method_access_none_enabled** <span class='type'>Boolean</span>
+
+  기본값 `true`
+  
+  메소드 트레이스를 설정할 때 no access indicated 메소드에 대해서만 별도 대상으로 처리할지 여부를 설정합니다.
+
+* **stacklog_socket_port** <span class='type'>TCP_PortNumber</span>
+
+  기본값 `0`
+
+  목적지의 TCP 포트를 설정하면 Socket.connect() 시점 StackTrace를 에이전트 로그로 기록합니다. 기본 설정으로 확인되지 않는 DB 연결, HTTPC 연결 등을 추적할 때 사용할 수 있습니다.
+
+  :::caution
+
+  설정한 목적지로 연결 시마다 매번 StackTrace를 기록합니다. 성능 저하를 유발할 수 있습니다. 디버깅 용도로 선별한 에이전트에 한시적으로만 사용해야 합니다.
+  
+  DB 연결 상태 추적 예시, `stacklog_socket_port=1521`
+  
+  :::
+
+* **biz_exceptions** <span class='type'>String</span>
+
+  비즈니스 Exception을 등록합니다. 등록한 비즈니스 Exception은 에러 통계에서 제외합니다. 트레이스 상세에서는 나타납니다.
+
+* **ignore_exceptions** <span class='type'>String</span>
+
+  무시할 Exception을 등록합니다. 등록한 Exception의 에러 자체를 무시합니다.
+
+* **transaction_status_error_enable** <span class='type'>Boolean</span>
+
+  기본값 `true`
+
+  HTTP 401, 403과 같이 정상 응답이 아닌 HTTP 상태 코드를 반환하는 경우 에러로 처리합니다.
+
+* **status_ignore** <span class='type'>String</span>
+
+  무시할 `STATUS_ERROR` 코드를 설정합니다. 여러 값을 대상으로 할 경우 쉼표(,)를 구분자로 사용하세요.
+
+* **status_ignore_set** <span class='type'>String</span>
+
+  `whatap.error.STATUS_ERROR`를 무시합니다. 여러 값을 대상으로 할 경우 쉼표(,)를 구분자로 사용하세요.
+
+* **httpc_status_error_enable** <span class='type'>Boolean</span>
+
+  기본값 `true`
+
+  `HTTPC_ERROR` 반환 여부를 결정합니다.
+
+* **httpc_status_ignore** <span class='type'>String</span>
+
+  무시할 `HTTPC_ERROR` 코드를 설정합니다. 여러 값을 대상으로 할 경우 쉼표(,)를 구분자로 사용하세요.
+
+* **httpc_status_ignore_set** <span class='type'>String</span>
+
+  `whatap.error.HTTPC_ERROR`를 무시합니다. 여러 값을 대상으로 할 경우 쉼표(,)를 구분자로 사용하세요.
+
+  `httpc_status_ignore_set=/a/b/c:400,/a/ab/c:404`와 같이 설정하세요. 이때 url은 통계/에러 분석에서 `HTTPC_URL` 값을 입력합니다.

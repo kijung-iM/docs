@@ -1,23 +1,35 @@
-* **whatap.mtrace_enabled**<span class='type'>Boolean</span><br/>
-    기본값 `false`<br/>
-    멀티 트랜잭션 추적 기능(MTID) 사용 여부를 설정합니다. MTID를 추적하면 등록된 모든 애플리케이션 간의 호출을 확인할 수 있습니다.
+* **whatap.mtrace_enabled** <span class='type'>Boolean</span>
 
-* **whatap.mtrace_rate**<span class='type'>Percentage</span><br/>
-    기본값 `10`<br/>
-    최초 트랜잭션이 발생할 때 발급받는 MTID(Multi Transaction ID)의 발급비율을 설정하는 옵션입니다.
+  기본값 `false`
 
-* **whatap.mtrace_poid_key**<span class='type'>String</span><br/>
-    기본값 `x-wtap-po`<br/>
-    MTID 추적에 사용할 Caller 프로젝트 정보를 전달할 Key Name을 설정합니다.
+  멀티 트랜잭션 추적 기능(MTID) 사용 여부를 설정합니다. MTID를 추적하면 등록된 모든 애플리케이션 간의 호출을 확인할 수 있습니다.
 
-* **whatap.mtrace_caller_key**<span class='type'>String</span><br/>
-    기본값 `x-wtap-mst`<br/>
-    MTID 추적에 사용할 Caller Key Name을 정합니다.
+* **whatap.mtrace_rate** <span class='type'>Percentage</span>
 
-* **whatap.mtrace_callee_key**<span class='type'>String</span><br/>
-    기본값 `x-wtap-tx`<br/>
-    MTID 추적에 사용할 Callee Key Name을 정합니다.
+  기본값 `10`
 
-* **whatap.mtrace_send_url_length**<span class='type'>Int</span><br/>
-    기본값 `80`<br/>
-    Http Caller는 Callee에게 자신의 URL을 넘겨줍니다. 이때 URL 길이를 제한하고 있습니다. 이 길이를 지정합니다.
+  최초 트랜잭션이 발생할 때 발급받는 MTID(Multi Transaction ID)의 발급비율을 설정하는 옵션입니다.
+
+* **whatap.mtrace_poid_key** <span class='type'>String</span>
+
+  기본값 `x-wtap-po`
+
+  MTID 추적에 사용할 Caller 프로젝트 정보를 전달할 Key Name을 설정합니다.
+
+* **whatap.mtrace_caller_key** <span class='type'>String</span>
+
+  기본값 `x-wtap-mst`
+
+  MTID 추적에 사용할 Caller Key Name을 정합니다.
+
+* **whatap.mtrace_callee_key** <span class='type'>String</span>
+
+  기본값 `x-wtap-tx`
+
+  MTID 추적에 사용할 Callee Key Name을 정합니다.
+
+* **whatap.mtrace_send_url_length** <span class='type'>Int</span>
+
+  기본값 `80`
+
+  Http Caller는 Callee에게 자신의 URL을 넘겨줍니다. 이때 URL 길이를 제한하고 있습니다. 이 길이를 지정합니다.

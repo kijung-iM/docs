@@ -1,11 +1,17 @@
-* **mtrace_rate**<span class='type'>Percentage</span><br/>
-    기본값 `0`<br/>
-    최초 트랜잭션이 발생할 때 발급받는 MTID(Multi Transaction ID)의 발급 비율을 설정하는 옵션입니다. MTID를 추적하면 등록된 모든 애플리케이션 간의 호출을 확인할 수 있습니다. 같은 프로젝트에 속한 애플리케이션은 Caller & Callee 기능을 통해 트랜잭션 트레이스를 바로 확인할 수 있습니다.
+* **mtrace_rate** <span class='type'>Percentage</span>
 
-* **mtrace_spec**<span class='type'>String</span><br/>
-    기본값 `v1`<br/>
-    현 인스턴스의 애플리케이션 버전을 지정합니다. 임의의 문자열을 지정할 수 있습니다. 이 데이터는 호출 통계를 위해 사용됩니다.
+  기본값 `0`
 
-* **mtrace_send_url_length**<span class='type'>Integer</span><br/>
-    기본값 `80`<br/>
-    Http Caller는 Callee에게 자신의 URL을 넘져줍니다. 이때 URL길이를 제한하고 있습니다. 이 길이를 지정합니다.
+  최초 트랜잭션이 발생할 때 발급받는 MTID(Multi Transaction ID)의 발급 비율을 설정하는 옵션입니다. MTID를 추적하면 등록된 모든 애플리케이션 간의 호출을 확인할 수 있습니다. 같은 프로젝트에 속한 애플리케이션은 Caller & Callee 기능을 통해 트랜잭션 트레이스를 바로 확인할 수 있습니다.
+
+* **mtrace_spec** <span class='type'>String</span>
+
+  기본값 `v1`
+
+  현 인스턴스의 애플리케이션 버전을 지정합니다. 임의의 문자열을 지정할 수 있습니다. 이 데이터는 호출 통계를 위해 사용됩니다.
+
+* **mtrace_send_url_length** <span class='type'>Integer</span>
+
+  기본값 `80`
+
+  Http Caller는 Callee에게 자신의 URL을 넘져줍니다. 이때 URL길이를 제한하고 있습니다. 이 길이를 지정합니다.

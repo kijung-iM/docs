@@ -5,11 +5,12 @@ description: PHP 에이전트 설정 파일 구성 요소를 설명합니다.
 tags: [ PHP, PHP 모니터링, 애플리케이션, 애플리케이션 모니터링, 설정하기 ]
 ---
 
-<!-- PHP 에이전트는 필요한 설정을 *whatap.ini* 파일에 작성합니다. 에이전트는 환경변수를 통해 설정 파일의 위치를 파악하고 로딩합니다. -->
 PHP 에이전트는 필요한 설정을 *whatap.ini* 파일에 작성하고 변경할 수 있습니다. 사용자의 편의성을 위해 [와탭 모니터링 서비스](https://service.whatap.io)에서도 에이전트 설정 기능을 제공하고 있습니다.
 
 :::note
+
 일반적으로 설정은 런타임에 바로 reload 됩니다. 다만 해당 설정의 메커니즘상 Apache 또는 PHP-FPM이 기동될 때 적용되는 옵션들은 다시 시작해야 할 수 있습니다.
+
 :::
 
 import ProdImg from '@site/src/components/ChangeImgName.js';

@@ -1,0 +1,77 @@
+---
+id: install-agent-docker
+title: Docker 환경 설치
+description: description
+tags: [ Node.js, 에이전트, DockerFile ]
+---
+
+Docker 환경에서 DockerFile을 작성해 Node.js 에이전트를 설치한 다음 실행하는 방법을 안내합니다. 다음 안내에서 사용한 예제 파일은 [다음 링크](https://github.com/whatap/nodejs_sample_application/tree/main/simple_http)를 참조하세요.
+
+## 파일 구성
+
+Node.js 에이전트 샘플 파일은 다음과 같이 구성되어 있습니다.
+
+* *html*: 샘플 애플리케이션 폴더
+
+* *Dockerfile*: 도커 이미지 빌드를 위한 설정 파일
+
+* *http.js*: 샘플 애플리케이션 파일
+
+* *package.json*: 샘플 애플리케이션 정보와 의존성(dependency) 관리 문서
+
+* *whatap.conf*: 모니터링을 위한 옵션 설정 파일
+
+* *paramkey.txt*: 파라미터 암호화 키
+
+
+## 에이전트 설치하기
+
+*package.json* 파일에 Node.js 에이전트를 추가하거나 npm 설치 명령어를 실행하세요.
+
+```json title='package.json'
+"dependencies": {
+    "whatap": "^0.4.72"
+}
+```
+
+```bash
+npm install --save whatap
+```
+
+## 컨테이너 이미지 빌드
+
+이미지 빌드를 위한 Dockerfile을 작성하세요.
+
+```docker title='Dockerfile'
+FROM node:latest
+
+WORKDIR /app
+ADD . .
+
+RUN npm install
+
+CMD ["node","http.js"]
+```
+
+## 빌드
+
+빌드 명령어를 실행하세요.
+
+```bash
+$ docker build -t sampleapp/nodejs:0503 .
+```
+
+## 실행하기
+
+환경 변수에 수집 서버 IP및 액세스 키를 작성해 컨테이너를 시작하면 Node.js 에이전트와 함께 애플리케이션이 작동합니다.
+
+```bash
+export WHATAP_LICENSE={access Key}
+export WHATAP_SERVER_HOST={collection server IP}
+
+$ docker run --rm -p 3500:3500 \
+    -e whatap_server_host=$WHATAP_SERVER_HOST \
+    -e license=$WHATAP_LICENSE \
+    sampleapp/nodejs:0503
+```
+

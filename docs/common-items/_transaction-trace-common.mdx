@@ -1,5 +1,8 @@
-* **trace_normalize_enabled** <span class='type'>Boolean</span><br/>
-  기본값 `true`<br/>트랜잭션 URL을 파싱해 정규화하는 기능을 활성화합니다.
+* **trace_normalize_enabled** <span class='type'>Boolean</span>
+
+  기본값 `true`
+  
+  트랜잭션 URL을 파싱해 정규화하는 기능을 활성화합니다.
 
   :::note
 
@@ -7,18 +10,28 @@
   
   :::
 
-* **trace_auto_normalize_enabled** <span class='type'>Boolean</span><br/>
-기본값 `true`<br/>트랜잭션 URL 정규화할 때 패턴 값을 어노테이션에서 추출해 자동으로 파싱하는 기능을 활성화합니다.
+* **trace_auto_normalize_enabled** <span class='type'>Boolean</span>
 
-* **trace_normalize_urls** <span class='type'>String</span><br/>
+  기본값 `true`
+  
+  트랜잭션 URL 정규화할 때 패턴 값을 어노테이션에서 추출해 자동으로 파싱하는 기능을 활성화합니다.
+
+* **trace_normalize_urls** <span class='type'>String</span>
+
   정규화할 트랜잭션 URL 패턴을 설정합니다. 호출 URL 패턴을 파싱해 패스 파라미터를 제거합니다.
 
   :::note
+
   예시, **/a/{v}/b**라고 선언하면 **a/123/b** → **a/{v}/b**로 치환합니다. 여러 개를 등록할 때는 쉼표(,)를 구분자로 사용하세요. 치환 패턴 정리 후 보완이 필요합니다.
+
   :::
 
-* **web_static_content_extensions** <span class='type'>String</span><br/>
-기본값 `js, htm, html, gif, png, jpg, css, swf, ico`<br/>스태틱 콘텐츠임을 판단하는 확장자를 설정합니다. 이 옵션에 설정한 확장자를 가진 트랜잭션들은 트레이스 추적과 카운팅에서 제외합니다.
+* **web_static_content_extensions** <span class='type'>String</span>
 
-* **trace_transaction_name_header_key** <span class='type'>String</span><br/>
-설정한 http header key에서 추출한 값을 트랜잭션의 이름 마지막에 추가합니다.
+  기본값 `js, htm, html, gif, png, jpg, css, swf, ico`
+  
+  스태틱 콘텐츠임을 판단하는 확장자를 설정합니다. 이 옵션에 설정한 확장자를 가진 트랜잭션들은 트레이스 추적과 카운팅에서 제외합니다.
+
+* **trace_transaction_name_header_key** <span class='type'>String</span>
+
+  설정한 http header key에서 추출한 값을 트랜잭션의 이름 마지막에 추가합니다.

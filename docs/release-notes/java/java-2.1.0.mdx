@@ -84,7 +84,9 @@ URL 패턴 설정 대상
 * HttpClient URL
 
 :::note
+
 기존 에이전트 설정 방식으로는 쿠버네티스 환경에서 변경에 어려움
+
 :::
 
 #### 에이전트 로그에 ONAME 출력
@@ -112,7 +114,9 @@ $pack.put("myrandom",(float)( whatap.util.KeyGen.next()%100));
 애플리케이션 로그를 통합 모니터링 하는 기능을 추가 하였습니다. 자바 애플리케이션에서 로그 모니터링 기능을 사용하기 위해서는 whatap.agent-2.1.0 이후 버전이 필요합니다.
 
 :::caution
+
 whatap.agent-2.1.0 이후 버전
+
 :::
 
 와탭의 애플리케이션 로그 모니터링의 기능 명칭은 로그싱크(LogSink) 입니다.
@@ -154,7 +158,9 @@ hooklog_custom_methods= (사용자 메소드에서 로그 수집 설정)
 운영중에 `hooklog_enabled=true`로 변경한다면 재기동 후에 로그 수집이 가능합니다.
 
 :::note
+
 `logsink_enabled=true` 변경 후 재기동
+
 :::
 
 
@@ -214,7 +220,9 @@ logsink_zip_libpath=/whatap/whatap-logsink-lz4-1.7.0.jar
 ```
 
 :::note
+
 알고리즘 선택은 `logsink_zip_libpath`에 jar파일을 지정하는것으로 처리
+
 :::
 
 ### IBM Java6 웹스피어 환경에서 에이전트가 동작하지 않는 문제 수정
@@ -222,7 +230,9 @@ logsink_zip_libpath=/whatap/whatap-logsink-lz4-1.7.0.jar
 IBM Java6 웹스피어 환경에서 WhaTap Agent가 초기화 되지 못하고 데이터를 수집하지 못하는 문제를 수정 하였습니다.
 
 :::note
+
 `ManagementFactory.getPlatformMBeanServer()` 로직이 내부적으로 오류가 발생하면서 WhaTap Agent가 초기화되지 못하는 문제
+
 :::
 
 ### CounterPack 디버깅 옵션 추가
@@ -301,7 +311,9 @@ weaving=tomcat10
 ```
 
 :::note
+
 weaving 옵션은 `weaving_reserved` 옵션을 축약하여 v2.1.1에서 추가
+
 :::
 
 ### HttpCall에 대한 상세 정보 추적
@@ -309,7 +321,9 @@ weaving 옵션은 `weaving_reserved` 옵션을 축약하여 v2.1.1에서 추가
 트랜잭션 추적에서 HttpCall에 대한 추적 정보를 추가하였습니다.
 
 :::caution
+
 OLD 버전의 수집서버에서는 트랜잭션 상세 스텝 정보 확인이 불가합니다.
+
 :::
 
 만약 OLD 수집서버에 데이터를 보내야 한다면 `trace_httpc_version` 옵션을 *whatap.conf* 파일에 추가해야 합니다.

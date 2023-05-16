@@ -276,30 +276,35 @@ curl -L -w "\n" -H "x-whatap-token: {{PROJECT API TOKEN}}" -H "x-whatap-pcode: {
 ## 에이전트 데이터 조회
 
 * **Thread Count**
+
   * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/thread_count/<code>stitme</code>/<code>etime</code>
   * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/thread_count/<code>stitme</code>/<code>etime</code>/<code>oids</code>
   * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/thread_count/<code>stitme</code>/<code>etime</code>/avg
   * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/thread_count/<code>stitme</code>/<code>etime</code>/avg/<code>oids</code>
 
 * **Thread Daemon Count**
+
   * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/thread_daemon/<code>stitme</code>/<code>etime</code>
   * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/thread_daemon/<code>stitme</code>/<code>etime</code>/<code>oids</code>
   * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/thread_daemon/<code>stitme</code>/<code>etime</code>/avg
   * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/thread_daemon/<code>stitme</code>/<code>etime</code>/avg/<code>oids</code>
 
 * **Thread Peak Count**
+
   * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/thread_peak_count/<code>stitme</code>/<code>etime</code>
   * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/thread_peak_count/<code>stitme</code>/<code>etime</code>/<code>oids</code>
   * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/thread_peak_count/<code>stitme</code>/<code>etime</code>/avg
   * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/thread_peak_count/<code>stitme</code>/<code>etime</code>/avg/<code>oids</code>
 
 * **Thread Pool Count**
+
   * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/threadpool_active/<code>stitme</code>/<code>etime</code>
   * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/threadpool_active/<code>stitme</code>/<code>etime</code>/<code>oids</code>
   * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/threadpool_active/<code>stitme</code>/<code>etime</code>/avg
   * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/threadpool_active/<code>stitme</code>/<code>etime</code>/avg/<code>oids</code>
 
 * **Thread Pool Queue Count**
+
   * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/threadpool_queue/<code>stitme</code>/<code>etime</code>
   * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/threadpool_queue/<code>stitme</code>/<code>etime</code>/<code>oids</code>
   * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/threadpool_queue/<code>stitme</code>/<code>etime</code>/avg
@@ -536,8 +541,10 @@ $ curl -L -w "\n" -H "x-whatap-token: {{PROJECT API TOKEN}}" -H "x-whatap-pcode:
 * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/tx_caller/<code>stitme</code>/<code>etime</code>/<code>oids</code>/filter/<code>filterkey</code>/<code>filterval</code>
 
 :::note
+
 * **filterkey**: 조회 조건 키 (`caller_pcode`, `caller_spec` (버전), `caller_url`, `spec` (버전), `url`)
 * **filterval**: 조회 조건 (`filterkey`가 `caller_url` 또는 `url`인 경우 base64로 인코딩)
+
 :::
 
 ## 도메인 호출 통계
@@ -548,6 +555,8 @@ $ curl -L -w "\n" -H "x-whatap-token: {{PROJECT API TOKEN}}" -H "x-whatap-pcode:
 * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/tx_domain/<code>stitme</code>/<code>etime</code>/<code>oids</code>/filter/<code>filterkey</code>/<code>filterval</code>
 
 :::note
+
 * **filterkey**: 조회 조건 키 (`caller_pcode`, `caller_spec` (버전), `caller_url`, `spec` (버전), `url`)
 * **filterval**: 조회 조건 (`filterkey`가 `caller_url` 또는 `url`인 경우 base64로 인코딩)
+
 :::

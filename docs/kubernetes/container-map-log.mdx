@@ -50,10 +50,13 @@ kubectl logs pod/<Pod명> -c <컨테이너명> -n <Namespace명>
 ![로그 검색](https://img.whatap.io/media/images/whatap_kubernetes_container_map_log_search.png)
 
 :::caution
+
 와탭 로그 서비스를 활성화하고 컨테이너의 Standard Output 로그 저장 기능을 사용하면 그에 따른 추가 비용이 청구됩니다. 관련한 요금에 대한 자세한 내용은 [다음 문서](https://www.whatap.io/ko/pricing/)를 참조하세요.
+
 :::
 
 :::note
+
 일부 구 버전 에이전트의 경우는 컨테이너 Standard Output 로그 저장 기능을 제공하지 않습니다. 에이전트 업그레이드 방법은 다음과 같습니다.
 
 ```bahs title='에이전트 업데이트'
@@ -61,13 +64,12 @@ kubectl set image daemonset/whatap-node-agent whatap-node-agent=whatap/kube_mon:
 ```
 
 와탭 쿠버네티스 에이전트 버전은 [다음 문서](https://hub.docker.com/r/whatap/kube_mon/tags)를 통해 확인할 수 있습니다.
+
 :::
 
 ### Standard Out 저장을 위한 노드 에이전트 설정 추가 
 
 와탭 로그 서비스를 통해 컨테이너의 Standard Output을 저장하기 위해서는 와탭 쿠버네티스 노드 에이전트에 `logsink_enabled=true` 설정을 추가해야 합니다. 와탭 쿠버네티스 노드 에이전트는 DaemonSet 형태입니다.
-
-<!-- 개발자에게 관련 사항 문의 필요 -->
 
 * 와탭 모니터링 서비스 페이지에서 ***관리*** > ***에이전트 설정***을 통해 `logsink_enabled=true` 설정 추가
 * 클러스터 프로젝트 전체 노드를 대상으로 설정을 추가하려면 ***프로젝트 디폴트*** > ***노드*** 대상으로 설정 추가

@@ -27,11 +27,9 @@ tags: [ 로그 모니터링, 쿠버네티스 ]
 
 1. 다음의 에이전트 설정 명령어의 ***키*** `logsink_enabled` 와 ***값*** `true`를 ![number 3](/img/number-03.png) 입력창에 입력하세요.
 
-  ```bash
-
-  logsink_enabled=true 
-
-  ```
+    ```bash
+    logsink_enabled=true 
+    ```
 
 1. ![number 4](/img/number-04.png) ***적용*** 버튼을 선택하세요. 쿠버네티스 컨테이너에 로그를 수집할 수 있습니다.
 
@@ -47,11 +45,9 @@ Java 2.1.1, Python 1.2.2 버전부터 가능합니다. 쿠버네티스 컨테이
 
 1. 다음의 에이전트 설정 명령어의 ***키*** `logsink_enabled` 와 ***값*** `true`를 ![number 3](/img/number-03.png) 입력창에 입력하세요.
 
-  ```bash
-
-  logsink_enabled=true 
-
-  ```
+    ```bash
+    logsink_enabled=true 
+    ```
 
 1. ![number 4](/img/number-04.png) ***적용*** 버튼을 선택하세요. 쿠버네티스 컨테이너 내 애플리케이션의 로그를 수집할 수 있습니다.
 
@@ -85,10 +81,3 @@ Java 2.1.1, Python 1.2.2 버전부터 가능합니다. 쿠버네티스 컨테이
 | `#WhatapEvent` | <ul><li>와탭 이벤트 설정에 의해 발생한 이벤트가 저장된 로그</li><li>사용자 설정과 무관하게 기본 생성</li></ul> |
 | `containerStdout` | <ul><li>컨테이너 Standard Out 로그</li><li>사용자 설정 시 생성</li><li>노드 에이전트에 `logsink_enabled=true` 설정 추가 시</li></ul>
 | `AppLog` | <ul><li>컨테이너 내 애플리케이션 로그</li><li>사용자 설정 시 생성</li><li>애플리케이션 에이전트에 `logsink_enabled=true` 설정 추가 시</li></ul> |
-
-
-<!-- 
-
-쿠버네티스 컨테이너에 로그를 수집할 수 있도록 위의 설정 과정을 마쳤다면, 다음으로 컨테이너 상에서 실행되는 애플리케이션의 로그를 수집할 수 있도록 설정하세요. 
-
--->

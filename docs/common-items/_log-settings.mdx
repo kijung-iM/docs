@@ -24,7 +24,7 @@
 
 ![number-s](/img/number-01.png) 영역의 ***가이드 보기*** 버튼과 ***요금제 보기*** 버튼을 선택하면 관련 안내 화면으로 이동합니다. 
 
-## ![](/img/number-02.png) 로그 모니터링 시작하기
+## ![](/img/number-02.png) 로그 모니터링 시작하기{#log-getting-started}
 
 ![number-s](/img/number-02.png) 영역의 ***로그 모니터링 활성화*** 토글 버튼으로 로그 모니터링 활성화 및 비활성화 여부를 설정하세요.
 
@@ -43,14 +43,17 @@
 
 로그 모니터링을 시작하기 위해 에이전트 버전과 설정 정보를 확인하세요. ![number-s](/img/number-02.png) 영역의 ***에이전트 설정 확인*** 메뉴를 선택하여 안내대로 과정을 진행하세요.
 
-* **애플리케이션 모니터링**  
-     ***적용하기*** 메뉴 하위에 애플리케이션별 적용 안내를 확인하세요. 다음 설명서 [Java](log-java), [PHP](log-php), [Python](log-python), [Go](log-go) 등을 참조하세요.
+* **애플리케이션 모니터링**
 
-* **서버 모니터링**  
-    ***적용하기*** 메뉴 하위에 개별 적용 안내를 확인하세요. [다음 문서](log-server)를 참조하세요. 안내대로 *whatap.conf* 에 로그 감시 대상 파일 설정을 추가하세요.
+  ***적용하기*** 메뉴 하위에 애플리케이션별 적용 안내를 확인하세요. 다음 설명서 [Java](log-java), [PHP](log-php), [Python](log-python), [Go](log-go) 등을 참조하세요.
 
-* **쿠버네티스 모니터링**  
-    ***적용하기*** 메뉴 하위에 개별 적용 안내를 확인하세요. [다음 문서](log-k8s)를 참조하세요. 
+* **서버 모니터링**
+
+  ***적용하기*** 메뉴 하위에 개별 적용 안내를 확인하세요. [다음 문서](log-server)를 참조하세요. 안내대로 *whatap.conf* 에 로그 감시 대상 파일 설정을 추가하세요.
+
+* **쿠버네티스 모니터링**
+
+  ***적용하기*** 메뉴 하위에 개별 적용 안내를 확인하세요. [다음 문서](log-k8s)를 참조하세요. 
 
 ### 로그 모니터링 활성화
 
@@ -63,26 +66,33 @@
 
 </InDoc>
 
-## ![](/img/number-03.png) 로그 모니터링 데이터 설정
+## ![](/img/number-03.png) 로그 모니터링 데이터 설정{#log-data-setting}
 
 ![number-s](/img/number-03.png) 상단에서 ***로그 사용량***을 확인할 수 있습니다. 또한 ***데이터 유지 기간*** 및 ***로그 조회 비밀번호*** 설정을 변경할 수 있습니다.
 
-### 데이터 유지 기간
-<!-- 수연님 편집 중 -->
-공통으로 적용할 기본(default) 데이터 유지 기간입니다. 카테고리별 데이터 유지 기간을 별도로 설정하지 않으면 이 데이터 유지 기간이 기본적으로 적용됩니다. 카테고리별 데이터 유지 기간을 설정하고 ***리셋*** 버튼을 선택하면 기본 데이터 유지 기간으로 초기화됩니다.
+### 데이터 유지 기간{#data-retention}
+
+공통으로 적용할 기본(default) 데이터 유지 기간입니다. 미지정 시 기본값은 1일입니다. 카테고리별 데이터 유지 기간을 별도로 설정하지 않으면 이 데이터 유지 기간이 기본적으로 적용됩니다. 카테고리별 데이터 유지 기간을 설정하고 ***리셋*** 버튼을 선택하면 기본 데이터 유지 기간으로 초기화됩니다.
 
 ### 카테고리별 데이터 유지 기간
-<!-- 저장량 컬럼 삭제 -->
+
 카테고리별 로그 데이터 유지 기간을 지정할 수 있습니다. **로그 수**는 해당 기간 동안 쌓인 로그 라인을 의미합니다. 예를 들어 ***금일 로그 수***는 하루 동안 쌓인 로그 라인 개수, ***예상 로그 수***는 데이터 보관일에 금일 로그 수를 곱한 로그 라인 개수를 의미합니다. 
 
 로그 데이터 유지 기간을 다음과 같이 지정할 수 있습니다. 기간 지정에 따라 오래된 데이터를 삭제해 공간을 확보할 수 있습니다.
+
 * **트라이얼 프로젝트**  
-    데이터 유지 기간으로 1일, 2일, 3일을 선택할 수 있습니다.
+
+  데이터 유지 기간으로 1일, 2일, 3일을 선택할 수 있습니다.
+
 * **유료 프로젝트**  
-    데이터 유지 기간으로 1일, 2일, 3일, 4일, 5일, 6일, 7일, 10일, 30일, 40일을 선택할 수 있습니다.
+
+  데이터 유지 기간으로 1일, 2일, 3일, 4일, 5일, 6일, 7일, 10일, 30일, 40일을 선택할 수 있습니다.
+
 * **저장량 기준 과금**   
-    데이터 유지 기간에 따라 비용이 달라집니다.
-    > 예시, 일 평균 200만 로그 라인이 쌓이고 데이터 유지 기간을 3일로 지정한 경우라면 평균 600만 로그 라인이 수집 서버에 유지되고 과금 대상이 됩니다.
+
+  데이터 유지 기간에 따라 비용이 달라집니다.
+
+  > 예시, 일 평균 200만 로그 라인이 쌓이고 데이터 유지 기간을 3일로 지정한 경우라면 평균 600만 로그 라인이 수집 서버에 유지되고 과금 대상이 됩니다.
 
 
 ### 로그 조회 비밀번호
@@ -109,7 +119,7 @@
 
 :::
 
-## ![](/img/number-04.png) 로그 파서 설정
+## ![](/img/number-04.png) 로그 파서 설정{#log-setting-parser}
 
 수집된 로그를 검색할 수 있는 키를 만들기 위해 **파싱**(Parsing) **로직을 등록**할 수 있습니다. 파싱 로직을 등록하지 않은 경우 다음의 key들로만 검색이 가능합니다.
 
@@ -122,7 +132,9 @@
 :::
 
 ### 파서 등록 순서
+
 ![](/img/log-setting-parser.png)
+
 1. ![number-s](/img/number-04.png) 영역 하단의 ***+ 추가하기***를 선택하세요.
 
 1. ![number-s](/img/number-04.png) 영역 ***파서 선택창***에서 파서를 선택하세요. 파서 및 패턴 등록에 관한 [다음 문서](#log-pattern)를 참조하세요
@@ -158,10 +170,12 @@
 
 다음과 같이 4가지 유형의 파서를 제공합니다. ![number-s](/img/number-04.png) 영역 파서 선택창에서 확인할 수 있습니다.
 1. **Grok 파서**
+
 1. **JSON 포맷 파서**
+
 1. **4xx**와 **5xx 상태 코드 파서**
+
 1. **상태 코드 성공률 파서** 
-<!-- **Grok**과 **JSON 포맷 파서** 2가지 유형의 파서를 제공합니다. ![number-s](/img/number-04.png) 영역 파서 선택창에서 확인할 수 있습니다. -->
 
 :::note
 
@@ -170,24 +184,30 @@
 
 :::
 
-### Grok 패턴 파서 등록
+### Grok 패턴 파서 등록{#log-pattern-grok}
+
 ![Grok 패턴 파서](https://img.whatap.io/media/images/log_011_grok_syntax.png)
+
 문법은 %{SYNTAX:SEMANTIC} 입니다.    
 
-* **SYNTAX**  
-    Grok 정의 패턴입니다.      
+* **SYNTAX**
 
-* **SEMANTIC**  
-    파싱된 데이터에 할당할 키입니다.
+  Grok 정의 패턴입니다.
 
-:::note 
+* **SEMANTIC**
 
-SEMANTIC에는 예약어 등이 사용되지 않도록 조합어 사용을 권장합니다.
+  파싱된 데이터에 할당할 키입니다.
 
-:::
+  :::note 
 
-### JSON 포맷 파서 패턴 등록 
+  SEMANTIC에는 예약어 등이 사용되지 않도록 조합어 사용을 권장합니다.
+
+  :::
+
+### JSON 포맷 파서 패턴 등록{#log-pattern-json}
+
 ![JSON 포맷 파서 패턴 등록](https://img.whatap.io/media/images/log_012_json_format_parser_1101.png)  
+
 로그 전체 혹은 일부가 JSON 형태로 출력되는 경우 JSON 포맷 파서를 통해 JSON으로 출력된 부분을 파싱할 수 있습니다.
 
 로그 중 JSON 형태로 출력된 부분을 검출하기 위하여 ***Prefix***, ***Postfix*** 옵션을 조합해 로그의 어느 부분을 JSON으로 인식해 파싱할지 지정합니다. 
@@ -200,55 +220,57 @@ SEMANTIC에는 예약어 등이 사용되지 않도록 조합어 사용을 권�
 
 * **등록 예시**
 
+  ```bash title='로그 원문'
+  [2022-10-25 10:15:34:145]...(개행)
+  Request : {"key1":"value1","key2":"value2",...}(개행)
+  Response : {"key3":"value3","key4":"value4",...}
+  ```
+
+  예시처럼 유입되는 로그가 Request JSON, Response JSON을 모두 파싱하고자 하는 경우 다음의 2가지 패턴을 등록합니다.
+  
+  * Request 파싱용 패턴  
+  
+    > "Request : " 와 "Response" 사이의 문자열 {"key1":"value1","key2":"value2",...} 대상
+  
+  * Reponse 파싱용 패턴
+
+    > "Response : " 부터 로그의 마지막 까지의 문자열 {"key3":"value3","key4":"value4",...} 대상
+    
+* **JSON 커스텀 패턴 등록**
+
+  로그 중 일부가 JSON 형태로 출력되는 경우 JSON으로 출력된 부분을 전용 커스텀 파서를 통해 파싱할 수 있습니다. 패턴을 다음과 같이 입력하세요.
+
+  ```java
+  io.whatap.logsink.parser.JsonFormatParser{}
+  ```
+
+  로그 중 JSON 형태로 출력된 부분을 검출하기 위해 ***Prefix***, ***Postfix*** 옵션을 조합해 로그의 어느 부분을 JSON으로 인식하여 파싱할지 지정하세요.
+
+  `JsonFormatParser{}`의 `{}` 에 옵션을 지정합니다.
+
+  * **등록 예시**
+
     ```bash title='로그 원문'
     [2022-10-25 10:15:34:145]...(개행)
     Request : {"key1":"value1","key2":"value2",...}(개행)
     Response : {"key3":"value3","key4":"value4",...}
     ```
+
     예시처럼 유입되는 로그가 Request JSON, Response JSON을 모두 파싱하고자 하는 경우 다음의 2가지 패턴을 등록합니다.
-    
+
     * Request 파싱용 패턴  
+    > "Request : " 와 "Response" 사이의 문자열 {"key1":"value1","key2":"value2",...} 대상
     
-      > "Request : " 와 "Response" 사이의 문자열 {"key1":"value1","key2":"value2",...} 대상
+    ```java
+    io.whatap.logsink.parser.JsonFormatParser {prefix:"Request : ",postfix:"Response"}
+    ```
     
     * Reponse 파싱용 패턴
-        > "Response : " 부터 로그의 마지막 까지의 문자열 {"key3":"value3","key4":"value4",...} 대상
+    > "Response : " 부터 로그의 마지막 까지의 문자열 {"key3":"value3","key4":"value4",...} 대상
     
-* **JSON 커스텀 패턴 등록**
-
-    로그 중 일부가 JSON 형태로 출력되는 경우 JSON으로 출력된 부분을 전용 커스텀 파서를 통해 파싱할 수 있습니다. 패턴을 다음과 같이 입력하세요.
-
     ```java
-    io.whatap.logsink.parser.JsonFormatParser{}
-    ```
-
-    로그 중 JSON 형태로 출력된 부분을 검출하기 위해 ***Prefix***, ***Postfix*** 옵션을 조합해 로그의 어느 부분을 JSON으로 인식하여 파싱할지 지정하세요.
-
-    `JsonFormatParser{}`의 `{}` 에 옵션을 지정합니다.
-
-    * **등록 예시**
-
-        ```bash title='로그 원문'
-        [2022-10-25 10:15:34:145]...(개행)
-        Request : {"key1":"value1","key2":"value2",...}(개행)
-        Response : {"key3":"value3","key4":"value4",...}
-        ```
-
-        예시처럼 유입되는 로그가 Request JSON, Response JSON을 모두 파싱하고자 하는 경우 다음의 2가지 패턴을 등록합니다.
-
-        * Request 파싱용 패턴  
-        > "Request : " 와 "Response" 사이의 문자열 {"key1":"value1","key2":"value2",...} 대상
-        
-        ```java
-        io.whatap.logsink.parser.JsonFormatParser {prefix:"Request : ",postfix:"Response"}
-        ```
-        
-        * Reponse 파싱용 패턴
-        > "Response : " 부터 로그의 마지막 까지의 문자열 {"key3":"value3","key4":"value4",...} 대상
-        
-        ```java
-        io.whatap.logsink.parser.JsonFormatParser {prefix: "Response : "}
-        ```  
+    io.whatap.logsink.parser.JsonFormatParser {prefix: "Response : "}
+    ```  
 
 ### 4xx, 5xx 상태 코드 파서 패턴 등록{#4xx-5xx-status-parser}
 
@@ -257,40 +279,44 @@ status가 이미 파싱된 경우 사용할 수 있는 파서입니다. 파싱�
 
 패턴에는 4xx, 5xx 상태 코드를 입력 또는 선택 할 수 있으며, 입력된 상태 코드는 로그에서 4xx, 5xx 상태 코드를 파싱할 때 제외됩니다. 4xx, 5xx 상태 코드 파서를 사용하기 위해 먼저 status가 파싱되어 있어야 합니다.
 
-* **status 파서 등록 예시**  
-    ![Grok파서 - status 파싱 패턴 등록](https://img.whatap.io/22/11/28/111724log_status_01_parser.png)  
-    유입되는 로그가 `{"msg":"message","status":404}`이고 예시처럼 Grok 파서로 status를 파싱한다면, `status: 404`와 같이 파싱됩니다. status가 정상적으로 파싱되는 것을 확인헸다면 4XX,5XX 상태 코드 파서 패턴을 등록하세요.     
+* **status 파서 등록 예시**
 
-* **위젯 템플릿**  
-    파서를 모두 등록하면 ***Flex 보드***로 이동해 로그 4XX, 5XX 건수 위젯을 생성하세요.
+  ![Grok파서 - status 파싱 패턴 등록](https://img.whatap.io/22/11/28/111724log_status_01_parser.png)
 
-    ![](https://img.whatap.io/22/11/28/111724log_status_02_widget_template.png)  
-    
-    위젯을 생성하면 다음과 같이 데이터를 확인할 수 있습니다.
-    
-    ![](https://img.whatap.io/22/11/28/111724log_status_03_widget.png)
-    
-    * ***avg***: 조회 기간 데이터 평균값입니다.
-    * ***max***: 조회 기간 데이터 중 최댓값입니다.
-    * ***recently***: 조회 기간 데이터 중 마지막 값입니다.
+  유입되는 로그가 `{"msg":"message","status":404}`이고 예시처럼 Grok 파서로 status를 파싱한다면, `status: 404`와 같이 파싱됩니다. status가 정상적으로 파싱되는 것을 확인헸다면 4XX,5XX 상태 코드 파서 패턴을 등록하세요.     
 
-### 상태 코드 성공률 파서 패턴 등록 
+* **위젯 템플릿**
+  
+  파서를 모두 등록하면 ***Flex 보드***로 이동해 로그 4XX, 5XX 건수 위젯을 생성하세요.
+
+  ![](https://img.whatap.io/22/11/28/111724log_status_02_widget_template.png)  
+  
+  위젯을 생성하면 다음과 같이 데이터를 확인할 수 있습니다.
+  
+  ![](https://img.whatap.io/22/11/28/111724log_status_03_widget.png)
+  
+  * ***avg***: 조회 기간 데이터 평균값입니다.
+  * ***max***: 조회 기간 데이터 중 최댓값입니다.
+  * ***recently***: 조회 기간 데이터 중 마지막 값입니다.
+
+### 상태 코드 성공률 파서 패턴 등록{#log-pattern-status}
 
 ![상태 코드 성공률 파서](https://img.whatap.io/22/11/28/090004log_021_status_success_rate_parser.png)
 상태 코드 성공률 파서는 status가 이미 파싱된 경우 사용할 수 있는 파서입니다. status 파싱에 관한 내용은 [다음 문서](#4xx-5xx-status-parser)를 참조하세요. 
 
 파싱된 status를 이용하여 추가로 2xx, 3xx 상태 코드를 파싱합니다. 파싱한 데이터로 HTTP 요청 성공률 데이터를 생성할 수 있습니다. 패턴에는 2xx, 3xx 상태 코드를 입력 또는 선택 할 수 있으며, 입력된 상태 코드는 로그에서 2xx, 3xx 상태 코드를 파싱할 때 제외됩니다. 
 
-* **위젯 템플릿**  
-    파서를 모두 등록하면 ***Flex 보드***로 이동해 로그 요청 성공률 위젯을 생성하세요.  
+* **위젯 템플릿**
 
-    ![Flex보드 - 로그 요청 성공률 위젯 템플릿](https://img.whatap.io/22/11/28/120046log_success_rate_01_widget_template.png)  
-    
-    위젯을 생성하면 다음과 같이 데이터를 확인할 수 있습니다.
-    
-    ![lex보드 - 로그 요청 성공률 위젯](https://img.whatap.io/22/11/28/120046log_success_rate_02_widget.png)
-    
-    차트 위 데이터는 조회 기간에 대한 통계를 나타냅니다. 통계 방법을 최근값, 최댓값, 평균값 등으로 선택할 수 있습니다. 최근값이 기본으로 선택되어 있습니다.
+  파서를 모두 등록하면 ***Flex 보드***로 이동해 로그 요청 성공률 위젯을 생성하세요.  
+
+  ![Flex보드 - 로그 요청 성공률 위젯 템플릿](https://img.whatap.io/22/11/28/120046log_success_rate_01_widget_template.png)  
+  
+  위젯을 생성하면 다음과 같이 데이터를 확인할 수 있습니다.
+  
+  ![lex보드 - 로그 요청 성공률 위젯](https://img.whatap.io/22/11/28/120046log_success_rate_02_widget.png)
+  
+  차트 위 데이터는 조회 기간에 대한 통계를 나타냅니다. 통계 방법을 최근값, 최댓값, 평균값 등으로 선택할 수 있습니다. 최근값이 기본으로 선택되어 있습니다.
 
 ### 파서 시뮬레이션{#parser-simulation}
 
@@ -311,13 +337,16 @@ json 커스텀 파서 추가 문의
 -->
 <!--
 * **로그 파서 시뮬레이션 시작**
-    ![](https://img.whatap.io/media/images/log_013_simulation_1101.png)
+
+  ![](https://img.whatap.io/media/images/log_013_simulation_1101.png)
 -->
 * **시뮬레이션 성공 화면**
-    ![](https://img.whatap.io/media/images/log_014_simulation_success.png)
+
+  ![](https://img.whatap.io/media/images/log_014_simulation_success.png)
 
 * **시뮬레이션 실패 화면**
-    ![](https://img.whatap.io/media/images/log_015_simulation_fail.png)
+
+  ![](https://img.whatap.io/media/images/log_015_simulation_fail.png)
 
 ### 퍼포먼스 측정
 
@@ -333,7 +362,7 @@ json 커스텀 파서 추가 문의
 
 파싱된 키는 ***라이브 테일***, ***로그 검색***, ***로그 트렌드***에서 확인할 수 있습니다.
 
-## ![](/img/number-05.png) 빠른 인덱스 설정
+## ![](/img/number-05.png) 빠른 인덱스 설정{#log-setting-index}
 
 대량의 로그를 수집할 경우 로그 검색 성능이 현저하게 저하될 수 있습니다. 자주 사용하는 검색 조건을 **인덱스**(index)로 생성하면 로그 검색 성능을 개선해 빠른 탐색이 가능합니다. 설정 항목은 다음과 같습니다.
 
@@ -345,7 +374,7 @@ json 커스텀 파서 추가 문의
 |규칙|필수|`*` 한 개 이상 포함 필수|
 |활성|필수|활성 또는 비활성 여부(기본값 `true`)|
 
-## ![](/img/number-06.png) 로그 장기 보관 통계 설정
+## ![](/img/number-06.png) 로그 장기 보관 통계 설정{#log-long-term-archive}
 
 로그 데이터는 용량이 매우 커서 장기간 보관하기가 어렵습니다. 따라서 로그 통계 데이터 설정 기능을 사용하여 **특정 조건을 만족하는 로그 데이터가 5분마다 몇 건씩 수집되었는지에 대한 정보를 저장**할 수 있습니다. 
 
@@ -371,11 +400,16 @@ json 커스텀 파서 추가 문의
 
 ![](https://img.whatap.io/22/11/28/090932log_023_long_period_stat_config.png)
 
-### 위젯 템플릿
+### 위젯 템플릿{#log-widget-statistics}
 
-1. ***Flex 보드***의 ***위젯 템플릿***에서 ***로그 장기 보관 통계***를 검색해 위젯을 생성하세요.  
+1. ***Flex 보드***의 ***위젯 템플릿***에서 ***로그 장기 보관 통계***를 검색해 위젯을 생성하세요.
+
     ![장기 보관 통계 위젯 템플릿](https://img.whatap.io/22/11/28/090932log_024_long_period_widget_template.png)
-1. 데이터를 조회할 ***카테고리***와 ***키***를 지정한 뒤 ***적용*** 버튼을 선택합니다.  
+
+1. 데이터를 조회할 ***카테고리***와 ***키***를 지정한 뒤 ***적용*** 버튼을 선택합니다.
+
     ![장기 보관 통계 위젯 - 카테고리 및 키 선택](https://img.whatap.io/22/11/28/090932log_025_long_period_widget_config.png)
-1. 추가한 설정값으로 ***로그 장기 보관 통계*** 데이터를 다음처럼 확인할 수 있습니다.  
+
+1. 추가한 설정값으로 ***로그 장기 보관 통계*** 데이터를 다음처럼 확인할 수 있습니다.
+
     ![장기 보관 통계 위젯](https://img.whatap.io/22/11/28/090932log_026_long_period_widget_view.png)

@@ -96,12 +96,16 @@ ROWNUM
   ```
 
 :::caution
+
 * 만약 전체 필드를 선택할때는 오퍼랜드를 입력하지 않습니다. 
 * `like`와 `notlike`는 한 번에 설정할 수 없습니다. 여러 번의 `SELECT`에서 나누어서 설정해야 합니다. 
+
 :::
 
 :::note
+
 `SELECT` 명령어는 출력되는 필드 순서를 변경할 때도 사용합니다. 
+
 :::
 
 ## CREATE{#create}
@@ -161,7 +165,9 @@ DELETE [pcode]
 ```
 
 :::caution
+
 반드시 문자열 배열로 입력해야합니다. `DELETE` `pcode`는 동작하지 않습니다. (2021-06-23 기준)
+
 :::
 
 ## RENAME{#rename}
@@ -177,7 +183,9 @@ DELETE [pcode]
   ```
 
 :::caution
+
 `time`은 `ORDER`에서 최우선으로 사용하는 정렬 기준으로 `time`의 이름을 임의로 변경하면 [ORDER](#order)가 동작하지 않을 수 있습니다.
+
 :::
 
 ## GROUP{#group}
@@ -205,14 +213,19 @@ DELETE [pcode]
   ```
 
 :::note
+
 원칙적으로 `merge` 필드는 별도로 설정해야 합니다. 하지만 `last`, `merge`, `listup` 세 가지 속성을 모두 명시하지 않은 경우에는 모든 `number` 필드는 `merge` 필드로, `number` 필드가 아닌 필드는 `last` 필드로 자동 선택 됩니다.
+
 :::
 
 :::caution
+
 만약 레코드에 `time` 필드가 없으면 전체를 그룹핑합니다. 
+
 * `GROUP` 명령어가 수행되기 전에 `SELECT` 명령어로 `time` 필드를 설정하지 않은 경우
 * `RENAME` 명령어로 `time` 필드의 이름을 변경한 경우
 * `DELETE` 명령어로 `time` 필드를 삭제한 경우
+
 :::
 
 ## UPDATE{#update}
@@ -286,9 +299,11 @@ DELETE [pcode]
   ```
 
 :::caution
+
 * `{datetime:'yyyyMMdd HH:mm:ss'}`의 경우, 문자 쌍점(:)을 포함하고 있어, 반드시 작은 따옴표('') 또는 큰 따옴표("")로 감싸주어야 합니다.
 * `pct: 90`은 90%번째의 값을 선택한다는 의미입니다. 단, 해당 필드는 `GROUP` 명령을 수행할 때 `listup` 필드로 설정돼 있어야 합니다. 
 * format의 형식은 [Java, Decimal Format](https://docs.oracle.com/javase/tutorial/i18n/format/decimalFormat.html)을 사용합니다.
+
 :::
 
 ## ORDER{#order}
@@ -321,7 +336,9 @@ DELETE [pcode]
   ```
 
 :::caution
+
 데이터에 `time` 필드이 포함되는 경우에는 `ORDER`의 key에 `time`이 포함되어 있지 않아도 `time`이 정렬의 최우선 기준이 됩니다.
+
 :::
 
 ## JOIN{#join}
@@ -354,12 +371,16 @@ INJECT default
 ![](https://img.whatap.io/media/images/mxql-14.png)
 
 :::note
+
 Yard에 저장하는 모든 데이터는 `time`, `oid`의 값을 가지고 있습니다. 언제(`time`) 어떤 에이전트(`oid`)로부터 수집한 정보인지를 나타내기 위함입니다. 이 필드들도 `pk`로 사용될 수 있습니다.
+
 :::
 
 :::caution
+
 * `JOIN` 명령어에 사용하는 첫 번째 쿼리는 직접 작성한 MXQL 쿼리, 두 번째 쿼리는 [path로 설정할 수 있는 쿼리](mxql-guide#custom-mxql)만 가능합니다. 
 * `JOIN` 명령어를 사용한 MXQL 쿼리 전체를 Yard에 파일로 등록해서 사용하면 3개 이상의 카테고리도 `JOIN`할 수 있습니다. 
+
 :::
 
 ## LIMIT{#limit}
@@ -399,7 +420,9 @@ FILTERKEYS {keys : [oid], values : [497765289]}
 ```
 
 :::caution
+
 `key`, `value`가 아닌 `keys`, `values`입니다. 복수형 s에 주의하세요.
+
 :::
 
 ## FIRST-ONLY{#first-only}
@@ -427,7 +450,9 @@ SELECT [httpc_count, type]
 ```
 
 :::caution
+
 데이터 로드 단계에서 `{backward : true}`를 사용했다면 본 명령어의 결과가 달라질 수 있습니다.
+
 :::
 
 ## TIME-FILTER{#time-filter}
@@ -470,11 +495,13 @@ ROWNUM
 ```
 
 :::caution
+
 프론트 단에서 `INJECT` 명령어의 오퍼랜드에 맵핑될 정보를 전달해주어야 합니다. 다음 예제는 키가 `default`로 설정된 값을 추가합니다.
 
 ***사이트 맵*** > ***MXQL 데이터 조회***'에서 INJECT 값 전달하는 예시
 
 ![](https://img.whatap.io/media/images/mxql-example-5.png)
+
 :::
 
 ## ADJUST{#adjust}
@@ -577,6 +604,8 @@ ROWNUM
   ```
 
 :::caution
+
 * 데이터가 0인 경우도 데이터가 존재하는 경우입니다. `{exist: true}`에 적용됩니다.
 * `{exist : false}`와 `{notexist : false}`는 불가능합니다. `{notexist : true}`와 `{exist : true}`를 사용해주세요.
+
 :::

@@ -1,18 +1,27 @@
-* **whatap.trace_active_transaction_slow_time**<span class='type'>Millisecond</span><br/>
-    기본값 `3000`<br/>
-    수집 정보를 확인하는 대시보드의 액티브 트랜잭션 아크 이퀄라이저 그래프에서 Slow 구간으로 표기될 수 있는 트랜잭션 응답 시간의 기준을 지정합니다. 트랜잭션의 응답시간이 지정 시간을 초과할 경우 Slow 액티브 트랜잭션의 개수에 포함됩니다.
+* **whatap.trace_active_transaction_slow_time** <span class='type'>Millisecond</span>
 
-* **whatap.trace_active_transaction_very_slow_time**<span class='type'>Millisecond</span><br/>
-    기본값 `8000`<br/>
+  기본값 `3000`
 
-* **whatap.trace_active_transaction_lost_time**<span class='type'>Millisecond</span><br/>
-    기본값 `30000`<br/>
-    트랜잭션의 종료를 기다리는 제한 시간 5분 안에 트랜잭션이 끝나지 않는 경우 트랜잭션을 정보를 더 이상 수집하지 않습니다. 트랜잭션의 트레이스 정보에서 "Lost Connection"를 확인할 수 있습니다.
- 
-* **whatap.trace_useragent_enabled**<span class='type'>Boolean</span><br/>
-    기본값 `false`<br/>
-    값이 `true`이면 트랜잭션의 유저 에이전트 정보를 수집합니다. 
+  수집 정보를 확인하는 대시보드의 액티브 트랜잭션 아크 이퀄라이저 그래프에서 Slow 구간으로 표기될 수 있는 트랜잭션 응답 시간의 기준을 지정합니다. 트랜잭션의 응답시간이 지정 시간을 초과할 경우 Slow 액티브 트랜잭션의 개수에 포함됩니다.
 
-* **whatap.trace_referer_enabled**<span class='type'>Boolean</span><br/>
-    기본값 `false`<br/>
-    값이 `true`이면 트랜잭션의 Refere 정보를 수집합니다.
+* **whatap.trace_active_transaction_very_slow_time** <span class='type'>Millisecond</span>
+
+  기본값 `8000`
+
+* **whatap.trace_active_transaction_lost_time** <span class='type'>Millisecond</span>
+
+  기본값 `30000`
+
+  트랜잭션의 종료를 기다리는 제한 시간 5분 안에 트랜잭션이 끝나지 않는 경우 트랜잭션을 정보를 더 이상 수집하지 않습니다. 트랜잭션의 트레이스 정보에서 "Lost Connection"를 확인할 수 있습니다.
+
+* **whatap.trace_useragent_enabled** <span class='type'>Boolean</span>
+
+  기본값 `false`
+
+  값이 `true`이면 트랜잭션의 유저 에이전트 정보를 수집합니다. 
+
+* **whatap.trace_referer_enabled** <span class='type'>Boolean</span>
+
+  기본값 `false`
+
+  값이 `true`이면 트랜잭션의 Refere 정보를 수집합니다.
