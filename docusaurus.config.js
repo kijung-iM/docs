@@ -11,7 +11,7 @@ const rehypeTableMerge = require("rehype-table-merge").rehypeTableMerge;
 module.exports = Promise.resolve({
   title: 'WhaTap',
   tagline: '와탭 기술 문서 :: WhaTap, 와탭 기술 문서 페이지에 오신 것을 진심으로 환영합니다.',
-  url: 'https://docs.whatap.io',
+  url: 'https://whatap-docs.onrender.com/',
   baseUrl: '/',
   onBrokenLinks: 'log',
   onBrokenMarkdownLinks: 'warn',
@@ -75,20 +75,20 @@ module.exports = Promise.resolve({
     //     anonymizeIP: true,
     //   },
     // ],
-    [ 
-      require.resolve("@easyops-cn/docusaurus-search-local"),
-      {
-        hashed: true,
-        language: [ 'ko', 'en', 'ja' ],
-        indexBlog: false,
-        docsRouteBasePath: '/',
-        // removeDefaultStemmer: true,
-        highlightSearchTermsOnTargetPage: true,
-        explicitSearchResultPath: true,
-        searchResultContextMaxLength: 50,
-        ignoreFiles: [/wip/, /on-prem/, /common-items/, /mysql-rds/, /release-notes\/preview/, /java\/install-agent-with-buildpack/],
-      }
-    ],
+    // [ 
+    //   require.resolve("@easyops-cn/docusaurus-search-local"),
+    //   {
+    //     hashed: true,
+    //     language: [ 'ko', 'en', 'ja' ],
+    //     indexBlog: false,
+    //     docsRouteBasePath: '/',
+    //     // removeDefaultStemmer: true,
+    //     highlightSearchTermsOnTargetPage: true,
+    //     explicitSearchResultPath: true,
+    //     searchResultContextMaxLength: 50,
+    //     ignoreFiles: [/wip/, /on-prem/, /common-items/, /mysql-rds/, /release-notes\/preview/, /java\/install-agent-with-buildpack/],
+    //   }
+    // ],
     [
       'docusaurus-plugin-includes',
       {
@@ -112,6 +112,7 @@ module.exports = Promise.resolve({
       'docusaurus-plugin-enlarge-image', {}
     ],
   ],
+  themes: ['docusaurus-theme-search-typesense'],
   presets: [
     [
       '@docusaurus/preset-classic',
@@ -142,6 +143,36 @@ module.exports = Promise.resolve({
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      typesense: {
+        // Replace this with the name of your index/collection.
+        // It should match the "index_name" entry in the scraper's "config.json" file.
+        typesenseCollectionName: 'WhaTap Docs',
+        typesenseServerConfig: {
+          nodes: [
+            {
+              host: 'xxx-1.a1.typesense.net',
+              port: 443,
+              protocol: 'https',
+            },
+            {
+              host: 'xxx-2.a1.typesense.net',
+              port: 443,
+              protocol: 'https',
+            },
+            {
+              host: 'xxx-3.a1.typesense.net',
+              port: 443,
+              protocol: 'https',
+            },
+          ],
+          apiKey: 'xyz',
+        },
+        // Optional: Typesense search parameters: https://typesense.org/docs/0.24.0/api/search.html#search-parameters
+        typesenseSearchParameters: {},
+        // Optional
+        contextualSearch: true,
+        searchPagePath: 'search',
+      },
       metadata: [
         {
           name: 'keywords',
