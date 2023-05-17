@@ -173,6 +173,14 @@ module.exports = Promise.resolve({
         contextualSearch: true,
         searchPagePath: 'search',
       },
+      announcementBar: {
+        id: 'support_us',
+        content:
+          '이 페이지는 <a href="https://docs.whatap.io">docs.whatap.io</a> 페이지의 테스트를 위한 데모 환경입니다. ',
+        backgroundColor: '#fafbfc',
+        textColor: '#091E42',
+        isCloseable: false,
+      },
       metadata: [
         {
           name: 'keywords',
