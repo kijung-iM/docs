@@ -82,5 +82,34 @@ tags: [ 데이터베이스 모니터링, FAQ ]
 >grant REPLICATION SLAVE, REPLICATION CLIENT on *.* to whatap;
 >```
 
+### 메타락 모니터링
+
+| Q. MySQL에서 락트리에 메타락(데이터베이스 객체의 이름이나 구조를 변경 하는 경우에 획득하는 잠금)이 조회되지 않습니다. 메타락도 모니터링 하려면 어떻게 해야 하나요? |
+|---|
+
+> A. DB 설정과 와탭 에이전트 설정이 필요합니다.
+
+> **DB 설정**
+>
+> ```sql
+> # 1. Performance_schema활성화
+> performance_schema = on
+> # 2. setup_consumers활성화: 아래 쿼리결과 ENABLED가 'YES'이어야 함(8.0부터는 디폴트 YES임)
+> SELECT *
+> FROM performance_schema.setup_instruments
+> WHERE NAME = 'wait/lock/metadata/sql/mdl'; 
+>
+> -- ENABLED가 'NO'인 경우 업데이트 필요
+> UPDATE setup_instruments 
+> SET ENABLED = 'YES',TIMED='YES' 
+> WHERE NAME = 'wait/lock/metadata/sql/mdl';
+> ```
+
+> **와탭 DB 에이전트 설정**
+>
+> ```sql
+> # whatap.conf에 아래 설정 추가
+> metalock=1
+> ```
 
 </div>

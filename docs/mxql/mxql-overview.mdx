@@ -38,13 +38,13 @@ MXQL은 와탭의 성능 데이터(메트릭스)를 유연하게 조회하기 �
 
 MXQL과 SQL의 샘플 쿼리입니다. 각 라인의 오른쪽에 주석 내용을 참조하세요.
 
-```sql title='간단한 SQL 쿼리'
+```sql title='SQL query'
 SELECT time, pcode  -- Column 선택(time, pcode 컬럼만 조회하도록 설정합니다.)
 FROM app_counter    -- Table 선택(app_counter 테이블에서 데이터를 조회합니다.)
 WHERE tx_count = 1  -- 데이터 필터링(tx_count column의 값이 1인 데이터만 조회하도록 설정합니다.)
 ```
 
-```sql title='간단한 mxql 쿼리'
+```sql title='MXQL query'
 CATEGORY app_counter                 -- app_counter 카테고리에서 데이터를 조회하도록 설정합니다.
 TAGLOAD                              -- 데이터를 조회합니다.
 SELECT [ time, pcode ]               -- 조회된 전체 컬럼 중에서 time, pcode 필드만 선택합니다.
@@ -57,7 +57,7 @@ MXQL 쿼리를 수행하면 선택한 카테고리에서 선택한 필드의 메
 
 `app_counter` 카테고리에서 `tx_count`, `tx_error` 지표를 조회하는 쿼리는 다음과 같습니다.
 
-```sql title='MXQL 수행'
+```sql title='MXQL'
 CATEGORY app_counter                   -- app_counter 카테고리에서 데이터를 조회하도록 설정합니다.
 TAGLOAD                                -- 데이터를 조회합니다.
 SELECT [time, oid, tx_count, tx_error] -- 조회하고 싶은 필드의 이름을 설정합니다.

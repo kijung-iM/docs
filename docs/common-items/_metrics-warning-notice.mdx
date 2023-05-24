@@ -239,7 +239,9 @@ import TabItem from '@theme/TabItem';
   3. "oid" : text
   ```
 
-  ```java title='oname이 ott-1235일 경우'
+  ```java
+  // oname가 ott-1235일 경우
+
   // 정상적인 경우
   onname = 'ott-1235' 또는 onname = "ott-1235"
 
@@ -255,7 +257,9 @@ import TabItem from '@theme/TabItem';
   3. 123 : number
   ```
 
-  ```java title='oid가 123일 경우'
+  ```java
+  // oid가 123일 경우
+  
   // 정상적인 경우
   oid = 123
 
@@ -372,6 +376,8 @@ isNotEmpty(Key)
 
 ## 템플릿{#template}
 
+<Xclude product='browser'>
+
 ![복합 메트릭스 - 템플릿](/img/set-event-cmetric-template.png)
 
 * 여러 에이전트에서 수신된 데이터에 대해서 종합적 이벤트 판정해야할 때
@@ -383,17 +389,74 @@ isNotEmpty(Key)
   
   ***TPS has changed by more than 30% compared to the previous week.***
 
-### ***Inactive agents has been found.***
+* ***Inactive agents has been found.***
 
-* 프로젝트에 포함된 모든 에이전트 중 정상 상태의 에이전트 수가 6개 미만으로 떨어지는 이벤트가 발생하면 경고 알림을 보냅니다.
-* 조건: `num_of_current_agents` < 6
+  * 프로젝트에 포함된 모든 에이전트 중 정상 상태의 에이전트 수가 6개 미만으로 떨어지는 이벤트가 발생하면 경고 알림을 보냅니다.
+  * 조건: `num_of_current_agents` < 6
 
-### ***Very slow active transactions detected.***
+* ***Very slow active transactions detected.***
 
-* 프로젝트에 포함된 특정 `okind`에 속한 에이전트에서 8초 이상 소요되는 트랜잭션의 수의 합이 10개 초과 발생하면 경고 알림을 보냅니다.
-* 조건: `very_slow_tx_cnt_m5_avg` > 10
+  * 프로젝트에 포함된 특정 `okind`에 속한 에이전트에서 8초 이상 소요되는 트랜잭션의 수의 합이 10개 초과 발생하면 경고 알림을 보냅니다.
+  * 조건: `very_slow_tx_cnt_m5_avg` > 10
 
-### ***TPS has changed by more than 30% compared to the previous week.***
+* ***TPS has changed by more than 30% compared to the previous week.***
 
-* 프로젝트에 포함된 특정 `okind`에 속한 에이전트들의 TPS합이 7일 전과 비교했을 때 30% 초과 달라지면 경고 알림을 보냅니다.
-* 조건: `one_week_diff_abs` > `current_tps` * 0.3
+  * 프로젝트에 포함된 특정 `okind`에 속한 에이전트들의 TPS합이 7일 전과 비교했을 때 30% 초과 달라지면 경고 알림을 보냅니다.
+  * 조건: `one_week_diff_abs` > `current_tps` * 0.3
+
+</Xclude>
+
+<InDoc product='browser'>
+
+**Browser** 모니터링에서는 다음과 같이 경고 알림 템플릿을 제공합니다. 
+
+#### 메트릭스 이벤트 템플릿
+
+***경고 알림*** > ***이벤트 설정*** > ***메트릭스*** 섹션에서 ***+ 이벤트 추가*** 버튼을 선택하세요. ***템플릿***에서 원하는 항목을 선택하세요.
+
+* ***페이지 로드 시간 이상***
+
+  페이지 그룹(`${page_group}`)의 페이지 로드 시간이 10초 이상 소요되면 경고 알림을 보냅니다.
+
+* ***브라우저 에러 수 이상***
+
+  10건 이상의 브라우저 에러가 발생하면 경고 알림을 보냅니다.
+
+* ***AJAX 응답 시간 이상***
+
+  AJAX Path(`${request_path}`)의 AJAX 응답 시간이 30초 이상 소요되면 경고 알림을 보냅니다.
+
+
+#### 복합 메트릭스 이벤트 템플릿
+
+***경고 알림*** > ***이벤트 설정*** > ***복합 메트릭스*** 섹션에서 ***+ 이벤트 추가*** 버튼을 선택하세요. ***템플릿***에서 원하는 항목을 선택하세요.
+
+* ***분당 페이지 로드 시간 이상***
+
+  페이지 그룹(`${page_group}`)의 분당 평균 페이지 로드 시간이 10초 이상 소요되면 경고 알림을 보냅니다.
+
+* ***분당 페이지 로드 수 이상***
+
+  페이지 그룹(`${page_group}`)의 분당 페이지 로드 수가 100건 이상 발생하면 경고 알림을 보냅니다.
+
+* ***분당 라우터 변경 시간 이상***
+
+  페이지 그룹(`${page_group}`)의 분당 평균 라우터 변경 시간이 10초 이상 소요되면 경고 알림을 보냅니다.
+
+* ***분당 AJAX 응답 시간 이상***
+
+  AJAX Path(`${request_path}`)의 분당 평균 AJAX 응답 시간이 30초 이상 소요되면 경고 알림을 보냅니다.
+
+* ***분당 AJAX 요청 수 이상***
+
+  호스트(`${request_host}`)의 분당 AJAX 요청 수가 1000건 이상 발생하면 경고 알림을 보냅니다.
+
+* ***분당 AJAX 실패 건수 이상***
+
+  AJAX Path(`${request_path}`)의 분당 AJAX 실패 건수가 100건 이상 발생하면 경고 알림을 보냅니다.
+
+* ***분당 브라우저 에러 수 이상***
+
+  페이지 그룹(`${page_group}`)의 분당 브라우저 에러 수가 10건 이상 발생하면 경고 알림을 보냅니다.
+
+</InDoc>

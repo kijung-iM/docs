@@ -4,6 +4,76 @@ title: Service 1.100.X
 toc_max_heading_level: 3
 ---
 
+## Service 1.100.22
+
+2023년 5월 23일
+
+<div class='indentTab'>
+
+<p><Status>Fixed</Status> <UI>분석</UI> > <UI>트랜잭션 검색</UI> 메뉴에서 <UI>경과 시간</UI> 필터 입력창에 최소 경과 시간 및 최대 경과 시간 텍스트가 표시되도록 수정</p>
+
+</div>
+
+
+## Service 1.100.21
+
+2023년 5월 23일
+
+<div class='indentTab'>
+
+<p><Status>Fixed</Status> <UI>에이전트 설치</UI> 페이지의 중국어 버전 누락 버그 수정</p>
+
+</div>
+
+
+## Service 1.100.19
+
+2023년 5월 19일
+
+<div class='indentTab'>
+
+### `공통`
+
+- <Status>Fixed</Status> <UI>이용 내역</UI> > <UI>청구서 미리보기</UI> 메뉴에서 할인 금액이 없을 경우 이용 금액이 표시되지 않는 버그 수정
+
+- <Status>Fixed</Status> 프로필 아이콘 클릭 후 <UI>계정 정보 관리</UI> 메뉴로 이동한 다음 이전 페이지로 이동 시 (뒤로 가기 버튼 클릭 시) 쿼리 파라미터에 <code>org=undefined</code>가 입력되어 이전 페이지로 이동하지 않는 문제 수정
+
+---
+
+### `Log`
+
+- <Status>Change</Status> <UI>로그</UI> > <UI>로그 검색</UI> 메뉴에서 필터에 키만 입력하고 값을 입력하지 않은 상태에서 카테고리 추가 시 키 값으로 none 값을 입력하도록 수정
+
+</div>
+
+
+## Service 1.100.18
+
+2023년 5월 18일
+
+<div class='indentTab'>
+
+### `Database`
+
+<p><Status>Fixed</Status> 다음 메뉴 하단 패널에서 락 트리 테이블에 누락된 `sql_param(query_param)` 컬럼 추가</p>
+
+- ***대시보드*** > ***인스턴스 모니터링***
+- ***대시보드*** > ***멀티 인스턴스 모니터링***
+- ***분석*** > ***카운트 추이***
+
+</div>
+
+## Service 1.100.17
+
+2023년 5월 17일
+
+<div class='indentTab'>
+
+<p><Status>Fixed</Status> <UI>이용 내역</UI> > <UI>프로젝트 유료 전환</UI> 메뉴에서 발생하는 화이트 아웃 현상 수정</p>
+
+</div>
+
+
 ## Service 1.100.16
 
 2023년 5월 16일
@@ -12,7 +82,7 @@ toc_max_heading_level: 3
 
 ### `Application`
 
-<Status>Change</Status> <UI>대시보드</UI> > <UI>트랜잭션 맵</UI> 메뉴에서 <UI>TX 트레이스</UI> 테이블 컬럼으로 <UI>SQL Count</UI>, <UI>Login ID</UI>, <UI>SQL Fetch Count</UI> 항목 추가
+<p><Status>Change</Status> <UI>대시보드</UI> > <UI>트랜잭션 맵</UI> 메뉴에서 <UI>TX 트레이스</UI> 테이블 컬럼으로 <UI>SQL Count</UI>, <UI>Login ID</UI>, <UI>SQL Fetch Count</UI> 항목 추가</p>
 
 </div>
 
@@ -125,11 +195,15 @@ toc_max_heading_level: 3
 
 <div class='indentTab'>
 
+### `공통`
+
+<p><Status>Change</Status> <UI>통합 대시보드</UI>, <UI>통합 메트릭스 보드</UI>를 사이드 메뉴에서 제거, <UI>사이트 맵</UI>을 통해서만 접근 가능하도록 변경</p>
+
+### `Log`
+
 - <Status>Fixed</Status> <UI>로그</UI> > <UI>로그 설정</UI> > <UI>로그 파서 설정</UI> > <UI>필터 입력</UI> > 필터키의 오타 수정(okineName → okindName)
 
 - <Status>Fixed</Status> <UI>로그</UI> > <UI>라이브 테일</UI> 메뉴에서 조회된 로그 데이터가 없는 경우 이전의 로그가 표시되는 현상 수정
-
-- <Status>Change</Status> <UI>통합 대시보드</UI>, <UI>통합 메트릭스 보드</UI>를 사이드 메뉴에서 제거, <UI>사이트 맵</UI>을 통해서만 접근 가능하도록 변경
 
 </div>
 
@@ -151,6 +225,8 @@ toc_max_heading_level: 3
 
 <div class='indentTab'>
 
+### `Log`
+
 <p><Status>Fixed</Status> <UI>로그</UI> > <UI>라이브 테일</UI> 메뉴에서 최초 로그 데이터 조회 시 선택된 카테고리가 아닌 전체 카테고리 대상으로 로그를 조회하는 버그 수정</p>
 
 </div>
@@ -162,7 +238,7 @@ toc_max_heading_level: 3
 
 <div class='indentTab'>
 
-### `공통`
+### `Log`
 
 <p><Status>Fixed</Status> 로그 프로파일 조회 시 간헐적으로 로그가 조회되지 않는 버그 수정</p>
 

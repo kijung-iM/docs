@@ -11,7 +11,7 @@ const rehypeTableMerge = require("rehype-table-merge").rehypeTableMerge;
 module.exports = Promise.resolve({
   title: 'WhaTap',
   tagline: '와탭 기술 문서 :: WhaTap, 와탭 기술 문서 페이지에 오신 것을 진심으로 환영합니다.',
-  url: 'https://whatap-docs.onrender.com/',
+  url: 'https://docs.whatap.io',
   baseUrl: '/',
   onBrokenLinks: 'log',
   onBrokenMarkdownLinks: 'warn',
@@ -55,40 +55,19 @@ module.exports = Promise.resolve({
         ],
       }
     ],
-    // [
-    //   '@docusaurus/plugin-google-gtag',
-    //   {
-    //     trackingID: 'G-E46TQ5VSCT',
-    //     anonymizeIP: true,
-    //   },
-    // ],
-    // [
-    //   '@docusaurus/plugin-google-tag-manager',
-    //   {
-    //     containerId: 'GTM-WJSZDJR',
-    //   },
-    // ],
-    // [
-    //   '@docusaurus/plugin-google-analytics',
-    //   {
-    //     trackingID: 'G-4QXE2TJTM0',
-    //     anonymizeIP: true,
-    //   },
-    // ],
-    // [ 
-    //   require.resolve("@easyops-cn/docusaurus-search-local"),
-    //   {
-    //     hashed: true,
-    //     language: [ 'ko', 'en', 'ja' ],
-    //     indexBlog: false,
-    //     docsRouteBasePath: '/',
-    //     // removeDefaultStemmer: true,
-    //     highlightSearchTermsOnTargetPage: true,
-    //     explicitSearchResultPath: true,
-    //     searchResultContextMaxLength: 50,
-    //     ignoreFiles: [/wip/, /on-prem/, /common-items/, /mysql-rds/, /release-notes\/preview/, /java\/install-agent-with-buildpack/],
-    //   }
-    // ],
+    [
+      '@docusaurus/plugin-google-gtag',
+      {
+        trackingID: 'G-E46TQ5VSCT',
+        anonymizeIP: true,
+      },
+    ],
+    [
+      '@docusaurus/plugin-google-tag-manager',
+      {
+        containerId: 'GTM-WJSZDJR',
+      },
+    ],
     [
       'docusaurus-plugin-includes',
       {
@@ -107,9 +86,6 @@ module.exports = Promise.resolve({
           }
         ]
       }
-    ],
-    [
-      'docusaurus-plugin-enlarge-image', {}
     ],
   ],
   themes: ['docusaurus-theme-search-typesense'],
@@ -146,40 +122,23 @@ module.exports = Promise.resolve({
       typesense: {
         // Replace this with the name of your index/collection.
         // It should match the "index_name" entry in the scraper's "config.json" file.
-        typesenseCollectionName: 'WhaTap Docs',
+        typesenseCollectionName: 'WhaTapDocs',
         typesenseServerConfig: {
           nodes: [
             {
-              host: 'xxx-1.a1.typesense.net',
-              port: 443,
-              protocol: 'https',
-            },
-            {
-              host: 'xxx-2.a1.typesense.net',
-              port: 443,
-              protocol: 'https',
-            },
-            {
-              host: 'xxx-3.a1.typesense.net',
-              port: 443,
+              host: 'typesense.whatap.io',
               protocol: 'https',
             },
           ],
-          apiKey: 'xyz',
+          apiKey: 'o8PpsXaZdGLtEp2EAHVT4C9Nw9xK7SUi',
         },
         // Optional: Typesense search parameters: https://typesense.org/docs/0.24.0/api/search.html#search-parameters
-        typesenseSearchParameters: {},
+        typesenseSearchParameters: {
+          // highlight_affix_num_tokens: 150,
+        },
         // Optional
         contextualSearch: true,
         searchPagePath: 'search',
-      },
-      announcementBar: {
-        id: 'support_us',
-        content:
-          '이 페이지는 <a href="https://docs.whatap.io">docs.whatap.io</a> 페이지의 테스트를 위한 데모 환경입니다. ',
-        backgroundColor: '#fafbfc',
-        textColor: '#091E42',
-        isCloseable: false,
       },
       metadata: [
         {

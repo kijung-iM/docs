@@ -73,7 +73,8 @@ tags: [ 로그 모니터링, Server ]
 
 * ***카테고리와 함께 설치***
 
-  ```bash title='Windows Powershell (관리자 권한)' {6-11,13,14} showLineNumbers
+  ```bash title='Windows Powershell' {6-11,13,14} showLineNumbers
+  # 관리자 권한 필요
   New-Item -type "Directory" -Path "C:\Program Files\WhatapInfra\extension"
 
   $contentToAdd = @"
@@ -117,7 +118,7 @@ tags: [ 로그 모니터링, Server ]
 
 * `excludeNames`: 로그 파일 경로(path)에 별표(*)를 포함한 경우 로그 비대상 파일을 제외하도록 파일명을 설정할 수 있습니다. 쉼표(,)를 구분자로 이용해 복수 설정할 수 있습니다.
 
-  ```ini title='예시'
+  ```ini title='Example'
   excludeNames = [ ".gz",".zip" ]
   ```
 

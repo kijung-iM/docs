@@ -43,7 +43,7 @@ AWS Log를 수집하려면 부가적인 자원이 필요합니다. 사용자의 
 
 <!--  프로젝트 생성 -->
 
-{@include: ../getting-started/_create-project-v2.mdx} 
+{@include: ../getting-started/_create-project-v2.mdx}  
 
 {@include: ../getting-started/_accesskey.mdx}
 
@@ -149,7 +149,7 @@ User {user name} is not authorized to perform
   * AWS Log를 생성하고 필요한 권한을 부여하기 위한 정책
   * AWS Log에 Policy를 생성하기 위한 정책
   
-  ```bash title='AWS Log 필요 권한'
+  ```bash title='AWS Log Required roles'
   {
     "Version": "2012-10-17",
     "Statement": [
@@ -208,7 +208,7 @@ WhaTap Forwarder가 사용자의 AWS 환경 자원 로그를 전송받으려면 
 
 1. ***Create Policy*** 버튼을 선택하고 다음의 정책을  복사해 ![number 1](/img/number-01.png) ***JSON*** 탭에 붙여넣기 하세요.
 
-    ```bash title='IAM 정책'
+    ```bash title='IAM policy'
     {
         "Version": "2012-10-17",
         "Statement": [

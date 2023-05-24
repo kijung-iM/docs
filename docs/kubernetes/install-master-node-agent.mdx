@@ -55,7 +55,7 @@ EOF
 
 Google Kubernetes Engine(GKE)의 경우 사용자 클러스터 생성 후 권한 설정을 위해 다음 명령을 실행하세요.
 
-```bash title='GKE 권한 설정'
+```bash
 ACCOUNT=$(gcloud info --format='value(config.account)')
 kubectl create clusterrolebinding owner-cluster-admin-binding \
   --clusterrole cluster-admin \

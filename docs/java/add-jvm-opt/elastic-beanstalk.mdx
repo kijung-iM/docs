@@ -24,7 +24,8 @@ tags:
     * *whatap.agent-2.0_25.jar*
     * *whatap.conf*
 
-    ```bash title='디렉터리 압축하기'
+    ```bash
+    # 디렉터리 압축하기
     zip -r whatap-agent.zip agent
     ```
 
@@ -37,7 +38,7 @@ tags:
         S3경로
     ```
 
-    ```yaml title=예시
+    ```yaml title='Example'
     sources:
       /home/webapp:
         http://s3.ap-northeast-2.amazonaws.com/{bucket-name}/whatap-agent.zip
@@ -45,11 +46,11 @@ tags:
 
 1. 와탭 에이전트 옵션을 추가한 JVM command를 입력해 *Procfile*을 작성하세요.
 
-    ```yaml title=Procfile
+    ```yaml title='Procfile'
     web: java -javaagent:${WHATAP_JAR_FILE_PATH} -Dwhatap.name=${WHATAP_NAME} -Dwhatap.okind=${WHATAP_OKIND_NAME} -Dwhatap.server.home=${APPLICAION_PATH} -Dwhatap.conf.path=${WHATAP_HOME} -jar ${APPLICAIONT}.jar
     ```
 
-    ```yaml title=예시
+    ```yaml title='Example'
     web: java -javaagent:/home/webapp/agent/whatap.agent-X.Y.Z.jar -Dwhatap.name=bootTest -Dwhatap.okind=test -Dwhatap.server.home=/var/app/current -Dwhatap.conf.path=/home/webapp/agent -jar whatap-boot-test.jar
     ```
 

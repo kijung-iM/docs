@@ -27,7 +27,7 @@ JVM 옵션으로 다음 내용을 추가하세요.
 
 *security.policy* 권한을 다음과 같이 추가하세요.
 
-```java title='$WEBSPHERE_HOME/properties/server.policy 또는 $WEBSPHERE_PROFILE_HOME/properties/server.policy'
+```java title='$WEBSPHERE_HOME/properties/server.policy || $WEBSPHERE_PROFILE_HOME/properties/server.policy'
 grant codeBase "file:$WHATAP_HOME/-"
 {
    permission java.security.AllPermission;

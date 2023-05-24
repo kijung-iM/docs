@@ -19,7 +19,7 @@ tags: [ Node.js, 트랜잭션 ]
 
   응답시간을 측정할 메소드를 설정합니다. 마지막 마침표(.)를 구분자로 클래스 FullName과 메소드로 구분되며 별표(*)를 와일드 카드로 사용할 수 있습니다. 대상이 여러 개인 경우 쉼표(,)로 구분합니다.
 
-  ```ini title='예시'
+  ```ini title='Example'
   hook_method_patterns=a.b.C1.*
   ```
 
@@ -51,7 +51,7 @@ tags: [ Node.js, 트랜잭션 ]
 
   기본값 `get,set`
 
-  메소드 트레이스를 설정할 때 트레이스에서 제외하고 싶은 클랙스들을 prefix로 설정합니다.
+  메소드 트레이스를 설정할 때 트레이스에서 제외하고 싶은 클래스들을 prefix로 설정합니다.
 
 * **hook_method_ignore_classes** <span class='type'>String</span>
 
@@ -88,7 +88,7 @@ tags: [ Node.js, 트랜잭션 ]
 
 * **trace_service_port_enabled** <span class='type'>Boolean</span>
 
-  기본값 `fasle`
+  기본값 `false`
 
   트랜잭션의 이름에 포트 번호를 추가합니다.
 

@@ -76,7 +76,7 @@ gorm v2 프레임워크를 통해 처리되는 DB Connection 및 SQL을 추적�
 
 `gorm.Open` 함수 대신에 `whatapgorm.OpenWithContext` 함수를 사용합니다. 전달하는 context는 내부에 whatap TraceCtx를 포함해야 하며 trace 패키지의 `Start` 함수를 통해 생성 할 수 있습니다.
 
-```go title='설치 안내'
+```go title='Install guide'
 import (
   "net/http"
 
@@ -119,7 +119,7 @@ gorm은 공식 지원하는 sqlite, mysql, postgres, sqlserver 외에도 dialect
 
 관련 링크 : [gorm driver](https://gorm.io/docs/write_driver.html)
 
-```go title='설치 안내'
+```go title='Install guide'
 import (
   "net/http"
   "github.com/whatap/go-api/instrumentation/database/sql/whatapsql"
@@ -168,7 +168,7 @@ gorm v1 프레임워크를 통해 처리되는 DB Connection 및 SQL을 추적�
 
 `gorm.Open` 함수 대신에 `whatapgorm.OpenWithContext` 함수를 사용합니다. 전달하는 context는 내부에 whatap TraceCtx를 포함해야 하며 trace 패키지의 Start 함수를 통해 생성 할 수 있습니다.
 
-```go title='설치 안내'
+```go title='Install guide'
 import (
   "net/http"
 
@@ -213,7 +213,7 @@ gorm은 공식 지원하는 sqlite, mysql, postgres, sqlserver 외에도 dialect
 
 관련 링크 : [gorm driver](https://v1.gorm.io/docs/dialects.html)
 
-```go title='설치 안내'
+```go title='Install guide'
 import (
   "net/http"
   "github.com/whatap/go-api/instrumentation/database/sql/whatapsql"
@@ -262,7 +262,7 @@ func main() {
 
 redigo 프레임워크를 통해 redis에 전달되는 명령을 추적합니다. `redis.Dial` 대신에 `whatapredigo.DialContext`를 함수를 사용합니다.
 
-```go title='설치 안내'
+```go title='Install guide'
 import (
   "context"
   "net/http"
@@ -316,7 +316,7 @@ sarama 프레임워크를 통해서 처리되는 kafka produce, consume 이벤�
 
 whatapsarama의 Interceptor를 통해 async producer 정보를 추적합니다. Producer Message 생성시 Ctx 관련 정보를 Metadata를 통해 전달하면 Multi Transaction으로 연결 됩니다.
 
-```go title='설치 안내'
+```go title='Install guide'
 import (
   "context"
   "net/http"
@@ -372,7 +372,7 @@ func main() {
 
 whatapsarama의 Interceptor를 통해 consumer 정보를 추적합니다. Produce에서 전달된 Message 기준으로 Multi Transaction으로 연결 됩니다.
 
-```go title='설치 안내'
+```go title='Install guide'
 import (
   "context"
   "flag"

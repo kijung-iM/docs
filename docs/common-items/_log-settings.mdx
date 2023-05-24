@@ -4,17 +4,15 @@
 
 ***로그 설정*** 메뉴에서 로그 모니터링 관련 설정을 할 수 있습니다. 에이전트 설정 확인, 로그 모니터링의 활성화 여부 결정, 로그 데이터의 유지 기간 및 조회 비밀번호 설정, 로그 파서 등록, 빠른 인덱스 설정 등의 메뉴를 사용할 수 있습니다.
 
-<InDoc product='aws-log'>
-
 {@include: ../common-items/_log-role-aws-log.mdx} 
+
+<InDoc product='aws-log'>
 
 ![로그 설정 sc](/img/log-setting-aws.png) 
 
 </InDoc>
 
 <InDoc product='log'>
-
-{@include: ../common-items/_log-role.mdx}  
 
 ![로그 설정 sc](/img/log-setting.png)
 
@@ -101,21 +99,9 @@
 
 :::note
 
-<InDoc product='log'>
-
-**비밀번호 분실**
-
-**프로젝트 수정** 권한이 있는 경우 ***로그 설정*** 메뉴에서 새 비밀번호로 수정할 수 있습니다.
-
-</InDoc>
-
-<InDoc product='aws-log'>
-
 **비밀번호 분실**
 
 **로그 편집** 권한이 있는 경우 ***로그 설정*** 메뉴에서 새 비밀번호로 수정할 수 있습니다.
-
-</InDoc>
 
 :::
 
@@ -220,7 +206,7 @@
 
 * **등록 예시**
 
-  ```bash title='로그 원문'
+  ```bash title='Log'
   [2022-10-25 10:15:34:145]...(개행)
   Request : {"key1":"value1","key2":"value2",...}(개행)
   Response : {"key3":"value3","key4":"value4",...}
@@ -250,7 +236,7 @@
 
   * **등록 예시**
 
-    ```bash title='로그 원문'
+    ```bash title='Log'
     [2022-10-25 10:15:34:145]...(개행)
     Request : {"key1":"value1","key2":"value2",...}(개행)
     Response : {"key3":"value3","key4":"value4",...}

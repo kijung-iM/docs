@@ -17,7 +17,7 @@ import UI from '@site/src/components/UItext';
 
 - 2초 데이터 수집 기능 추가 
   
-  ```ini title='whatap.conf 기본 설정'
+  ```ini title='whatap.conf'
   fast_perf_enabled=false
   fast_perf_interval=2000
   fast_perf_gc_enabled=true
@@ -56,7 +56,7 @@ import UI from '@site/src/components/UItext';
         
 - 프로파일 디버그 옵션: 디버그 대상 패턴을 등록한 경우 프로파일과 에이전트 로그에서 스텍을 확인할 수 있는 기능 추가
 
-    ```ini title='whatap.conf 설정'
+    ```ini title='whatap.conf'
     hook_method_debug_enabled=true
     hook_method_debug_patterns=
     ```
@@ -66,13 +66,13 @@ import UI from '@site/src/components/UItext';
     - *{AGENT_HOME}/plugin/{...}.x* 파일에서 활용할 수 있도록 `HashTable` 클래스를 추가하였습니다.
     - `whatap.agent.api.Ref.h`를 사용하면 `HashTable`을 활용할 수 있습니다.
 
-      ```java title='예시'
+      ```java title='Example'
       Class hashTable = (Class) whatap.agent.api.Ref.h;
       ```
         
 - TTA BMT를 위한 전용 클래스들 추가: 자바 에이전트 시연을 위해 활용 가능
         
-  ```java title='Java 클래스'
+  ```java title='Java Class'
   # map
   bmt.m.MyMap
   
@@ -95,7 +95,7 @@ import UI from '@site/src/components/UItext';
   bmt.jdbc.Lock
   ```
 
-  ```java title='추적'
+  ```java title='Tracing'
   // Connection Pool 추적
   // ConnectionPoolASM
   target.put("bmt/ds/MyDataSource", MyDataSource.className);
@@ -127,13 +127,13 @@ import UI from '@site/src/components/UItext';
 
   - 설정 추가해 프로파일에 에러 관련 정보를 표시하는 스텝 추가
 
-  ```ini title='whatap.conf 설정(기본값)'
+  ```ini title='whatap.conf'
   profile_error_step_enabled=false
   ```
         
 - jmx 설정 추가: 임의의 jmx 정보를 추가로 조회할 수 있는 기능 추가
         
-  ```ini title='whatap.conf 설정'
+  ```ini title='whatap.conf'
   perfx_tomcat_enabled=false
   perfx_jmx_value_limit=100
   perfx_jmx_tag_from_objectname_enabled=false
@@ -174,7 +174,7 @@ import UI from '@site/src/components/UItext';
 
 - 기존 30초 평균으로 수집한 tps 데이터를 5초 평균으로 수집하는 기능 추가
 
-  ```ini title='whatap.conf 기본 설정'
+  ```ini title='whatap.conf'
   service_metrics_spike_enabled=false
   ```
         
@@ -186,7 +186,7 @@ import UI from '@site/src/components/UItext';
   
   * 프로파일 데이터를 전송할 때 큐에 있는 프로파일 데이터가 `profile_zip_min_size` 크기 미만인 경우를 제외하고는 프로파일 데이터를 압축 전송
         
-  ```ini title='whatap.conf 설정'
+  ```ini title='whatap.conf'
   # 프로파일 데이터 압축 여부
   profile_zip_enabled=true
   
@@ -222,7 +222,7 @@ import UI from '@site/src/components/UItext';
 
 - 플러그인에서 수집하는 CustomCounter 기능을 기존 CustomCounterTask 대신에 CustomTaskLoader로 대체
 
-  ```ini title='whatap.conf 기본 설정'
+  ```ini title='whatap.conf'
   custom_task_enabled=true
   custom_task_jarfile={full_path}
   ```
@@ -237,7 +237,7 @@ import UI from '@site/src/components/UItext';
 
 - 에이전트-proxy의 서버시간 차이가 있는 경우 에이전트 로그에 서버간 시간 차이를 표시하도록 수정
   
-  ```bash title='에이전트 로그'
+  ```bash title='Agent log'
   # 30초 이상 차이가 나는 경우 
   "fatal warning time-reverse (시간 차이) ms"
   
@@ -247,7 +247,7 @@ import UI from '@site/src/components/UItext';
 
 - 사용자 카운팅을 위한 옵션들을 wclient_xxx 형태로 수정, 이전 옵션 이름도 사용할 수 있지만, v2.2.0부터는 새로운 옵션 이름 사용 권장
 
-  ```ini title='whatap.conf 설정(교체/추가)'
+  ```ini title='whatap.conf'
   # 교체
   trace_user_method=IP
   wclient_trace_type=IP
@@ -290,7 +290,7 @@ import UI from '@site/src/components/UItext';
 
 - 로그 출력 로고에 릴리즈 버전 포함
       
-  ```bash title='로고'
+  ```bash title='Logo'
     _       ____  ______           
   | |     / / /_/_  __/___ _____   ___  ___ 
   | | /| / / __ \/ / / __ `/ __ \ | _ \|_  ) 
@@ -302,7 +302,7 @@ import UI from '@site/src/components/UItext';
         
 - 자바에이전트의 통계 수집 기본값을 기존 5000에서 10000으로 수정, 통계 데이터 전송 시 2초마다 체크
 
-  ```ini title='whatap.conf 기본 설정'
+  ```ini title='whatap.conf'
   stat_tx_max_count=10000
   ```
         

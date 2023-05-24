@@ -16,17 +16,17 @@ import ProdImg from '@site/src/components/ChangeImgName.js';
 
 필요한 권한과 권장되는 정책을 확인하세요.
 
-|Resouce|권한 |
-|----|----|
-|CloudWatch  |Read|
-|EC2  |Read|
-|ElasticCache  |Read|
-|CloudFront  |Read|
-|Dynammodb  |Read|
-|ElasticBeansTalk  |Read|
-|AutoScaling  |Read|
-|EFS  |Read|
-|RDS  |Read|
+| Resouce          | 권한 |
+| ---------------- | ---- |
+| CloudWatch       | Read |
+| EC2              | Read |
+| ElasticCache     | Read |
+| CloudFront       | Read |
+| Dynammodb        | Read |
+| ElasticBeansTalk | Read |
+| AutoScaling      | Read |
+| EFS              | Read |
+| RDS              | Read |
 
 * **권장 Policy**
   * arn:aws:iam::aws:policy/ReadOnlyAccess
@@ -55,7 +55,7 @@ Role을 이용한 설정을 권장합니다. Access Key 활용은 기존 Access 
 
 #### 역할(Role) 생성
 
-![Amazon Cloudwatch - role](https://img.whatap.io/media/images/amazon_cloudwatch_auth_role_dialog.png)
+![Amazon Cloudwatch - role](/img/cloudwatch-auth-role.png)
 
 1. AWS Management Console에 로그인 후 IAM 콘솔을 엽니다.
 1. 콘솔의 탐색창에서 역할을 선택한 후 역할 생성을 선택하세요.
@@ -74,7 +74,7 @@ Role을 이용한 설정을 권장합니다. Access Key 활용은 기존 Access 
 
 #### 와탭 수집 주기
 
-{@include: ../common-items/_collecting-period.mdx} 
+{@include: ../common-items/_collecting-period.mdx}
 
 #### 네임스페이스
 

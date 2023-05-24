@@ -15,11 +15,11 @@ import UI from '@site/src/components/UItext';
 
 기존의 weaving_reserved 설정과 동일한 기능을 가진 weaving 설정을 추가하였습니다. +
 
-```ini title='whatap.conf 설정'
+```ini title='whatap.conf'
 weaving=tomcat10
 ```
 
-```ini title='whatap.conf 설정'
+```ini title='whatap.conf'
 weaving_reserved=tomcat10
 ```
 
@@ -29,7 +29,7 @@ thread 동작 시간이 설정값을 초과하는 경우에 thread 중단 여부
 
 기본 설정값은 false 입니다.
 
-```ini title='whatap.conf 기본 설정'
+```ini title='whatap.conf'
 auto_thread_kill_elapsed=0
 auto_thread_kill_enabled=false
 ```
@@ -40,7 +40,7 @@ Collection 클래스를 hooking 하는 기존 방식에서 CollectionHolder를 �
 
 Collection을 생성하는 클래스를 collection_nonstatic_holders 설정에 추가하여 Collection Map 메뉴에서 확인할 수 있습니다.
 
-```ini title='whatap.conf 설정'
+```ini title='whatap.conf'
 collection_nonstatic_holders=org.apache.catalina.session.ManagerBase
 ```
 
@@ -75,7 +75,7 @@ logsink에서 수집하는 데이터를 추가하였습니다.
 
 설정에 따라서 transaction id, login id, http host 데이터 수집 여부를 결정할 수 있습니다.
 
-```ini title='whatap.conf 기본 설정'
+```ini title='whatap.conf'
 _logtag_enabled = false         # tag 
 logtag_txid_enabled=false       # transation id
 logtag_login_enabled=false      # login id
@@ -90,7 +90,7 @@ HttpClient에 timeout을 적용하고, timeout 발생시 에러처리를 할 수
 
 jmx pool object의 기본값을 수정하였습니다. jmx pool의 데이터소스 이름 사용 여부를 결정할 수 있는 옵션을 추가하였습니다. 데이터소스 이름을 등록하는 경우 jndi 방식을 실행하고, 이름을 등록하지 않은 경우 기본 url 방식으로 동작합니다.
 
-```ini title='whatap.conf 기본 설정'
+```ini title='whatap.conf'
 jmx_pool_dsname_enabled=false
 jmx_pool_object="*:type=DataSource,class=*,name=*"
 ```
@@ -99,7 +99,7 @@ jmx_pool_object="*:type=DataSource,class=*,name=*"
 
 heapdump 파일 경로를 지정할 수 있도록 log_root 옵션을 추가하였습니다.
 
-```ini title='whatap.conf 기본 설정'
+```ini title='whatap.conf'
 log_root=${WHATAP_HOME}/dump
 ```
 
@@ -111,7 +111,7 @@ log_root=${WHATAP_HOME}/dump
 
 active stack의 thread 이름을 표시할 수 있도록 설정을 추가하였습니다.
 
-```ini title='whatap.conf 기본 설정'
+```ini title='whatap.conf'
 active_stack_thread_name_enabled=false
 ```
 
@@ -125,7 +125,7 @@ yard 버전이 낮은 경우 true 설정시 프로토콜 오류로 에이전트 
 
 비동기 thread의 id와 이름을 표시할 수 있도록 설정을 추가하였습니다.
 
-```ini title='whatap.conf 기본 설정'
+```ini title='whatap.conf'
 debug_async_thread_enabled=false
 ```
 
@@ -163,7 +163,7 @@ accesskey=
 
 자바 에이전트 메타태그 옵션명을 수정하였습니다.
 
-```ini title='whatap.conf 기본 설정'
+```ini title='whatap.conf'
 agent_meta_tags_enabled=true
 ```
 
@@ -175,7 +175,7 @@ agent_meta_tags_enabled=true
 
 구분자는 ','로 대소문자를 구분하지 않습니다. `agent_env_system_enabled`, `agent_env_jvm_enabled` 설정과 연결하여 사용할 수 있습니다.
 
-```ini title='whatap.conf 기본 설정'
+```ini title='whatap.conf'
 agent_env_system_enabled=false
 agent_env_jvm_enabled=true
 
@@ -194,7 +194,7 @@ target IP 혹은 서비스의 접속 상태를 로그 모니터링의 liveTail�
 
 * 에러 응답인 경우 `logsink_rt_error_interval` 설정 간격에 맞추어서 로그를 기록합니다. 기본값은 5초 입니다.
 
-```ini title='whatap.conf 기본 설정'
+```ini title='whatap.conf'
 logsink_rt_enabled=false
 
 logsink_rt_error_interval=5000
@@ -276,7 +276,7 @@ httpc_status_url_alert_ignore_set=/api/test/timeout:408
 
 Alibaba Druid connection pool 을 추적할 수 있도록 기능을 추가하였습니다.
 
-```ini title='whatap.conf 기본 설정'
+```ini title='whatap.conf'
 druid_pool_enabled=false
 ```
 
@@ -284,7 +284,7 @@ druid_pool_enabled=false
 
 oshi 라이브러리 활용하여 netstat을 수집하는 기능을 추가하였습니다. 네트워크 지표들 중 packet, collision, drop, error, bps 데이터를 수집합니다.
 
-```ini title='whatap.conf 기본 설정'
+```ini title='whatap.conf'
 oshi_netstat_enabled=false
 debug_oshi_netstat_enabled=false
 ```

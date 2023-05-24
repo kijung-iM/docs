@@ -49,7 +49,9 @@ http://repo.whatap.io/index.html#focus/
 * 원인: 인스턴스 2개 이상 수집할때 알림에서 메트릭의 인스턴스를 잘못 구분 발생
 * 수정: `-pk` 옵션을 추가하여 메트릭의 인스턴스 필드를 지정
 
-```json title='k8s에서 pod의 재시작을 수집할때 데이터'
+**K8S에서 POD의 재시작을 수집할때 데이터**
+
+```json
 { "Pod" : "whatap-master-agent-756d6f6567-hpvsc", "Restart" : 0 }
 { "Pod" : "whatap-virtual-david-oberg-754fd79f5f-9s5vd", "Restart" : 147 }
 { "Pod" : "whatap-virtual-david-oberg-754fd79f5f-j4pfw", "Restart" : 141 }
@@ -59,7 +61,7 @@ http://repo.whatap.io/index.html#focus/
 { "Pod" : "whatap-virtual-timothy-warren-79d4869b7c-65k2h", "Restart" : 145 }
 ```
 
-Pod 필드를 인스턴스 구분으로 지정
+**Pod 필드를 인스턴스 구분으로 지정**
 
 ```bash
 kubectl get pod -n virtual2 --no-headers |\

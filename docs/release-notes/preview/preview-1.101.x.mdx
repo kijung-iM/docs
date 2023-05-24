@@ -14,13 +14,175 @@ toc_max_heading_level: 3
 
 :::
 
+## Preview 1.101.25
+
+2023년 5월 22일
+
+<div class='indentTab'>
+
+### `공통`
+
+<p><Status>Change</Status> 서비스 전체에 삭제 아이콘(<img src='/img/ico-trash-new.svg' alt='icon'/>) 변경, 채널 문의 아이콘(<img src='/img/ic-message-filled.svg' alt='icon'/>) 변경</p>
+
+---
+
+### `Container`
+
+<p><Status>Fixed</Status> <UI>대시보드</UI> > <UI>컨테이너 맵</UI> 메뉴에서 그룹 선택 후 <UI>로그</UI> > <UI>로그 검색</UI> 기능 이용 시 App 관련 카테고리 로그가 조회되지 않는 버그 추가 수정 <a href='#1.101.22'>관련: Preview 1.101.22</a></p>
+
+---
+
+### `Browser`
+
+<p><Status>Feature</Status> <UI>경고 알림</UI> > <UI>이벤트 설정</UI> > <UI>메트릭스</UI> 메뉴에서 메트릭스, 복합 메트릭스 알림 템플릿 추가</p>
+
+---
+
+### `CloudWatch`, `AZURE`, `OCI`, `NCP`
+
+<p><Status>Feature</Status> <UI>관리</UI> > <UI>에이전트 설정</UI> 메뉴에서 와탭 서비스 수집 주기 선택 옵션으로 <b>1분</b> 추가</p>
+
+#### CloudWatch
+
+<p><Status>Fixed</Status> <UI>관리</UI> > <UI>에이전트 설정</UI> 메뉴에서 인증 유효 기간의 기본값을 <b>1시간</b>으로 수정</p>
+
+</div>
+
+## Preview 1.101.24
+
+2023년 5월 19일
+
+<div class='indentTab'>
+
+### `공통`
+
+- <Status>Fixed</Status> <UI>이용 내역</UI> > <UI>청구서 미리보기</UI> 메뉴에서 할인 금액이 없을 경우 이용 금액이 표시되지 않는 버그 수정
+
+- <Status>Fixed</Status> 프로필 아이콘 클릭 후 <UI>계정 정보 관리</UI> 메뉴로 이동한 다음 이전 페이지로 이동 시 (뒤로 가기 버튼 클릭 시) 쿼리 파라미터에 <code>org=undefined</code>가 입력되어 이전 페이지로 이동하지 않는 문제 수정
+
+---
+
+### `Application`
+
+<p><Status>Change</Status> <UI>대시보드</UI> > <UI>트랜잭션 맵</UI> 메뉴에서 <UI>TX 트레이스</UI> 테이블 컬럼으로 <UI>SQL Count</UI>, <UI>Login ID</UI>, <UI>SQL Fetch Count</UI> 항목 추가</p>
+
+---
+
+### `Log`
+
+- <Status>Change</Status> <UI>로그</UI> > <UI>로그 검색</UI> 메뉴에서 필터에 키만 입력하고 값을 입력하지 않은 상태에서 카테고리 추가 시 키 값으로 none 값을 입력하도록 수정
+
+- <Status>Change</Status> <UI>로그</UI> > <UI>라이브 테일</UI> 메뉴의 content 필터 툴팁 용어 중 '띄워쓰기'를 '띄어쓰기'로 수정
+
+- <Status>Change</Status> <UI>로그 검색</UI> 메뉴에서 필터 입력 시 검색 값의 prefix로 '-'를 입력하면 자동으로 '+' prefix를 붙이지 않도록 수정
+
+</div>
+
+
+## Preview 1.101.23
+
+2023년 5월 19일
+
+<div class='indentTab'>
+
+### `Log`
+
+<p><Status>Change</Status> <UI>로그</UI> > <UI>로그 설정</UI> 메뉴에서 혼용된 용어 통일</p>
+
+---
+
+### `Browser`
+
+<p><Status>Fixed</Status> <UI>대시보드</UI> > <UI>브라우저 에러</UI> 메뉴에서 <UI>에러 메시지 테이블</UI>의 차트를 로딩하는 중 발생하는 깜빡임 현상 수정</p>
+
+</div>
+
+
+## Preview 1.101.22{#1.101.22}
+
+2023년 5월 18일
+
+<div class='indentTab'>
+
+### `Container`
+
+<p><Status>Fixed</Status> <UI>대시보드</UI> > <UI>컨테이너 맵</UI> 메뉴에서 그룹 선택 후 <UI>로그</UI> > <UI>로그 검색</UI> 기능 이용 시 App 관련 카테고리 로그가 조회되지 않는 버그 수정</p>
+
+</div>
+
+
+## Preview 1.101.21
+
+2023년 5월 18일
+
+<div class='indentTab'>
+
+### `Database`
+
+
+- <Status>Change</Status> <UI>대시보드</UI> > <UI>멀티 인스턴스 모니터링</UI> 메뉴 화면 위에 <b>데이터베이스</b> 선택 옵션 이름을 <UI>인스턴스</UI>로 변경
+
+- <Status>Fixed</Status> <UI>대시보드</UI> > <UI>인스턴스 목록</UI> 메뉴에서 <UI>상태</UI> 컬럼의 <b>위험</b> 또는 <b>경고</b> 아이콘을 선택하면 나타나는 <UI>이벤트</UI> 창에서 텍스트가 잘리는 문제를 보완하기 위해 테이블 정렬 및 컬럼 너비 조절 기능 추가
+
+</div>
+
+## Preview 1.101.20
+
+2023년 5월 18일
+
+<div class='indentTab'>
+
+### `Container`
+
+<p><Status>Change</Status> <UI>대시보드</UI> > <UI>컨테이너 맵</UI> 메뉴의 요약 보기 패널에서 <UI>로그</UI> > <UI>로그 검색</UI> 기능 이용 시 App 관련 카테고리인 경우 <code>microOid</code> 기준으로 로그를 검색하도록 변경</p>
+
+</div>
+
+## Preview 1.101.19
+
+2023년 5월 18일
+
+<div class='indentTab'>
+
+### `공통`
+
+- <Status>Fixed</Status> <b>서버 리소스 Plus</b> 대시보드 템플릿의 위젯 MXQL 수정
+
+- <Status>Change</Status> <b>Log RPS Board</b> 대시보드 템플릿의 <UI>Log RPS Trend</UI> 위젯 메트릭스 추가 및 명칭 정리
+
+---
+
+### `Database`
+
+<p><Status>Fixed</Status> 다음 메뉴 하단 패널에서 락 트리 테이블에 누락된 `sql_param(query_param)` 컬럼 추가</p>
+
+- ***대시보드*** > ***인스턴스 모니터링***
+
+- ***대시보드*** > ***멀티 인스턴스 모니터링***
+
+- ***분석*** > ***카운트 추이***
+
+</div>
+
+
+## Preview 1.101.18
+
+2023년 5월 17일
+
+<div class='indentTab'>
+
+<p><Status>Fixed</Status> <UI>이용 내역</UI> > <UI>프로젝트 유료 전환</UI> 메뉴에서 발생하는 화이트 아웃 현상 수정</p>
+
+</div>
+
+
 ## Preview 1.101.17
 
 2023년 5월 16일
 
 <div class='indentTab'>
 
-<Status>Change</Status> <UI>사이트맵</UI> > <UI>사용자 행위</UI> 메뉴에서 멤버 관리 권한을 가진 계정은 모든 계정의 사용자 행위를 조회할 수 있도록 변경 
+<p><Status>Change</Status> <UI>사이트맵</UI> > <UI>사용자 행위</UI> 메뉴에서 멤버 관리 권한을 가진 계정은 모든 계정의 사용자 행위를 조회할 수 있도록 변경</p>
 
 </div>
 
@@ -174,9 +336,7 @@ toc_max_heading_level: 3
 
 <div class='indentTab'>
 
-- <Status>Fixed</Status> <UI>로그</UI> > <UI>로그 설정</UI> > <UI>로그 파서 설정</UI> > <UI>필터 입력</UI> > 필터키의 오타 수정(okineName → okindName)
-
-- <Status>Fixed</Status> <UI>로그</UI> > <UI>라이브 테일</UI> 메뉴에서 조회된 로그 데이터가 없는 경우 이전의 로그가 표시되는 현상 수정
+### `공통`
 
 - <Status>Change</Status> <UI>통합 대시보드</UI>, <UI>통합 메트릭스 보드</UI>를 사이드 메뉴에서 제거, <UI>사이트 맵</UI>을 통해서만 접근 가능하도록 변경
 
@@ -187,6 +347,12 @@ toc_max_heading_level: 3
   - 로그 요청 성공률
   
   - 응답시간 by 로그
+
+### `Log`
+
+- <Status>Fixed</Status> <UI>로그</UI> > <UI>로그 설정</UI> > <UI>로그 파서 설정</UI> > <UI>필터 입력</UI> > 필터키의 오타 수정(okineName → okindName)
+
+- <Status>Fixed</Status> <UI>로그</UI> > <UI>라이브 테일</UI> 메뉴에서 조회된 로그 데이터가 없는 경우 이전의 로그가 표시되는 현상 수정
 
 </div>
 
@@ -209,6 +375,8 @@ toc_max_heading_level: 3
 2023년 5월 2일
 
 <div class='indentTab'>
+
+### `Log`
 
 <p><Status>Feature</Status> <b>로그 편집</b> 권한 추가 및 관련 기능 <UI>로그 설정</UI> 메뉴에 적용</p>
 

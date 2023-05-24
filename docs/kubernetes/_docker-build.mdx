@@ -55,7 +55,7 @@
     -javaagent:/whatap/whatap.agent-X.Y.Z.jar -Dwhatap.micro.enabled=true
     ```
 
-    ```docker title='Dockerfile 예시' showLineNumbers {4,7}
+    ```docker title='Dockerfile' showLineNumbers {4,7}
     FROM openjdk:8-jdk-slim
     RUN mkdir -p /app && mkdir /whatap
     WORKDIR /app
