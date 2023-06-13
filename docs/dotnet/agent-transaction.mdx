@@ -13,7 +13,43 @@ tags: [ .NET, 트랜잭션 ]
 
 {@include: ../common-items/_dotnet-transaction-profile.mdx}
 
-### 트랜잭션 추적
+* **transaction_status_error_enable** <span class='type'>Boolean</span>
+    
+  기본값 `true`
+  
+  HTTP 401, 403과 같이 정상 응답이 아닌 HTTP 상태 코드를 반환하는 경우 에러로 처리합니다.
+
+* **status_ignore** <span class='type'>String</span>
+  
+  무시할 `STATUS_ERROR` 코드를 설정합니다. 여러 값을 대상으로 할 경우 쉼표(,)를 구분자로 이용하세요.
+
+* **status_ignore_set** <span class='type'>String</span>
+
+  `whatap.error.STATUS_ERROR`를 무시합니다. 여러 값을 대상으로 할 경우 쉼표(,)를 구분자로 이용하세요.
+
+* **httpc_status_error_enable** <span class='type'>Boolean</span>
+  
+  기본값 `true`
+  
+  `HTTPC_ERROR` 반환 여부를 결정합니다.
+
+* **httpc_status_ignore** <span class='type'>String</span>
+
+  무시할 `HTTPC_ERROR` 코드를 설정합니다. 여러 값을 대상으로 할 경우 쉼표(,)를 구분자로 이용하세요.
+
+* **httpc_status_ignore_set** <span class='type'>String</span>
+
+  `whatap.error.HTTPC_ERROR`를 무시합니다. 여러 값을 대상으로 할 경우 쉼표(,)를 구분자로 이용하세요.
+
+  :::note
+
+  `httpc_status_ignore_set=/a/b/c:400,/a/ab/c:404`와 같이 설정하세요. 이때 url은 통계/에러 분석에서 `HTTPC_URL` 값을 입력합니다.
+
+  :::
+
+* **profile_http_parameter_keys** <span class='type'>String</span>
+
+  설정된 키에 해당하는 파라미터 정보만 기록합니다. 여러 개를 등록할 때는 쉼표(,)를 구분자로 이용하세요.
 
 * **trace_active_transaction_slow_time** <span class='type'>Millisecond</span>
 

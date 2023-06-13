@@ -5,10 +5,13 @@ description: 와탭 데이터베이스 모니터링 서비스 이용을 위한 �
 tags: [ PostgreSQL, 데이터베이스 모니터링, 에이전트 ]
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-import TR from '@site/src/components/TR';
 import DBuserDesc from '../common-items/_import_db-create-db-user-desc.mdx';
+
+:::note
+
+이 문서는 PostgreSQL 모니터링 V2를 기준으로 작성되었습니다. PostgreSQL 모니터링 V1 문서는 [다음 문서](../postgresql-v1/install-agent)를 참조하세요.
+
+:::
 
 와탭 데이터베이스 모니터링 서비스 이용을 위한 기본 설치 방법을 안내합니다.
 
@@ -42,13 +45,13 @@ import DBuserDesc from '../common-items/_import_db-create-db-user-desc.mdx';
   
   **Postgresql 9.2 버전 이상**: https://jdbc.postgresql.org/download
 
-<!-- 공통 Notes -->
+<!-- 공통 Notes-->
 {@include: ../common-items/_db-install-agent-common-notes.mdx}
 
-<!-- 모니터링용 계정 생성 -->
+<!-- 모니터링용 계정 생성-->
 {@include: ../common-items/_db-create-monitoring-account.mdx}
 
-<!-- PostgreSQL -->
+<!-- PostgreSQL-->
 ```bash showLineNumbers
 # 10 버전 이상
 create user whatap with password 'DB Password'; # 원하는 password를 입력하세요.
@@ -58,8 +61,16 @@ grant pg_read_all_stats to whatap;
 create user whatap with password 'DB Password'; # 원하는 password를 입력하세요.
 alter user whatap with superuser;
  
-# kill session 사용시
+# kill session 사용 시
 alter user whatap with superuser;
+
+#wal_count 수집 시
+grant execute on function pg_ls_dir(text) to whatap;  #EDB 사용 시
+alter user whatap with superuser;
+
+#cache 수집 시
+grant select on pg_backend_memory_contexts to whatap;
+grant execute on function pg_get_backend_memory_contexts to whatap;
 ```
 
 ## DB 유저 파일 생성{#create-db-user}

@@ -57,7 +57,8 @@ Java 에이전트 플러그인은 메소드 시작/종료 부분에 삽입해 �
 
 * **Custom Pool을 설정하는 경우**
 
-  Custom Pool은 식별자@패키지 명 형태로 설정합니다.    
+  Custom Pool은 식별자@패키지 명 형태로 설정합니다.
+  
   예시, Class 명 앞에 `whatap_plugin_guide`라는 식별자를 설정니다. 식별자와 클래스는 @로 구분합니다.
 
   ```java
@@ -149,7 +150,7 @@ Java 에이전트 플러그인은 메소드 시작/종료 부분에 삽입해 �
 |  $point  | String class1                                                 | 클래스명                                     |
 |    ^     | String method                                                 | 메소드명                                     |
 |    ^     | Object this1                                                  | Hooking 대상 클래스/메소드                   |
-|    ^     | Object\[\] args                                               | 인자                                         |
+|    ^     | Object[] args                                               | 인자                                         |
 |    ^     | Object return1                                                | 리턴                                         |
 
 ### 파라미터 미제공 - 공통 플러그인 파일

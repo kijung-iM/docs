@@ -36,7 +36,8 @@ object_name default: {type}-{ip2}-{ip3}-{process}
 
 기본적으로 XOR 연산과 AES 알고리즘을 통한 암호화를 사용합니다. 평문을 128비트 단위로 나누어 암호화, 복호화를 수행합니다. 사용자의 설정에 따라 256비트까지 확장할 수 있습니다.
 
-1. **설정하기**  
+1. **설정하기**
+
     에이전트가 설치된 디렉터리에서 *whatap.conf* 파일에 다음과 같은 설정을 추가하세요.
 
     ```ini title='whatap.conf'
@@ -45,7 +46,8 @@ object_name default: {type}-{ip2}-{ip3}-{process}
     cypher_level=256
     ```
 
-1. **다시 시작하기**  
+1. **다시 시작하기**
+
     설정을 추가한 후 WAS를 다시 시작합니다.
 
 

@@ -17,40 +17,40 @@ tags:
 
 1. `install.sh` **설정 스크립트**를 통해서 **PHP 확장 모듈**을 설정하세요.
 
-  ```java title=SH
-  $ vi 01-WhaTap_install_repository_php.config
+    ```java title=SH
+    $ vi 01-WhaTap_install_repository_php.config
 
-  commands:
-    01_Install_whatap_repository:
-      command: sudo rpm --import http://repo.whatap.io/centos/release.gpg
-      ignoreErrors: true
-    02_Install_whatap_repository:
-      command: echo "[whatap]" | sudo tee /etc/yum.repos.d/whatap.repo > /dev/null
-      ignoreErrors: true
-    03_Install_whatap_repository:
-      command: echo "name=whatap packages for enterprise linux" | sudo tee -a /etc/yum.repos.d/whatap.repo > /dev/null
-      ignoreErrors: true
-    04_Install_whatap_repository:
-      command: echo "baseurl=http://repo.whatap.io/centos/latest/\$basearch" | sudo tee -a /etc/yum.repos.d/whatap.repo > /dev/null
-      ignoreErrors: true
-    05_Install_whatap_repository:
-      command: echo "enabled=1" | sudo tee -a /etc/yum.repos.d/whatap.repo > /dev/null
-      ignoreErrors: true
-    06_Install_whatap_repository:
-      command: echo "gpgcheck=0" | sudo tee -a /etc/yum.repos.d/whatap.repo > /dev/null
-      ignoreErrors: true
-    07_Install_whatap_php:
-      command: sudo yum install -y whatap-php
-      ignoreErrors: true
-    08_Install_whatap_php_install.sh:
-      command: (echo "[액세스 키 지정]"; echo "[서버 IP 지정(a.a.a.a/b.b.b.b)")| sudo /usr/whatap/php/install.sh
-      ignoreErrors: true
-  ```
+    commands:
+      01_Install_whatap_repository:
+        command: sudo rpm --import http://repo.whatap.io/centos/release.gpg
+        ignoreErrors: true
+      02_Install_whatap_repository:
+        command: echo "[whatap]" | sudo tee /etc/yum.repos.d/whatap.repo > /dev/null
+        ignoreErrors: true
+      03_Install_whatap_repository:
+        command: echo "name=whatap packages for enterprise linux" | sudo tee -a /etc/yum.repos.d/whatap.repo > /dev/null
+        ignoreErrors: true
+      04_Install_whatap_repository:
+        command: echo "baseurl=http://repo.whatap.io/centos/latest/\$basearch" | sudo tee -a /etc/yum.repos.d/whatap.repo > /dev/null
+        ignoreErrors: true
+      05_Install_whatap_repository:
+        command: echo "enabled=1" | sudo tee -a /etc/yum.repos.d/whatap.repo > /dev/null
+        ignoreErrors: true
+      06_Install_whatap_repository:
+        command: echo "gpgcheck=0" | sudo tee -a /etc/yum.repos.d/whatap.repo > /dev/null
+        ignoreErrors: true
+      07_Install_whatap_php:
+        command: sudo yum install -y whatap-php
+        ignoreErrors: true
+      08_Install_whatap_php_install.sh:
+        command: (echo "[액세스 키 지정]"; echo "[서버 IP 지정(a.a.a.a/b.b.b.b)")| sudo /usr/whatap/php/install.sh
+        ignoreErrors: true
+    ```
 
-  :::note
+    :::note
 
-  **액세스 키**와 **서버 IP**는 ***프로젝트 관리*** > ***에이전트 설치*** 페이지에서 발급받고 확인할 수 있습니다.
+    **액세스 키**와 **서버 IP**는 ***프로젝트 관리*** > ***에이전트 설치*** 페이지에서 발급받고 확인할 수 있습니다.
 
-  :::
+    :::
 
 1. Beanstalk에 새로운 버전을 배포하세요. PHP 모니터링 에이전트가 설치됩니다.

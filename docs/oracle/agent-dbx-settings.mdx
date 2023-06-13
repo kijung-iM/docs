@@ -5,8 +5,7 @@ description: whatap.conf 파일에 설정할 수 있는 옵션에 대해 안내�
 tags: [ MySQL, 데이터베이스 모니터링, DBX 에이전트 ]
 ---
 
-import InDoc from '@site/src/components/InDoc.js';
-import Xclude from '@site/src/components/XcludeDoc.js';
+import AWSRDSdesc from '../common-items/_import_aws-rds-desc.mdx';
 import CurProd from '@site/src/components/GetProductName.js';
 
 DBX 에이전트에 필요한 설정은 *whatap.conf* 파일에 작성합니다. 설정할 수 있는 옵션은 다음을 참조하세요.
@@ -23,7 +22,9 @@ DBX 에이전트에 필요한 설정은 *whatap.conf* 파일에 작성합니다.
 
 ## AWS RDS CloudWatch 적용{#using-aws-rds}
 
-{@include: ../common-items/_db-agent-aws.mdx}
+<AWSRDSdesc name='db_oracle_counter' />
+
+{@include: ../common-items/_db-agent-aws.mdx} 
 
 <!-- AES 256 암호화 적용 -->
 {@include: ../common-items/_db-aes-256-encrypt.mdx}  

@@ -119,8 +119,8 @@ ROWNUM
 |from |설정한 필드의 값을 가지는 필드를 생성합니다.|
 |expr |입력한 수식의 결과를 값으로 가지는 필드를 생성합니다. 수식에는 필드의 이름이 사용될 수 있습니다.|
 |oname |`oid` 컬럼의 이름을 설정하여 `oid` 값에 대응되는 `oname`의 값을 가지는 컬럼을 생성합니다.|
-|okind |`okid` 컬럼의 이름을 설정하여 `okid` 값에 대응되는 `okind name`의 값을 가지는 컬럼을 생성합니다.|
-|onode |`onode` 컬럼의 이름을 설정하여 `onid` 값에 대응되는 `onode name`의 값을 가지는 컬럼을 생성합니다.|
+|okind |`okind` 컬럼의 이름을 설정하여 `okind` 값에 대응되는 `okind name`의 값을 가지는 컬럼을 생성합니다.|
+|onode |`onode` 컬럼의 이름을 설정하여 `onode` 값에 대응되는 `onode name`의 값을 가지는 컬럼을 생성합니다.|
 
 * `value` 속성을 설정하는 경우
 
@@ -585,7 +585,7 @@ ROWNUM
   FILTER { key : tx_count, exist : true}
   ```
 
-* `exist` 옵션을 적용하는 경우
+* `notexist` 옵션을 적용하는 경우
   
   ```sql
   CATEGORY app_counter

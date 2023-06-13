@@ -51,7 +51,7 @@ module.exports = Promise.resolve({
           {
             to: '/server/introduction',
             from: '/server/server-intro'
-          }
+          },
         ],
       }
     ],
@@ -87,8 +87,10 @@ module.exports = Promise.resolve({
         ]
       }
     ],
+    [
+      'docusaurus-plugin-enlarge-image', {}
+    ],
   ],
-  themes: ['docusaurus-theme-search-typesense'],
   presets: [
     [
       '@docusaurus/preset-classic',
@@ -119,26 +121,23 @@ module.exports = Promise.resolve({
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      typesense: {
-        // Replace this with the name of your index/collection.
-        // It should match the "index_name" entry in the scraper's "config.json" file.
-        typesenseCollectionName: 'WhaTapDocs',
-        typesenseServerConfig: {
-          nodes: [
-            {
-              host: 'typesense.whatap.io',
-              protocol: 'https',
-            },
-          ],
-          apiKey: 'o8PpsXaZdGLtEp2EAHVT4C9Nw9xK7SUi',
-        },
-        // Optional: Typesense search parameters: https://typesense.org/docs/0.24.0/api/search.html#search-parameters
-        typesenseSearchParameters: {
-          // highlight_affix_num_tokens: 150,
-        },
-        // Optional
+      algolia: {
+        // The application ID provided by Algolia
+        appId: '38IOA0JIBS',
+        // Public API key: it is safe to commit it
+        apiKey: '38a630985eb8e5474430fd5de27aca59',
+        indexName: 'whatap',
+        // Optional: see doc section below
         contextualSearch: true,
+        // Optional: Specify domains where the navigation should occur through window.location instead on history.push. Useful when our Algolia config crawls multiple documentation sites and we want to navigate with window.location.href to them.
+        externalUrlRegex: 'external\\.com|domain\\.com',
+        // Optional: Algolia search parameters
+        searchParameters: {
+          
+        },
+        // Optional: path for search page that enabled by default (`false` to disable it)
         searchPagePath: 'search',
+        //... other Algolia params
       },
       metadata: [
         {
@@ -223,7 +222,7 @@ module.exports = Promise.resolve({
               },
               {
                 type: 'doc',
-                docId: 'postgresql/monitoring-intro',
+                docId: 'postgresql-v1/monitoring-intro',
                 label: 'PostgreSQL',
               },
               {
@@ -387,6 +386,13 @@ module.exports = Promise.resolve({
             type: 'doc',
             docId: 'postgresql/monitoring-intro',
             position: "left",
+            label: 'PostgreSQL V2 모니터링',
+            className: 'hidden',
+          },
+          {
+            type: 'doc',
+            docId: 'postgresql-v1/monitoring-intro',
+            position: "left",
             label: 'PostgreSQL 모니터링',
             className: 'hidden',
           },
@@ -522,6 +528,12 @@ module.exports = Promise.resolve({
             docId: 'manage',
             position: 'left',
             label: '관리 기능',
+          },
+          {
+            type: 'doc',
+            docId: 'license/licenses',
+            position: 'left',
+            label: '라이선스',
           },
           {
             type: 'doc',

@@ -32,14 +32,21 @@ Telegraf에서 수집하는 메트릭스를 와탭 수집서버로 전달할 수
 <details>
 <summary>Telegraf 에이전트 파일 구성</summary>
 
-* **whatap_telegraf**  
-    서비스 실행 파일로 Telegraf에서 전달된 정보를 수집 서버로 전송하는 프로그램입니다.       
-* **/etc/init.d/whatap-telegraf**(FreeBSD /usr/local/etc/whatap_telegraf)  
-    서비스 스크립트입니다.
-* **whatap.conf**  
-    설정 파일입니다. 수집 서버의 주소와 서버의 프로젝트 액세스 키가 입력되는 파일입니다.
-* **whatap-telegraf-#.log**  
-    에이전트 로그 파일입니다. (*/usr/whatap/telegraf/logs*)
+* **whatap_telegraf**
+
+  서비스 실행 파일로 Telegraf에서 전달된 정보를 수집 서버로 전송하는 프로그램입니다.
+
+* **/etc/init.d/whatap-telegraf** (FreeBSD /usr/local/etc/whatap_telegraf)
+
+  서비스 스크립트입니다.
+
+* **whatap.conf**
+
+  설정 파일입니다. 수집 서버의 주소와 서버의 프로젝트 액세스 키가 입력되는 파일입니다.
+
+* **whatap-telegraf-#.log**
+
+  에이전트 로그 파일입니다. (*/usr/whatap/telegraf/logs*)
 
 </details> 
 
@@ -49,14 +56,19 @@ Telegraf에서 수집하는 메트릭스를 와탭 수집서버로 전달할 수
 <TabItem value="rc" label="Red Hat/CentOS">
 
 1. 와탭 **리포지토리**를 설치하세요.
+
     ```bash title=SH
     $ sudo rpm -Uvh http://repo.whatap.io/centos/5/noarch/whatap-repo-1.0-1.noarch.rpm
     ```
+
 1. 다음 명령어를 통해 **패키지**를 설치하세요.
+
     ```bash title=SH
     $ sudo yum install whatap-telegraf
     ```
+
 1. **설정 스크립트**를 실행하여 서비스를 시작합니다.
+
     ```bash title=SH
     echo "license=[발급받은 프로젝트 액세스 키]" |sudo tee /usr/whatap/telegraf/whatap.conf
     echo "whatap.server.host=[와탭 서버 주소]" |sudo tee -a /usr/whatap/telegraf/whatap.conf
@@ -67,16 +79,19 @@ Telegraf에서 수집하는 메트릭스를 와탭 수집서버로 전달할 수
 <TabItem value="du" label="Debian/Ubuntu">
 
 1. 와탭 **리포지토리**를 설치하세요.
+
     ```bash title=SH
     $ wget http://repo.whatap.io/debian/release.gpg -O -|sudo apt-key add -
     $ wget http://repo.whatap.io/debian/whatap-repo_1.0_all.deb
     $ sudo dpkg -i whatap-repo_1.0_all.deb
     $ sudo apt-get update
     ```
+
 1. 다음 명령어를 통해 **패키지**를 설치하세요.
     ```bash title=SH
     $ sudo apt-get install whatap-telegraf
     ```
+
 1. **설정 스크립트**를 실행하여 서비스를 시작합니다.
     ```bash title=SH
     echo "license=[발급받은 프로젝트 액세스 키]" |sudo tee /usr/whatap/telegraf/whatap.conf
@@ -88,6 +103,7 @@ Telegraf에서 수집하는 메트릭스를 와탭 수집서버로 전달할 수
 <TabItem value="al" label="Amazon Linux">
 
 1. 와탭 **리포지토리**를 설치하세요.
+
     ```bash title=SH
     $ sudo rpm --import http://repo.whatap.io/centos/release.gpg
     $ echo "[whatap]" | sudo tee /etc/yum.repos.d/whatap.repo > /dev/null
@@ -96,11 +112,15 @@ Telegraf에서 수집하는 메트릭스를 와탭 수집서버로 전달할 수
     $ echo "enabled=1" | sudo tee -a /etc/yum.repos.d/whatap.repo > /dev/null
     $ echo "gpgcheck=0" | sudo tee -a /etc/yum.repos.d/whatap.repo > /dev/null
     ```
+
 1. 다음 명령어를 통해 **패키지**를 설치하세요.
+
     ```bash title=SH
     $ sudo yum install whatap-telegraf
     ```
+
 1. **설정 스크립트**를 실행하여 서비스를 시작합니다.
+
     ```bash title=SH
     echo "license=[발급받은 프로젝트 액세스 키]" |sudo tee /usr/whatap/telegraf/whatap.conf
     echo "whatap.server.host=[와탭 서버 주소]" |sudo tee -a /usr/whatap/telegraf/whatap.conf
@@ -111,11 +131,14 @@ Telegraf에서 수집하는 메트릭스를 와탭 수집서버로 전달할 수
 <TabItem value="fb" label="FreeBSD">
 
 1. 와탭 **리포지토리**를 설치하세요.
+
     ```bash title=SH
     $ wget https://s3.ap-northeast-2.amazonaws.com/repo.whatap.io/freebsd/10/whatap-telegraf-0.0.4.txz
     $ pkg install whatap-telegraf-0.0.4.txz
     ```
+
 1. **설정 스크립트**를 실행하여 서비스를 시작합니다.
+
     ```bash title=SH
     echo "license=[발급받은 프로젝트 액세스 키]" | tee /usr/whatap/telegraf/whatap.conf
     echo "whatap.server.host=[와탭 서버 주소]" | tee -a /usr/whatap/telegraf/whatap.conf

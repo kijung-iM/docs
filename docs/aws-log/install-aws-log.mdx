@@ -56,7 +56,7 @@ AWS Log를 수집하려면 부가적인 자원이 필요합니다. 사용자의 
 :::
 
 
-## WhaTap Forwarder 설치
+## WhaTap Forwarder 설치{#install-whatap-forwarder}
 
 로그 전송용 **WhaTap Forwarder**를 AWS Lambda Function으로 설치합니다. AWS CloudFormation에서 설치를 진행합니다. 와탭 ***에이전트 설치*** > ***설치 안내*** 섹션의 ***WhaTap Forwarder 설치*** 탭을 참조하세요. 다음의 설치 입력 정보가 필요합니다. 
 
@@ -208,7 +208,7 @@ WhaTap Forwarder가 사용자의 AWS 환경 자원 로그를 전송받으려면 
 
 1. ***Create Policy*** 버튼을 선택하고 다음의 정책을  복사해 ![number 1](/img/number-01.png) ***JSON*** 탭에 붙여넣기 하세요.
 
-    ```bash title='IAM policy'
+    ```json title='IAM policy'
     {
         "Version": "2012-10-17",
         "Statement": [
