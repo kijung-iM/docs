@@ -1,0 +1,82 @@
+---
+id: log-python
+title: Python
+description: Python 애플리케이션에서 로그를 수집하는 방법을 안내합니다. 
+tags: [ 로그 모니터링, Python ]
+---
+
+Python 애플리케이션에서 로그를 수집하려면 다음을 확인하세요.
+
+## 에이전트 업데이트
+
+Python 에이전트 1.2.2 버전부터 가능합니다. 업데이트 방법은 [다음 문서](../python/manage-pkg#update-pkg)를 참조하세요.
+
+## 에이전트 설정 확인
+
+홈 화면 > 프로젝트 선택 > ***로그*** > ***로그 설정***
+
+와탭 모니터링 서비스 초기 화면에서 프로젝트를 선택한 다음 프로젝트 메뉴 하위에 ***로그*** > ***로그 설정*** 메뉴를 선택하세요. ***로그 모니터링 시작하기*** 섹션의 ***에이전트 설정 확인*** 탭의 안내를 참조해 진행하세요.
+
+### 로그 수집 활성화
+
+설정 파일 경로(*WHATAP_HOME*)를 포함한 명령어를 입력하면 로그 수집이 바로 시작됩니다.
+
+```shell
+export LOGFILES={로그파일전체경로},...
+echo "logsink_enabled=true" | sudo tee -a {설정파일경로}/whatap.conf
+echo "logsink.files=$LOGFILES" | sudo tee -a {설정파일경로}/whatap.conf
+```
+
+### 로그와 웹 트랜잭션 연동
+
+트랜잭션 별로 발생한 로그를 별도로 조회 가능하도록 트랜잭션 아이디`{txid}`를 로그에 출력합니다. 와탭 모니터링에서는 Python LogRecord에 `{txid}`를 자동 주입하여 포매터 설정 시 로그 파일에 `{txid}`를 출력할 수 있도록 합니다.
+
+```shell
+settings.py
+...
+LOGGING = {
+...
+    'formatters': {
+        ...
+    },
+    'handlers': {
+        ...
+    },
+    'loggers': {
+        ...
+        '{로거이름}': {
+            'handlers': [...],
+        ...
+        },
+    },
+}
+
+try:
+    import whatap.trace.mod.logging as whatap_logging
+    if whatap_logging.logging_injection_processed:
+        LOGGING['formatters']['whatap.formatter']={
+                '()': 'django.utils.log.ServerFormatter',
+                'format': '[{server_time}] -- {{ "@txid" : "{txid}" }} -- {message}',
+                'style': '{',
+            }
+        LOGGING['handlers']['whatap']={
+                'level': 'DEBUG',
+                'class': 'logging.handlers.RotatingFileHandler',
+                'filename': os.path.join(BASE_DIR, 'logs','whatap_log.log'),
+                'formatter': 'whatap.formatter',
+            }
+        LOGGING['loggers'][{로거이름}]['handlers'].append('whatap')
+except:
+    pass
+...
+```
+
+## 로그 모니터링 활성화 
+
+홈 화면 > 프로젝트 선택 > ***로그*** > ***로그 설정***
+
+***로그 모니터링 시작하기*** 섹션의 ***로그 모니터링 활성화*** 탭에서 토글 버튼으로 와탭 로그 모니터링을 활성화 또는 비활성화 할 수 있습니다. 
+
+{@include: ../common-items/_log-java-start.mdx} 
+
+{@include: ../common-items/_log-active-note.mdx} 

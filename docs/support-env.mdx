@@ -1,0 +1,328 @@
+---
+id: support-env
+title: 지원 환경
+displayed_sidebar: indexSidebar
+description: 와탭 모니터링 서비스를 지원하는 환경에 대한 설명입니다.
+---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+{@include: getting-started/_support-common.mdx}
+
+{@include: getting-started/_env-note.mdx}
+
+----
+
+## 애플리케이션 모니터링
+
+|환경|지원 환경|
+|----|----|
+|Java|Java 6 이상~Java 17 이하|
+|Node.js|Node.js 7.10.0 이상|
+|PHP|PHP 5.2 이상, 7.0 이상, 8.0 ~ 8.2|
+|Python|Python 2.7, 3.3 이상|
+|.NET|.NET Framework 4.5 이상|
+|Golang|Golang 1.14 버전 이상|
+
+----
+
+## 서버 모니터링
+
+|환경|지원 환경|
+|----|----|
+|Linux|Debian 6.0 이상|
+|^|Ubuntu 12.04 이상|
+|^|CentOS 5.0 이상|
+|^|Red Hat 5.0 이상|
+|^|Rocky Linux 8.6 이상|
+|^|Amazon Linux 모든 버전|
+|^|SUSE 10.1 이상|
+|Unix|AIX 6.1 이상|
+|^|HP-UX 11.23 이상|
+|^|SunOS 5.8 이상|
+|^|FreeBSD 10 이상|
+|Windows|Windows 2008 R2 이상
+|^|Windows 7 SP1 버전 이상|
+
+----
+
+## DB 모니터링
+
+### 데이터베이스 종류별 지원 버전
+
+|환경|지원 환경|
+|----|----|
+|Oracle|Oracle 10g 이상|
+|Tibero|Tibero 5.x 이상|
+|CUBRID|CUBRID 9 이상|
+|MS-SQL|SQL Server 2005 이상|
+|MySQL|MySQL 5.5 이상|
+|MariaDB|MariaDB 5.5 이상|
+|Altibase|Altibase 6 이상|
+|Redis|Redis 6.0.5 이상|
+|MongoDB|MongoDB 4.2 이상|
+|PostgeSQL|EBD 9.2 이상|
+
+:::note
+
+* DB 모니터링 적용 시 DB Metadata(Dictionary, performance_schema) 조회 권한이 있는 모니터링용 계정이 필요합니다.
+
+* XOS 에이전트는 x86 아키텍쳐 기반에서 동작하는 OS 환경에만 적용할 수 있습니다.
+
+:::
+
+### 지원 기능 비교{#compare-db}
+
+<div class='db-support-type'>
+
+| 카테고리| 기능 구분 | Postgresql | Oracle | MySQL | MS SQL Server |
+| ---------- | --------------------------- | :-------------------------------------: | :------------------------------------------: | :---: | :-------: |
+| Monitoring | Instance List| <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span>| <span class='emoji-ok'>✅</span> |
+| ^ | Instance Monitoring| <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span>| <span class='emoji-ok'>✅</span> |
+| ^ | Multi Database(tenant) 기능 | <span class='emoji-ok'>✅</span><br/>(일부 지표만 multi db stat 가능) | <span class='emoji-ok'>✅</span><br/>(12c 버전 이상, multi tenant 인 경우) | <span class='emoji-no'>❌</span>| <span class='emoji-ok'>✅</span> |
+| ^ | Slow Query| <span class='emoji-ok'>✅</span> | <span class='emoji-no'>❌</span> | <span class='emoji-ok'>✅</span>| <span class='emoji-no'>❌</span> |
+| Analysis| Trends | <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span>| <span class='emoji-ok'>✅</span> |
+| ^ | Trends Compare | <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span> |
+| ^ | Lock Tree | <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span>| <span class='emoji-ok'>✅</span> |
+| ^ | Parallel Query Tree| <span class='emoji-no'>❌</span> | <span class='emoji-ok'>✅</span> | <span class='emoji-no'>❌</span>| <span class='emoji-no'>❌</span> |
+| ^ | Dead Lock | <span class='emoji-no'>❌</span> | <span class='emoji-no'>❌</span> | <span class='emoji-ok'>✅</span> | <span class='emoji-no'>❌</span> |
+| ^ | DB Parameter | <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span>| <span class='emoji-ok'>✅</span> |
+| Statistics | SQL Stat | <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span>| <span class='emoji-ok'>✅</span> |
+| ^ | Table Size| 지원 예정 |지원 예정 | <span class='emoji-ok'>✅</span>| 지원 예정 |
+| ^ | Database(TableSpace) Size| <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span>| 지원 예정 |
+| ^ | SGA Size | <span class='emoji-no'>❌</span> | <span class='emoji-ok'>✅</span> | <span class='emoji-no'>❌</span>| <span class='emoji-no'>❌</span> |
+| Report | Daily/Weekly/Monthly Report | <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span>| <span class='emoji-ok'>✅</span> |
+| Event| Event List| <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span>| <span class='emoji-ok'>✅</span> |
+| ^ | Event Stat| <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span>| <span class='emoji-ok'>✅</span> |
+| ^ | Event Setting| <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span>| <span class='emoji-ok'>✅</span> |
+| ^ | Notification | <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span>| <span class='emoji-ok'>✅</span> |
+| Management | Agent Setup | <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span>| <span class='emoji-ok'>✅</span> |
+| ^ | Agent List| <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span>| <span class='emoji-ok'>✅</span> |
+| ^ | Project Management | <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span> |
+
+| 카테고리| 기능 구분 | Tibero| CUBRID | Altibase | Redis | MongoDB |
+| ---------- | --------------------------- | :-------: | :----: | :------: | :---: | :-----: |
+| Monitoring | Instance List| <span class='emoji-ok'>✅</span> |<span class='emoji-ok'>✅</span>| <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span>|<span class='emoji-ok'>✅</span> |
+| ^ | Instance Monitoring| <span class='emoji-ok'>✅</span> |<span class='emoji-ok'>✅</span>| <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span>|<span class='emoji-ok'>✅</span> |
+| ^ | Multi Database(tenant) 기능 | <span class='emoji-no'>❌</span> |<span class='emoji-no'>❌</span>| <span class='emoji-no'>❌</span> | <span class='emoji-no'>❌</span>|<span class='emoji-no'>❌</span> |
+| ^ | Slow Query| <span class='emoji-no'>❌</span> |<span class='emoji-no'>❌</span>| <span class='emoji-no'>❌</span> | <span class='emoji-no'>❌</span>|<span class='emoji-no'>❌</span> |
+| Analysis| Trends | <span class='emoji-ok'>✅</span> |<span class='emoji-ok'>✅</span>| <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span>|<span class='emoji-ok'>✅</span> |
+| ^ | Trends Compare | <span class='emoji-ok'>✅</span> |<span class='emoji-ok'>✅</span>| <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span>|<span class='emoji-ok'>✅</span> |
+| ^ | Lock Tree | <span class='emoji-ok'>✅</span> |<span class='emoji-ok'>✅</span>| <span class='emoji-ok'>✅</span> | <span class='emoji-no'>❌</span>|<span class='emoji-no'>❌</span> |
+| ^ | Parallel Query Tree| <span class='emoji-ok'>✅</span> |<span class='emoji-no'>❌</span>| <span class='emoji-no'>❌</span> | <span class='emoji-no'>❌</span>|<span class='emoji-no'>❌</span> |
+| ^ | Dead Lock | <span class='emoji-no'>❌</span> |<span class='emoji-no'>❌</span>| <span class='emoji-no'>❌</span> | <span class='emoji-no'>❌</span>|<span class='emoji-no'>❌</span> |
+| ^ | DB Parameter | <span class='emoji-ok'>✅</span> |<span class='emoji-ok'>✅</span>| <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span>|<span class='emoji-ok'>✅</span> |
+| Statistics | SQL Stat | <span class='emoji-ok'>✅</span> |<span class='emoji-ok'>✅</span>| <span class='emoji-ok'>✅</span> | <span class='emoji-no'>❌</span>|<span class='emoji-no'>❌</span> |
+| ^ | Table Size| 지원 예정 |<span class='emoji-ok'>✅</span>| <span class='emoji-no'>❌</span> | <span class='emoji-no'>❌</span>|<span class='emoji-no'>❌</span> |
+| ^ | Database(TableSpace) Size| <span class='emoji-ok'>✅</span> |<span class='emoji-ok'>✅</span>| <span class='emoji-no'>❌</span> | <span class='emoji-no'>❌</span>|<span class='emoji-ok'>✅</span> |
+| ^ | SGA Size | <span class='emoji-ok'>✅</span> |<span class='emoji-no'>❌</span>| <span class='emoji-no'>❌</span> | <span class='emoji-no'>❌</span>|<span class='emoji-no'>❌</span> |
+| Report | Daily/Weekly/Monthly Report | <span class='emoji-ok'>✅</span> |<span class='emoji-ok'>✅</span>| <span class='emoji-ok'>✅</span> | <span class='emoji-no'>❌</span>|<span class='emoji-no'>❌</span> |
+| Event| Event List| <span class='emoji-ok'>✅</span> |<span class='emoji-ok'>✅</span>| <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span>|<span class='emoji-ok'>✅</span> |
+| ^ | Event Stat| <span class='emoji-ok'>✅</span> |<span class='emoji-ok'>✅</span>| <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span>|<span class='emoji-ok'>✅</span> |
+| ^ | Event Setting| <span class='emoji-ok'>✅</span> |<span class='emoji-ok'>✅</span>| <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span>|<span class='emoji-ok'>✅</span> |
+| ^ | Notification | <span class='emoji-ok'>✅</span> |<span class='emoji-ok'>✅</span>| <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span>|<span class='emoji-ok'>✅</span> |
+| Management | Agent Setup | <span class='emoji-ok'>✅</span> |<span class='emoji-ok'>✅</span>| <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span>|<span class='emoji-ok'>✅</span> |
+| ^ | Agent List| <span class='emoji-ok'>✅</span> |<span class='emoji-ok'>✅</span>| <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span>|<span class='emoji-ok'>✅</span> |
+| ^ | Project Management | <span class='emoji-ok'>✅</span> |<span class='emoji-ok'>✅</span>| <span class='emoji-ok'>✅</span> | <span class='emoji-ok'>✅</span>|<span class='emoji-ok'>✅</span> |
+
+</div>
+
+----
+
+## 쿠버네티스 모니터링
+
+|환경|지원 환경|
+|----|----|
+|EKS|Amazon Elastic Kubernetes Service 1.16 ~ 1.23|
+|AKS|Azure Kubernetes Service 1.16 ~ 1.23|
+|GKE|Google Kubernetes Engine 1.16 ~ 1.23|
+|OKE|Oracle Container Engine for Kubernetes 1.16 ~ 1.23|
+|Openshift|Openshift 3.xx / 4.xx|
+|Cocktail|Cocktail 1.16 ~ 1.23|
+|Accordion|Accordion 1.16 ~ 1.23|
+|PaaS-TA |PaaS-TA 1.16 ~ 1.23|
+|plugins 항목|istio, GPU|
+
+----
+
+## 클라우드 모니터링
+
+다음의 AWS 지원 Namespace 목록을 확인하세요. 
+
+<details>
+<summary>AWS 지원 Namespace 목록</summary>
+
+* AWS ACMPrivateCA
+* AWS AmazonMQ
+* AWS ApplicationELB Monitoring
+* AWS AppSync
+* AWS Athena
+* AWS AutoScaling
+* AWS Elastic Beanstalk Health
+* AWS Billing
+* AWS Cassandra
+* AWS Chatbot
+* AWS Cloud Front
+* AWS CloudHSM
+* AWS CloudSearch
+* AWS CodeBuild
+* AWS CodeGuruProfiler
+* AWS Cognito
+* AWS Connect
+* AWS ContainerInsights Monitoring
+* AWS DataSync
+* AWS DAX
+* AWS DDoSProtection
+* AWS DMS
+* AWS DocDB
+* AWS DX
+* AWS Dynamo DB
+* AWS Ebs Usage
+* AWS EC2 Monitoring
+* AWS EC2 Alert Config
+* AWS EC2Spot
+* AWS ECS
+* AWS EFS
+* AWS ElastiCache Usage
+* AWS ElasticGPUs
+* AWS ElasticInference
+* AWS ElasticMapReduce
+* AWS ElasticTranscoder
+* AWS Classic ELB Monitoring
+* AWS ES
+* AWS Events
+* AWS Firehose
+* AWS FSx
+* AWS GameLift
+* AWS GatewayELB
+* AWS Glue
+* AWS GroundStation
+* AWS Health
+* AWS Inspector
+* AWS IoT
+* AWS IoTAnalytics
+* AWS IoTSiteWise
+* AWS IVS
+* AWS Kafka
+* AWS Kinesis
+* AWS KinesisAnalytics
+* AWS KinesisVideo
+* AWS KMS
+* AWS Lambda
+* AWS Lex
+* AWS Location
+* AWS Logs
+* AWS LookoutMetrics
+* AWS MediaConnect
+* AWS MediaConvert
+* AWS MediaPackage
+* AWS MediaStore
+* AWS MediaTailor
+* AWS ML
+* AWS NATGateway
+* AWS Neptune
+* AWS NetworkELB
+* AWS NetworkFirewall
+* AWS OpsWorks
+* AWS Polly
+* AWS QLDB
+* AWS RDS Monitoring
+* AWS Redshift
+* AWS Robomaker
+* AWS Route53
+* AWS S3
+* AWS SageMaker
+* AWS SDKMetrics
+* AWS ServiceCatalog
+* AWS SES
+* AWS SNS
+* AWS SQS
+* AWS SQS Message
+* AWS SSM-RunCommand
+* AWS States
+* AWS StorageGateway
+* AWS SWF
+* AWS Textract
+* AWS ThingsGraph
+* AWS Timestream
+* AWS Transfer
+* AWS TransitGateway
+* AWS Translate
+* AWS TrustedAdvisor
+* AWS Api Usage
+* AWS VPN Monitoring
+* AWS WAF
+* AWS WorkMail
+* AWS WorkSpaces
+
+</details>
+
+----
+
+## 로그 모니터링 
+
+Java, PHP, Python, Server 애플리케이션에서 로그 수집이 가능합니다. 에이전트 지원 버전은 다음을 확인하세요.
+
+|환경|지원 버전|
+|----|----|
+|Java|Java Agent 2.1.0 버전 이상|
+|PHP|PHP Agent 2.3.2 버전 이상|
+|Python|Python Agent 1.2.2 버전 이상|
+|Server|Server Agent 2.1.2 버전 이상|
+
+----
+
+## 브라우저(Browser) 모니터링 
+
+{@include: common-items/_browser-compatibility.mdx}
+
+----
+
+## 확장 도구
+
+### Telegraf 
+
+|환경|지원 환경|
+|----|----|
+|Linux|Red Hat 6.x x64 이상|
+|^|Ubuntu 12.x x64 이상|
+|Unix|FreeBSD 10.x x64 이상|
+|Telegraf|Telegraf 1.3 이상|
+
+:::note
+
+Telegraf는 socket_writer ouput plugin을 지원하는 버전만 가능합니다.
+
+:::
+
+### Focus
+
+|환경|지원 환경|
+|----|----|
+|Windows|Windows 2008R2 이상|
+|Linux|Debian 7.0 이상|
+|^|Ubuntu 12.04 이상|
+|^|CentOS, Red Hat 6.0 이상|
+|^|Amazon Linux 1.0 이상|
+|^|SUSE 12.1 이상|
+|Unix|FreeBSD 10 이상|
+|OSX|Lion 10.7 이상|
+|Raspberry Pi OS|8 이상|
+
+----
+
+## 지원 브라우저
+
+{@include: getting-started/_supported-browser.mdx}  
+
+----
+## 방화벽
+
+{@include: getting-started/_proxy.mdx} 
+
+----
+## 모바일 앱
+
+{@include: getting-started/_mobile-app.mdx}  
+
+----

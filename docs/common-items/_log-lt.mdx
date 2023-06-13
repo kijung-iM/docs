@@ -1,0 +1,69 @@
+{@include: ../common-items/_log-role-view.mdx}
+
+홈 화면 > 프로젝트 선택 > {@include: _lt-path.mdx}
+
+와탭 모니터링 서비스 초기 화면에서 프로젝트를 선택한 다음 프로젝트 메뉴 하위에 {@include: _lt-path.mdx} 메뉴를 선택하세요. ***라이브 테일*** 메뉴에서 서버 콘솔에 접근 없이 모니터링 화면상에서 로그 데이터 스트림을 쉽게 확인할 수 있습니다. 대량의 로그 중 필요한 로그를 선별하고 하이라이트 기능을 통해 원하는 로그를 빠르게 인지할 수 있습니다. 
+
+![라이브 테일 sc](/img/log-live-tail.png)
+
+***라이브 테일*** 메뉴에서 복잡한 로그들도 손쉽게 접근 가능합니다. 필요에 따라 ***필터*** 혹은 ***하이라이트*** 등의 기능을 활용해 실시간으로 조회할 수 있습니다. 로그 데이터 조회 주기는 2초입니다. {@include: ../common-items/_log-ui-main-term.mdx}
+
+## ![](/img/number-01.png) 필터 영역 
+
+#### 필터 적용
+
+{@include: ../common-items/_log-filter-apply.mdx} 
+
+#### 필터 수정
+
+{@include: ../common-items/_log-filter-modify.mdx}
+
+#### 필터 수식
+
+{@include: ../common-items/_log-filter-expression.mdx}
+
+#### 검색 키(Search Key)
+
+다음 이미지에서 파란색 박스 부분은 파싱(parsing)된 검색 키입니다. 검색 키는 ***로그 설정***의 ***로그 Parser 설정***에서 파싱 로직을 등록해 설정할 수 있습니다.
+![검색 키](https://img.whatap.io/media/images/livetail_007_parsed_key.png)
+
+#### 필터 입력 문법
+
+{@include: ../common-items/_log-filter-rule.mdx} 
+
+## ![](/img/number-02.png) 콘텐츠 필터 영역
+
+#### Content 필터  
+
+로그의 콘텐츠 중 해당 키워드를 포함한 로그만 필터링 합니다. 
+
+![](https://img.whatap.io/media/images/livetail_008_contents_filter.png)
+
+* 입력창에 필터를 입력하고 ![아이콘](/img/ic-search.svg)***검색*** 버튼을 클릭하세요. 클라이언트에서 로그 데이터를 필터링하고 ![number-s3](/img/number-03.png) 영역에서 조회할 수 있습니다. 
+* 키워드를 포함한 Content의 문자열은 하이라이팅 됩니다.
+* 단일 또는 복수 키워드로 필터를 걸 수 있습니다.
+
+<!-- whatap is good~whatap is the best -->
+#### Content 필터 조건
+
+복수 키워드로 필터를 할 경우 다음과 같이 작성합니다.
+
+|입력 문자열|설명|결과|
+|----|----|----|
+|`a b c`|띄어쓰기로 각 키워드를 구분합니다.|a, b, c|
+|`"Whatap is good."`|띄어쓰기를 키워드에 포함하고 싶은 경우 `''` 또는 `""`로 감쌉니다.|Whatap is good.|
+|`"Whatap\\ is good."`|""로 감싸진 키워드에서 `\`를 포함할 경우, `\\`로 입력해야합니다.|Whatap\ is good.|
+
+#### 하이라이트
+
+원하는 키워드를 손쉽게 식별하기 위해서 하이라이트 기능을 제공합니다.
+
+![라이브테일 하이라이트](/img/lt-highlight.png)
+* ![아이콘](/img/ic-highlight.svg) ***하이라이트*** 버튼을 선택해 키워드를 입력하세요. 
+* 입력창 왼쪽 ***색상***을 선택하면 선택할 수 있는 색상 메뉴가 나타납니다. 
+* 기본적으로 로그 레벨에 따른 하이라이팅(<span class='logwr'>WARN</span>, <span class='loger'>ERROR</span>, <span class='logft'>FATAL</span>)이 적용되어 있습니다.   
+* 설정한 내용은 **프로젝트 단위**로 저장됩니다.  
+
+#### 테이블 설정
+
+* ![number-s](/img/number-02.png) 영역 오른쪽 {@include: ../common-items/_log-ui-table-setting.mdx}

@@ -1,0 +1,71 @@
+---
+id: agent-transaction
+title: 트랜잭션
+description: 에이전트에서 트랜잭션 성능을 추적해 설정할 수 있는 옵션을 제공합니다.
+tags: [ .NET, 트랜잭션 ]
+---
+
+{@include: ../common-items/_transaction.mdx}
+
+에이전트에서 트랜잭션 성능을 추적해 설정할 수 있는 옵션을 다음과 같이 제공합니다.
+
+### 트랜잭션 트레이싱
+
+{@include: ../common-items/_dotnet-transaction-profile.mdx}
+
+* **transaction_status_error_enable** <span class='type'>Boolean</span>
+    
+  기본값 `true`
+  
+  HTTP 401, 403과 같이 정상 응답이 아닌 HTTP 상태 코드를 반환하는 경우 에러로 처리합니다.
+
+* **status_ignore** <span class='type'>String</span>
+  
+  무시할 `STATUS_ERROR` 코드를 설정합니다. 여러 값을 대상으로 할 경우 쉼표(,)를 구분자로 이용하세요.
+
+* **status_ignore_set** <span class='type'>String</span>
+
+  `whatap.error.STATUS_ERROR`를 무시합니다. 여러 값을 대상으로 할 경우 쉼표(,)를 구분자로 이용하세요.
+
+* **httpc_status_error_enable** <span class='type'>Boolean</span>
+  
+  기본값 `true`
+  
+  `HTTPC_ERROR` 반환 여부를 결정합니다.
+
+* **httpc_status_ignore** <span class='type'>String</span>
+
+  무시할 `HTTPC_ERROR` 코드를 설정합니다. 여러 값을 대상으로 할 경우 쉼표(,)를 구분자로 이용하세요.
+
+* **httpc_status_ignore_set** <span class='type'>String</span>
+
+  `whatap.error.HTTPC_ERROR`를 무시합니다. 여러 값을 대상으로 할 경우 쉼표(,)를 구분자로 이용하세요.
+
+  :::note
+
+  `httpc_status_ignore_set=/a/b/c:400,/a/ab/c:404`와 같이 설정하세요. 이때 url은 통계/에러 분석에서 `HTTPC_URL` 값을 입력합니다.
+
+  :::
+
+* **profile_http_parameter_keys** <span class='type'>String</span>
+
+  설정된 키에 해당하는 파라미터 정보만 기록합니다. 여러 개를 등록할 때는 쉼표(,)를 구분자로 이용하세요.
+
+* **trace_active_transaction_slow_time** <span class='type'>Millisecond</span>
+
+  기본값 `3000`
+
+  수집 정보를 확인하는 대시보드의 엑티브 트랜잭션 아크이퀄라이저 그래프에서 slow 구간으로 표기할 수 있는 트랜잭션 응답 시간의 기준을 설정합니다. 트랜잭션의 응답 시간이 설정 시간을 초과할 경우 slow 액티브 트랜잭션의 개수에 포함합니다.
+
+* **trace_active_transaction_very_slow_time** <span class='type'>Millisecond</span>
+
+  기본값 `8000`
+
+  수집 정보를 확인하는 대시보드의 엑티브 트랜잭션 아크이퀄라이저 그래프에서 very slow 구간으로 표기할 수 있는 트랜잭션 응답 시간의 기준을 설정합니다. 트랜잭션의 응답 시간이 설정 시간을 초과할 경우 very slow 액티브 트랜잭션의 개수에 포함합니다.
+
+* **trace_active_transaction_lost_time** <span class='type'>Millisecond</span>
+
+  기본값 `30000`
+
+  트랜잭션 종료를 기다리는 제한 시간입니다. 5분 안에 트랜잭션이 끝나지 않는 경우 트랜잭션을 정보를 더 이상 수집하지 않습니다. 트랜잭션의 트레이스 정보에서 'Lost Connection'를 확인할 수 있습니다.
+

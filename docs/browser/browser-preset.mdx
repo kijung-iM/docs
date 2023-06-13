@@ -1,0 +1,39 @@
+---
+id: browser-preset
+title: 사전설정
+description: 브라우저 에이전트를 적용하기 위한 사전설정 방법을 제공합니다.
+tags: [ 브라우저 모니터링, 사전설정 ]
+---
+
+브라우저 에이전트를 적용하고 데이터 수집을 위해 다음 안내에 따라 사전설정을 진행하세요.
+
+## 콘텐츠 보안 정책 설정
+
+기존 콘텐츠 보안 정책(Content Security Policy, 이하 CSP) 설정이 되어 있는 웹 애플리케이션의 경우 브라우저 에이전트의 CDN URL과 수집 데이터 전송을 위한 수집 서버의 URL을 추가해야 합니다.
+
+추가로 브라우저 에이전트가 효율적인 데이터 전송을 하기 위해 웹워커 관련 CSP 옵션을 추가해야합니다.
+
+| 디렉티브(directive)         | 소스(source)                         | 설명                                                           |
+| --------------------------- | ------------------------------------ | -------------------------------------------------------------- |
+| script-src, script-src-elem | unsafe-inline                        | 브라우저 에이전트를 인라인 스크립트로 설치                   |
+| script-src, script-src-elem | https://repo.whatap-browser-agent.io/rum/prod/ | 브라우저 에이전트 CDN 도메인                                   |
+| connect-src                 | https://rum-ap-northeast-2.whatap-browser-agent.io | 수집한 데이터의 전송을 위한 도메인                             |
+| worker-src, child-src       | blob:                                | 브라우저 에이전트가 효율적인 데이터 전송을 위한 웹워커 관련 CSP 옵션(권장사항) |
+
+## Timing-Allow-Origin 설정
+
+리소스를 제공하는 서버에 CORS를 적용하면 대부분의 리소스 타이밍 속성을 0으로 반환합니다. 브라우저 에이전트가 리소스의 속성 값을 수집하려면 서버에서 `Timing-Allow-Origin` HTTP 응답 헤더를 반환해야 합니다. 
+
+리소스를 제공하는 서버를 제어 가능한 경우 각 응답에 헤더를 추가하고 속성에 접근하는 모든 도메인(브라우저 에이전트를 적용한 웹사이트의 도메인)을 추가해야 합니다.
+
+- 예시 1: 모든 출처에서 리소스 타이밍 정보를 제공합니다.
+    
+  ```json
+  Timing-Allow-Origin: *
+  ```
+    
+- 예시 2: 브라우저 에이전트를 적용한 웹 애플리케이션의 도메인에서만 리소스 타이밍 정보를 제공합니다.
+    
+  ```json
+  Timing-Allow-Origin: www.site.com
+  ```

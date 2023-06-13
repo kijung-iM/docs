@@ -1,0 +1,17 @@
+netstat 명령이 탑재된 경우 1분 간격으로 수집하여 ***카테고리*** `server_netstat` (netstat connection 통계), `server_netstat_s` (netstat -s 명령 실행 결과)로 업로드됩니다.
+<Tabs>
+<TabItem value="lxs" label="Linux Shell">
+
+```bash title=SH
+echo "netstats.enabled=true" |sudo tee -a /usr/whatap/infra/conf/whatap.conf
+```
+
+</TabItem>
+<TabItem value="wps" label="Windows Powershell">
+
+```bash title=SH
+Add-Content -Path "C:\Program Files\WhatapInfra\whatap.conf" -Value "netstats.enabled=true"
+```
+
+</TabItem>
+</Tabs>

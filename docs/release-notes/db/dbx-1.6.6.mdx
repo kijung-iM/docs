@@ -1,0 +1,60 @@
+---
+id: dbx-1_6_6
+title: DBX 1.6.6
+toc_max_heading_level: 2
+---
+
+## PostgreSQL
+
+* <Status>Feature</Status> <code>oldest_cur_xid</code>, <code>per_to_wraparound</code>, <code>per_to_emergency_autovac</code> 지표 추가 (2023-2-2)
+
+* <Status>Feature</Status> <code>replication_lag</code> 지표 추가 (2023-3-13)
+
+
+## Oracle
+
+* <Status>Feature</Status> <UI>SQL 통계</UI> 메뉴에서 <code>sql_id</code> 추가 (2023-2-3)
+
+* <Status>Feature</Status> 락 세션(lock session) 수집 여부 옵션 추가 (2023-3-21)
+
+  ```ini title=whatap.conf
+  lock=0 # off
+  lock=1 # on
+  ```
+
+## MySQL
+
+<Status>Fixed</Status> <code>active session</code> 수집 시 발생 에러 수정 (2023-3-28)
+
+
+## Redis
+
+* <Status>Fixed</Status> connection이 종료되지 않던 오류 수정 (2023-3-21)
+
+* <Status>Fixed</Status> 지표가 출력되지 않는 오류 수정 (2023-4-13)
+
+
+## Tibero
+
+* <Status>Feature</Status> 세션 지표(<code>sesstat</code>) 수집 시 tibero API를 사용하는 방식을 추가해 속도 및 부하 개선 (2023-1-31)
+
+  * 사용법: DB 서버에 dbx 설치 및 *libTbmonXX.so* 셋업
+    
+    ```ini title=whatap.conf
+    use_tbstat=1
+    ```
+
+  * 수집하는 세션 지표에 해당하는 컬럼 항목은 다음과 같습니다.
+
+    - ***logical_reads***
+    - ***physical_reads***
+    - ***block_updates***
+    - ***parse_count_total***
+    - ***parse_count_hard***
+
+  * 다음 메뉴에서 확인할 수 있습니다.
+    
+    * ***대시보드***의 ***Active Sessions***
+    * ***통계/보고서*** > ***SQL 통계***
+
+* <Status>Feature</Status> SQL 통계 메뉴에 `sql_id` 추가 (2023-1-16)

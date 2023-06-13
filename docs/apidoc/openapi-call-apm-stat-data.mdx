@@ -1,0 +1,562 @@
+---
+id: openapi-call-apm-stat-data
+title: 통계 데이터 조회(Application)
+description: 통계 데이터 조회(Application)를 위한 Open API에 대한 설명을 제공합니다.
+tags: [ Open API, API, 통계, 통계 데이터 조회, 애플리케이션, 애플리케이션 모니터링 ]
+---
+
+## 파라미터 설정 안내
+
+| 파라미터 | 설명 |
+| -------- | ---- |
+| `stime` | 조회 시작 시간 UTC (UNIX epoch time, millisecond) |
+| `etime` | 조회 종료 시간 UTC (UNIX epoch time, millisecond) |
+| filter | 기본 `m5` 자동 설정, 시간 범위 내에 5분 통계를 가지고 올때 `m5`를 사용합니다.<br/>5초 통계는 `s5`, 1시간 통계는 `h1`을 사용합니다. |
+| `oid` | 특정 서버만 모니터링을 원할 경우 추가하세요. |
+
+## Exception
+
+<span class='apitype'>GET</span> https://api.whatap.io/open/api/json/exception/<code>stitme</code>/<code>etime</code>
+
+```bash title='command'
+$ curl -L -w "\n" -H "x-whatap-token: {{PROJECT API TOKEN}}" -H "x-whatap-pcode: {{projectCode}}" "https://api.whatap.io/open/api/json/exception/1535554800000/1535641200000"
+```
+
+```json title='response'
+{
+  "records": [
+    {
+      "oids": "[-1459620666]",
+      "time": 1535557500000,
+      "classHash": -1811136020,
+      "count": 14,
+      "service": "/account/delete/dept/daegu",
+      "class": "java.sql.SQLException(0)",
+      "serviceHash": 1900616259,
+      "snapSeq": "6068699991557528332",
+      "msg": "Sql Exception"
+    },
+    (...)
+  ],
+  "total": 2063
+}
+```
+
+## HTTP 외부 호출
+
+<span class='apitype'>GET</span> https://api.whatap.io/open/api/json/httpc/<code>stitme</code>/<code>etime</code>
+
+```bash title='command'
+$ curl -L -w "\n" -H "x-whatap-token: {{PROJECT API TOKEN}}" -H "x-whatap-pcode: {{projectCode}}" "https://api.whatap.io/open/api/json/httpc/1535554800000/1535641200000"
+```
+
+```json title='response'
+{
+  "records": [
+    {
+      "Sum": 22628,
+      "Port": 10002,
+      "Url": "/remote/account/save/employee/kwangju",
+      "Host": "127.0.0.1",
+      "Max": 1815,
+      "Stdev": "247.95",
+      "Actived": 0,
+      "Avg": 1131,
+      "HostHash": -675813464,
+      "Min": 1002,
+      "Error": 0,
+      "Total": 20,
+      "UrlHash": -243814510
+    },
+    (...)
+  ],
+  "total": 4923
+}
+```
+
+호스트(host)가 127.0.0.1이면서 포트(port)가 1007인 HTTP 외부 호출 필터링
+
+```bash title='command'
+$ curl -L -w "\n" -H "x-whatap-token: {{PROJECT API TOKEN}}" -H "x-whatap-pcode: {{projectCode}}" "https://api.whatap.io/open/api/json/httpc/1543219200000/1543478400000/filter/host/127.0.0.1/port/10007"
+```
+
+```json title='response'
+{
+  "records": [
+    {
+      "Service": "/sales/remove/unit/kwangju",
+      "Host": "127.0.0.1",
+      "HostHash": -675813464,
+      "Avg": 1080,
+      "Error": 0,
+      "Sum": 2411644,
+      "Port": 10007,
+      "Service_hash": -1003301916,
+      "Url": "/remote/account/save/employee/seoul",
+      "Max": 2442,
+      "Stdev": "159.01",
+      "UrlHash": 180997672,
+      "Total": 2233,
+      "Min": 1001
+    },
+    {
+      "Service": "/product/delete/employee/daejun",
+      "Host": "127.0.0.1",
+      "HostHash": -675813464,
+      "Avg": 1085,
+      "Error": 0,
+      "Sum": 2075036,
+      "Port": 10007,
+      "Service_hash": 2100205994,
+      "Url": "/remote/account/save/employee/pusan",
+      "Max": 2462,
+      "Stdev": "173.06",
+      "UrlHash": -924053750,
+      "Total": 1911,
+      "Min": 1001
+    },
+    (...)
+  ],
+  "total": 1080
+}
+```
+
+## SQL
+
+<span class='apitype'>GET</span> https://api.whatap.io/open/api/json/sql/<code>stitme</code>/<code>etime</code>
+
+```bash title='command'
+$ curl -L -w "\n" -H "x-whatap-token: {{PROJECT API TOKEN}}" -H "x-whatap-pcode: {{projectCode}}" "https://api.whatap.io/open/api/json/sql/1535554800000/1535641200000"
+```
+
+```json title='response'
+{
+  "records": [
+    {
+      "time_max": 4164,
+      "dbcHash": 450678784,
+      "db": "jdbc:mysql://localhost:3306,localhost:3310/fake", "time_min": 0,
+      "fetch_count": 0,
+      "hash": 796628118,
+      "fetch_time": 0,
+      "sql_crud": 0,
+      "count_total": 5224,
+      "count_error": 0,
+      "sql": "update table set x=# where key=#",
+      "time_sum": 581391,
+      "time_avg": 111,
+      "time_std": "240.79",
+      "count_actived": 0
+    },
+    (...)
+  ],
+  "total": 130
+}
+```
+
+### client IP
+
+<span class='apitype'>GET</span> https://api.whatap.io/open/api/json/remote/<code>stitme</code>/<code>etime</code>
+
+```bash title='command'
+$ curl -L -w "\n" -H "x-whatap-token: {{PROJECT API TOKEN}}" -H "x-whatap-pcode: {{projectCode}}" "https://api.whatap.io/open/api/json/remote/1535554800000/1535641200000"
+```
+
+```json title='response'
+{
+  "records": [
+    {
+      "count": 86,
+      "city": "Winnipeg",
+      "country": "CA (CANADA)",
+      "ip": "140.193.83.68"
+    },
+    (...)
+  ],
+  "total": 1000
+}
+```
+
+## 트랜잭션
+
+<span class='apitype'>GET</span> https://api.whatap.io/open/api/json/transaction/<code>stitme</code>/<code>etime</code>
+
+```bash title='command'
+$ curl -L -w "\n" -H "x-whatap-token: {{PROJECT API TOKEN}}" -H "x-whatap-pcode: {{projectCode}}" "https://api.whatap.io/open/api/json/transaction/1535554800000/1535641200000"
+```
+
+```json title='response'
+{
+  "records": [
+    {
+        "time_max": 44735,
+        "sql_fetch_time": 363,
+        "sql_time": 2628663,
+        "count": 10743,
+        "error": 29,
+        "sql_count": 22635,
+        "hash": -1485863373,
+        "sql_fetch": 6741607,
+        "httpc_avg": 1084,
+        "cpu_avg": 0,
+        "time_sum": 19911778,
+        "time_avg": 1853,
+        "httpc_count": 7072,
+        "service": "/account/save/employee/seoul",
+        "mem_avg": 0
+    },
+    (...)
+  ],
+  "total": 1080
+}
+```
+
+## Heap 사용량 조회
+
+heap 사용량에 대한 통계를 조회할 수 있습니다.
+
+:::note
+
+조회 시간(`stime`, `etime`)은 한 시간 이내로 제한하며, ms(millisecond) 단위 입니다.
+
+:::
+
+### 통계 평균값 요청
+
+<span class='apitype'>GET</span> https://api.whatap.io/open/api/json/heap_use/<code>stitme</code>/<code>etime</code>/avg
+
+```bash title='command'
+curl -L -w "\n" -H "x-whatap-token: {{PROJECT API TOKEN}}" -H "x-whatap-pcode: {{projectCode}}" "https://api.whatap.io/open/api/json/heap_use/{sitme}/{etime}/avg"
+```
+
+### 통계 최댓값 요청
+
+<span class='apitype'>GET</span> https://api.whatap.io/open/api/json/heap_use/<code>stitme</code>/<code>etime</code>/max
+
+```bash title='command'
+curl -L -w "\n" -H "x-whatap-token: {{PROJECT API TOKEN}}" -H "x-whatap-pcode: {{projectCode}}" "https://api.whatap.io/open/api/json/heap_use/{sitme}/{etime}/max"
+```
+
+```json title='response'
+{
+  "pcode": 5490,
+  "stime": 1677747600000,
+  "etime": 1677749594269,
+  "timeMerge": "avg",
+  "unit": "byte",
+  "data": [
+    {
+        "oid": -1143239575,
+        "oname": "demo-8101",
+        "heap_use": "36121554.72"
+    },
+    {
+        "oid": -857948929,
+        "oname": "demo-8105",
+        "heap_use": "37498925.139"
+    },
+    (...)
+  ]
+}
+```
+
+| Response Field | Field Type | 설명 |
+| -- | -- | -- |
+| `pcode` | <span class='api'>number</span> | 조회한 프로젝트 코드 |
+| `stime` | <span class='api'>number</span> | 통계 조회 시작 시간 |
+| `etime` | <span class='api'>number</span> | 통계 조회 종료 시간 |
+| `timeMerge` | <span class='api'>string</span> | 통계 조회 기간의 데이터 병합 전략 |
+| `unit` | <span class='api'>string</span> | 힙 사용량 단위 |
+| `data` | <span class='api'>array</span> | 통계 데이터 |
+| `oid` | <span class='api'>number</span> | 에이전트 ID |
+| `oname` | <span class='api'>string</span> | 에이전트 이름 |
+| `heap_use` | <span class='api'>string</span> | 힙 사용량 |
+
+
+## 에이전트 데이터 조회
+
+* **Thread Count**
+
+  * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/thread_count/<code>stitme</code>/<code>etime</code>
+  * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/thread_count/<code>stitme</code>/<code>etime</code>/<code>oids</code>
+  * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/thread_count/<code>stitme</code>/<code>etime</code>/avg
+  * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/thread_count/<code>stitme</code>/<code>etime</code>/avg/<code>oids</code>
+
+* **Thread Daemon Count**
+
+  * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/thread_daemon/<code>stitme</code>/<code>etime</code>
+  * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/thread_daemon/<code>stitme</code>/<code>etime</code>/<code>oids</code>
+  * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/thread_daemon/<code>stitme</code>/<code>etime</code>/avg
+  * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/thread_daemon/<code>stitme</code>/<code>etime</code>/avg/<code>oids</code>
+
+* **Thread Peak Count**
+
+  * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/thread_peak_count/<code>stitme</code>/<code>etime</code>
+  * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/thread_peak_count/<code>stitme</code>/<code>etime</code>/<code>oids</code>
+  * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/thread_peak_count/<code>stitme</code>/<code>etime</code>/avg
+  * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/thread_peak_count/<code>stitme</code>/<code>etime</code>/avg/<code>oids</code>
+
+* **Thread Pool Count**
+
+  * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/threadpool_active/<code>stitme</code>/<code>etime</code>
+  * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/threadpool_active/<code>stitme</code>/<code>etime</code>/<code>oids</code>
+  * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/threadpool_active/<code>stitme</code>/<code>etime</code>/avg
+  * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/threadpool_active/<code>stitme</code>/<code>etime</code>/avg/<code>oids</code>
+
+* **Thread Pool Queue Count**
+
+  * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/threadpool_queue/<code>stitme</code>/<code>etime</code>
+  * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/threadpool_queue/<code>stitme</code>/<code>etime</code>/<code>oids</code>
+  * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/threadpool_queue/<code>stitme</code>/<code>etime</code>/avg
+  * <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/threadpool_queue/<code>stitme</code>/<code>etime</code>/avg/<code>oids</code>
+
+### 에이전트 개별 데이터 조회 예시
+
+```bash title='command'
+$ curl -L -w "\n" -H "x-whatap-token: {{PROJECT API TOKEN}}" -H "x-whatap-pcode: {{projectCode}}" "https://api.whatap.io/open/api/json/thread_count/1536050100000/1536050700000"
+```
+
+```json title='response' {6,13} showLineNumbers
+{
+  "pcode": 1234570141,
+  "type": "thread_count",
+  "stime": 1536050100000,
+  "etime": 1536050700000,
+  "interval": 300, // data point 간격
+  "data": [
+    {
+      "oname": "8080",
+      "oid": -1234257485,
+      "data": [
+        [
+          1536050100000, // 시계열 timestamp
+          95.2
+        ],
+        [
+          1536050400000,
+          85.3
+        ],
+        [
+          1536050700000,
+          91.43
+        ]
+      ]
+    },
+    (...)
+    {
+      "oname": "TC-29-96-8082",
+      "oid": 1482741919,
+      "data": [
+        [
+          1536050100000,
+          98.11
+        ],
+        [
+          1536050400000,
+          81.44
+        ],
+        [
+          1536050700000,
+          90.05
+        ]
+      ]
+    }
+  ]
+}
+```
+
+### 에이전트 평균 데이터 조회 예시
+
+```bash title='command'
+$ curl -L -w "\n" -H "x-whatap-token: {{PROJECT API TOKEN}}" -H "x-whatap-pcode: {{projectCode}}" "https://api.whatap.io/open/api/json/thread_count/1536050100000/1536050700000/avg"
+```
+
+```json title='response' {6,10-11} showLineNumbers
+{
+  "pcode": 1234570141,
+  "type": "thread_count",
+  "stime": 1536050100000,
+  "etime": 1536050700000,
+  "interval": 300, // data point 간격
+  "op": "avg",
+  "data": [
+    [
+      1536050100000, // 시계열 timestamp
+      122.86 // 전체 에이전트 평균 데이터
+    ],
+    [
+      1536050400000,
+      99.26
+    ],
+    [
+      1536050700000,
+      109.68
+    ]
+  ]
+}
+```
+
+### 에이전트 지정 데이터 조회 예시
+
+```bash title='command'
+$ curl -L -w "\n" -H "x-whatap-token: {{PROJECT API TOKEN}}" -H "x-whatap-pcode: {{projectCode}}" "https://api.whatap.io/open/api/json/thread_count/1536050100000/1536050700000/-1050048219,- 1459620666"
+```
+
+```json title='response' {10,24} showLineNumbers
+{
+  "pcode": 1234570141,
+  "type": "thread_count",
+  "stime": 1536050100000,
+  "etime": 1536050700000,
+  "interval": 300,
+  "data": [
+    {
+      "oname": "8081",
+      "oid": -1050048219, // 지정한 에이전트 정보 조회
+      "data": [
+        [
+          1536050100000,
+          97.75
+        ],
+        [
+          1536050400000,
+          98
+        ]
+      ]
+    },
+    {
+      "oname": "8073",
+      "oid": -1459620666, // 지정한 에이전트 정보 조회
+      "data": [
+        [
+          1536050100000,
+          137.23
+        ],
+        [
+          1536050400000
+          102.53
+        ],
+        [
+          1536050700000,
+          120.2
+        ]
+      ]
+    }
+  ]
+}
+```
+
+### 에이전트 지정 평균 데이터 조회 예시
+
+```bash title='command'
+$ curl -L -w "\n" -H "x-whatap-token: {{PROJECT API TOKEN}}" -H "x-whatap-pcode: {{projectCode}}" "https://api.whatap.io/open/api/json/thread_count/1536050100000/1536050700000/avg/-1050048219,- 1459620666"
+```
+
+```json title='response' {11} showLineNumbers
+{
+  "pcode": 1234570141,
+  "type": "thread_count",
+  "stime": 1536050100000,
+  "etime": 1536050700000,
+  "interval": 300,
+  "op": "avg",
+  "data": [
+    [
+      1536050100000,
+      117.49 // 지정한 에이전트들의 평균 지표 조회
+    ],
+    [
+      1536050400000,
+      100.26
+    ],
+    [
+      1536050700000,
+      120.2
+    ]
+  ]
+}
+```
+
+## 액티브 사용자(5분  위)
+
+<span class='apitype'>GET</span> https://api.whatap.io/open/api/json/visitor_5m/<code>stitme</code>/<code>etime</code>
+
+```bash title='command'
+$ curl -L -w "\n" -H "x-whatap-token: {{PROJECT API TOKEN}}" -H "x-whatap-pcode: {{projectCode}}" "https://api.whatap.io/open/api/json/visitor_5m/1554444000000/1554076800000"
+```
+
+```json title='response' {4} showLineNumbers
+{
+  "data": [
+    [
+      1554444005000, // 1시간 단위 (5*60*1000)
+      12
+    ],
+    [
+      1554444010000,
+      12
+    ],
+    (...)
+  ],
+  "pcode": 3000000079,
+  "stime": 1554444000000,
+  "etime": 1554444300000,
+  "total": 59
+}
+```
+
+## 액티브 사용자(1시간 단위)
+
+<span class='apitype'>GET</span> https://api.whatap.io/open/api/json/visitor_h/<code>stitme</code>/<code>etime</code>
+
+```bash title='command'
+$ curl -L -w "\n" -H "x-whatap-token: {{PROJECT API TOKEN}}" -H "x-whatap-pcode: {{projectCode}}" "https://api.whatap.io/open/api/json/visitor_h/1554444000000/1554454800000"
+```
+
+```json title='response' {4} showLineNumbers
+{
+  "data": [
+    [
+      1554444000000, // 1시간 단위 (60*60*1000)
+      18
+    ],
+    [
+      1554447600000,
+      16
+    ],
+    (...)
+  ],
+  "pcode": 3000000079,
+  "stime": 1554444000000,
+  "etime": 1554454800000,
+  "total": 3
+}
+```
+
+## 프로젝트 간 트랜잭션 호출 통계
+
+* <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/tx_caller/<code>stitme</code>/<code>etime</code>
+* <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/tx_caller/<code>stitme</code>/<code>etime</code>/<code>oids</code>
+* <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/tx_caller/<code>stitme</code>/<code>etime</code>/filter/<code>filterkey</code>/<code>filterval</code>
+* <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/tx_caller/<code>stitme</code>/<code>etime</code>/<code>oids</code>/filter/<code>filterkey</code>/<code>filterval</code>
+
+:::note
+
+* **filterkey**: 조회 조건 키 (`caller_pcode`, `caller_spec` (버전), `caller_url`, `spec` (버전), `url`)
+* **filterval**: 조회 조건 (`filterkey`가 `caller_url` 또는 `url`인 경우 base64로 인코딩)
+
+:::
+
+## 도메인 호출 통계
+
+* <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/tx_domain/<code>stitme</code>/<code>etime</code>
+* <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/tx_domain/<code>stitme</code>/<code>etime</code>/<code>oids</code>
+* <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/tx_domain/<code>stitme</code>/<code>etime</code>/filter/<code>filterkey</code>/<code>filterval</code>
+* <span class='apitype'>GET</span> https://api.whatap.io/open/api/json/tx_domain/<code>stitme</code>/<code>etime</code>/<code>oids</code>/filter/<code>filterkey</code>/<code>filterval</code>
+
+:::note
+
+* **filterkey**: 조회 조건 키 (`caller_pcode`, `caller_spec` (버전), `caller_url`, `spec` (버전), `url`)
+* **filterval**: 조회 조건 (`filterkey`가 `caller_url` 또는 `url`인 경우 base64로 인코딩)
+
+:::

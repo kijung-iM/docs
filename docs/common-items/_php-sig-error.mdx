@@ -1,0 +1,67 @@
+## Segmentation fault, Sig bus error
+<!-- 표기 스타일 확인 -->
+PHP 모니터링을 적용한 후 서비스에 오류가 발생할 경우 Apache 또는 PHP-FPM의 error log를 확인하세요.
+
+error log 내용 중 `segmentation fault`, `sig bus` 등의 오류 문구가 있는지 확인하세요. `kill child process`, `exit child`, `exit process` 등의 문구와 같이 발생합니다. 
+
+해당 오류가 발생하는 경우는 PHP Extension 모듈인 *whatap.so* 모듈에서 충돌이 발생하는 것으로 볼 수 있습니다. PHP Extension 모듈인 *whatap.so* 를 중지한 후에 Apache 또는 PHP-FPM을 재시작하세요.
+
+서비스에 영향을 주지 않는 환경에서 Apache 및 PHP-FPM에 `Core dump` 설정을 추가한 후 *whatap.so*를 다시 로딩하세요. 이후 오류가 발생하면 *dump* 파일이 생성됩니다. *dump* 파일을 gdb로 분석하여 원인을 해결하세요. 
+
+### Core Dump 설정
+
+1. *dump* 파일을 생성할 디렉터리의 권한을 부여하세요
+
+    ```java
+    chmod 0777 /home/httpd-core
+    ```
+
+1. 시스템 설정을 하세요.
+
+    ```java
+    ulimit -c unlimited
+    sysctl fs.suid_dumpable=2
+    sysctl kernel.core_uses_pid=0
+    sysctl kernel.core_pattern='| /home/httpd-core/core-%e.%p'
+    ```
+
+### Apache
+
+1. Apache conf 에 CoreDumpDirectory 항목을 설정하세요. 
+
+    ```java
+    vi /etc/httpd/conf/httpd.conf
+
+    CoreDumpDirectory /home/httpd-core
+    ```
+1. Apache를 재시작하면 설정이 완료됩니다. 
+
+1. 오류가 발생하면 *dump* 파일이 생성됩니다. *dump* 파일이 생성되면 gdb를 통해 오류 원인을 확인합니다. `bt full` 명령어를 통해서 전체 스택 정보를 확인하세요.
+
+    ```java
+    # gdb /usr/sbin/httpd /home/httpd-core/core-httpd.31832
+    ...
+    ...
+
+    > bt full
+    ```
+
+### PHP-FPM
+
+1. FPM 설정 파일에서 `rlimit_core` 를 설정하세요. 
+
+    ```java
+    rlimit_core = unlimited
+    ```
+
+1. PHP-FPM을 재시작하면 설정이 완료됩니다. 
+
+1. 오류가 발생하면 *dump* 파일이 생성됩니다. *dump* 파일이 생성되면 gdb를 통해 오류 원인을 확인하세요. `bt full` 명령어를 통해서 전체 스택 정보를 확인하세요.
+
+    ```java
+    # gdb /usr/sbin/php-fpm /home/httpd-core/core-php-fpm.31832
+    ...
+    ...
+
+    > bt full
+    ```

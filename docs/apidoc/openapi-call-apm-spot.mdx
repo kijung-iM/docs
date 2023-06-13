@@ -1,0 +1,216 @@
+---
+id: openapi-call-apm-spot
+title: Spot 정보 조회(Application)
+description: Spot 정보 조회(Application)를 위한 Open API에 대한 설명을 제공합니다.
+tags: [ Open API, API, Spot 정보 조회, 애플리케이션, 애플리케이션 모니터링 ]
+---
+
+## 모든 정보 조회
+
+<span class='apitype'>GET</span> https://api.whatap.io/open/api/json/spot
+
+```bash title='command'
+curl -L -w "\n" -H "x-whatap-token: {{PROJECT API TOKEN}}" -H "x-whatap-pcode: {{projectCode}}" "https://api.whatap.io/open/api/json/spot"
+```
+
+```json title='response'
+{
+    "pcode": 8,
+    "act_agent": "6",
+    "inact_agent": "6",
+    "host": "1",
+    "cpucore": "2",
+    "txcount": "459",
+    "tps": "93.07",
+    "user": "1007",
+    "actx": "149",
+    "rtime": "1873",
+    "cpu": "29.35",
+    "threadpool_active": "0",
+    "threadpool_queue": "0",
+    "dbconn_total": "600.0",
+    "dbconn_act": "239.0",
+    "dbconn_idle": "361.0",
+    "act_method": "51",
+    "act_sql": "24",
+    "act_httpc": "64",
+    "act_dbc": "10",
+    "act_socket": "0"
+}
+```
+
+| Response Field | Field Type | 설명 |
+| --- | :-: | --- |
+| pcode | <span class='api'>number</span> | 조회한 프로젝트 코드 |
+| act_agent | <span class='api'>string</span> | [활성화 상태의 에이전트 수](#active-agent) |
+| inact_agent | <span class='api'>string</span> | [비활성화 상태의 에이전트 수](#deactive-agent) |
+| host | <span class='api'>string</span> | [호스트(HOST) 수](#host-count) |
+| cpucore | <span class='api'>string</span> | [호스트의 CPU 코어 합](#sum-cpu) |
+| txcount | <span class='api'>string</span> | [트랜잭션 개수](#count-transaction) |
+| tps | <span class='api'>string</span> | [TPS](#tps) |
+| user | <span class='api'>string</span> | [액티브 사용자(5분)](#active-user-5m) |
+| actx | <span class='api'>string</span> | [액티브 트랜잭션](#active-transaction) |
+| rtime | <span class='api'>string</span> | [평균 응답시간](#response-time) |
+| cpu | <span class='api'>string</span> | [평균 CPU 사용률](#usage-cpu) |
+| threadpool_active | <span class='api'>string</span> | [쓰레드풀 활성 쓰레드 수](#count-threadpool) |
+| threadpool_queue | <span class='api'>string</span> | 쓰레드풀 큐잉 쓰레드 수 |
+| dbconn_total | <span class='api'>string</span> | 전체 DB Connection 수 |
+| dbconn_act | <span class='api'>string</span> | 활성(Active) DB Connection 수 |
+| dbconn_idle | <span class='api'>string</span> | 비활성(Idle) DB Connection 수 |
+| act_method | <span class='api'>string</span> | 액티브 Method 수 |
+| act_sql | <span class='api'>string</span> | 액티브 SQL 수 |
+| act_httpc | <span class='api'>string</span> | 액티브 HTTP Call 수 |
+| act_dbc | <span class='api'>string</span> | 액티브 DB Connection 수 |
+| act_socket | <span class='api'>string</span> | 액티브 Socket 수 |
+
+
+## 활성화 상태의 에이전트 수{#active-agent}
+
+<span class='apitype'>GET</span> https://api.whatap.io/open/api/act_agent
+
+```bash title='command'
+$ curl -L -w "\n" -H "x-whatap-token: {{PROJECT API TOKEN}}" -H "x-whatap-pcode: {{projectCode}}" "https://api.whatap.io/open/api/act_agent"
+```
+
+```json title='response'
+5 // 활성화 에이전트 개수
+```
+
+## 비활성화 상태의 에이전트 수{#deactive-agent}
+
+<span class='apitype'>GET</span> https://api.whatap.io/open/api/inact_agent
+
+```bash title='command'
+$ curl -L -w "\n" -H "x-whatap-token: {{PROJECT API TOKEN}}" -H "x-whatap-pcode: {{projectCode}}" "https://api.whatap.io/open/api/inact_agent"
+```
+
+```json title='response'
+1 // 비활성화 에이전트 개수
+```
+
+## 호스트(HOST) 수{#host-count}
+
+<span class='apitype'>GET</span> https://api.whatap.io/open/api/host
+
+```bash title='command'
+$ curl -L -w "\n" -H "x-whatap-token: {{PROJECT API TOKEN}}" -H "x-whatap-pcode: {{projectCode}}" "https://api.whatap.io/open/api/host"
+```
+
+```json title='response'
+2 // HOST 개수
+```
+
+## 호스트의 CPU 코어 합{#sum-cpu}
+
+<span class='apitype'>GET</span> https://api.whatap.io/open/api/cpucore
+
+```bash title='command'
+$ curl -L -w "\n" -H "x-whatap-token: {{PROJECT API TOKEN}}" -H "x-whatap-pcode: {{projectCode}}" "https://api.whatap.io/open/api/cpucore"
+```
+
+```json title='response'
+16 // CPU 코어 개수
+```
+
+## 트랜잭션 개수{#count-transaction}
+
+<span class='apitype'>GET</span> https://api.whatap.io/open/api/txcount
+
+```bash title='command'
+$ curl -L -w "\n" -H "x-whatap-token: {{PROJECT API TOKEN}}" -H "x-whatap-pcode: {{projectCode}}" "https://api.whatap.io/open/api/txcount"
+```
+
+```json title='response'
+469 // 트랜잭션 개수
+```
+
+## TPS{#tps}
+
+<span class='apitype'>GET</span> https://api.whatap.io/open/api/tps
+
+```bash title='command'
+$ curl -L -w "\n" -H "x-whatap-token: {{PROJECT API TOKEN}}" -H "x-whatap-pcode: {{projectCode}}" "https://api.whatap.io/open/api/tps"
+```
+
+```json title='response'
+92.03 // 초당 처리된 트랜잭션 건수(Transaction per second, TPS)
+```
+
+## 액티브 사용자(5분){#active-user-5m}
+
+<span class='apitype'>GET</span> https://api.whatap.io/open/api/user
+
+```bash title='command'
+$ curl -L -w "\n" -H "x-whatap-token: {{PROJECT API TOKEN}}" -H "x-whatap-pcode: {{projectCode}}" "https://api.whatap.io/open/api/user"
+```
+
+```json title='response'
+1007 // 5분 동안 실시간 사용자 수
+```
+
+## 액티브 트랜잭션{#active-transaction}
+
+<span class='apitype'>GET</span> https://api.whatap.io/open/api/actx
+
+```bash title='command'
+$ curl -L -w "\n" -H "x-whatap-token: {{PROJECT API TOKEN}}" -H "x-whatap-pcode: {{projectCode}}" "https://api.whatap.io/open/api/actx"
+```
+
+```json title='response'
+171 // 액티브 트랜잭션 개수
+```
+
+## 평균 응답시간{#response-time}
+
+<span class='apitype'>GET</span> https://api.whatap.io/open/api/rtime
+
+```bash title='command'
+$ curl -L -w "\n" -H "x-whatap-token: {{PROJECT API TOKEN}}" -H "x-whatap-pcode: {{projectCode}}" "https://api.whatap.io/open/api/rtime"
+```
+
+```json title='response'
+1644 // 평균 응답시간
+```
+
+## 평균 CPU 사용률{#usage-cpu}
+
+<span class='apitype'>GET</span> https://api.whatap.io/open/api/cpu
+
+```bash title='command'
+$ curl -L -w "\n" -H "x-whatap-token: {{PROJECT API TOKEN}}" -H "x-whatap-pcode: {{projectCode}}" "https://api.whatap.io/open/api/cpu"
+```
+
+```json title='response'
+9.26 // 평균 CPU 사용률
+```
+
+## 활성/비활성화 상태의 에이전트 정보
+
+<span class='apitype'>GET</span> https://api.whatap.io/open/json/agents
+
+```bash title='command'
+$ curl -L -w "\n" -H "x-whatap-token: {{PROJECT API TOKEN}}" -H "x-whatap-pcode: {{projectCode}}" "https://api.whatap.io/open/json/agents"
+```
+
+```json title='response'
+{
+  "data": [
+    {
+      "host_ip": "127.0.0.1",
+      "oname": "TC-0-1-8087",
+      "active": true
+    },
+    {
+      "host_ip": "127.0.0.1",
+      "oname": "TC-0-1-8086",
+      "active": true
+    }
+  ]
+}
+```
+
+| Response Field |            Field Type            | 설명                                                       |
+| -------------- | :------------------------------: | ---------------------------------------------------------- |
+| host_ip        | <span class='api'>string</span>  | 에이전트가 위치한 host 의 ip 주소                          |
+| oname          | <span class='api'>string</span>  | 에이전트 명                                                |
+| active         | <span class='api'>boolean</span> | 에이전트 활성화 여부 (활성화 : `true`, 비활성화 : `false`) |

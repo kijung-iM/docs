@@ -1,0 +1,235 @@
+---
+id: install-docker-python
+title: Docker Python 설치
+description: 컨테이너 내 Python 애플리케이션을 모니터링하기 위한 에이전트 설치 단계입니다.
+tags: [ 쿠버네티스, 쿠버네티스 모니터링, 애플리케이션 설치, Python ]
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Docker 컨테이너 기반으로 실행하는 Python 애플리케이션에 와탭 모니터링 에이전트를 적용하고, 컨테이너 이미지를 패키징하는 과정입니다.
+
+## 에이전트 다운로드
+
+Python 애플리케이션 도커 이미지 빌드 시 whatap-python 패키지를 설치하세요.
+
+```docker title='python ver 3.7'
+RUN pip3 install --upgrade whatap-python
+```
+
+## 에이전트 설정
+
+1. Python 애플리케이션 시작 시 와탭 에이전트가 Injection할 수 있도록 애플리케이션 시작 스크립트를 수정하세요. 
+
+  설정 파일 및 로그 출력 경로를 환경변수 `WHATAP_HOME`으로 설정합니다.
+
+    ```python
+    export WHATAP_HOME=/whatap_conf
+    ```
+
+1. 설정 파일을 생성하세요.
+
+    ```bash
+    whatap-setting-config\
+    --host {수집 서버 IP}\
+    --license XXXXXXXXXXXXXX-XXXXXXXXXXXXXX-XXXXXXXXXXXXXX
+    --app_name {애플리케이션 이름}\
+    --app_process_name {애플리케이션 프로세스 이름}
+    ```
+
+:::caution
+
+권한 문제가 발생하는 경우 다음과 같이 `$WHATAP_HOME`에 권한을 부여하세요.
+
+```bash
+echo `sudo chmod -R 777 $WHATAP_HOME`
+```
+
+:::
+
+## Kubernetes 환경변수 및 볼륨
+
+<Tabs>
+<TabItem value='basic' label='기본' default>
+
+트랜잭션에서 Node 및 Pod 정보를 수집하기 위해 `NODE_IP`, `NODE_NAME`, `POD_NAME` 환경변수를 설정하세요. 와탭 설정 파일 및 로그 파일용 휘발성 볼륨을 탑재합니다.
+
+```ini
+env:
+  - name: NODE_IP
+    valueFrom: {fieldRef: {fieldPath: status.hostIP}}
+  - name: NODE_NAME
+    valueFrom: {fieldRef: {fieldPath: spec.nodeName}}
+  - name: POD_NAME
+    valueFrom: {fieldRef: {fieldPath: metadata.name}}
+```
+</TabItem>
+<TabItem value='eksfragate' label='EKS Fargate'>
+
+1. 디플로이먼트(Deployment) 또는 레플리카셋(ReplicaSet)의 *.spec* 내 필드에 사용자 파드(Pod) 자원 관측을 위한 `shareProcessNamespace`, `serviceAccount`를 추가하세요.
+
+    ```ini
+    apiVersion: apps/v1
+    kind: Deployment
+    ...
+    spec:
+    ...
+        spec:
+          shareProcessNamespace: true
+          serviceAccount: whatap
+    ...
+    ```
+
+1. 트랜잭션에서 Node 및 Pod 정보를 수집하기 위해 `NODE_IP`, `NODE_NAME`, `POD_NAME` 환경변수를 설정하세요. 와탭 설정 파일 및 로그 파일용 휘발성 볼륨을 탑재합니다.
+
+    ```ini
+    env:
+      - name: NODE_IP
+        valueFrom: {fieldRef: {fieldPath: status.hostIP}}
+      - name: NODE_NAME
+        valueFrom: {fieldRef: {fieldPath: spec.nodeName}}
+      - name: POD_NAME
+        valueFrom: {fieldRef: {fieldPath: metadata.name}}
+    ```
+
+{@include: _pod-sidecar.mdx}
+
+</TabItem>
+</Tabs>
+
+## 모니터링 시작하기
+
+<Tabs>
+<TabItem value='command' label='Command' default>
+
+`whatap-start-agent` 커맨드를 애플리케이션 시작 명령어 앞에 추가해 실행하세요.
+
+```python
+# whatap-start-agent python manage.py runserver
+whatap-start-agent {애플리케이션 시작 명령어}
+```
+
+</TabItem>
+<TabItem value='uwsgi' label='uWSGI'>
+
+`whatap-start-agent` 커맨드를 애플리케이션 시작 명령어 앞에 추가해 실행하세요.
+
+```python
+# whatap-start-agent uwsgi --ini myapp.ini
+whatap-start-agent {애플리케이션 시작 명령어}
+```
+
+#### Service에 uWSGI를 등록해 애플리케이션을 실행하는 경우
+
+* 사용자(User)를 변경한다면 `WHATAP_HOME` 환경변수를 추가해야 합니다.
+* 가상 환경을 사용한다면 에이전트 시작 명령어를 절대 경로로 추가하세요.
+
+서비스 실행 파일(*/etc/init/uwsgi.conf*)을 수정하여 에이전트 시작 명령어와 함께 애플리케이션을 시작하세요. 사용자 환경에 따라 서비스 실행 파일의 경로는 다를 수 있습니다.
+
+```python title='/etc/init.d/uwsgi'
+description "uWSGI application server handling myapp"
+start on runlevel {2345}
+stop on runlevel {!2345}
+exec whatap-start-agent {YOUR_APPLICATION_START_COMMAND}
+
+# 또는
+
+exec env WHATAP_HOME={PATH} {절대 경로}/whatap-start-agent {YOUR_APPLICATION_START_COMMAND}
+```
+
+```ini title='/etc/init/uwsgi.conf'
+...
+NAME="uwsgi"
+PATH=/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+DAEMON=/usr/local/bin/uwsgi
+PID=$RUN/$NAME.pid
+INI_PATH=/etc/$NAME/$NAME.ini
+
+########## WHATAP_AGENT_CONF ##########
+WHATAP_HOME={PATH}
+WHATAP_AGENT={절대 경로}/whatap-start-agent
+
+...
+do_start(){
+  env WHATAP_HOME=$WHATAP_HOME $WHATAP_AGENT {YOUR_APPLICATION_START_COMMAND}
+}
+```
+
+</TabItem>
+
+<TabItem value='gunicorn' label='Gunicorn'>
+
+`whatap-start-agent` 커맨드를 애플리케이션 시작 명령어 앞에 추가해 실행하세요.
+
+```python
+# whatap-start-agent gunicorn myapp.wsgi
+whatap-start-agent {애플리케이션 시작 명령어}
+```
+
+#### Service에 Gunicorn 등록하여 애플리케이션을 실행하는 경우
+
+* 사용자(User)를 변경한다면 `WHATAP_HOME` 환경변수를 추가해야 합니다.
+* 가상 환경을 사용한다면 에이전트 시작 명령어를 절대 경로로 추가하세요.
+
+서비스 실행 파일(*/etc/init/gunicorn.conf*)을 수정하여 에이전트 시작 명령어와 함께 애플리케이션을 시작하세요. 사용자 환경에 따라 서비스 실행 파일의 경로는 다를 수 있습니다.
+
+```python title='/etc/init.d/gunicorn'
+description "Gunicorn application server handling myapp"
+start on runlevel {2345}
+stop on runlevel {!2345}
+exec whatap-start-agent {YOUR_APPLICATION_START_COMMAND}
+
+# 또는
+
+exec env WHATAP_HOME={PATH} {절대 경로}/whatap-start-agent {YOUR_APPLICATION_START_COMMAND}
+```
+
+```ini title='/etc/init/gunicorn.conf'
+...
+NAME="gunicorn"
+PATH=/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+DAEMON=/usr/local/bin/gunicorn
+PID=$RUN/$NAME.pid
+INI_PATH=/etc/$NAME/$NAME.ini
+
+########## WHATAP_AGENT_CONF ##########
+WHATAP_HOME={PATH}
+WHATAP_AGENT={절대 경로}/whatap-start-agent
+
+...
+do_start(){
+  env WHATAP_HOME=$WHATAP_HOME $WHATAP_AGENT {YOUR_APPLICATION_START_COMMAND}
+}
+```
+
+</TabItem>
+<TabItem value='supervisor' label='Supervisor'>
+
+* 사용자(User)를 변경한다면 `WHATAP_HOME` 환경변수를 추가해야 합니다.
+* 가상 환경을 사용한다면 에이전트 시작 명령어를 절대 경로로 추가하세요.
+
+서비스 실행 파일(*/etc/supervisor/conf.d/supervisor.conf*)을 수정하여 에이전트 시작 명령어와 함께 애플리케이션을 시작하세요. 사용자 환경에 따라 서비스 실행 파일의 경로는 다를 수 있습니다.
+
+```ini title='supervisor.conf'
+[program:app-uwsgi]
+environment = WHATAP_HOME={PATH}
+command = {절대 경로}/whatap-start-agent /usr/local/bin/uwsgi --ini /home/blog/backend/config/uwsgi.ini
+[program:nginx-app]
+command = /usr/sbin/nginx
+```
+
+</TabItem>
+<TabItem value='code' label='Code'>
+
+가장 윗줄에 API를 직접 호출하는 코드를 추가하여 에이전트를 적용할 수 있습니다.
+
+```python
+import whatap
+whatap.agent()
+```
+
+</TabItem>
+</Tabs>
+
+{@include: _check-install-agent.mdx}

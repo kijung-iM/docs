@@ -1,0 +1,25 @@
+---
+id: liberty
+title: Liberty
+description: Liberty 애플리케이션 서버 환경에서 JVM 옵션 추가 설정을 완료하세요.
+tags:
+    - Java
+    - Liberty
+---
+
+Liberty를 사용하는 애플리케이션 서버 환경에서 JVM 옵션을 추가하는 방법을 확인하세요. 
+
+*jvm.options* 파일에 에이전트 옵션을 추가하세요. 파일이 없는 경우 신규로 생성하세요.
+
+```bash title=/wasliberty/usr/servers/defaultServer/jvm.options {2} showLineNumbers
+-javaagent:/app/whatap/whatap.agent-2.1.1.jar
+-Dorg.osgi.framework.bootdelegation=whatap.* ## OSGI 프레임워크 설정을 위한 추가 옵션 ##
+```
+
+:::note
+
+{@include: _java-17.mdx} 
+
+:::
+
+{@include: ../../common-items/_start-apm.mdx}  

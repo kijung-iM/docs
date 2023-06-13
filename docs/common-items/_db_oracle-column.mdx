@@ -1,0 +1,85 @@
+## 컬럼 정보 안내{#column-info}
+
+컬럼 정보에 대한 보다 자세한 내용은 [다음 링크](https://docs.oracle.com/)를 참조하세요.
+
+| 항목 | 설명 |
+| -- | -- |
+| `sid` | 세션의 id |
+| `cpu(xos)` | XOS를 설치한 경우 수집되는 CPU 사용율 |
+| `serial#` | 동일한 세션 id를 사용한경우 판별하기 위해 증가시키는 값 |
+| `username` | db 사용자 이름 |
+| `command` | `COMMAND_TYPE`과 동일, SQL command number  |
+| `status` | 세션 상태 |
+| `schemaname` | 스키마, username과 동일 |
+| `osuser` | 세션에 접속한 운영체제의 사용자 이름 |
+| `spid` | 운영체제 프로세스 식별자 |
+| `process` | 세션에 접속한 클라이언트 프로세스 id |
+| `logon_time` | 세션이 생긴 시점 |
+| `last_call_et` | 세션이 활성화 상태인 경우, 활성 상태가 된 후 경과된 시간(초) |
+| `sql_text` | `query`, 실행되고 있는 statement, 리터럴 문자열을 분리한 SQL 문 |
+| `sql_param` | `query`에서 분리한 리터럴 값 |
+| `prev_sql_text` | 이전에 실행한 query |
+| `prev_sql_param` | 이전에 실행한 query param |
+| `program` | 클라이언트에서 실행한 프로그램 정보 |
+| `type` | session type - user background recursive (*whatap.conf*)에서 조정 가능 |
+| `seq#` | 현재 또는 마지막 대기를 고유하게 식별하는 숫자(대기할 때마다 증가) |
+| `event` | 세션이 대기 중인 경우 세션이 대기 중인 리소스 또는 이벤트의 번호 |
+| `p1` | 첫 번째 대기 이벤트 파라미터(소수점) |
+| `p2` | 두 번째 대기 이벤트 파라미터(소수점) |
+| `p3` | 세 번째 대기 이벤트 파라미터(소수점) |
+| `wait_class` | 대기 중인 이벤트의 클래스 이름 |
+| `wait_time` | 세션이 현재 대기 중이면 값은 `0`, `0`보다 큰 경우 마지막 대기 시간(milliseconds) |
+| `seconds_in_wait` | 세션이 현재 대기 중인 경우 대기를 위해 대기한 시간, 세션이 대기 중이 아니라면 마지막 대기 시작 이후의 시간 |
+| `state` | 대기 상태, `WAITING`, `WAITED UNKNOWN TIME`, `WAITED SHORT TIME`, `WAITED KNOWN TIME` | 
+| `machine` | 세션에 접속한 클라이언트 서버 이름(hostname) |
+| `port` | 클라이언트 포트 숫자 |
+| `terminal` | 클라이언트 터미널 이름 |
+| `module` | 클라이언트에서 실행한 프로그램에서 사용자가 설정한 모듈(module)의  이름 |
+| `action` | 현재 수행되고 있는 모듈의 사용자가 설정한 액션 이름 |
+| `client_info` | 사용자가 설정한 클라이언트 정보 |
+| `client_identifier` | 사용자가 설정한 클라이언트 식별자 |
+| session logical reads | 데이터를 버퍼 캐시 내에서 읽은 횟수 |
+| physical reads | 데이터를 물리 디스크에서 읽은 횟수 |
+| excute count | SQL의 실행 개수 |
+| parse count (hard) | 총 구분 문석 호출 수(실제 구문 분석) |
+| parse count (total) | 총 구문 분석 호출 수(hard, soft, describe) |
+| opened cursors current | 현재 열려있는 cursor의 개수 |
+| db block changes | 데이터베이스 내 모든 블록의 변경 횟수 |
+| session pga memory | 세션의 현재 PGA 크기(size) |
+| `undo_segid` | undo 정보 id|
+| `undo_blk` | undo 블록 개수 |
+| `undo_rec` | undo 레코드 개수 |
+| `sql_address` | SQL 문(statement)을 식별하는 정보 |
+| `sql_hash_value` | SQL 문(statement)을 식별하는 정보 |
+| `sql_id` | 현재 실행 중인 SQL 문(statement)의 SQL 식별자 |
+| `sql_child_number` | 현재 실행 중인 SQL 문(statement)의 하위 번호 |
+| `sql_exec_start` | 해당 세션에서 현재 실행 중인 SQL 실행이 시작 시점 | 
+| `sql_exec_id` | SQL 실행 식별자 |
+| `prev_sql_addr` | 마지막으로 실행된 SQL 문(statement)을 식별하는 정보 |
+| `prev_child_number` | 마지막으로 실행된 SQL 문(statement)의 하위 번호 |
+| `prev_exec_start` | 마지막으로 실행된 SQL 문(statement)의 SQL 실행 시작 시점 |
+| `prev_exec_id` | 마지막으로 실행된 SQL 문(statement)의 SQL 실행 식별 id |
+| `plsql_entry_object_id` | 스택에서 가장 위에 있는 PL/SQL 하위 프로그램의 객체 id |
+| `plsql_entry_subprogram_id` | 스택에서 가장 위에 있는 PL/SQL 서브 프로그램의 서브 프로그램 id |
+| `plsql_object_id` | 현재 실행 중인 PL/SQL 개체의 서브 프로그램 id |
+| `taddr` | 트랜잭션의 주소(address) |
+| `lockwait` | lock wait address, 세션이 대기 중인 락 주소 |
+| `row_wait_obj` | `ROW_WAIT_ROW#`에 지정된 행이 포함된 테이블의 개체 ID |
+| `row_wait_file` | `ROW_WAIT_ROW#`에 지정된 행이 포함된 데이터 파일의 식별자 |
+| `row_wait_block` | `ROW_WAIT_ROW#`에 지정된 행이 포함된 블록의 식별자 |
+| `row_wait_row` | 현재 잠긴 행 |
+| `pdml_status` | 값이 `ENABLED`인 경우 세션이 `PARALLEL DML` 활성화 모드입니다. 값이 `DISABLE`인 경우 세션에서 `PARALLE DML` 활성화 모드를 지원하지 않습니다. 값이 `FORCED`인 경우 세션이 `PARALLE DML`을 강제로 사용하도록 변경된 것입니다. |
+| `pq_status` | 값이 `ENABLED`인 경우 세션이 `PARALLEL QUERY` 활성화 모드입니다. 값이 `DISABLE`인 경우 세션에서 `PARALLEL QUERY` 활성화 모드를 지원하지 않습니다. 값이 `FORCED`인 경우 세션이 `PARALLEL QUERY`을 강제로 사용하도록 변경된 것입니다. |
+| `blocking_session_status` | 차단 세션이 있는지 여부에 대한 세부 정보를 제공 |
+| `blocking_instance` | 차단 세션에 대한 인스턴스 식별자 |
+| `blocking_session` | 차단 세션의 세션 식별자 |
+| `final_blocking_session_status` | 최종 차단 세션이 있는지 여부에 대한 세부 정보를 제공 |
+| `final_blocking_instance` | 최종 차단 세션에 대한 인스턴스 식별자 |
+| `final_blocking_session` | 최종 차단 세션의 세션 식별자 |
+| `service_name` | 해당 세션의 서비스 이름, DB 이름과 유사 |
+| `saddr` | 세션 주소 |
+| `con_id` | 데이터와 관련한 컨테이너의 id (멀티 데이터베이스를 지원하는 경우에만 해당) |
+| `rss(xos)` | XOS 에이전트에서 수집하는 OS 지표 |
+| `pss(xos)` | XOS 에이전트에서 수집하는 OS 지표 |
+| `ioread(xos)` | XOS 에이전트에서 수집하는 OS 지표 |
+| `iowrite(xos)` | XOS 에이전트에서 수집하는 OS 지표 |

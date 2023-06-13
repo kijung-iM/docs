@@ -1,0 +1,78 @@
+---
+id: install-check
+title: 설치 점검 사항
+description: PHP 에이전트 설치 점검에 대한 설명입니다.
+tags: [ PHP, PHP 모니터링, 애플리케이션, 애플리케이션 모니터링, 설치 점검 사항 ]
+---
+<!-- 구성 수정 -->
+## 다시 실행하기
+
+설치가 완료된 후 Apache 또는 PHP-FPM 서비스(Service)를 다시 시작하면 설정된 PHP 확장 모듈(PHP Extension module) *whatap.so* 파일이 로딩됩니다.
+
+만약 whatap-php 서비스(Service)가 실행 중이지 않거나 오류가 발생하면 다시 시작하세요.
+
+### Redhat/CentOS
+
+```bash title=SH
+$ service whatap-php restart
+```
+
+### Debian/Ubuntu
+
+```bash title=SH
+$ sudo service whatap-php restart
+```
+
+### FreeBSD
+
+```bash title=SH
+$ service whatap_php restart
+```
+
+## PHP 확장 모듈 설치 상태 확인하기
+
+설치가 완료된 후 Apache 또는 PHP-FPM 서비스를 다시 시작하면 설정된 PHP 확장 모듈 *whatap.so* 파일이 로딩됩니다. PHP 확장 모듈이 잘 설치됐는지 다음의 방법으로 확인할 수 있습니다.
+
+<!-- 설치가 완료된 후 Apache 또는 PHP-FPM 서비스(Service)를 다시 시작하면 설정된 PHP 확장 모듈(PHP Extension module) *whatap.so* 파일이 로딩됩니다.
+
+PHP 확장 모듈이 잘 설치됐는지 다음의 방법으로 확인할 수 있습니다. -->
+
+1. PHP 추가 INI 경로에 *whatap.ini* 파일이 생성되었는지 확인하세요.
+
+    ```bash title=SH
+    $ find / | grep whatap.ini
+    ```
+
+1. PHP 확장 모듈 경로에 *whatap.so* 파일이 생성되었는지 확인하세요.
+
+    ```bash title=SH
+    $ find / | grep whatap.so
+    ```
+
+1. PHP 확장 모듈이 실행되고 있는지 확인하세요.
+
+    ```bash title=SH
+    $ sudo php -m
+
+    [PHP Modules]
+    bz2
+    calendar
+    Core
+    ctype
+    curl
+    date
+    …
+    whatap   # whatap 모듈 실행 확인
+    …
+    [Zend Modules]
+    ```
+
+1. whatap-php 서비스 상태를 확인하세요.
+
+    ```bash title=SH
+    $ service whatap-php status
+    ```
+
+1. 애플리케이션 서버 목록에서 설정된 서버가 추가되었는지 확인하세요. 
+
+ ![server_agents](https://img.whatap.io/media/agent_php/install/tinified/server_agents.png)

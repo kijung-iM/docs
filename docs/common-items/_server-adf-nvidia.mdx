@@ -1,0 +1,33 @@
+`nvidia-smi` 명령이 탑재된 경우 GPU 성능을 5초 간격으로 수집해 와탭으로 업로드합니다. 수집된 정보는 메트릭스 ***카테고리*** `server_nvidiasmi`로 수집됩니다.
+
+<Tabs>
+<TabItem value="lxs" label="Linux Shell">
+
+```bash title=SH
+echo "nvidiasmi.enabled=true" |sudo tee -a /usr/whatap/infra/conf/whatap.conf
+```
+
+</TabItem>
+<TabItem value="wps" label="Windows Powershell">
+
+```bash title=SH
+Add-Content -Path "C:\Program Files\WhatapInfra\whatap.conf" -Value "nvidiasmi.enabled=true"
+```
+
+</TabItem>
+</Tabs>
+
+* **category server_nvidiasmi**
+
+    |메트릭스|비고|
+    |----|----|
+    |DecoderUtil|gauge, Decoder utilization (in %)|
+    |EncoderUtil|gauge, Encoder utilization (in %)|
+    |FreeFbMemoryUsageGpu|gauge, Framebuffer memory free (in MiB).|
+    |UsedFbMemoryUsageGpu|gauge, Framebuffer memory used (in MiB).|
+    |GpuTemp|gauge, GPU temperature (in C).|
+    |GpuUtil|gauge, GPU utilization (in %).|
+    |MemClock|gauge, Memory clock frequency (in MHz).|
+    |MemoryUtil|gauge, Memory utilization (in %).|
+    |SmClock|gauge, SM clock frequency (in MHz).|
+

@@ -1,0 +1,24 @@
+---
+id: introduction
+title: AWS Log 모니터링
+description: AWS Resource에 저장 중인 로그를 수집하는 와탭 AWS Log 를 안내합니다.
+tags: [ AWS Log ]
+toc_max_heading_level: 2
+---
+
+import TR from '@site/src/components/TR';
+
+AWS 상에서 발생하는 리소스 로그는 CloudWatch Log를 통해 수집되는 로그 행 단위의 문자열 정보와 S3에 아카이브 된 형태로 저장되는 로그의 형태로 나뉩니다. 일반적으로 사용자는 다음과 같이 S3와 Log Group에 각각 들어가 리소스별로 확인하는 번거로운 과정을 거쳐야 합니다. 
+
+![none aws-log sc](/img/aws-log-none.png)
+
+와탭 AWS Log는 AWS 상에서 발생하는 각종 로그를 수집하여 통합 모니터링 하기 위한 기능을 제공합니다. AWS Log를 활용한다면 사용자는 위의 번거로운 과정을 거칠 필요가 없습니다. AWS 리소스 로그가 쌓이는 S3와 CloudWatch Log Group을 와탭 WhaTap Forwarder가 구독해 로그 생성 시 와탭 환경으로 보냅니다. 
+
+![aws-log sc](/img/aws-log-intro-c.png)
+
+### 주요 특장점
+
+* 와탭 AWS Log를 활용해 리소스 로그를 한 번에 모아볼 수 있습니다.
+* 와탭 AWS Log를 활용해 시간대별 로그 발생량을 계산할 수 있습니다.
+* 와탭 AWS Log를 활용해 로그 내용을 검색할 수 있습니다.
+

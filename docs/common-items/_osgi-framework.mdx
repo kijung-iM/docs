@@ -1,0 +1,39 @@
+## OSGI 프레임워크 사용 애플리케이션 서버의 경우
+
+OSGI 프레임워크 구조의 애플리케이션 서버인 경우 JVM 옵션에 에이전트 패키지 prefix(whatap)를 등록하세요.
+
+Jboss EAP 6.0 버전 이상, Jboss AS 7.0 버전 이상, Wildfly 8.0 버전 이상, IBM WebSphere AS 7.0 버전 이상 등이 해당합니다.
+
+### JBoss AS, Wildfly, JBoss EAP 6.0 이상
+
+다음 파일에 prefix를 등록하세요.
+
+```apacheconf title='$JBOSS_HOME/bin/standalone.conf(domain.conf)'
+-Djboss.modules.system.pkgs=whatap
+```
+
+![JBOSS EAP 7.0](https://img.whatap.io/media/agent_java/install/410.png)
+
+### WebSphere
+
+JVM 옵션으로 다음 내용을 추가하세요.
+
+```bash
+-Dcom.ibm.ws.classloader.server.alwaysAllowedPackages=whatap
+```
+
+* 기본값으로 '*'로 지정된 경우 별도 설정이 필요 없습니다.
+* 설정 위치는 [WebSphere](add-jvm-opt/websphere)를 참조합니다.
+
+*security.policy* 권한을 다음과 같이 추가하세요.
+
+```java title='$WEBSPHERE_HOME/properties/server.policy || $WEBSPHERE_PROFILE_HOME/properties/server.policy'
+grant codeBase "file:$WHATAP_HOME/-"
+{
+   permission java.security.AllPermission;
+};
+```
+
+
+
+

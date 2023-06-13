@@ -1,0 +1,120 @@
+### app_active_stat
+----
+
+액티브 트랜잭션 구간 지표입니다.
+
+* 수집 간격 : 5초
+* 통계 데이터 : 5분, 1시간
+
+#### Tags
+
+|태그명|설명|비고|
+|----|----|----|
+|container|컨테이너 이름|고유값|
+|containerKey|컨테이너 키값|고유값|
+|host_ip|Host IP|고유값|
+|okindName|애플리케이션 종류명|-|
+|oname|애플리케이션 이름|고유값|
+|onodeName|애플리케이션 노드명|-|
+|pid|애플리케이션 PID|-|
+|type|애플리케이션 유형|언어 이름|
+
+#### Fields
+
+|필드명|단위|설명|비고|
+|----|----|----|----|
+|dbc|건수|Database Connection을 수행 중인 트랜잭션 건수|-|
+|httpc|건수|HTTP Call을 수행 중인 트랜잭션 건수|-|
+|method|건수|Method 로직 수행 중인 트랜잭션 건수|-|
+|socket|건수|Socket 연결 수행 중인 트랜잭션 건수|-|
+|sql|건수|SQL 쿼리를 수행 중인 트랜잭션 건수|-|
+
+### app_counter
+----
+
+트랜잭션 지표입니다.
+
+* 수집 간격 : 5초
+* 통계 데이터 : 5분, 1시간
+
+#### Tags
+
+|태그명|설명|비고|
+|----|----|----|
+|alias|애플리케이션 별칭|고유값|
+|container|컨테이너 이름|고유값|
+|containerKey|컨테이너 키 값|고유값|
+|host_ip|Host IP|고유값|
+|okindName|애플리케이션 종류명|-|
+|oname|애플리케이션 이름|고유값|
+|onodeName|애플리케이션 노드명|-|
+|pid|애플리케이션 PID|-|
+|type|애플리케이션 유형|언어 이름|
+
+#### Fields
+
+|필드명|단위|설명|비고|
+|----|----|----|----|
+|active_tx_0|건수|3초 이하 구간 트랜잭션 수|-|
+|active_tx_3|건수|3초 초과 8초 이하 구간 트랜잭션 수|-|
+|active_tx_8|건수|8초 초과 구간 트랜잭션 수|-|
+|active_tx_count|건수|수행 중인 전체 트랜잭션 수|-|
+|apdex_satisfied|건수|APDEX 만족 수|-|
+|apdex_tolerated|건수|APDEX 허용 수|-|
+|apdex_total|건수|APDEX 트랜잭션 총 수|-|
+|arrival_rate|퍼센트|트랜잭션 요청률|-|
+|httpc_count|건수|HTTP 외부 호출 수|-|
+|httpc_error|건수|HTTP 외부 호출 에러 수|-|
+|httpc_time|밀리 세컨드|HTTP 외부 호출 평균 시간|-|
+|metering|코어|애플리케이션이 작동 중인 호스트의 코어 수|컨테이너의 경우 limit cpu|
+|resp_time|밀리 세컨드|평균 응답 시간|-|
+|sql_count|건수|실행 완료된 SQL 건수|-|
+|sql_error|건수|SQL 에러 건수|-|
+|sql_fetch_count|건수|SQL Fetch 건수|-|
+|sql_fetch_time|밀리 세컨드|SQL Fetch 수행 시간|-|
+|sql_time|밀리 세컨드|SQL 평균 수행 시간|-|
+|tps|건수|초당 트랜잭션 처리 수|-|
+|tx_count|건수|트랜잭션 처리 건 수|-|
+|tx_dbc_time|밀리 세컨드|DB 평균 연결 시간|-|
+|tx_error|건수|트랜잭션 에러 건수|-|
+|tx_httpc_time|밀리 세컨드|HTTP 호출 평균 시간|-|
+|tx_sql_time|밀리 세컨드|트랜잭션별 SQL 수행시간의 합에 대한 평균|-|
+|tx_time|밀리 세컨드|트랜잭션 수행 시간|-|
+
+### app_host_resource
+----
+
+애플리케이션 서버 자원 지표입니다.
+
+* 수집 간격 : 5초
+* 통계 데이터 : 5분, 1시간
+
+#### Tags
+
+|태그명|설명|비고|
+|----|----|----|
+|alias|애플리케이션 별칭|고유값|
+|container|컨테이너 이름|고유값|
+|containerKey|컨테이너 키값|고유값|
+|host_ip|Host IP|고유값|
+|okindName|애플리케이션 종류명|-|
+|oname|애플리케이션 이름|고유값|
+|onodeName|애플리케이션 노드명|-|
+|pid|애플리케이션 PID|-|
+|type|애플리케이션 유형|언어 이름|
+
+#### Fields
+
+|필드명|단위|설명|비고|
+|----|----|----|----|
+|cpu|퍼센트|호스트 CPU 사용률|-|
+|cpu_cores|정수|호스트 CPU 코어 수|-|
+|cpu_irq|퍼센트|호스트 CPU IRQ 사용률|-|
+|cpu_proc|퍼센트|자바 프로세스 CPU 사용률|-|
+|cpu_steal|퍼센트|호스트 CPU Steal 사용률|-|
+|cpu_sys|퍼센트|호스트 CPU SYS 사용률|-|
+|cpu_usr|퍼센트|호스트 CPU USER 사용률|-|
+|cpu_wait|퍼센트|호스트 CPU WAIT 사용률|-|
+|disk|퍼센트|루트 파일시스템 디스크 사용률|JAVA는 설정으로 지정한 파일시스템 경로의 디스크 사용률|
+|mem|퍼센트|호스트 메모리 사용률|-|
+|swap|퍼센트|호스트 SWAP 사용률|-|  

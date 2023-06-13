@@ -1,0 +1,59 @@
+---
+id: supported-spec
+title: Java 지원 환경
+description: 와탭 모니터링 서비스가 동작하는 JVM 애플리케이션 서버의 기본 사양을 알아보세요.
+tags:
+- Java
+- Linux
+- MySQL
+---
+
+에이전트를 설치하기 전에 JVM 애플리케이션 서버가 다음의 사양을 충족하는지 확인하세요.
+
+Web Application Server (WAS) 뿐 아니라 데몬 및 배치 애플리케이션 등 JVM에서 동작하는 모든 애플리케이션에 적용할 수 있습니다. Java 1.5 이하는 <support@whatap.io>로 문의하거나 [다음 문서](add-jvm-opt/java-under-ver)를 참조하세요.
+
+## JVM
+
+|지원범위|환경|OS|JVM 버전|
+|---|---|---|---|
+|Fully support|Java|JVM으로 구동하는 모든 OS|Java 6 이상, Java 17 이하|
+|Limited support|Java|JVM으로 구동하는 모든 OS|Java 1.5 이하|
+
+## Web Application Server (WAS)
+
+Tomcat, JBoss, JEUS, WebLogic, WebSphere 등 Java EE Spec을 준수하는 모든 Application Server, [다음 링크](https://www.oracle.com/technetwork/java/javaee/overview/compatibility-jsp-136984.html)를 참조하세요.
+
+## Framework / Library
+
+- Spring Boot Project
+- Netty, Akka HTTP 및 Play Framework 등 비동기 Framework
+- 이외 Java EE Spec을 준수하는 Application Server에서 동작하는 모든 라이브러리
+
+## DataSource
+
+- Generic JDBC (any JDBC compliant driver)
+- DB2 JDBC
+- Derby JDBC
+- H2 JDBC
+- jTDS JDBC
+- MariaDB JDBC
+- Microsoft SQL Server JDBC
+- MySQL mysql-connector-java
+- Oracle ojdbc14, ojdbc5, ojdbc6, ojdbc7, ojdbc8
+- Postgres JDBC
+- Tibero
+- Jedis Redis driver
+
+## 공통 지원 환경
+
+### 브라우저 지원
+
+{@include: ../getting-started/_supported-browser.mdx}  
+
+### 방화벽
+
+{@include: ../getting-started/_proxy.mdx}  
+
+### 모바일 앱
+
+{@include: ../getting-started/_mobile-app.mdx}  

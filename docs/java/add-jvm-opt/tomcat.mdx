@@ -1,0 +1,116 @@
+---
+id: tomcat
+title: Tomcat
+description: Tomcat 애플리케이션 서버 환경에서 JVM 옵션 추가 설정을 완료하세요.
+tags: [ Tomcat, Java]
+---
+
+Tomcat을 사용하는 애플리케이션 서버 환경에서 JVM 옵션을 추가하는 방법을 확인하세요. 사용하는 운영체제에 맞게 설정하세요.
+
+## 환경 변수 추가
+
+### **Linux**
+
+*catalina.sh* 파일 상단에 `JAVA_OPTS` 환경 변수를 추가하세요.
+
+```bash title='{Tomcat_PATH}/bin/catalina.sh' showLineNumbers
+########## WHATAP START ############
+WHATAP_HOME=/whatap
+WHATAP_JAR=`ls ${WHATAP_HOME}/whatap.agent-*.jar | sort | tail -1`
+JAVA_OPTS="${JAVA_OPTS} -javaagent:${WHATAP_JAR} "
+########## WHATAP END ############
+```
+
+:::note
+
+`ls ${WHATAP_HOME}/whatap.agent-*.jar | sort | tail -1` 항목은 향후 에이전트 업데이트를 진행할 경우 최신 와탭 에이전트를 적용하기 위해서입니다.
+
+:::
+
+### **Windows**
+
+* *setup.bat* 파일을 통해 실행하는 경우
+
+  *catalina.bat* 파일 상단에 `JAVA_OPT` 환경 변수를 추가하세요.
+
+  ```batch title='{Tomcat_PATH}/bin/catalina.bat' {3} showLineNumbers
+  rem ########## WHATAP START ############
+  set WHATAP_HOME=C:\whatap
+  for /f %%f in ('dir /b /on "%WHATAP_HOME%\whatap.agent-*.jar"') do set last=%%f
+  set WHATAP_JAR=%last%
+  set WHATAP_OPTS=-javaagent:%WHATAP_HOME%\%WHATAP_JAR%
+
+  if "x%JAVA_OPTS%"=="x" goto setWhatap
+
+  set JAVA_OPTS_TMP=%JAVA_OPTS:"=%
+  if not "x%JAVA_OPTS_TMP:whatap=%"=="x%JAVA_OPTS_TMP%" goto endWhatap
+
+  :setWhatap
+  set JAVA_OPTS=%JAVA_OPTS% %WHATAP_OPTS%
+
+  :endWhatap
+  rem ########## WHATAP END ############
+  ```
+
+* Tomcat을 Windows 인스톨러로 설치한 경우
+
+  1. ***시작*** > ***Apache Tomcat `X.Y.Z.`*** > ***Configure Tomcat***을 선택하세요.
+
+  1. ***Java*** 탭을 선택하세요.
+
+  1. ***Java Options*** 텍스트 박스에 `-javaagent` 옵션을 추가하세요.
+
+  ```text
+  -javaagent:{와탭 설치 경로}/whatap.agent-X.Y.Z.jar
+  ```
+
+  ![Apache Tomcat](https://img.whatap.io/media/images/tomcat-win.png)
+
+### Java 17 버전 이상
+
+{@include: _java-17.mdx}
+
+
+## 모니터링 시작하기
+
+{@include: ../../common-items/_start-apm.mdx} 
+
+## Tomcat 호환성
+
+| WAS Ver. | Java SE 6 (jdk1.6.0) | Java SE 7 (jdk1.7.0_80) | Java SE 8 (jdk1.8.0_91) |
+| -------- | :------------------: | :---------------------: | :---------------------: |
+| Tomcat 6 | <span class='emoji-ok'>✅</span>                   | <span class='emoji-ok'>✅</span>                      | <span class='emoji-ok'>✅</span>                      |
+| Tomcat 7 | <span class='emoji-ok'>✅</span>                   | <span class='emoji-ok'>✅</span>                      | <span class='emoji-ok'>✅</span>                      |
+| Tomcat 8 | <span class='emoji-no'>❌</span>                   | <span class='emoji-ok'>✅</span>                      | <span class='emoji-ok'>✅</span>                      |
+| Tomcat 9 | <span class='emoji-no'>❌</span>                   | <span class='emoji-no'>❌</span>                      | <span class='emoji-ok'>✅</span>                      |
+
+| WAS Ver. | OpenJDK 6 (1.6.0_45) | OpenJDK 7 (1.7.0_80) | OpenJDK 8 (1.8.0_91) |
+| -------- | :------------------: | :------------------: | :------------------: |
+| Tomcat 6 | <span class='emoji-ok'>✅</span>                   | <span class='emoji-ok'>✅</span>                   | <span class='emoji-ok'>✅</span>                   |
+| Tomcat 7 | <span class='emoji-ok'>✅</span>                   | <span class='emoji-ok'>✅</span>                   | <span class='emoji-ok'>✅</span>                   |
+| Tomcat 8 | <span class='emoji-no'>❌</span>                   | <span class='emoji-ok'>✅</span>                   | <span class='emoji-ok'>✅</span>                   |
+| Tomcat 9 | <span class='emoji-no'>❌</span>                   | <span class='emoji-no'>❌</span>                   | <span class='emoji-ok'>✅</span>                   |
+
+| WAS Ver. | OpenJDK 6 (1.6.0_45) | OpenJDK 7 (1.7.0_80) | OpenJDK 8 (1.8.0_91) |
+| -------- | :------------------: | :------------------: | :------------------: |
+| Tomcat 6 | <span class='emoji-ok'>✅</span>                   | <span class='emoji-ok'>✅</span>                   | <span class='emoji-ok'>✅</span>                   |
+| Tomcat 7 | <span class='emoji-ok'>✅</span>                   | <span class='emoji-ok'>✅</span>                   | <span class='emoji-ok'>✅</span>                   |
+| Tomcat 8 | <span class='emoji-no'>❌</span>                   | <span class='emoji-ok'>✅</span>                   | <span class='emoji-ok'>✅</span>                   |
+| Tomcat 9 | <span class='emoji-no'>❌</span>                   | <span class='emoji-no'>❌</span>                   | <span class='emoji-ok'>✅</span>                   |
+
+| WAS Ver. | ibm-java-x86_64-60 | ibm-java-x86_64-71 | ibm-java-x86_64-80 |
+| -------- | :----------------: | :----------------: | :----------------: |
+| Tomcat 6 | <span class='emoji-ok'>✅</span>                 | <span class='emoji-ok'>✅</span>                 | <span class='emoji-ok'>✅</span>                 |
+| Tomcat 7 | <span class='emoji-ok'>✅</span>                 | <span class='emoji-ok'>✅</span>                 | <span class='emoji-ok'>✅</span>                 |
+| Tomcat 8 | <span class='emoji-no'>❌</span>                 | <span class='emoji-ok'>✅</span>                 | <span class='emoji-ok'>✅</span>                 |
+| Tomcat 9 | <span class='emoji-no'>❌</span>                 | <span class='emoji-no'>❌</span>                 | <span class='emoji-ok'>✅</span>                 |
+
+## Tomcat DataSource
+|DB|JDBC Driver 파일명|JDBC Ver.|JDK Ver.|호환성|
+|--|--|--|--|:--:|
+|MySQL|mysql-connector-java-5.1.39-bin.jar|5.1.39|JDK 1.7.0_80|<span class='emoji-ok'>✅</span>|
+|MariaDB|mariadb-java-client-1.4.6.jar|1.4.6|JDK 1.7.0_80|<span class='emoji-ok'>✅</span>|
+|PostgreSQL|postgresql-9.4.1209.jre7.jar|9.4.1209|JDK 1.7.0_80|<span class='emoji-ok'>✅</span>|
+|Amazon Aurora|mysql-connector-java-5.1.39-bin.jar|5.1.39|JDK 1.7.0_80|<span class='emoji-ok'>✅</span>|
+|Oracle|ojdbc6-11.2.0.2.0.jar|11.2.0.2.0|JDK 1.7.0_80|<span class='emoji-ok'>✅</span>|
+|DB2|db2jcc.jar, db2jcc_license_cu.jar|1.4.2|JDK 1.7.0_80|<span class='emoji-ok'>✅</span>|

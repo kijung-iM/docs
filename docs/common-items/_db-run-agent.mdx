@@ -1,0 +1,30 @@
+## 에이전트 실행
+
+에이전트를 설치한 경로에서 쉘 스크립트(또는 배치 파일)를 실행하세요.
+
+<Tabs groupId='os'>
+
+<TabItem value="linux" label="Linux" default>
+
+```bash
+./start.sh
+```
+
+</TabItem>
+<TabItem value="windows" label="Windows">
+
+```bash
+start.bat
+```
+
+</TabItem>
+</Tabs>
+
+
+데몬처럼 사용하고 싶은 경우에는 다음 명령어를 실행하세요. 단 **nohup**을 설치한 환경에서만 동작합니다.
+
+```bash
+./startd.sh
+```
+
+데이터베이스 모니터링을 위한 에이전트 설치를 완료했습니다. [다음 문서](after-install-agent)에서 설치 후 점검 사항을 확인하세요.

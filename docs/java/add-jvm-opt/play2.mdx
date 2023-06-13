@@ -1,0 +1,40 @@
+---
+id: play2
+title: Play2
+description: Play2 애플리케이션 서버 환경에서 JVM 옵션 추가 설정을 완료하세요.
+tags:
+    - Java
+    - Play2
+---
+
+Play2를 사용하는 애플리케이션 서버 환경에서 JVM 옵션을 추가하는 방법을 확인하세요. 
+
+*$PLAY_HOME/framework/build* 파일에 에이전트 옵션을 설정하세. 별도로 이용하는 시작 또는 중지 스크립트가 있다면 해당 파일에 적용하세요.
+
+```bash title=$PLAY_HOME/framework/build {6} showLineNumbers
+#! /usr/bin/env sh
+
+########## WHATAP START ############
+WHATAP_HOME=/apps/whatap
+WHATAP_JAR=`ls ${WHATAP_HOME}/whatap.agent-*.jar | sort | tail -1`
+JAVA_OPTS="${JAVA_OPTS} -Dwhatap.play2=2.2.6 -javaagent:${WHATAP_JAR}"
+########## WHATAP END ############
+
+if [ -z "${PLAY_VERSION}" ]; then
+  PLAY_VERSION="2.2.6"
+...
+```
+
+:::note
+
+Play는 기본 설정 외 `-Dwhatap.play2=2.2.6` 옵션을 추가해야 합니다.
+
+:::
+
+:::note
+
+{@include: _java-17.mdx}
+
+:::
+
+{@include: ../../common-items/_start-apm.mdx}  

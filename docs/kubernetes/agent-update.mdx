@@ -1,0 +1,47 @@
+---
+id: agent-update
+title: 에이전트 업데이트
+description: 쿠버네티스 에이전트를 업데이트하는 방법에 대해 알아봅니다.
+tags: [ 쿠버네티스, 쿠버네티스 모니터링, 에이전트 업데이트 ]
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+에이전트 업데이트가 필요한 경우 다음 명령을 실행하세요.
+
+<Tabs groupId='k8stype'>
+
+<TabItem value='kubernetes' label='KUBERNETES' default>
+
+* **마스터 에이전트**
+
+  ```bash
+  kubectl set image deployment/whatap-master-agent whatap-master-agent=whatap/kube_mon:{에이전트 버전} -n whatap-monitoring
+  ```
+
+* **노드 에이전트**
+
+  ```bash
+  kubectl set image daemonset/whatap-node-agent whatap-node-agent=whatap/kube_mon:{에이전트 버전} -n whatap-monitoring
+  ```
+
+</TabItem>
+
+<TabItem value='eksfragate' label='EKS Fargate'>
+
+**마스터 에이전트**
+
+```
+kubectl set image deployment/whatap-master-agent whatap-master-agent=whatap/kube_mon:{에이전트 버전}
+```
+
+</TabItem>
+
+</Tabs>
+
+:::note
+
+와탭 쿠버네티스 에이전트의 최신 버전은 [hub.docker.com](https://hub.docker.com/r/whatap/kube_mon/tags)에서 확인할 수 있습니다.
+
+:::

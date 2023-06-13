@@ -1,0 +1,42 @@
+### app_proc_counter
+---
+
+애플리케이션 프로세스 지표입니다.
+
+* 수집 간격 : 5초
+* 통계 데이터 : 5분, 1시간
+
+#### Tags
+
+|태그명|설명|비고|
+|----|----|----|
+|container|컨테이너 이름|고유값|
+|containerKey|컨테이너 키 값|고유값|
+|host_ip|Host IP|고유값|
+|okindName|애플리케이션 종류명|-|
+|oname|애플리케이션 이름|고유값|
+|onodeName|애플리케이션 노드명|-|
+|pid|애플리케이션 PID|-|
+|type|애플리케이션 유형|언어 이름|
+
+#### Fields
+
+|필드명|단위|설명|비고|
+|----|----|----|----|
+|cputime|밀리 세컨드|트랜잭션 cpu 시간|-|
+|db_num_active|정수|DB Connection Pool Active 수|-|
+|db_num_idle|정수|DB Connection Pool Idel 수|-|
+|gc_count|회수|GC 발생 회수|-|
+|gc_oldgen_count|건수|Old Generation GC 건수|-|
+|gc_time|밀리 세컨드|GC 수행 시간|-|
+|heap_max|바이트|힙 최대량|-|
+|heap_perm|바이트|Perm 사용량|-|
+|heap_tot|바이트|힙 총량|-|
+|heap_use|바이트|힙 사용량|-|
+|pending_finalization|정수|GC 중 fianlize 수행을 위해 대기 중인 객체 수|-|
+|proc_fd|정수|프로세스 fd 사용수|-|
+|proc_fd_max|정수|프로세스 fd 최대수|-|
+|thread_count|정수|JVM 실행중인 쓰레드 수|-|
+|thread_daemon|정수|JVM 데몬 쓰레드 수|-|
+|thread_peak_count|정수|JVM 최대 쓰레드 수|-|
+|thread_total_started|정수|JVM 실행 이후 총 start된 쓰레드 수|-|

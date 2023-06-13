@@ -1,0 +1,70 @@
+{@include: ../common-items/_log-role-view.mdx}
+
+홈 화면 > 프로젝트 선택 > {@include: _search-path.mdx}
+
+와탭 모니터링 서비스 초기 화면에서 프로젝트를 선택한 다음 프로젝트 메뉴 하위에 {@include: _search-path.mdx} 메뉴를 선택하세요. 
+
+***로그 검색*** 메뉴에서 통합 수집된 대량의 로그를 다양한 조건으로 검색하고 사용자가 원하는 로그를 특정할 수 있습니다. 복수의 검색 조건을 파싱된 키와 밸류로 지정할 수 있어 원하는 조건에 일치하는 로그 데이터만 추출합니다. 
+
+동적 페이지로 검색된 로그 데이터를 정해진 라인 단위로 가져오며, 스크롤 등에 의해 하단에 닿으면 자동으로 다음 데이터를 가져와 표시합니다. {@include: ../common-items/_log-ui-main-term.mdx}
+
+![로그 검색 sc](/img/log-search.png)
+
+<!-- 조회된 로그 개수 표시 픽스 시 이미지 변경 필요 0410 -->
+
+## 데이터 조회하기 
+
+* 스크롤이 바닥에 닿으면 다음 데이터를 조회합니다. 한 번에 30,000개의 로그를 조회합니다.
+* ![number-s](/img/number-03.png) 조회한 총 로그 개수를 확인할 수 있습니다. 
+* ![number-s](/img/number-03.png) 로그 테이블에서 로그 데이터를 시간 순과 역순으로 조회할 수 있습니다. ***Timestamp*** 컬럼 기준 ***최근 순***과 ***과거 순*** 중 원하는 조회 방식을 선택하세요.
+
+<!-- * ![number-s](/img/number-02.png) 로그 테이블의 ***Timestamp*** 컬럼을 선택하면 로그 데이터를 시간 역순으로 조회할 수 있습니다. -->
+
+## 로그 Content 확인하기
+
+{@include: ../common-items/_log-ui-log-content.mdx}
+
+* ![number-s](/img/number-03.png) ***테이블***의 행(로그)마다 ![아이콘](/img/ic-caret-right.svg)***더보기*** 버튼이 있습니다. ![아이콘](/img/ic-caret-right.svg)***더보기*** 버튼을 선택하면 ![number-s](/img/number-04.png)처럼 해당 로그의 전체 content를 확인할 수 있습니다.
+* 로그의 태그를 선택하면 ***복사***, ***검색***, ***제외 검색***을 할 수 있는 드롭다운 메뉴가 나타납니다.
+
+## 필터
+
+#### 필터 적용
+
+![number-s](/img/number-01.png) 왼쪽 ***시간 선택창***에서 시간 범위를 지정할 수 있습니다. 오른쪽에서 {@include: ../common-items/_log-filter-apply.mdx} 
+
+#### 필터 수정
+
+{@include: ../common-items/_log-filter-modify.mdx}
+
+#### 필터 수식
+
+{@include: ../common-items/_log-filter-expression.mdx}
+
+#### 검색 키(Search Key)
+
+왼쪽 ![number-s](/img/number-02.png) 영역에 있는 태그는 카테고리별로 파싱(parsing) 된 검색 키입니다. 태그를 선택하여 필터를 입력할 수 있습니다. <span class='logwr'>주황색</span> 태그는 카테고리, <span class='lowfg'>파란색</span> 태그는 검색 키입니다.
+
+<InDoc product='log'>
+
+예를 들어 ![number-s](/img/number-02.png) 영역의 <span class='logwr'>AppLog</span>와 <span class='logwr'>AppStdOut</span>은 카테고리, 그 아래 <span class='lowfg'>oid</span>와 같은 태그는 파싱(parsing) 된 검색 키입니다. 검색 키는 ***로그*** > ***로그 설정***의 ***로그 Parser 설정***에서 파싱 로직을 등록해 설정할 수 있습니다. 
+
+</InDoc>
+
+<InDoc product='aws-log'>
+
+예를 들어 ![number-s](/img/number-02.png) 영역의 <span class='logwr'>AppLog</span>와 <span class='logwr'>AppStdOut</span>은 카테고리, 그 아래 <span class='lowfg'>oid</span>와 같은 태그는 파싱(parsing) 된 검색 키입니다. 검색 키는 ***관리*** > ***로그 설정***의 ***로그 Parser 설정***에서 파싱 로직을 등록해 설정할 수 있습니다. 
+
+</InDoc>
+
+#### 필터 입력 문법
+
+{@include: ../common-items/_log-filter-rule.mdx} 
+
+## 하이라이트
+
+{@include: ../common-items/_log-highlight.mdx}
+
+## 테이블 설정하기
+
+* ![number-s](/img/number-03.png) 영역 오른쪽 {@include: ../common-items/_log-ui-table-setting.mdx}
