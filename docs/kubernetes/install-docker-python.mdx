@@ -22,20 +22,20 @@ RUN pip3 install --upgrade whatap-python
 
 1. Python 애플리케이션 시작 시 와탭 에이전트가 Injection할 수 있도록 애플리케이션 시작 스크립트를 수정하세요. 
 
-  설정 파일 및 로그 출력 경로를 환경변수 `WHATAP_HOME`으로 설정합니다.
+    로그 및 설정 파일 경로를 `WHATAP_HOME` 환경 변수로 설정하세요.
 
     ```python
-    export WHATAP_HOME=/whatap_conf
+    export WHATAP_HOME={로그 및 설정 파일 경로}
     ```
 
-1. 설정 파일을 생성하세요.
+1. `WHATAP_HOME`으로 설정한 경로에 *whatap.conf* 파일을 생성하고 설정하도록 다음 명령어를 실행하세요.
 
     ```bash
-    whatap-setting-config\
-    --host {수집 서버 IP}\
-    --license XXXXXXXXXXXXXX-XXXXXXXXXXXXXX-XXXXXXXXXXXXXX
-    --app_name {애플리케이션 이름}\
-    --app_process_name {애플리케이션 프로세스 이름}
+    whatap-setting-config \
+    --host {수집 서버 IP} \
+    --license {액세스 키} \
+    --app_name {사용자 지정 애플리케이션 이름} \
+    --app_process_name {프로세스 이름, 예시, uwsgi, gunicorn}
     ```
 
 :::caution

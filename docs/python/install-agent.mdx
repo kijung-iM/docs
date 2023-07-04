@@ -27,7 +27,7 @@ import TR from '@site/src/components/TR';
 **액세스 키**를 발급받은 다음 ***에이전트 다운로드*** 섹션으로 이동하세요. 다음 코드를 실행해 에이전트를 설치하세요.
 
 ```bash
-sudo pip install whatap-python
+pip install whatap-python
 ```
 
 :::note
@@ -113,10 +113,10 @@ Python 에이전트 파일은 애플리케이션 모니터링에 필요한 정�
     다음 명령어를 실행하면 `$WHATAP_HOME`에 지정한 경로에 바로 *whatap.conf* 파일이 생성 및 설정됩니다.
 
     ```bash
-    whatap-setting-config
-    --host [수집 서버 IP]
-    --license [액세스 키]
-    --app_name [사용자 지정 애플리케이션 이름 입력]
+    whatap-setting-config \
+    --host [수집 서버 IP] \
+    --license [액세스 키] \
+    --app_name [사용자 지정 애플리케이션 이름 입력] \
     --app_process_name [프로세스 명, ex. uwsgi, gunicorn]
     ```
 

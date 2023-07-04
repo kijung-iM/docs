@@ -332,12 +332,12 @@ $result.active(total - avail);
 $result.idle(avail);
 ```
 
-### 트레이스에 Cookie 값 표현
+### 트레이스에 쿠키값 표현
 
 쿠키값을 트레이스에서 확인할 수 있습니다.
 
 ```java title='${WHATAP_HOME}/plugin/HttpServiceStart.x' {2} showLineNumbers
-// $req.getCookie() 파라미터로 확인하려는 Cookie를 설정하세요.
+// $req.getCookie() 파라미터로 확인하려는 쿠키를 설정하세요.
 String cookie = $req.getCookie("AWSALB");
 
 if ($ctx.ok()) {

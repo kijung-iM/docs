@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>whatap-spring-boot-starter-log4j2-2.6.3</groupId>
+	<artifactId>whatap-spring-boot-starter-log4j2-2.6.3</artifactId>
+	<version>v1</version>
+
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<build>001</build>
+		<agent-version>2.0</agent-version>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>io.whatap</id>
+			<name>WhaTap maven repository</name>
+			<url>https://repo.whatap.io/maven</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>io.whatap</groupId>
+			<artifactId>whatap.weaving.api</artifactId>
+			<version>2.1.1</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>2.17.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.17.1</version>
+		</dependency>
+
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.6.0</version>
+				<configuration>
+					<compilerId>eclipse</compilerId>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.codehaus.plexus</groupId>
+						<artifactId>plexus-compiler-eclipse</artifactId>
+						<version>2.8.1</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifestEntries>
+							<PlugIn>${project.artifactId}-${project.version}</PlugIn>
+							<Build>${build}</Build>
+							<Agent-Version>${agent-version}</Agent-Version>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>3.2.4</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<artifactSet>
+								<excludes>
+									<exclude>io.r2dbc:*</exclude>
+									<exclude>ch.qos.logback:*</exclude>
+									<exclude>javax.annotation:*</exclude>
+									<exclude>reactor:*</exclude>
+									<exclude>org.apache.logging:*</exclude>
+									<exclude>org.springframework.data:*</exclude>
+								</excludes>
+								<includes>
+									<include>io.whatap:whatap.weaving.api</include>
+									<include>whatap.spring.boot.starter.log4j2.WeaveConf.class</include>
+									<include>whatap.spring.boot.starter.log4j2.WeaveConf$1.class</include>
+								</includes>
+							</artifactSet>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

@@ -87,7 +87,7 @@ oc create -f whatap_openshift_scc.yaml
 
 ## 쿠버네티스 에이전트 생성
 
-사용자의 쿠버네티스 버전과 Container Runtime에 맞는 YAML 파일을 다운로드하여 에이전트를 설치하는 단계입니다.
+사용자의 쿠버네티스 버전과 Container Runtime에 맞는 *YAML* 파일을 다운로드하여 에이전트를 설치하는 단계입니다.
 
 1. 마스터 노드에서 다음 명령어를 실행해 **VERSION**과 **CONTAINER-RUNTIME**을 확인하세요.
 
@@ -97,11 +97,17 @@ oc create -f whatap_openshift_scc.yaml
 
     ![](/img/k8s-check-version.svg)
 
-1. ***에이전트 설치*** 화면에서 **VERSION**과 **CONTAINER-RUNTIME**에 맞는 YAML 파일을 선택하고 ***다운로드*** 버튼을 선택하세요.
+1. ***에이전트 설치*** 화면에서 **VERSION**과 **CONTAINER-RUNTIME**에 맞는 *YAML* 파일을 선택하고 ***다운로드*** 버튼을 선택하세요.
 
     ![](/img/k8s-download-yaml.png)
 
-1. 다운로드한 YAML 파일을 마스터 노드에 업로드하세요.
+  :::note
+
+  마스터 에이전트 자원 사용은 컨테이너 수 증가에 따라 영향을 받을 수 있습니다. 기본값으로 설정된 메모리 limit(350MB) 이상으로 자원을 사용할 경우 OOM(Out Of Meomory)이 발생할 수 있습니다. 사용자가 *YAML* 파일을 통해 해당 설정을 변경할 수 있습니다.
+
+  :::
+
+1. 다운로드한 *YAML* 파일을 마스터 노드에 업로드하세요.
 
 1. 에이전트를 생성하기 위해 마스터 노드에서 다음 명령어를 실행하세요. 
 
@@ -159,7 +165,7 @@ kubectl describe pod {POD_NAME} -n whatap-monitoring
 
 1. 쿠버네티스 모니터링을 위한 설치 파일을 다운로드 하세요. ***whatap_kube_fargate*** 버튼을 선택하세요.
 
-1. 다운로드한 YAML 파일을 이용해 에이전트를 생성하세요.
+1. 다운로드한 *YAML* 파일을 이용해 에이전트를 생성하세요.
 
     ```bash
     kubectl -f whatap_kube_fargate.yaml apply

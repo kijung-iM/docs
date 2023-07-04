@@ -10,7 +10,7 @@ In the WhaTap monitoring service, you can easily manage multiple projects with t
 
 ## Hierarchical structure
 
-![Project hierarchical structure](https://img.whatap.io/media/images/3depth.png)
+<ImgLang img='project-management-3depth.png' desc='프로젝트 계층 구조' className='noneborder'/>
 
 ### What is the project?
 
@@ -36,11 +36,11 @@ A professional maintenance service company can group multiple subgroups into a s
 
 :::
 
-## Member Role
+## 멤버 권한{#member-auth}
 
 If a parent group exists, the member roles of the parent group are inherited by default. For example, there are Organization A, Group B, and Project C. Without extra settings, Group B inherits Organization A's membership roles, and Project C inherits Group B's member roles.
 
-![Member Role](/img/member-authority.png)
+<ImgLang img='project-member-auth.png' desc='멤버 권한' className='noneborder'/>
 
 :::note
 
@@ -54,16 +54,17 @@ You can flexibly grant different roles to different members for each project or 
 
 <div class='c5-3-5-avg'>
 
-| Role scheme          | Description                                                        |
-| -------------------- | ------------------------------------------------------------------ |
-| Inquiry and analysis | Viewing a project                                                  |
-| Edit                 | Moving, modifying, and deleting an organization, group, or project |
-| Member Management    | Modifying member roles and adding or excluding members             |
-| Alert Reception      | Alert Reception                                                    |
-| Alert Config         | Alert Notification Setting                                         |
-| View Log             | Log inquiry and access of log-related functions                    |
-| Log Edit             | 로그 설정 편집                                                           |
-| Billing              | Charging the bill                                                  |
+| Role scheme              | Description                                                        |
+| ------------------------ | ------------------------------------------------------------------ |
+| View                     | Viewing a project                                                  |
+| Edit                     | Moving, modifying, and deleting an organization, group, or project |
+| View Log                 | Log inquiry and access of log-related functions                    |
+| Log Edit                 | Editing the log settings                                           |
+| Project flexboard update | 프로젝트의 **_Flex 보드_** 편집                                             |
+| Member Management        | Modifying member roles and adding or excluding members             |
+| Alert Reception          | Alert Reception                                                    |
+| Alert Config             | Alert Notification Setting                                         |
+| Billing                  | Charging the bill                                                  |
 
 </div>
 
@@ -109,11 +110,21 @@ In **_Alert_** > **_Notification Setting_**, the alerts can be added, deleted, o
 
 ### Log Edit
 
-**_로그_** > **_로그 설정_** 메뉴에서 설정을 편집할 수 있는 권한입니다. **로그 편집** 권한이 있는 경우 **_로그 설정_** 메뉴를 이용할 수 있습니다.
+It is the role to edit the settings in **_Log_** > **_Log Setting_**. If you have the **Log Edit** role, you can use the **_Log Setting_** menu.
 
 :::note
 
-**로그 편집** 권한을 가지고 있더라도 **액세스 키**를 발급받지 않았거나 로그 모니터링이 비활성화된 경우 **_로그 설정_** 메뉴를 이용할 수 없습니다.
+Even if you have the **Log Edit** role, you cannot use the **_Log Setting_** menu when an **access key** has not been issued or the log monitoring is disabled.
+
+:::
+
+### Project flexboard update
+
+프로젝트의 **_Flex 보드_** 메뉴에서 대시보드를 수정할 수 있는 권한입니다. 프로젝트 내 **_Flex 보드_** 메뉴에서는 **_수정 모드_** 및 **_관리자_** 모드, **_필터_** 기능에 접근할 수 있습니다.
+
+:::note
+
+Flex 보드에 대한 자세한 내용은 [다음 문서](../java/flex-board)를 참조하세요.
 
 :::
 
@@ -125,11 +136,11 @@ In **_Alert_** > **_Notification Setting_**, the alerts can be added, deleted, o
 
 -   If A has transferred the **billing** role to B, A no longer has the right to make **billing**.
 
--   **결제** 권한을 양도 받는 멤버는 결제 정보를 등록한 상태여야 합니다. 결제 정보는 **_이용 내역_** 메뉴에서 등록할 수 있습니다. 자세한 내용은 [다음 문서](../management/billing)을 참조하세요.
+-   The member to whom the **billing** role is transferred must have registered the billing information. The billing information can be registered in **_My Usage_**. For more information, see [the following](../management/billing).
 
 -   If there are billing staff for each organization, group, and project, the billing roles are granted in the order of project, group, and organization. If there is no billing staff for a group or project, billing is charged to the parent group or organization's staff with the billing role.
 
-    ![](/img/project-str-billing.png)
+    <ImgLang img='project-str-billing.png' desc='' className='noneborder'/>
 
 ## Editing Member Role{#modify-auth}
 
@@ -137,7 +148,7 @@ In **_Alert_** > **_Notification Setting_**, the alerts can be added, deleted, o
 
 You can modify the roles of members in the list of the selected organization, group, or project. 
 
-![Editing Member Role](/img/member-modify-authority-0508.png)
+<ImgLang img='member-modify-authority-0508.png' desc='멤버 권한 수정' />
 
 You can set roles by selecting the toggle button on the right. After configuration, select **_Apply_**.
 
@@ -145,7 +156,7 @@ You can set roles by selecting the toggle button on the right. After configurati
 
 You can set member roles for a group or project that belongs to an organization or subgroup.
 
-![Editing Member Role](/img/modify-organize-member-authority.png)
+<ImgLang img='modify-organize-member-authority.png' desc='멤버 권한 수정' />
 
 Under the **_User role per group_** or **_User Role per project of a group_** section, select ![Edit icon](/img/ico-edit.svg) to modify the roles. The **_Edit Member Role_** window appears. The options that can be set for roles are as follows.
 

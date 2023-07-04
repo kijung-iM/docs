@@ -12,7 +12,7 @@ tags: [ golang, 에이전트 이름 ]
 와탭 에이전트가 애플리케이션 서버를 식별하기 위해 사용하는 기본 패턴은 다음과 같습니다.
 
 ```ini title='Default pattern'
-{type}-{ip2}-{ip3}-{process}
+{type}-{ip2}-{ip3}-{cmd}-{cmd_full}
 ```
 
 기본 패턴 값을 변경하려면 *whatap.conf* 파일을 다음과 같이 수정하세요.
@@ -33,13 +33,15 @@ object_name={type}-{ip2}-{ip3}-{process}-{dockerid}-{ips}
 | {process}  | 애플리케이션 서버의 프로세스 이름(app_process_name)입니다.                |
 | {hostname} | 호스트 이름입니다.                                                        |
 | {dockerid} | 도커 컨테이너의 아이디입니다.                                             |
-| {ips}      | 전체 아이피 정보입니다. (ip4, ip6) |
+| {ips}      | 전체 아이피 정보입니다. (ip4, ip6)                                        |
+| {cmd}      | 프로세스 이름입니다. 실행 args[0] 값입니다.                               |
+| {cmd_full} | 실행 명령어의 모든 라인을 해시값으로 처리합니다. 실행 args 전체입니다. |
 
 ## 에이전트 이름 설정{#agentname}
 
 * **object_name** <span class='type'>String</span>
 
-  기본값 `{type}-{ip2}-{ip3}-{process}`
+  기본값 `{app_name}-{ip2}-{ip3}-{cmd}-{cmd_full}`
 
   애플리케이션을 식별하는 에이전트 이름(ONAME) 체계입니다. ONAME을 토대로 OID가 생성됩니다.
 

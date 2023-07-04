@@ -1,0 +1,27 @@
+---
+id: analysis-lock-and-deadlock
+title: 락 트리 & 데드락
+description: 하루 동안 발생한 Lock 추이를 분석하고 교착 상태의 쿼리를 확인할 수 있습니다.
+tags: [ MySQL, 데이터베이스, Lock, Dead Lock, 락 트리, 데드락 ]
+---
+
+import ProdImg from '@site/src/components/ChangeImgName.js';
+import Xclude from '@site/src/components/XcludeDoc.js';
+import InDoc from '@site/src/components/InDoc.js';
+
+<!-- 개요 -->
+{@include: ../common-items/_analysis-lock-desc.mdx}
+
+## 락 트리
+
+{@include: ../common-items/_db-locktree-desc.mdx} 
+
+### 기본 화면 안내
+
+{@include: ../common-items/_db-locktree-using-basic.mdx}  
+
+<!-- 락트리 컬럼 정보 -->
+{@include: ../common-items/_db-locktree-column-info.mdx}  
+
+<!-- 데드락 -->
+{@include: ../common-items/_db-deadlock-desc.mdx}  

@@ -85,7 +85,7 @@ const sidebars = {
             {
               type: 'category',
               label: '에이전트 플러그인',
-              description: 'Java 에이전트에서 제공하는 플러그인을 활용해 다양한 일을 할 수 있습니다.',
+              // description: 'Java 에이전트에서 제공하는 플러그인을 활용해 다양한 일을 할 수 있습니다.',
               items: [
                 'java/script-plugin',
                 'java/weaving-plugin',
@@ -1786,10 +1786,159 @@ const sidebars = {
       ],
     }
   ],
+  mysqlv1Sidebar: [
+    {
+      type: 'category',
+      label: 'MySQL 모니터링 V1',
+      collapsible: false,
+      collapsed: false,
+      link: {
+        type: 'doc',
+        id: 'mysql-v1/monitoring-intro'
+      },
+      items: [
+        {
+          type: 'doc',
+          label: '지원 환경',
+          id: 'mysql-v1/monitoring-support',
+        },
+        {
+          type: 'category',
+          label: '설치하기',
+          collapsible: true,
+          collapsed: true,
+          items: [
+            'mysql-v1/install-agent',
+            'mysql-v1/after-install-agent',
+            'mysql-v1/troubleshooting',
+          ],
+        },
+        {
+          type: 'category',
+          label: '설정하기',
+          collapsible: true,
+          collapsed: true,
+          link: {
+            type: 'doc',
+            id: 'mysql-v1/agent-settings'
+          },
+          items: [
+            'mysql-v1/agent-dbx-settings',
+            'mysql-v1/agent-xos-settings',
+          ],
+        },
+        'mysql-v1/agent-manage',
+        {
+          type: 'category',
+          label: '주요 메뉴 알아보기',
+          collapsible: true,
+          collapsed: false,
+          items: [
+            {
+              type: 'category',
+              label: '대시보드',
+              collapsible: true,
+              collapsed: true,
+              link: {
+                type: 'doc',
+                id: 'mysql-v1/dashboard-intro'
+              },
+              items: [
+                'mysql-v1/instance-list',
+                'mysql-v1/instance-monitoring',
+                'mysql-v1/multi-instance-monitoring',
+                'mysql-v1/slow-query',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Flex 보드',
+              collapsible: true,
+              collapsed: true,
+              link: {
+                type: 'doc',
+                id: 'mysql-v1/flex-board',
+              },
+              items: [
+                'mysql-v1/flexboard-template',
+                'mysql-v1/flexboard-create',
+                'mysql-v1/flexboard-manage',
+                'mysql-v1/flexboard-metric-widget',
+                'mysql-v1/flexboard-widget-manage',
+                'mysql-v1/flexboard-mode',
+                'mysql-v1/flexboard-share',
+              ],
+            },
+            {
+              type: 'category',
+              label: '분석',
+              collapsible: true,
+              collapsed: true,
+              items: [
+                'mysql-v1/analysis-count-trend',
+                'mysql-v1/analysis-databaseparameter',
+                'mysql-v1/analysis-lock-and-deadlock',
+                'mysql-v1/log-viewer',
+              ]
+            },
+            {
+              type: 'category',
+              label: '메트릭스',
+              collapsible: true,
+              collapsed: true,
+              link: {
+                type: 'doc',
+                id: 'mysql-v1/metrics-intro'
+              },
+              items: [
+                'mysql-v1/metrics-data-list',
+                'mysql-v1/metrics-chart',
+                'mysql-v1/metrics-detect-anormal',
+              ]
+            },
+            {
+              type: 'category',
+              label: '통계/보고서',
+              collapsible: true,
+              collapsed: true,
+              items: [
+                'mysql-v1/stat',
+                'mysql-v1/report-intro',
+              ]
+            },
+            {
+              type: 'category',
+              label: '알림 설정하기',
+              collapsible: true,
+              collapsed: true,
+              link: {
+                type: 'doc',
+                id: 'mysql-v1/set-notice',
+              },
+              items: [
+                'mysql-v1/warning-notice',
+                'mysql-v1/metric-warning-notice',
+                'mysql-v1/set-event-detect-anomal',
+                'mysql-v1/set-receive-event',
+                'mysql-v1/set-event-history',
+                'mysql-v1/set-event-format',
+                'mysql-v1/file-log-notice',
+              ],
+            },
+            {
+              type: 'link',
+              label: 'Open API',
+              href: '/apidoc/openapi-intro'
+            }
+          ]
+        }
+      ],
+    }
+  ],
   mysqlSidebar: [
     {
       type: 'category',
-      label: 'MySQL 모니터링',
+      label: 'MySQL 모니터링 V2',
       collapsible: false,
       collapsed: false,
       link: {
@@ -1876,8 +2025,8 @@ const sidebars = {
               collapsed: true,
               items: [
                 'mysql/analysis-count-trend',
-                'mysql/analysis-databaseparameter',
                 'mysql/analysis-lock-and-deadlock',
+                'mysql/analysis-databaseparameter',
                 'mysql/log-viewer',
               ]
             },
@@ -1926,135 +2075,9 @@ const sidebars = {
               ],
             },
             {
-              type: 'link',
-              label: 'Open API',
-              href: '/apidoc/openapi-intro'
-            }
-          ]
-        }
-      ],
-    }
-  ],
-  mysqlrdsSidebar: [
-    {
-      type: 'category',
-      label: 'MySQL RDS 모니터링',
-      collapsible: false,
-      collapsed: false,
-      link: {
-        type: 'doc',
-        id: 'mysql-rds/monitoring-intro'
-      },
-      items: [
-        {
-          type: 'doc',
-          label: '지원 환경',
-          id: 'mysql-rds/monitoring-support',
-        },
-        {
-          type: 'category',
-          label: '설치하기',
-          collapsible: true,
-          collapsed: true,
-          items: [
-            'mysql-rds/install-agent',
-            'mysql-rds/troubleshooting',
-          ],
-        },
-        'mysql-rds/agent-settings',
-        'mysql-rds/agent-manage',
-        {
-          type: 'category',
-          label: '주요 메뉴 알아보기',
-          collapsible: true,
-          collapsed: false,
-          items: [
-            {
-              type: 'category',
-              label: '대시보드',
-              collapsible: true,
-              collapsed: true,
-              link: {
-                type: 'doc',
-                id: 'mysql-rds/dashboard-intro'
-              },
-              items: [
-                'mysql-rds/instance-list',
-                'mysql-rds/instance-monitoring',
-                'mysql-rds/multi-instance-monitoring',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'Flex 보드',
-              collapsible: true,
-              collapsed: true,
-              link: {
-                type: 'doc',
-                id: 'mysql-rds/flex-board',
-              },
-              items: [
-                'mysql-rds/flexboard-template',
-                'mysql-rds/flexboard-create',
-                'mysql-rds/flexboard-manage',
-                'mysql-rds/flexboard-metric-widget',
-                'mysql-rds/flexboard-widget-manage',
-                'mysql-rds/flexboard-mode',
-                'mysql-rds/flexboard-share',
-              ],
-            },
-            {
-              type: 'category',
-              label: '분석',
-              collapsible: true,
-              collapsed: true,
-              items: [
-                'mysql-rds/analysis-lock-and-deadlock',
-                'mysql-rds/analysis-databaseparameter',
-              ]
-            },
-            {
-              type: 'category',
-              label: '메트릭스',
-              collapsible: true,
-              collapsed: true,
-              link: {
-                type: 'doc',
-                id: 'mysql-rds/metrics-intro'
-              },
-              items: [
-                'mysql-rds/metrics-data-list',
-                'mysql-rds/metrics-chart',
-                'mysql-rds/metrics-detect-anormal',
-              ]
-            },
-            {
-              type: 'category',
-              label: '통계/보고서',
-              collapsible: true,
-              collapsed: true,
-              items: [
-                'mysql-rds/stat',
-                'mysql-rds/report-intro',
-              ],
-            },
-            {
-              type: 'category',
-              label: '알림 설정하기',
-              collapsible: true,
-              collapsed: true,
-              link: {
-                type: 'doc',
-                id: 'mysql-rds/set-notice',
-              },
-              items: [
-                'mysql-rds/warning-notice',
-                'mysql-rds/metric-warning-notice',
-                'mysql-rds/set-event-detect-anomal',
-                'mysql-rds/set-receive-event',
-                'mysql-rds/set-event-history',
-                'mysql-rds/set-event-format',
-              ],
+              type: 'doc',
+              label: 'Log 모니터링',
+              id: 'log/learn-main-menu'
             },
             {
               type: 'link',
@@ -2923,14 +2946,15 @@ const sidebars = {
       collapsed: false,
       link: {
         type: 'doc',
-        id: 'release-notes/preview/preview-1_103_x',
+        id: 'release-notes/preview/preview-1_105_x',
       },
       items: [
         {
           type: 'doc',
-          id: 'release-notes/preview/preview-1_103_x', 
+          id: 'release-notes/preview/preview-1_105_x', 
           className: 'new',
         },
+        'release-notes/preview/preview-1_103_x',
         'release-notes/preview/preview-1_101_x',
         'release-notes/preview/preview-1_99_x',
         'release-notes/preview/preview-1_97_x',
@@ -2951,7 +2975,7 @@ const sidebars = {
       collapsed: false,
       link: {
         type: 'doc',
-        id: 'release-notes/release-notes'
+        id: 'release-notes'
       },
       items: [
         {
@@ -2962,14 +2986,15 @@ const sidebars = {
           className: 'new',
           link: {
             type: 'doc',
-            id: 'release-notes/service/service-1_102_x',
+            id: 'release-notes/service/service-1_104_x',
           },
           items: [
             {
               type: 'doc',
-              id: 'release-notes/service/service-1_102_x',
+              id: 'release-notes/service/service-1_104_x',
               className: 'new',
             },
+            'release-notes/service/service-1_102_x',
             'release-notes/service/service-1_100_x',
             'release-notes/service/service-1_98_x',
             'release-notes/service/service-1_96_0',
@@ -2996,22 +3021,23 @@ const sidebars = {
               className: 'new',
               link: {
                 type: 'doc',
-                id: 'release-notes/java/java-2_2_5',
+                id: 'release-notes/java/java-2_2_10',
               },
               items: [
                 {
                   type: 'doc',
-                  id: 'release-notes/java/java-2_2_5',
+                  id: 'release-notes/java/java-2_2_10',
                   className: 'new',
                 },
+                'release-notes/java/java-2_2_9',
+                'release-notes/java/java-2_2_8',
+                'release-notes/java/java-2_2_7',
+                'release-notes/java/java-2_2_6',
+                'release-notes/java/java-2_2_5',
                 'release-notes/java/java-2_2_4',
                 'release-notes/java/java-2_2_3',
                 'release-notes/java/java-2_2_2',
                 'release-notes/java/java-2_2_0',
-                'release-notes/java/java-2_1_3',
-                'release-notes/java/java-2_1_2',
-                'release-notes/java/java-2_1_1',
-                'release-notes/java/java-2_1_0',
                 'release-notes/java/java-previous',
               ],
             },
@@ -3040,20 +3066,39 @@ const sidebars = {
             },
             {
               type: 'category',
-              label: 'Python',
+              label: 'Node.js',
               collapsible: true,
               collapsed: true,
-              // className: 'new',
+              className: 'new',
               link: {
                 type: 'doc',
-                id: 'release-notes/python/python-1_3_6',
+                id: 'release-notes/nodejs/nodejs-0_4_77',
               },
               items: [
                 {
                   type: 'doc',
-                  id: 'release-notes/python/python-1_3_6',
-                  // className: 'new',
+                  id: 'release-notes/nodejs/nodejs-0_4_77',
+                  className: 'new',
                 },
+              ]
+            },
+            {
+              type: 'category',
+              label: 'Python',
+              collapsible: true,
+              collapsed: true,
+              className: 'new',
+              link: {
+                type: 'doc',
+                id: 'release-notes/python/python-1_3_9',
+              },
+              items: [
+                {
+                  type: 'doc',
+                  id: 'release-notes/python/python-1_3_9',
+                  className: 'new',
+                },
+                'release-notes/python/python-1_3_6',
                 'release-notes/python/python-1_3_4',
                 'release-notes/python/python-1_3_3',
                 'release-notes/python/python-1_3_2',
@@ -3062,7 +3107,6 @@ const sidebars = {
                 'release-notes/python/python-1_2_4',
                 'release-notes/python/python-1_2_1',
                 'release-notes/python/python-1_2_0',
-                'release-notes/python/python-1_1_6',
                 'release-notes/python/python-previous',
               ],
             },
@@ -3071,7 +3115,7 @@ const sidebars = {
               label: '.NET',
               collapsible: true,
               collapsed: true,
-              className: 'new',
+              // className: 'new',
               link: {
                 type: 'doc',
                 id: 'release-notes/dotnet/dotnet-2_0_9',
@@ -3080,7 +3124,7 @@ const sidebars = {
                 {
                   type: 'doc',
                   id: 'release-notes/dotnet/dotnet-2_0_9',
-                  className: 'new',
+                  // className: 'new',
                 },
                 'release-notes/dotnet/dotnet-2_0_8',
                 'release-notes/dotnet/dotnet-2_0_7',
@@ -3103,11 +3147,17 @@ const sidebars = {
               label: 'Golang',
               collapsible: true,
               collapsed: true,
+              className: 'new',
               link: {
                 type: 'doc',
-                id: 'release-notes/golang/golang-0_1_14',
+                id: 'release-notes/golang/golang-0_2_2',
               },
               items: [
+                {
+                  type: 'doc',
+                  id: 'release-notes/golang/golang-0_2_2',
+                  className: 'new'
+                },
                 'release-notes/golang/golang-0_1_14',
                 'release-notes/golang/golang-0_1_13',
                 'release-notes/golang/golang-0_1_12',
@@ -3117,7 +3167,7 @@ const sidebars = {
                 'release-notes/golang/golang-0_1_8',
                 'release-notes/golang/golang-0_1_7',
                 'release-notes/golang/golang-0_1_6',
-                'release-notes/golang/golang-0_1_5',
+                'release-notes/golang/golang-previous',
               ],
             },
             {
@@ -3128,14 +3178,15 @@ const sidebars = {
               className: 'new',
               link: {
                 type: 'doc',
-                id: 'release-notes/server/server-2_3_7',
+                id: 'release-notes/server/server-2_3_8',
               },
               items: [
                 {
                   type: 'doc',
-                  id: 'release-notes/server/server-2_3_7',
+                  id: 'release-notes/server/server-2_3_8',
                   className: 'new',
                 },
+                'release-notes/server/server-2_3_7',
                 'release-notes/server/server-2_3_6',
                 'release-notes/server/server-2_3_4',
                 'release-notes/server/server-2_3_3',
@@ -3144,7 +3195,6 @@ const sidebars = {
                 'release-notes/server/server-2_3_0',
                 'release-notes/server/server-2_2_9',
                 'release-notes/server/server-2_2_8',
-                'release-notes/server/server-2_2_7',
                 'release-notes/server/server-previous',
               ],
             },
@@ -3156,14 +3206,15 @@ const sidebars = {
               className: 'new',
               link: {
                 type: 'doc',
-                id: 'release-notes/k8s/k8s-1_2_9',
+                id: 'release-notes/k8s/k8s-1_3_1',
               },
               items: [
                 {
                   type: 'doc',
-                  id: 'release-notes/k8s/k8s-1_2_9',
+                  id: 'release-notes/k8s/k8s-1_3_1',
                   className: 'new',
                 },
+                'release-notes/k8s/k8s-1_2_9',
                 'release-notes/k8s/k8s-1_2_8',
                 'release-notes/k8s/k8s-1_2_7',
                 'release-notes/k8s/k8s-1_2_6',
@@ -3172,7 +3223,6 @@ const sidebars = {
                 'release-notes/k8s/k8s-1_2_1',
                 'release-notes/k8s/k8s-1_2_0',
                 'release-notes/k8s/k8s-1_1_55',
-                'release-notes/k8s/k8s-1_1_54',
                 'release-notes/k8s/k8s-previous',
               ],
             },
@@ -3187,7 +3237,7 @@ const sidebars = {
                   label: 'DBX',
                   collapsible: true,
                   collapsed: true,
-                  className: 'new',
+                  // className: 'new',
                   link: {
                     type: 'doc',
                     id: 'release-notes/db/dbx-1_6_7',
@@ -3196,7 +3246,7 @@ const sidebars = {
                     {
                       type: 'doc',
                       id: 'release-notes/db/dbx-1_6_7',
-                      className: 'new',
+                      // className: 'new',
                     },
                     'release-notes/db/dbx-1_6_6',
                     'release-notes/db/dbx-1_6_5',
@@ -3398,7 +3448,7 @@ const sidebars = {
         {
           type: 'link',
           label: 'PostgreSQL',
-          href: 'postgresql-v1/monitoring-intro',
+          href: 'postgresql/monitoring-intro',
         },
         {
           type: 'link',
@@ -3408,14 +3458,8 @@ const sidebars = {
         {
           type: 'link',
           label: 'MySQL',
-          href: 'mysql/monitoring-intro',
+          href: 'mysql-v1/monitoring-intro',
         },
-        // {
-        //   type: 'link',
-        //   label: 'MySQL RDS',
-        //   href: 'mysql-rds/monitoring-intro',
-        //   className: "_productlink"
-        // },
         {
           type: 'link',
           label: 'MS SQL Server',
@@ -3461,18 +3505,14 @@ const sidebars = {
           href: 'amazon-ecs/introduction',
         },
         {
+          type: 'link',
+          label: 'AWS Log',
+          href: 'aws-log/introduction',
+        },
+        {
           type: 'html',
           value: '<hr class="distnq"/>'
         },
-        // {
-        //   type: 'link',
-        //   label: 'AWS Log',
-        //   href: 'aws-log/introduction',
-        // },
-        // {
-        //   type: 'html',
-        //   value: '<hr class="distnq"/>'
-        // },
         {
           type: 'link',
           label: 'Azure Monitor',
@@ -3903,7 +3943,7 @@ const sidebars = {
           label: 'MXQL',
           collapsible: true,
           collapsed: true,
-          description: 'MXQL은 와탭의 성능 데이터(메트릭스)를 유연한게 조회하기 위한 쿼리 언어입니다.',
+          // description: 'MXQL은 와탭의 성능 데이터(메트릭스)를 유연한게 조회하기 위한 쿼리 언어입니다.',
           link: {
             type: 'doc',
             id: 'mxql/mxql-overview',
@@ -3928,7 +3968,7 @@ const sidebars = {
           label: 'Open API',
           collapsible: true,
           collapsed: true,
-          description: 'Open API를 통해 수집 중인 모니터링 정보를 추출해 활용할 수 있습니다.',
+          // description: 'Open API를 통해 수집 중인 모니터링 정보를 추출해 활용할 수 있습니다.',
           link: {
             type: 'doc',
             id: 'apidoc/openapi-intro',
@@ -3962,7 +4002,7 @@ const sidebars = {
         {
           type: 'category',
           label: '자주 묻는 질문',
-          description: '와탭 모니터링 서비스에 대한 FAQ 문서입니다.',
+          // description: '와탭 모니터링 서비스에 대한 FAQ 문서입니다.',
           items: [
             'faq/db-faq',
             'faq/log-faq',
@@ -4055,7 +4095,7 @@ const sidebars = {
           label: 'Telegraf',
           collapsible: true,
           collapsed: true,
-          description: 'Telegraf에 대해 안내합니다.',
+          // description: 'Telegraf에 대해 안내합니다.',
           link: {
             type: 'doc',
             id: 'telegraf/introduction'
@@ -4092,7 +4132,7 @@ const sidebars = {
           label: 'Focus',
           collapsible: true,
           collapsed: true,
-          description: 'Focus 서비스를 안내합니다.',
+          // description: 'Focus 서비스를 안내합니다.',
           link: {
             type: 'doc',
             id: 'focus/introduction'
@@ -4695,6 +4735,7 @@ const sidebars = {
             'browser/metrics-intro',
           ],
         },
+        'browser/report-intro',
         {
           type: 'category',
           label: '알림 설정하기',
@@ -5025,8 +5066,8 @@ const sidebars = {
                 id: 'kubernetes/container-map-detail-mode'
               },
               items: [
-                'kubernetes/container-map-metrics',
                 'kubernetes/container-map-trace',
+                'kubernetes/container-map-metrics',
                 'kubernetes/container-map-log',
                 'kubernetes/container-map-event',
               ],

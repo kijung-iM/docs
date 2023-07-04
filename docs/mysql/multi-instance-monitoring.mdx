@@ -5,34 +5,42 @@ description: 다수의 데이터베이스 인스턴스 핵심 지표를 통합�
 tags: [ MySQL, 인스턴스, 대시보드, 데이터베이스 모니터링, 멀티 인스턴스 모니터링 ]
 ---
 
-import ProdImg from '@site/src/components/ChangeImgName.js';
-import Xclude from '@site/src/components/XcludeDoc.js';
-import InDoc from '@site/src/components/InDoc.js';
+import Note from '../common-items/_import_v2-note.mdx';
 
-<!-- 개요 -->
-{@include: ../common-items/_db-mulit-instance-monitoring-desc.mdx}
+<Note product='MySQL' link='../mysql-v1/multi-instance-monitoring' />
 
-<!-- Notes -->
+<!-- 개요-->
+{@include: ../common-items/_db-v2-mulit-instance-monitoring-desc.mdx}
+
+<!-- Notes-->
 {@include: ../common-items/_db-multi-instance-monitoring-desc-notes.mdx}
 
-<!-- 기본 화면 안내 -->
-{@include: ../common-items/_db-multi-instance-monitoring-basic.mdx}
+## 기본 화면 안내
 
+<ProdImg img='db-multi-instance.png' desc='멀티 인스턴스 모니터링' />
 
-<!-- 지표 선택하기 -->
-{@include: ../common-items/_db-select-metric-data-widget.mdx}  
+<!-- 인스턴스 선택-->
+{@include: ../common-items/_db-v2-mim-select-instance.mdx}
 
+<!-- 차트영역-->
+{@include: ../common-items/_db-v2-mim-chart-area.mdx} 
 
-<!-- 레이아웃 설정하기 -->
-{@include: ../common-items/_db-set-layout.mdx}  
+<!-- 액티브 세션 영역-->
+{@include: ../common-items/_db-v2-mim-activesession-desc.mdx}
 
+{@include: ../common-items/_db-dashboard-activesession-desc.mdx}
 
-<!-- 액티브 세션 영역 활용하기 -->
-{@include: ../common-items/_db-using-area-active-session.mdx}  
+{@include: ../common-items/_db-dashboard-locktree-desc.mdx}
+
+{@include: ../common-items/_db-v2-mim-activesession-note.mdx}
+
+## 테이블 데이터 필터링하기
+
+{@include: ../common-items/_db-table-data-filtering.mdx}
 
 ## 테이블 컬럼 변경하기{#change-column}
 
 {@include: ../common-items/_db-data-edit-column.mdx}
 
-<!-- 컬럼 정보 안내 -->
-{@include: ../common-items/_db_ats-lock-column.mdx}  
+<!-- 컬럼 정보 안내-->
+{@include: ../common-items/_db_mysql-column.mdx}

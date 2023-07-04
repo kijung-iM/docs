@@ -1,0 +1,38 @@
+// HttpServiceStart.x
+long mtid = $ctx.inner().mtid;
+
+if (whatap.agent.api.Ref.c == null || mtid == 0) {
+    return;
+}
+
+try {
+    Class c = (Class) whatap.agent.api.Ref.c;
+    java.lang.reflect.Method m = c.getMethod("put", new Class[]{String.class, String.class});
+    if (m != null) {
+        m.invoke(null, new Object[]{"mtid", Long.toString(mtid)});
+    }
+} catch (Exception e) {
+    whatap.agent.Logger.println("weaving mdc", e);
+}
+///////////////////////////////////////////////
+
+// AppServiceStart.x
+$ctx.inner().mtid = whatap.util.KeyGen.next();
+long mtid = $ctx.inner().mtid;
+
+if (whatap.agent.api.Ref.c == null || mtid == 0) {
+    return;
+}
+
+try {
+	whatap.agent.Logger.info("PLUGIN : ", "mtid issued");
+	Class c = (Class) whatap.agent.api.Ref.c;
+	java.lang.reflect.Method m = c.getMethod("put", new Class[]{String.class, String.class});
+	if (m != null) {
+        m.invoke(null, new Object[]{"mtid", Long.toString(mtid)});
+        whatap.agent.Logger.info("PLUGIN : ", "MDC Called");
+    }
+} catch(Exception e) {
+	whatap.agent.println($ctx.service() +" put: " + mtid);
+}
+///////////////////////////////////////////////

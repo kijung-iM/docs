@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>spring-boot-starter-data-mongodb-reactive</groupId>
+    <artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>spring-boot-starter-data-mongodb-reactive</name>
+
+    <modules>
+        <module>whatap-spring-boot-starter-data-mongodb-reactive-2.1.0</module>
+        <module>whatap-spring-boot-starter-data-mongodb-reactive-2.3.0</module>
+        <module>whatap-spring-boot-starter-data-mongodb-reactive-2.6.0</module>
+        <module>whatap-spring-boot-starter-data-mongodb-reactive-3.0.0</module>
+    </modules>
+
+</project>

@@ -1,0 +1,284 @@
+---
+id: service-1_104_x
+title: Service 1.104.X
+toc_max_heading_level: 3
+---
+
+## Service 1.104.03
+
+2023년 7월 3일
+
+<div class='indentTab'>
+
+### `공통`
+
+<p><Status>Fixed</Status> 프로젝트 생성 후 자동으로 새로고침되지 않는 현상 수정</p>
+
+---
+
+### `Application`
+
+- <Status>Fixed</Status> Python 프로젝트 > <UI>관리</UI> > <UI>에이전트 설치</UI> 메뉴에서 <UI>에이전트 다운로드</UI> 섹션의 다운로드 명령어 수정
+
+- <Status>Fixed</Status> Java 프로젝트 > <UI>관리</UI> > <UI>에이전트 설치</UI> 메뉴에서 <UI>JVM 옵션 추가</UI> 섹션의 JVM 옵션 코드 수정
+
+- <Status>Fixed</Status> Node.js 프로젝트 > <UI>관리</UI> > <UI>에이전트 설치</UI> 메뉴에서 Node.js 지원 버전 문구 수정
+
+---
+
+### `Server`
+
+- <Status>Fixed</Status> <UI>서버 목록</UI> 메뉴에서 비교할 서버 선택하면 <UI>기간 조회</UI> 버튼이 활성화되지 않는 버그 수정
+
+- <Status>Fixed</Status> <UI>경고 알림</UI> > <UI>이벤트 기록</UI> 메뉴에서 <UI>처리내역</UI> 추가 시 이벤트 ID가 DB에 저장되지 않는 버그 수정
+
+</div>
+
+
+## Service 1.104.02
+
+2023년 6월 29일
+
+<div class='indentTab'>
+
+- <Status>Fixed</Status> 프로젝트 내에서 조직이 변경되지 않는 버그 수정
+
+- <Status>Fixed</Status> <UI>조직 관리</UI> 메뉴에서 <UI>가이드 문서 보기</UI> 버튼 클릭 시 사용자가 선택한 언어의 가이드 문서로 이동하도록 수정
+
+- <Status>Fixed</Status> <UI>Flex 보드</UI> 메뉴의 대시보드에서 테이블 위젯의 경우 boolean 값을 확인할 수 있도록 수정
+
+</div>
+
+
+## Service 1.104.01
+
+2023년 6월 29일
+
+<div class='indentTab'>
+
+### `공통`
+
+- <Status>Fixed</Status> 무료 프로젝트 10개 초과 생성 시 표시되는 에러 메시지 수정
+
+- <Status>Fixed</Status> 시간 선택 UI에서 캘린더로 선택한 시간이 <UI>최근 검색 시간</UI> 목록에 저장되지 않는 버그 수정
+
+---
+
+### `Server`
+
+#### 경고 알림
+
+- <Status>Fixed</Status> <UI>이벤트 설정</UI> 메뉴에서 비활성화된 서버의 알림 설정 여부가 표시되지 않는 버그 수정
+
+- <Status>Fixed</Status> <UI>이벤트 설정</UI> 메뉴에서 <UI>로그 파일 / 윈도우 이벤트</UI>의 이벤트를 현재 프로젝트에 복사 시 정상 처리됐음에도 에러 메시지가 표시되는 버그 수정
+
+---
+
+## `Database`
+
+### PostgreSQL V2
+
+- <Status>Fixed</Status> <UI>통계/보고서</UI> > <UI>SQL 통계</UI> 메뉴에서 <UI>결과 내 검색</UI> 기능이 동작하지 않는 문제 수정
+
+- <Status>Fixed</Status> <UI>대시보드</UI> > <UI>인스턴스 모니터링</UI> 메뉴에서 화면 아래 테이블의 정렬이 초기화되는 현상 수정
+
+- <Status>Fixed</Status> <UI>분석</UI> > <UI>카운트 추이 비교</UI> 메뉴에서 화면 아래 테이블의 스크롤을 가장 아래까지 이동해야 좌우 스크롤바가 보이는 현상 수정
+
+- <Status>Fixed</Status> <UI>대시보드</UI> > <UI>인스턴스 모니터링</UI>, <UI>멀티 인스턴스 모니터링</UI> 메뉴에서 <UI>세션 상세</UI> 창의 <UI>Session Info</UI> 데이터가 위치한 요소의 너비보다 텍스트가 길어지는 경우를 대비한 CSS 수정
+
+</div>
+
+
+## Service 1.104.00
+
+2023년 6월 28일
+
+<div class='indentTab'>
+
+### `AWS Log`
+
+<p><Status>New</Status> <b>AWS Log</b> 모니터링 서비스를 오픈했습니다. 많은 이용 부탁드립니다! 상품에 대한 자세한 내용은 <a href='../../aws-log/introduction'>다음 문서</a>를 참조하세요.</p>
+
+---
+
+### `공통`
+
+- <Status>Fixed</Status> 일본어 화면에서 일부 잘못된 번역 수정
+
+- <Status>Deprecate</Status> 다국어 서비스 중 중국어 지원 중단
+
+
+#### 사이드 바
+
+- <Status>Feature</Status> 사이드 바에서 프로젝트 이름에 프로젝트 전체 이름을 표시하는 툴팁 추가
+
+- <Status>Change</Status> 사이드 바에서 <code>AWS Log</code> 프로젝트 아이콘 변경
+
+
+#### 대시보드
+
+- <Status>Change</Status> 시리즈 차트 디자인 수정
+
+  | 수정 전 | 수정 후 |
+  | -- | -- |
+  | ![before](/img/release/series-chart-before.png) | ![after](/img/release/series-chart-after.png) |
+
+- <Status>Change</Status> 히트맵 버튼 디자인 수정
+
+  | 수정 전 | 수정 후 |
+  | -- | -- |
+  | ![before](/img/release/hitmap-button-before.png) | ![after](/img/release/hitmap-button-after.png) |
+
+#### Flex 보드
+
+<p><Status>Change</Status> <b>프로젝트 플렉스보드 편집</b> 권한에 따라 대시보드 수정을 제한하도록 UI 수정</p>
+
+
+#### 보고서
+
+* <Status>Feature</Status> <UI>통합 보고서</UI> 메뉴에서 일간 타입 보고서의 시간 선택 제한 수정
+
+  - **기존**: 종료 시간을 전일 23시 59분까지 선택 가능
+
+  - **변경**: 종료 시간을 현재 시간 기준, 1시간 이전(현재 시간 - 1시간)까지 선택 가능
+
+* <Status>Fixed</Status> <UI>통합 보고서</UI> > <UI>일간 보고서</UI> 메뉴에서 <UI>종료 시간</UI>을 금일로 선택 시 선택 시간 자동 교정 로직 제거
+
+
+#### 경고 알림
+
+- <Status>Feature</Status> <UI>이벤트 수신 설정</UI> > <UI>사용자별 이벤트 수신 설정</UI> 메뉴에서 <b>WhatsApp</b> 알림 설정 추가
+
+- <Status>Fixed</Status> <UI>이벤트 수신 설정</UI> 메뉴에서 이메일, SMS, WhatsApp, 모바일 알림 컬럼의 최소 너비 설정
+
+- <Status>Fixed</Status> <UI>이벤트 수신 설정</UI> 메뉴에서 각 사용자의 수신 설정에 대한 상세 내용을 확인할 때(<img src='/img/ic-caret-right.svg' alt='더보기 아이콘'/> 버튼 선택 시) 설정 내용이 수직으로 위(Top) 정렬되도록 스타일 수정
+
+
+#### 관리
+
+* <Status>Feature</Status> <b>프로젝트 플렉스보드 편집</b> 권한 추가
+
+* <Status>Fixed</Status> <UI>에이전트 설정</UI> 메뉴에서 다중 적용 api 수정
+
+* <Status>Feature</Status> <UI>조직 생성</UI> 및 <UI>조직 관리</UI> 메뉴에서 로고 이미지 안내 문구 추가(이미지 권장 사이즈, 파일 용량, 확장자에 대한 안내)
+
+* <Status>Feature</Status> <UI>멤버 목록</UI> 메뉴에서 멤버의 삭제 및 권한 수정 버튼 위치를 멤버 이름 컬럼으로 이동
+
+* <Status>Change</Status> <UI>계정 정보 관리</UI> 메뉴에서 사용자 비밀번호 설정 규칙을 9자리로 변경
+
+* <Status>Feature</Status> <UI>계정 정보 관리</UI> > <UI>사용자 전화번호</UI>, <UI>알림 수신 설정</UI> 메뉴에서 <b>WhatsApp</b> 알림 설정 추가
+
+---
+
+### `Application`
+
+- <Status>Fixed</Status> 최근 30초 이내의 트랜잭션 로그 데이터가 조회되지 않는 현상 수정
+
+- <Status>Fixed</Status> 서비스 화면의 언어가 영어로 설정된 상태에서 Python 프로젝트의 <UI>관리</UI> > <UI>에이전트 설치</UI> > <UI>Virtual Environment 활성화</UI> 섹션에서 오타 수정
+
+---
+
+### `Server`
+
+#### 경고 알림
+
+- <Status>Feature</Status> <UI>이벤트 설정</UI> 메뉴에서 <UI>이벤트 설정 복사</UI>(구, <b>알림 정책 복사</b>) 기능에 <UI>현재 프로젝트에 복사</UI>할 수 있는 옵션 추가
+
+- <Status>Change</Status> <UI>이벤트 설정</UI> 메뉴에서 <UI>이벤트 설정 복사</UI> 기능을 다음과 같이 변경
+  
+  - **기존**: 복사한 이벤트의 제목을 동일하게 사용하여 복사 대상 프로젝트에 이벤트를 중복 복사하면 가장 마지막으로 복제한 이벤트로 덮어 씌워짐
+
+  - **변경**
+
+    - 이벤트의 제목으로 `{복사한 이벤트 이름}(copy)` 사용
+    - 복사 대상 프로젝트에 이벤트를 중복 복사하면 복사한 횟수만큼 이벤트 생성
+
+---
+
+### `Database`
+
+#### PostgreSQL
+
+* <Status>New</Status> <b>PostgreSQL V2</b> 모니터링 서비스를 오픈했습니다. 기존 대비 달라진 기능을 확인하려면 <a href='../../postgresql/monitoring-intro#new-feature'>다음 문서</a>를 참조하세요.
+
+* <Status>Change</Status> <b>PostgreSQL V2</b> 상품의 메뉴 중 다음 3가지 메뉴를 <UI>사이트맵</UI>을 통해서 접근하도록 변경
+
+  - ***분석*** > ***로그 파일 뷰어***
+
+  - ***경고 알림*** > ***파일 로그 알림***
+
+  - ***관리*** > ***클라우드 모니터링***
+
+---
+
+### `Container`
+
+#### 대시보드
+
+- <Status>Feature</Status> <UI>컨테이너 맵</UI> 메뉴의 컨테이너 요약 보기 패널에서 <UI>로그</UI> > <UI>로그 검색</UI> 탭에 로그 조회 권한 및 상태에 따라 메시지를 다르게 표시
+
+- <Status>Feature</Status> <UI>컨테이너 맵</UI> 메뉴의 컨테이너 요약 보기 패널에서 <UI>이벤트</UI> 탭에 이벤트 개수를 표시하는 <UI>이벤트 수 추이</UI> 차트 추가
+
+- <Status>Feature</Status> <UI>컨테이너 맵</UI> 메뉴에 <UI>불일치</UI> 필터 옵션 추가
+
+
+#### 리소스
+
+- <Status>Fixed</Status> <UI>노드 상세</UI> 메뉴에서 하단 컨테이너 영역의 컨테이너 구성 정보 컬럼 순서 변경
+
+- <Status>Change</Status> <UI>컨테이너 볼륨</UI> 메뉴에서 <img src='/img/ico-search.svg' alt='검색 아이콘'/> 버튼을 선택해야 목록이 출력된다는 안내 메시지 추가
+
+- <Status>Feature</Status> <UI>퍼포먼스 요약</UI> 메뉴에 컨테이너 수, 파드 수 추이 차트 추가
+
+* <Status>Fixed</Status> <UI>컨테이너 목록</UI> 메뉴에서 다크 테마가 적용되지 않는 문제 수정
+
+* <Status>Fixed</Status> <UI>컨테이너 목록</UI> 메뉴에서 설치된 에이전트가 없을 경우 로딩 애니메이션이 아닌 설치된 에이전트가 없다는 안내 메시지가 나오도록 수정
+
+
+#### 관리
+
+- <Status>Fixed</Status> <UI>에이전트 설치</UI> 메뉴에서 안내 문구 수정
+
+- <Status>Fixed</Status> 서비스 화면의 언어가 일본어로 설정된 상태에서 <UI>에이전트 설치</UI> 메뉴의 일본어 문구 수정
+
+---
+
+### `Log`
+
+* <Status>Feature</Status> <UI>로그</UI> 하위 메뉴에서 <img src='/img/ico-setting.svg' alt='설정 아이콘'/> <UI>테이블 설정</UI> > <UI>컬럼 설정</UI>에 <UI>컬럼 추가</UI> 항목으로 <UI>timestamp</UI> 추가
+
+* <Status>Change</Status> 파서 시뮬레이션 실패 시 노출되는 메시지 변경
+
+* <Status>Feature</Status> <UI>로그 검색기</UI> 메뉴에서 선택한 로그와 인접한 시간대의 로그를 조회할 수 있는 기능 추가
+
+* <Status>Feature</Status> <UI>로그 검색기</UI>, <UI>로그 트렌드</UI>, <UI>트랜잭션 로그</UI> 메뉴에서 키워드 하이라이팅 기능 추가
+
+* <Status>Fixed</Status> <UI>로그 설정</UI> > <UI>로그 장기 보관 통계</UI> 메뉴에서 로그 검출 조건 추가 시 <UI>로그 검출 조건</UI> 검색 키를 입력하지 않으면 출력되는 안내 메시지 수정
+
+---
+
+### `Browser`
+
+#### 보고서
+
+<p><Status>Feature</Status> <UI>보고서</UI> > <UI>일간 브라우저 보고서</UI> 메뉴 추가</p>
+
+#### 대시보드
+
+<p><Status>Feature</Status> <UI>브라우저 에러</UI> 메뉴에서 에러에 관한 상세 화면 추가</p>
+
+#### 분석
+
+* <Status>Feature</Status> <UI>페이지로드 히트맵</UI> 메뉴에서 페이지 로드 상세 데이터에 운영체제 버전, 클라이언트 IP 정보 추가
+
+* <Status>Change</Status> <UI>페이지로드 히트맵</UI> 메뉴에서 <UI>URL 그룹 목록 필터</UI> 기능을 <UI>페이지 URL 검색</UI> 기능으로 변경
+
+* <Status>Change</Status> <UI>에러 추적</UI> 메뉴에서 에러 스택 조회 UI 변경
+
+---
+
+### `실험실`
+
+<p><Status>Feature</Status> <code>Container</code>, <code>Java</code> 상품에 <UI>사이트 맵</UI>  > <UI>실험실</UI> > <UI>Remote Access Status</UI> 메뉴 추가</p> 
+
+</div>

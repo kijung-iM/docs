@@ -23,7 +23,7 @@ MSA 분석 기능은 와탭의 MTRACE(멀티 서버간 추적)기능을 통해�
 
 ## MSA 트랜잭션 통계
 
-다음은 caller 또는 callee를 가지고 있는 모든 트랜잭션 통계입니다.
+다음은 Caller 또는 Callee를 가지고 있는 모든 트랜잭션 통계입니다.
 
 ![MSA 분석](https://img.whatap.io/media/images/whatap_application_analysis_msa_2.png)
 
@@ -35,19 +35,21 @@ MTRACE와 관련한 자세한 내용은 [다음 문서](../java/trs-multi-trace)
 
 ![MSA 분석](https://img.whatap.io/media/images/whatap_application_analysis_msa_2.png)
 
-위 통계 데이터 중 특정 URL을 선택하면 해당 URL에 대한 상세 데이터 확인이 가능합니다.
+위 통계 데이터 중 조회를 원하는 URL의 ![상세 아이콘](/img/ic-pageview.svg) ***상세*** 아이콘을 선택하면 상세 보기 창이 나타납니다. 상세 보기 창에서 해당 URL에 대한 ***Caller Callee 요약***, ***Caller Callee 데이터***, ***Caller Callee 추이*** 등의 상세 데이터 조회가 가능합니다. 
 
-* Caller Callee 요약
-* Caller Callee 데이터
-* Caller Callee 추이
+:::note 
+
+![전체 화면 보기 아이콘](/img/ico-detail-mode.svg) 아이콘을 선택하면 상세 보기 창을 전체 화면으로 볼 수 있습니다.
+
+:::
 
 ## Caller Callee 요약
 
-다음과 같이 해당 URL의 caller, callee 사이의 의존성 정보를 표시합니다. 이때 최대 0.004, 0.003 등 최대 1인 숫자 정보가 함께 표시되는데, 이것은 전체 caller들 가운데 차지하는 비중을 표시합니다. 마찬가지로 각 callee들의 비중이 오른쪽에 함께 표시됩니다.
+***Caller Callee 요약 ***탭은 다음과 같이 해당 URL의 Caller, Callee 사이의 의존성 정보를 표시합니다. 이때 최대 0.004, 0.003 등 최대 1인 숫자 정보가 함께 표시되는데, 이것은 전체 Caller들 가운데 차지하는 비중을 표시합니다. 마찬가지로 각 Callee들의 비중이 오른쪽에 함께 표시됩니다.
 
 ![MSA 분석](https://img.whatap.io/media/images/whatap_application_analysis_msa_3.png)
 
-위 화면을 통해 */account/save/employee/seoul* 이라는 트랜잭션을 기준으로 caller와 callee들 사이의 의존성을 분석할 수 있습니다.
+위 화면을 통해 */account/save/employee/seoul* 이라는 트랜잭션을 기준으로 Caller와 Callee들 사이의 의존성을 분석할 수 있습니다.
 
 Caller나 Callee 노드는 하위 노드로 상세 전개가 가능합니다.
 

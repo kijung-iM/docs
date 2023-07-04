@@ -11,7 +11,7 @@ tags:
 
 :::note
 
-이 문서는 PostgreSQL 모니터링 V2를 기준으로 작성되었습니다. PostgreSQL 모니터링 V1 문서는 [다음 문서](../postgresql-v1/metrics-intro)를 참조하세요.
+This document has been created based on the PostgreSQL Monitoring V2. For the PostgreSQL monitoring V1 document, see [the following](../postgresql-v1/metrics-intro).
 
 :::
 
@@ -20,20 +20,20 @@ import Variable from '@site/src/components/Variable.js';
 import IntroExam from '../common-items/_import_metrics-intro-exam.mdx';
 import LookupchartDesc from '../common-items/_import_metrics-chart-example-desc.mdx';
 
-<!-- 개요 -->
+<!-- Overview -->
 
-{@include: ../common-items/_metrics-intro.desc.mdx}  
+{@include: ../common-items/_metrics-intro.desc.mdx}
 
 <IntroExam category='db_postgresql_counter'/>
 
 <ProdImg img='metrics-example-00.png' desc=''/>
 
-<!-- 메트릭스 차트 조회하기 -->
+<!-- View Metrics Chart -->
 
 {@include: ../common-items/_metrics-intro-look-up-chart.mdx}  
 
 <LookupchartDesc metric='Checkpoint_write_time' category='db_postgresql_counter' />
 
-<!-- 메트릭스 Raw Data 조회화기 -->
+<!-- View Metrics Raw Data -->
 
 {@include: ../common-items/_metrics-intro-look-up-raw-data.mdx}  

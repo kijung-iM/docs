@@ -128,7 +128,7 @@
     "description": "The label for link Open API in sidebar phpSidebar, linking to /apidoc/openapi-intro"
   },
   "sidebar.phpSidebar.doc.설치 점검": {
-    "message": "インストール点検",
+    "message": "インストールチェック",
     "description": "The label for the doc item 설치 점검 in sidebar phpSidebar, linking to the doc php/install-check"
   },
   "sidebar.phpSidebar.doc.설치 문제 해결": {
@@ -474,46 +474,6 @@
   "sidebar.mysqlSidebar.doc.지원 환경": {
     "message": "サポート環境",
     "description": "The label for the doc item 지원 환경 in sidebar mysqlSidebar, linking to the doc mysql/monitoring-support"
-  },
-  "sidebar.mysqlrdsSidebar.category.MySQL RDS 모니터링": {
-    "message": "MySQL RDSモニタリング",
-    "description": "The label for category MySQL RDS 모니터링 in sidebar mysqlrdsSidebar"
-  },
-  "sidebar.mysqlrdsSidebar.category.설치하기": {
-    "message": "インストール",
-    "description": "The label for category 설치하기 in sidebar mysqlrdsSidebar"
-  },
-  "sidebar.mysqlrdsSidebar.category.주요 메뉴 알아보기": {
-    "message": "メインメニュー",
-    "description": "The label for category 주요 메뉴 알아보기 in sidebar mysqlrdsSidebar"
-  },
-  "sidebar.mysqlrdsSidebar.category.대시보드": {
-    "message": "ダッシュボード",
-    "description": "The label for category 대시보드 in sidebar mysqlrdsSidebar"
-  },
-  "sidebar.mysqlrdsSidebar.category.Flex 보드": {
-    "message": "Flexボード",
-    "description": "The label for category Flex 보드 in sidebar mysqlrdsSidebar"
-  },
-  "sidebar.mysqlrdsSidebar.category.메트릭스": {
-    "message": "メトリックス",
-    "description": "The label for category 메트릭스 in sidebar mysqlrdsSidebar"
-  },
-  "sidebar.mysqlrdsSidebar.category.통계/보고서": {
-    "message": "統計/レポート",
-    "description": "The label for category 통계/보고서 in sidebar mysqlrdsSidebar"
-  },
-  "sidebar.mysqlrdsSidebar.category.알림 설정하기": {
-    "message": "アラートの設定",
-    "description": "The label for category 알림 설정하기 in sidebar mysqlrdsSidebar"
-  },
-  "sidebar.mysqlrdsSidebar.link.Open API": {
-    "message": "Open API",
-    "description": "The label for link Open API in sidebar mysqlrdsSidebar, linking to /apidoc/openapi-intro"
-  },
-  "sidebar.mysqlrdsSidebar.doc.지원 환경": {
-    "message": "サポート環境",
-    "description": "The label for the doc item 지원 환경 in sidebar mysqlrdsSidebar, linking to the doc mysql-rds/monitoring-support"
   },
   "sidebar.mssqlSidebar.category.MS SQL Server 모니터링": {
     "message": "MS SQL Serverモニタリング",
@@ -889,7 +849,7 @@
   },
   "sidebar.indexSidebar.link.PostgreSQL": {
     "message": "PostgreSQL",
-    "description": "The label for link PostgreSQL in sidebar indexSidebar, linking to postgresql-v1/monitoring-intro"
+    "description": "The label for link PostgreSQL in sidebar indexSidebar, linking to postgresql/monitoring-intro"
   },
   "sidebar.indexSidebar.link.Oracle": {
     "message": "Oracle",
@@ -1312,7 +1272,7 @@
     "description": "The label for category Log 모니터링 in sidebar logSidebar"
   },
   "sidebar.logSidebar.category.적용하기": {
-    "message": "適用",
+    "message": "応募方法",
     "description": "The label for category 적용하기 in sidebar logSidebar"
   },
   "sidebar.logSidebar.category.주요 메뉴 알아보기": {
@@ -1334,10 +1294,6 @@
   "sidebar.mysqlSidebar.category.통계/보고서": {
     "message": "統計/レポート",
     "description": "The label for category 통계/보고서 in sidebar mysqlSidebar"
-  },
-  "sidebar.mysqlrdsSidebar.category.분석": {
-    "message": "分析",
-    "description": "The label for category 분석 in sidebar mysqlrdsSidebar"
   },
   "sidebar.previewSidebar.category.릴리스 노트 - Preview": {
     "message": "リリースノート - プレビュー",
@@ -1416,7 +1372,7 @@
     "description": "The label for category 에이전트 설치 in sidebar nodejsSidebar"
   },
   "sidebar.postgreSidebar.category.PostgreSQL 모니터링 V2": {
-    "message": "PostgreSQL 모니터링 V2",
+    "message": "PostgreSQLモニタリングV2",
     "description": "The label for category PostgreSQL 모니터링 V2 in sidebar postgreSidebar"
   },
   "sidebar.postgreSidebar.doc.Log 모니터링": {
@@ -1476,11 +1432,11 @@
     "description": "The label for category DBX in sidebar releaseSidebar"
   },
   "sidebar.indexSidebar.link.라이선스": {
-    "message": "ラインセンス",
+    "message": "ライセンス",
     "description": "The label for link 라이선스 in sidebar indexSidebar, linking to license/licenses"
   },
   "sidebar.lsSidebar.category.라이선스": {
-    "message": "ラインセンス",
+    "message": "ライセンス",
     "description": "The label for category 라이선스 in sidebar lsSidebar"
   },
   "sidebar.awslogSidebar.doc.설정하기": {
@@ -1488,7 +1444,15 @@
     "description": "The label for the doc item 설정하기 in sidebar awslogSidebar, linking to the doc aws-log/aws-log-setting"
   },
   "sidebar.awslogSidebar.doc.VPC 설정하기": {
-    "message": "VPC 설정하기",
+    "message": "VPC設定",
     "description": "The label for the doc item VPC 설정하기 in sidebar awslogSidebar, linking to the doc aws-log/install-aws-log-vpc"
+  },
+  "sidebar.releaseSidebar.category.Node.js": {
+    "message": "Node.js",
+    "description": "The label for category Node.js in sidebar releaseSidebar"
+  },
+  "sidebar.indexSidebar.link.AWS Log": {
+    "message": "AWS Log",
+    "description": "The label for link AWS Log in sidebar indexSidebar, linking to aws-log/introduction"
   }
 }

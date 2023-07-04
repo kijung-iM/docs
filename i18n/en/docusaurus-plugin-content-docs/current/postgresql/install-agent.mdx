@@ -12,7 +12,7 @@ import DBuserDesc from '../common-items/_import_db-create-db-user-desc.mdx';
 
 :::note
 
-이 문서는 PostgreSQL 모니터링 V2를 기준으로 작성되었습니다. PostgreSQL 모니터링 V1 문서는 [다음 문서](../postgresql-v1/install-agent)를 참조하세요.
+This document has been created based on the PostgreSQL Monitoring V2. For the PostgreSQL monitoring V1 document, see [the following](../postgresql-v1/install-agent).
 
 :::
 
@@ -74,9 +74,12 @@ alter user whatap with superuser;
 grant execute on function pg_ls_dir(text) to whatap;  # In case of using EDB
 alter user whatap with superuser;
 
-# In case of collecting the cache
+#  In case of collecting the cache
 grant select on pg_backend_memory_contexts to whatap;
 grant execute on function pg_get_backend_memory_contexts to whatap;
+
+#  In case of collecting the table size
+grant usage on schema {schema_name} to whatap;
 ```
 
 ## DB user file creation {#create-db-user}

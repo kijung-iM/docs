@@ -34,7 +34,7 @@ tags: [ 로그 모니터링, Server ]
 
 * ***카테고리와 함께 설치***
 
-  ```bash title='Linux Shell' {7-12,14,15} showLineNumbers
+  ```bash title='Linux Shell' {7-12,14,15,25,26} showLineNumbers
   cd /usr/whatap/infra
   sudo mkdir extension
 
@@ -57,6 +57,10 @@ tags: [ 로그 모니터링, Server ]
       path = "/some/other/log"
       disabled = false
       encoding = "utf-8"
+
+    [[inputs.logsink.file]]
+      ## 줄 단위 로그에서 해당 키워드 검색 시, 이전 로그에 병합
+      nowrap_keywords = ["Caused by:", "Test"]
   EOL
 
   sudo service whatap-infra restart
@@ -73,7 +77,7 @@ tags: [ 로그 모니터링, Server ]
 
 * ***카테고리와 함께 설치***
 
-  ```bash title='Windows Powershell' {6-11,13,14} showLineNumbers
+  ```bash title='Windows Powershell' {7-11,14,15,20,21} showLineNumbers
   # 관리자 권한 필요
   New-Item -type "Directory" -Path "C:\Program Files\WhatapInfra\extension"
 
@@ -91,6 +95,10 @@ tags: [ 로그 모니터링, Server ]
   path = "c:\\whatap\\logs%Y-%m-%d_.log"
   disabled = false
   encoding = "euc-kr"
+
+  [[inputs.logsink.file]]
+  ## 줄 단위 로그에서 해당 키워드 검색 시, 이전 로그에 병합
+  nowrap_keywords = ["Caused by:", "Test"]
 
   "@
 
@@ -121,6 +129,8 @@ tags: [ 로그 모니터링, Server ]
   ```ini title='Example'
   excludeNames = [ ".gz",".zip" ]
   ```
+
+* `nowrap_keywords`: 줄 단위 로그 검색 시 해당 옵션값으로 지정한 키워드가 검색될 경우 이전 로그에 병합합니다.
 
 ## 로그 모니터링 활성화
 

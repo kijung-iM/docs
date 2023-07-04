@@ -19,21 +19,22 @@
 | containerKey   | 컨테이너 Key                                               |   -    |
 | created        | 컨테이너가 생성된 TimeStamp                                |   -    |
 | image          | 컨테이너 이미지명                                          |   -    |
-| imageHash      | 이미지 해쉬 값                                             |   -    |
+| imageHash      | 이미지 해시 값                                             |   -    |
 | imageId        | 이미지 ID                                                  |   -    |
+| k8s-app        | Pod의 레이블 k8s-app에 대한 값                            |   -    |
 | microOid       | 컨테이너에 설치된 와탭 APM 에이전트의 고유 ID              |   -    |
 | name           | 컨테이너 이름                                              |   -    |
 | namespace      | 컨테이너가 소속된 네임스페이스                             |   -    |
-| namespaceHash  | 컨테이너가 소속된 네임스페이스 해쉬 값                     |   -    |
+| namespaceHash  | 컨테이너가 소속된 네임스페이스 해시 값                     |   -    |
 | okind          | 컨테이너에 설치된 와탭 APM 에이전트에 지정한 OKIND 고유 ID |   -    |
 | okindName      | 컨테이너에 설치된 와탭 APM 에이전트에 지정한 OKIND 이름    |   -    |
 | oname          | 컨테이너에 설치된 와탭 APM 에이전트 이름                   |   -    |
 | onode          | 컨테이너가 작동 중인 노드 에이전트의 고유 ID               |   -    |
 | onodeName      | 컨테이너가 작동 중인 노드 이름                             |   -    |
-| podHash        | 컨테이너의 POD 해쉬 값                                     |   -    |
-| podName        | 컨테이너의 POD 이름                                        |   -    |
-| replicaSetHash | 컨테이너의 리플리카셋 해쉬 값                              |   -    |
-| replicaSetName | 컨테이너의 리플리카셋 이름                                 |   -    |
+| podHash        | 컨테이너의 Pod 해시 값                                     |   -    |
+| podName        | 컨테이너의 Pod 이름                                        |   -    |
+| replicaSetHash | 컨테이너의 레플리카셋 해시 값                              |   -    |
+| replicaSetName | 컨테이너의 레플리카셋 이름                                 |   -    |
 | whatap_project | 컨테이너가 속한 와탭 프로젝트 이름                         |   -    |
 
 #### Fields
@@ -157,6 +158,7 @@
 | node_mem | 퍼센트 | ConNodeMem |
 | ^ | ^ | Container Work Node Memory Usage (%) |
 | ^ | ^ | 컨테이너가 실행 중인 노드의 메모리 사용량 |
+|phase|문자열|Pod 라이프사이클 <br/> ① PENDING<br/> ② RUNNING <br/>③ SUCCEEDED <br/>④ FAILED <br/>⑤ UNKNOWN|
 | restart_count | 정수 | ConRestartCnt |
 | ^ | ^ | Container Restart Count |
 | ^ | ^ | 컨테이너 다시 시작 횟수 |
@@ -187,10 +189,10 @@
 | ------------------ | --------- | ------------------------- | ---- |
 | allocatable_cpu    | 밀리 코어 | 노드 할당 가능한 CPU량    | -    |
 | allocatable_memory | 바이트    | 노드 할당 가능한 메모리량 | -    |
-| allocatable_pods   | 정수      | 노드 할당 가능한 POD 수   | -    |
+| allocatable_pods   | 정수      | 노드 할당 가능한 Pod 수   | -    |
 | limit_cpu          | 밀리 코어 | 노드 CPU Limit 합계       | -    |
 | limit_memory       | 바이트    | 노드 메모리 Limit 합계    | -    |
-| pods               | 정수      | 노드 POD 총개수           | -    |
+| pods               | 정수      | 노드 Pod 총개수           | -    |
 | request_cpu        | 밀리 코어 | 노드 CPU Request 합계     | -    |
 | request_memory     | 바이트    | 노드 메모리 Request 합계  | -    |
 
@@ -271,7 +273,7 @@
 
 ### Pod(`kube_pod`) 지표
 
-`kube_pod` 카테고리는 파드에 설정된 모든 사용자 정의 라벨들을 태그로 수집합니다.
+`kube_pod` 카테고리는 Pod에 설정된 모든 사용자 정의 라벨들을 태그로 수집합니다.
 
 * 대상: 마스터(클러스터) 프로젝트, 네임스페이스 프로젝트
 * 수집 간격: 5초
@@ -279,19 +281,30 @@
 
 #### Tags
 
-| 태그명         | 설명                               | 비고   |
-| -------------- | ---------------------------------- | ------ |
-| agentOid       | 노드 에이전트 고유 ID              | 고유값 |
-| agentPcode     | 프로젝트 코드                      | 고유값 |
-| command        | 실행 명령어                        | -      |
-| Deployment     | Deployment                         | -      |
-| name           | 파드 이름                          | -      |
-| podName        | 파드 이름                          | -      |
-| namespace      | 파드가 소속된 네임스페이스         | -      |
-| namespaceHash  | 파드가 소속된 네임스페이스 해시 값 | -      |
-| replicaSetHash | 파드의 ReplicaSet 해시 값          | -      |
-| replicaSetName | 파드의 ReplicaSet 이름             | -      |
-| whatap_project | 파드가 속한 와탭 프로젝트 이름     | -      |
+| 태그명             | 설명                                                                          | 비고   |
+| ------------------ | ----------------------------------------------------------------------------- | ------ |
+| agentOid           | 노드 에이전트 고유 ID                                                         | 고유값 |
+| agentPcode         | 프로젝트 코드                                                                 | 고유값 |
+| command            | 실행 명령어                                                                   | -      |
+| containerIds       | Pod 에 속해있는 컨테이너 ID                                                   | -      |
+| containerIdsCount  | containerIds 의 개수                                                          | -      |
+| containerKeys      | Pod 에 속해있는 컨테이너 ID 의 해시 값                                        | -      |
+| containerKeysCount | containerKeys 의 개수                                                         | -      |
+| DaemonSet          | Pod의 DaemonSet 이름                                                         | -      |
+| Deployment         | Deployment                                                                    | -      |
+| k8s-app            | Pod의 레이블 k8s-app에 대한 값                                               | -      |
+| microOid           | Pod 의 컨테이너 내부 애플리케이션에서 실행중인 에이전트의 id                  | -      |
+| microOids          | Pod 안의 복수개 컨테이너 내부 애플리케이션에서 실행 중인 에이전트의 복수개 id | -      |
+| microOidsCount     | microOids 의 개수                                                             | -      |
+| name               | Pod 이름                                                                     | -      |
+| onames             | Pod 의 컨테이너 내부 애플리케이션에서 실행중인 에이전트의 명칭                | -      |
+| onamesCount        | onames 의 개수                                                                | -      |
+| podName            | Pod 이름                                                                     | -      |
+| namespace          | Pod가 소속된 네임스페이스                                                    | -      |
+| namespaceHash      | Pod가 소속된 네임스페이스 해시 값                                            | -      |
+| replicaSetHash     | Pod의 ReplicaSet 해시 값                                                     | -      |
+| replicaSetName     | Pod의 ReplicaSet 이름                                                        | -      |
+| whatap_project     | Pod가 속한 와탭 프로젝트 이름                                                | -      |
 
 #### Fields
 
@@ -299,16 +312,16 @@
 | -- | -- | -- |
 | blkio_rbps | 바이트 | IoReadBytes |
 | ^ | ^ | Pod Block I/O Read Byte |
-| ^ | ^ | 파드 전체 블럭 디바이스의 초당 읽은 바이트 합 |
+| ^ | ^ | Pod 전체 블럭 디바이스의 초당 읽은 바이트 합 |
 | blkio_riops | 건수 | IoReadIops |
 | ^ | ^ | Pod Block I/O Read IOPS |
-| ^ | ^ | 파드 전체 블럭 디바이스의 초당 읽은 건수 합 |
+| ^ | ^ | Pod 전체 블럭 디바이스의 초당 읽은 건수 합 |
 | blkio_wbps | 바이트 | IoWriteBytes |
 | ^ | ^ | Pod Block I/O Write Byte | 
-| ^ | ^ | 파드 전체 블럭 디바이스의 초당 쓴 바이트 합 |
+| ^ | ^ | Pod 전체 블럭 디바이스의 초당 쓴 바이트 합 |
 | blkio_wiops | 건수 | IoWriteIops |
 | ^ | ^ | Pod Block I/O Write IOPS |
-| ^ | ^ | 파드 전체 블럭 디바이스의 초당 쓴 건수 합 |
+| ^ | ^ | Pod 전체 블럭 디바이스의 초당 쓴 건수 합 |
 | cpu_per_limit | 퍼센트 | CpuByLimit |
 | ^ | ^ | Pod CPU Usage by Limit (%) |
 | ^ | ^ | CPU Limit 기준 CPU 전체 사용률 |
@@ -317,94 +330,94 @@
 | ^ | ^ | CPU Limit 기준 CPU 전체 사용률 |
 | cpu_quota_percent | 퍼센트 | CpuLimitByNode |
 | ^ | ^ | Pod CPU Limit by Node (%) |
-| ^ | ^ | 노드 CPU 대비 파드 CPU Limit 할당량<br/>Limit 미설정인 경우 파드가 작동 중인 해당 노드의 CPU 전체 코어가 퍼센트로 표시된다. |
+| ^ | ^ | 노드 CPU 대비 Pod CPU Limit 할당량<br/>Limit 미설정인 경우 Pod가 작동 중인 해당 노드의 CPU 전체 코어가 퍼센트로 표시된다. |
 | cpu_sys | 퍼센트 | CpuSysByNode |
 | ^ | ^ | Pod CPU Sys Usage by Node (%) |
-| ^ | ^ | 노드 CPU 대비 파드 CPU System 사용률 |
+| ^ | ^ | 노드 CPU 대비 Pod CPU System 사용률 |
 | cpu_throttledperiods | 건수 | CpuThrottledCnt |
 | ^ | ^ | Pod CPU Throttling Count |
-| ^ | ^ | 파드 CPU Throttled 건수 |
+| ^ | ^ | Pod CPU Throttled 건수 |
 | cpu_throttledtime | 나노세컨드 | CpuThrottledTime |
 | ^ | ^ | Pod CPU Throttling Time |
-| ^ | ^ | 파드 CPU Throttled 시간 |
+| ^ | ^ | Pod CPU Throttled 시간 |
 | cpu_total | 퍼센트 | CpuByNode |
 | ^ | ^ | Pod CPU Usage by Node (%) |
-| ^ | ^ | 노드 CPU 대비 파드 CPU 사용률 |
+| ^ | ^ | 노드 CPU 대비 Pod CPU 사용률 |
 | cpu_total_milli | 밀리코어 | CpuTotUsage |
 | ^ | ^ | Pod CPU Usage (millicore) |
-| ^ | ^ | 파드 CPU 사용률 |
+| ^ | ^ | Pod CPU 사용률 |
 | cpu_user | 퍼센트 | CpuUserByNode |
 | ^ | ^ | Pod CPU User Usage by Node (%) |
-| ^ | ^ | 노드 CPU 대비 파드 CPU User 사용률 |
+| ^ | ^ | 노드 CPU 대비 Pod CPU User 사용률 |
 | cpu_request | 밀리코어 | CpuRequest |
 | ^ | ^ | Pod CPU Request (core) |
-| ^ | ^ | 파드 CPU 요청 |
+| ^ | ^ | Pod CPU 요청 |
 | cpu_per_request | 퍼센트 | CpuByRequest |
 | ^ | ^ | Pod CPU Usage by Request (%) |
-| ^ | ^ | 파드 CPU 요청 대비 사용률<br/>= cpu_total_milli / cpu_request * 100 |
+| ^ | ^ | Pod CPU 요청 대비 사용률<br/>= cpu_total_milli / cpu_request * 100 |
 | mem_totalcache | 바이트 | MemTotCache |
 | ^ | ^ | Pod Memory Total Cache (byte) |
-| ^ | ^ | 파드 전체 캐시 크기 |
+| ^ | ^ | Pod 전체 캐시 크기 |
 | mem_totalpgfault | 횟수 | MemTotPageFaultCnt |
 | ^ | ^ | Pod Memory Total Page Fault Count |
-| ^ | ^ | 파드 Page Fault 횟수 |
+| ^ | ^ | Pod Page Fault 횟수 |
 | mem_totalrss | 바이트 | MemTotRss |
 | ^ | ^ | Pod Memory Total RSS (byte) |
-| ^ | ^ | 파드 RSS 메모리 전체 크기 |
+| ^ | ^ | Pod RSS 메모리 전체 크기 |
 | mem_totalrss_percent | 퍼센트 | MemTotRssByLimit |
 | ^ | ^ | Pod Memory Total RSS by Limit (%) | 
-| ^ | ^ | 파드 RSS 메모리 전체 사용률 |
+| ^ | ^ | Pod RSS 메모리 전체 사용률 |
 | mem_totalunevictable | 바이트 | MemTotUnevictable |
 | ^ | ^ | Pod Memory Total Unevictable (byte) |
-| ^ | ^ | 파드 Unevictable Memory 전체 크기 |
+| ^ | ^ | Pod Unevictable Memory 전체 크기 |
 | mem_usage | 바이트 | MemUsage |
 | ^ | ^ | Pod Memory Usage (byte) |
-| ^ | ^ | 파드 메모리 사용량 |
+| ^ | ^ | Pod 메모리 사용량 |
 | mem_working_set | 바이트 | MemWs |
 | ^ | ^ | Pod Memory Working Set (byte) |
-| ^ | ^ | 파드 메모리 working set<br/>= mem_usage - inactive file |
+| ^ | ^ | Pod 메모리 working set<br/>= mem_usage - inactive file |
 | mem_working_set_percent | 퍼센트 | MemWsByLimit |
 | ^ | ^ | Pod Memory Working Set by Limit (%) | 
-| ^ | ^ |파드 메모리 할당량 기준 working set 사용량<br/>= mem_working_set / mem_limit * 100 |
+| ^ | ^ |Pod 메모리 할당량 기준 working set 사용량<br/>= mem_working_set / mem_limit * 100 |
 | memory_request | 바이트 | MemRequest |
 | ^ | ^ | Pod Memory Request (byte) |
-| ^ | ^ | 파드 메모리 요청량 |
+| ^ | ^ | Pod 메모리 요청량 |
 | memory_limit | 바이트 | MemLimit |
 | ^ | ^ | Pod Memory Limit (byte) |
-| ^ | ^ | 파드 메모리 Limit 할당량 |
+| ^ | ^ | Pod 메모리 Limit 할당량 |
 | memory_per_request | 퍼센트 | MemByRequest |
 | ^ | ^ | Pod Memory by Request (%) |
-| ^ | ^ | 파드 메모리 요청량 기준 사용량 |
+| ^ | ^ | Pod 메모리 요청량 기준 사용량 |
 | memory_per_limit | 퍼센트 | MemByLimit |
 | ^ | ^ | Pod Memory by Limit (%) |
-| ^ | ^ | 파드 메모리 Limit 기준 사용량 |
+| ^ | ^ | Pod 메모리 Limit 기준 사용량 |
 | network_rbps | 바이트 | NetRxBytes |
 | ^ | ^ | Pod Network Receive Byte |
-| ^ | ^ | 파드 전체 블럭 디바이스의 초당 읽기 바이트 합 |
+| ^ | ^ | Pod 전체 블럭 디바이스의 초당 읽기 바이트 합 |
 | network_rdropped | 바이트 | NetRxDropped |
 | ^ | ^ | Pod Network Receive Dropped |
-| ^ | ^ | 파드 네트워크 수신 dropped 건수 |
+| ^ | ^ | Pod 네트워크 수신 dropped 건수 |
 | network_rerror | 바이트 | NetRxError |
 | ^ | ^ | Pod Network Receive Error|
-| ^ | ^ | 파드 네트워크 수신 에러 건수 |
+| ^ | ^ | Pod 네트워크 수신 에러 건수 |
 | network_riops | 바이트 | NetRxIops |
 | ^ | ^ | Pod Network Receive IOPS |
-| ^ | ^ | 파드 네트워크 수신 건수 |
+| ^ | ^ | Pod 네트워크 수신 건수 |
 | network_wbps | 바이트 | NetTxByes |
 | ^ | ^ | Pod Network Transmit Byte |
-| ^ | ^ | 파드 네트워크 송신 데이터 크기 |
+| ^ | ^ | Pod 네트워크 송신 데이터 크기 |
 | network_wdropped | 건수 | NetTxDropped |
 | ^ | ^ | Pod Network Transmit Dropped |
-| ^ | ^ | 파드 네트워크 송신 dropped 건수 |
+| ^ | ^ | Pod 네트워크 송신 dropped 건수 |
 | network_werror | 건수 | NetTxError |
 | ^ | ^ | Pod Network Transmit Error |
-| ^ | ^ | 파드 네트워크 송신 에러 건수 |
+| ^ | ^ | Pod 네트워크 송신 에러 건수 |
 | network_wiops | 건수 | NetTxIops |
 | ^ | ^ | Pod Network Transmit IOPS |
-| ^ | ^ | 파드 네트워크 송신 건수 |
+| ^ | ^ | Pod 네트워크 송신 건수 |
 | phase | 문자열 | Phase |
 | ^ | ^ | Pod Current Phase |
-| ^ | ^ | 파드 Phase |
+| ^ | ^ | Pod 라이프사이클 <br/> ① PENDING<br/> ② RUNNING <br/>③ SUCCEEDED <br/>④ FAILED <br/>⑤ UNKNOWN |
 
 다음 필드는 내부용으로 예약되었습니다.
 
@@ -458,7 +471,7 @@
 
 와탭에서 사용하는 ClusterRole에 HPA가 추가되어야 지표 수집이 시작됩니다.
 
-* 대상: 클러스터 프로젝트, 네임스페이스 프로젝트
+* 대상: 클러스터 프로젝트
 * 수집 간격: 5초
 * 통계 데이터: 5분, 1시간
 
@@ -472,12 +485,8 @@
 
 | 필드명                | 단위      | 설명                                 | 비고 |
 | --------------------- | --------- | ------------------------------------ | ---- |
-| currentReplicas       | 정수      | 현재 리플리카 수                     | -    |
-| desiredReplicas       | 정수      | Desired 리플리카 수                  | -    |
+| currentReplicas       | 정수      | 현재 레플리카 수                     | -    |
+| desiredReplicas       | 정수      | Desired 레플리카 수                  | -    |
 | lastScaleTime         | 정수      | 마지막으로 스케일이 변경된 TimeStamp | -    |
-| maxReplicas           | 정수      | 최대 리플리카 수                     | -    |
-| minReplicas           | 정수      | 최소 리플리카 수                     | -    |
-| metric_pod_cpu_avg    | 밀리 코어 | HPA CPU 사용량                       | -    |
-| metric_pod_memory_avg | 바이트    | HPA Memory 사용량                    | -    |
-| resource_cpu          | 퍼센트    | HPA CPU 평균 사용률                  | -    |
-| resource_memory       | 퍼센트    | HPA Memory 평균 사용률               | -    |
+| maxReplicas           | 정수      | 최대 레플리카 수                     | -    |
+| minReplicas           | 정수      | 최소 레플리카 수                     | -    |

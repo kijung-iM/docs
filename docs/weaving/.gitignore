@@ -1,0 +1,91 @@
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+
+### Project Settings
+whatap.okhttp-3.14.0/.settings
+whatap.okhttp-4.6.0/.settings
+whatap.okhttp-2.7.5/.settings
+
+### IDE Settings ##########################
+.idea
+*.iws
+*.iml
+*.ipr
+!**/misc.xml
+!**/workspace.xml
+!**/.idea/misc.xml
+!**/.idea/workspace.xml
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+### settings ##############################
+### settings ### okhttp ###################
+okhttp/whatap.okhttp-2.7.5/.settings
+okhttp/whatap.okhttp-3.14.0/.settings
+okhttp/whatap.okhttp-4.6.0/.settings
+okhttp/whatap-okhttp-2.7.5/.settings
+okhttp/whatap-okhttp-3.14.0/.settings
+okhttp/whatap-okhttp-4.6.0/.settings
+okhttp/whatap-okhttp-4.0.0/.settings
+
+### settings ### webflux ##################
+spring-boot-starter-webflux/whatap-spring-boot-starter-webflux-2.2.0/.settings
+spring-boot-starter-webflux/whatap-spring-boot-starter-webflux-2.3.0/.settings
+
+### settings ### mongodb ##################
+spring-boot-starter-data-mongodb/whatap-spring-boot-starter-data-mongodb-2.2.4/.settings
+spring-boot-starter-data-mongodb/whatap-spring-boot-starter-data-mongodb-2.4.4/.settings
+
+### settings ### cassandra #################
+cassandra/whatap-cassandra-driver-core-3.3.0/.settings
+
+### settings ### spring-cloud-gateway ######
+spring-cloud-gateway/whatap-spring-cloud-starter-gateway-2.0.0/.settings
+spring-cloud-gateway/whatap-spring-cloud-starter-gateway-2.0.1/.settings
+spring-cloud-gateway/whatap-spring-cloud-starter-gateway-2.0.2/.settings
+spring-cloud-gateway/whatap-spring-cloud-starter-gateway-2.0.3/.settings
+spring-cloud-gateway/whatap-spring-cloud-starter-gateway-2.0.4/.settings
+spring-cloud-gateway/whatap-spring-cloud-starter-gateway-2.1.0/.settings
+spring-cloud-gateway/whatap-spring-cloud-starter-gateway-2.1.1/.settings
+spring-cloud-gateway/whatap-spring-cloud-starter-gateway-2.1.2/.settings
+spring-cloud-gateway/whatap-spring-cloud-starter-gateway-2.1.3/.settings
+spring-cloud-gateway/whatap-spring-cloud-starter-gateway-2.1.4/.settings
+spring-cloud-gateway/whatap-spring-cloud-starter-gateway-2.1.5/.settings
+spring-cloud-gateway/whatap-spring-cloud-starter-gateway-2.2.0/.settings
+spring-cloud-gateway/whatap-spring-cloud-starter-gateway-2.2.1/.settings
+spring-cloud-gateway/whatap-spring-cloud-starter-gateway-2.2.2/.settings
+spring-cloud-gateway/whatap-spring-cloud-starter-gateway-2.2.9/.settings
+spring-cloud-gateway/whatap-spring-cloud-starter-gateway-3.0.0/.settings
+spring-cloud-gateway/whatap-spring-cloud-starter-gateway-3.0.2/.settings
+spring-cloud-gateway/whatap-spring-cloud-starter-gateway-3.0.3/.settings
+
+############################################
+**/*.classpath
+**/*.project
+dbcp/.settings
+
+**/dependency-reduced-pom.xml

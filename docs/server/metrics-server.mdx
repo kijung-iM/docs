@@ -118,10 +118,10 @@ tags: [ Server, 메트릭스 ]
 |태그명|설명|비고|
 |----|----|----|
 |deviceId|디바이스 ID|-|
-|deviceIdHash|디바이스 ID 해쉬 값|-|
+|deviceIdHash|디바이스 ID 해시 값|-|
 |fileSystem|파일 시스템 유형|-|
 |mountPoint|파일 시스템 마운트 포인트|-|
-|mountPointHash|파일 시스템 마운트 포인트 해쉬|-|
+|mountPointHash|파일 시스템 마운트 포인트 해시|-|
 |oname|서버 이름|-|
 |os|OS 유형 linux 또는 window|-|
 
@@ -158,7 +158,7 @@ tags: [ Server, 메트릭스 ]
 |태그명|설명|비고|
 |----|----|----|
 |desc|네트워크 인터페이스 이름|-|
-|descHash|네트워크 인터페이스 해쉬 값|-|
+|descHash|네트워크 인터페이스 해시 값|-|
 |hwAddr|MAC 주소|-|
 |ip|인터페이스 IP 주소|-|
 |oname|서버 이름|-|
@@ -168,23 +168,18 @@ tags: [ Server, 메트릭스 ]
 
 |필드명|단위|설명|비고|
 |----|----|----|----|
-|blksize|바이트|블록 사이즈|리눅스|
+|bandwidthOrder|정수|와탭 전용|-|
 |count|정수|와탭 전용|공통|
-|freePercent|퍼센트|파일 시스템 잔여율|리눅스|
-|freeSpace|바이트|파일 시스템 잔여량|리눅스|
-|ioPercent|퍼센트|IO 사용률 `일부 디스크 유형에서는 부정확한 값이 측정될 수 있습니다.`|리눅스|
-|ioutilOrder|정수|와탭 전용|리눅스|
-|queueLength|실수|Queue Length|공통|
-|totalInode|정수|Inode 전체 개수|리눅스|
-|totalSpace|바이트|파일 시스템 전체 크기|리눅스|
-|usedPercent|퍼센트|파일 시스템 사용률|리눅스|
-|usedInode|정수|Inode 사용 개수|리눅스|
-|usedInodePercent|퍼센트|Inode 사용률|리눅스|
-|userSpaceOrder|정수|와탭 전용|공통|
-|readBps|바이트|초당 읽은 바이트 수|공통|
-|writeBps|바이트|초당 쓴 바이트 수|공통|
-|readIops|소수|초당 읽은 수|공통|
-|writeIops|소수|초당 쓴 수|공통|
+|droppedIn|정수|인바운드 드랍|-|
+|droppedIn|정수|아웃바운드 드랍|-|
+|errorIn|정수|인바운드 에러|-|
+|errorOut|정수|아웃바운드 에러|-|
+|packetIn|pps|인바운드 패킷|-|
+|packetOut|pps|아웃바운드 패킷|-|
+|trafficIn|bps|인바운드 트래픽|-|
+|trafficInAcct|정수|와탭 전용|-|
+|trafficOut|bps|아웃바운드 트래픽|-|
+|trafficOutAcct|정수|와탭 전용|-|
 
 ## server_netstat
 ----
@@ -206,7 +201,7 @@ tags: [ Server, 메트릭스 ]
 |os_nameOS 유형 linux 또는 window|-|
 |os_public_ip|서버 공인 IP|-|
 |os_release|서버 OS 릴리즈명|-|
-|whatap_build|와탭 에이전트 빌드 해쉬값|-|
+|whatap_build|와탭 에이전트 빌드 해시값|-|
 |whatap_home|와탭 에이전트 홈 경로|-|
 |whatap_product|와탭 상품 유형|-|
 |whatap_version|와탭 에이전트 버전|-|
@@ -241,7 +236,7 @@ tags: [ Server, 메트릭스 ]
 |alias|서버 별칭|-|
 |cmd1|프로세스 실행 명령어1|-|
 |cmd2|프로세스 실행 파라미터|-|
-|hash|프로세스 해쉬 값|-|
+|hash|프로세스 해시 값|-|
 |name|프로세스명|-|
 |oname|서버 이름|-|
 |user|프로세스를 실행한 리눅스 사용자명|-|

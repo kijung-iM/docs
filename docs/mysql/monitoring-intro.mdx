@@ -7,10 +7,12 @@ hide_table_of_contents: false
 tags: [ MySQL, 데이터베이스 모니터링, 데이터베이스, 모니터링, DBX ]
 ---
 
-import InDoc from '@site/src/components/InDoc.js';
-import Xclude from '@site/src/components/XcludeDoc.js';
 import RdsCont from '../common-items/_import_db-specification-rds.mdx';
 import CommonCont from '../common-items/_import_db-specification-common.mdx';
+import NewFeature from '../common-items/_import_db-v2-new-feature.mdx';
+import Note from '../common-items/_import_v2-note.mdx';
+
+<Note product='MySQL' link='../mysql-v1/monitoring-intro' />
 
 {@include: ../common-items/_db-introduction-desc.mdx} 
 
@@ -18,15 +20,13 @@ import CommonCont from '../common-items/_import_db-specification-common.mdx';
 
 ## MySQL 모니터링 특장점
 
-<Xclude product='mysql-rds'>
-  <CommonCont />
-</Xclude>
-
-<InDoc product='mysql-rds'>
-  <RdsCont/>
-</InDoc>
+<CommonCont />
 
 {@include: ../common-items/_db-specification.mdx}
+
+## MySQL 모니터링 V2 새로운 기능{#new-feature}
+
+<NewFeature product='MySQL' ver='1.6.8'/>
 
 ## 지원 기능
 

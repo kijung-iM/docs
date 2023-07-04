@@ -5,13 +5,9 @@ description: 데이터베이스별 통계 데이터를 제공합니다.
 tags: [ PostgreSQL, 데이터베이스, 데이터베이스 모니터링, 통계 ]
 ---
 
-:::note
+import Note from '../common-items/_import_v2-note.mdx';
 
-이 문서는 PostgreSQL 모니터링 V2를 기준으로 작성되었습니다. PostgreSQL 모니터링 V1 문서는 [다음 문서](../postgresql-v1/stat)를 참조하세요.
-
-:::
-
-import ProdImg from '@site/src/components/ChangeImgName.js';
+<Note product='PostgreSQL' link='../postgresql-v1/stat' />
 
 <!-- 개요-->
 {@include: ../common-items/_db-stat-desc.mdx}
@@ -20,21 +16,14 @@ import ProdImg from '@site/src/components/ChangeImgName.js';
 {@include: ../common-items/_db-stat-sql-desc.mdx}
 
 <!-- SQL 통계 기본 사용 안내 -->
-{@include: ../common-items/_db-stat-sql-basic.mdx} 
+{@include: ../common-items/_db-stat-sql-basic.mdx}
 
 <!-- 쿼리별 수행 추이, 자세히 보기-->
-{@include: ../common-items/_db-stat-sql-view-query.mdx}
+{@include: ../common-items/_db-stat-sql-view-query.mdx}  
 
 ### 컬럼 정보 안내
 
-| 항목 | 설명 |
-| -- | -- |
-| execute count | SQL을 수행한 횟수 |
-| elapse avg (sec) | SQL을 수행한 평균 수행 시간(초)으로 `elapse sum / execute count`의 결과값 |
-| elapse sum (sec) | SQL을 수행한 시간(초) 합계 |
-| elapse max (sec) | SQL의 최대 수행 시간(초) |
-| elapse wait (sec) | SQL의 대기 시간(초) |
-| instance | 인스턴스 이름 |
+{@include: ../common-items/_db-sql-stat-column.mdx}
 
 
 ## PG SQL 통계
@@ -174,6 +163,5 @@ PostgreSQL에서 제공하는 SQL 통계(수행 횟수, 실행 시간, Row 수 �
 
 <!-- 데이터베이스 사이즈-->
 {@include: ../common-items/_db-databasesize-desc.mdx} 
-
 
 
